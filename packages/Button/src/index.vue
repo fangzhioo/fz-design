@@ -49,11 +49,11 @@ export type ButtonType =
 export type ButtonNativeType = 'button' | 'submit' | 'reset';
 export type ButtonSize = ComponentSize;
 
-export const buttonEmits = {
+const buttonEmits = {
   click: (evt: MouseEvent) => evt instanceof MouseEvent,
 };
 
-export const buttonProps = {
+const buttonProps = {
   size: {
     type: String as PropType<ButtonSize>,
     default: 'medium',

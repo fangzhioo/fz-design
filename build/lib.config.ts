@@ -8,7 +8,7 @@ const { plugins } = baseConfig as any;
 export default defineConfig({
   ...baseConfig,
   build: {
-    outDir: 'dist',
+    outDir: 'lib',
     lib: {
       entry: resolve(__dirname, '../packages/index.ts'),
       name: 'FzUI',

@@ -1,0 +1,22 @@
+# 忽略目录
+.idea
+.vscode
+build/
+docs/
+examples/
+src/
+packages/
+public/
+node_modules/
+typings/
+script/
+dist/
+ 
+# 忽略指定文件
+.eslintignore
+.eslintrc.js
+.gitignore
+.prettierrc
+tsconfig.json
+index.html
+*.map
