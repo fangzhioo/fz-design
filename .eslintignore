@@ -1,0 +1,8 @@
+vite.config.ts
+.eslintrc.js
+tsconfig.json
+*.min.js
+/public
+/config
+**/*.d.ts
+/src/api

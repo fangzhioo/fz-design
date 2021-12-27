@@ -1,0 +1,18 @@
+[
+  {
+    "compName": "Button",
+    "compZhName": "按钮",
+    "compDesc": "按钮",
+    "compClassName": "button",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Input",
+    "compZhName": "输入框",
+    "compDesc": "文本输入框",
+    "compClassName": "input",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  }
+]

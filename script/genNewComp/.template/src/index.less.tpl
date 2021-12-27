@@ -1,0 +1,3 @@
+.{{ compPrefixClass }}{{ compClassName }} {
+  
+}
