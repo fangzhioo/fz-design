@@ -1,6 +1,12 @@
 <template>
   <div>
-    <fz-button size="tiny" type="info" @click="handleClick">按钮1</fz-button>
+    <fz-button @click="handleClick">default</fz-button>
+    <fz-button type="primary" @click="handleClick">primary</fz-button>
+    <fz-button type="success" @click="handleClick">success</fz-button>
+    <fz-button type="warning" @click="handleClick">warning</fz-button>
+    <fz-button type="info" @click="handleClick">info</fz-button>
+    <fz-button type="error" @click="handleClick">error</fz-button>
+    <fz-button type="text" @click="handleClick">text</fz-button>
   </div>
 </template>
 

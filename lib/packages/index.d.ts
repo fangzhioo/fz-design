@@ -7,3 +7,4 @@ declare const FzUIPlugin: Plugin;
 export default FzUIPlugin;
 export * from './Button';
 export * from './Input';
+export * from './ConfigProvider';

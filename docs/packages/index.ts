@@ -6,11 +6,13 @@ import { App, Plugin } from 'vue';
 
 import { ButtonPlugin } from './Button';
 import { InputPlugin } from './Input';
+import { ConfigProviderPlugin } from './ConfigProvider';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
     ButtonPlugin.install?.(app);
     InputPlugin.install?.(app);
+    ConfigProviderPlugin.install?.(app);
   },
 };
 
@@ -18,3 +20,4 @@ export default FzUIPlugin;
 
 export * from './Button';
 export * from './Input';
+export * from './ConfigProvider';

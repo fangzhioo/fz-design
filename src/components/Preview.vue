@@ -1,5 +1,5 @@
 <template>
-  <div class="mykit-preview">
+  <div class="fzui-preview">
     <section>
       <slot></slot>
     </section>
@@ -80,7 +80,7 @@ export default {
 pre {
   line-height: 0;
 }
-.mykit-preview {
+.fzui-preview {
   border: 4px;
   border: 1px dashed #e7e7e7;
   padding: 10px;

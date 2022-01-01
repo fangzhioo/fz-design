@@ -1,8 +1,13 @@
-import { computed, ref, unref } from 'vue';
+import { computed, inject, Ref, ref, unref } from 'vue';
 import type { MaybeRef } from '@vueuse/core';
 import { useProp } from './use-prop';
+import { useGlobalConfig } from './use-global-config';
+import {
+  FZ_FORMITEM_INJECT_KEY,
+  FZ_FORM_INJECT_KEY,
+} from 'packages/_utils/constants';
 
-export type ComponentSize = 'tiny' | 'small' | 'medium' | 'large';
+export type ComponentSize = 'mini' | 'small' | 'medium' | 'large';
 
 export const useSize = (
   fallback?: MaybeRef<ComponentSize | '' | undefined>,
@@ -14,22 +19,24 @@ export const useSize = (
 
   const size = ignore.prop ? emptyRef : useProp<ComponentSize>('size');
   // TODO size by globalConfig and Form;
-  // const globalConfig = ignore.global ? emptyRef : useGlobalConfig('size')
+  const globalConfigSize = ignore.global ? emptyRef : useGlobalConfig('size');
   // const globalConfigLegacy = ignore.global
   //   ? { size: undefined }
   //   : useGlobalConfigLegacy()
-  // const form = ignore.form ? { size: undefined } : inject(elFormKey, undefined)
-  // const formItem = ignore.formItem
-  //   ? { size: undefined }
-  //   : inject(elFormItemKey, undefined)
+  const form = ignore.form
+    ? { size: undefined }
+    : inject(FZ_FORM_INJECT_KEY, undefined);
+  const formItem = ignore.formItem
+    ? { size: undefined }
+    : inject(FZ_FORMITEM_INJECT_KEY, undefined);
 
   return computed(
     () =>
       size.value ||
       unref(fallback) ||
-      // formItem?.size ||
-      // form?.size ||
-      // globalConfig.value ||
+      formItem?.size ||
+      form?.size ||
+      globalConfigSize.value ||
       // globalConfigLegacy.size ||
       '',
   );

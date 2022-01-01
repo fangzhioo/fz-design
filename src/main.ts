@@ -4,9 +4,19 @@ import router from './router';
 
 import './assets/markdown.css';
 
-import MyKit from '../packages';
+import FzUI from '../packages';
+import 'packages/style.less';
+import './assets/commom.less';
 import Preview from './components/Preview.vue';
 
 const app = createApp(App);
+
 app.component('Preview', Preview);
-app.use(MyKit).use(router).mount('#app');
+
+app.use(FzUI);
+
+app.use(router);
+
+router.isReady().finally(() => {
+  app.mount('#app');
+});

@@ -1,0 +1,9 @@
+export declare const UPDATE_MODEL_EVENT = "update:modelValue";
+export declare const CHANGE_EVENT = "change";
+export declare const INPUT_EVENT = "input";
+export declare const FZ_CONFIG_PROVIDER_INJECT_KEY: unique symbol;
+export declare const FZ_LOCALE_INJECT_KEY: unique symbol;
+export declare const FZ_THEME_INJECT_KEY: unique symbol;
+export declare const FZ_BUTTON_GROUP_INJECT_KEY: unique symbol;
+export declare const FZ_FORM_INJECT_KEY: unique symbol;
+export declare const FZ_FORMITEM_INJECT_KEY: unique symbol;

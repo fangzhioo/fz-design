@@ -1,5 +1,5 @@
 import { App, Plugin } from 'vue';
-import Input from './src/index.vue';
+import Input from './src/Input.vue';
 
 export const InputPlugin: Plugin = {
   install(app: App) {
@@ -7,6 +7,4 @@ export const InputPlugin: Plugin = {
   },
 };
 
-export {
-  Input,
-};
+export { Input };

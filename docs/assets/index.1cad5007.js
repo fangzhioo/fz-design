@@ -1,0 +1,1 @@
+import{_ as o}from"./index.d7e53cf3.js";import{d as r,b as t,o as s}from"./vendor.d201db59.js";const a=r({name:"index",setup(e,n){return{}}});function c(e,n,d,p,i,f){return s(),t("div",null,"changelog")}var l=o(a,[["render",c]]);export{l as default};

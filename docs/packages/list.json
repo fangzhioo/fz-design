@@ -14,5 +14,13 @@
     "compClassName": "input",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "ConfigProvider",
+    "compZhName": "配置提供者",
+    "compDesc": "组件全局配置提供者",
+    "compClassName": "config-provider",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]
