@@ -22,5 +22,13 @@
     "compClassName": "config-provider",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Container",
+    "compZhName": "布局容器",
+    "compDesc": "用于布局的容器组件",
+    "compClassName": "container",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]

@@ -1,14 +1,15 @@
 <template>
-  <div class="base-layout">
-    <nav class="base-header">
+  <fz-container class="base-layout">
+    <fz-header class="base-header">
       <router-link to="/guide">guide</router-link>
       <router-link to="/components">components</router-link>
       <router-link to="/changelog">changelog</router-link>
-    </nav>
-    <main class="base-main">
+    </fz-header>
+    <fz-main>
       <router-view></router-view>
-    </main>
-  </div>
+    </fz-main>
+    <fz-footer class="base-footer"> 版权©️ xxxxxxx </fz-footer>
+  </fz-container>
 </template>
 
 <script lang="ts">
@@ -23,18 +24,12 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less">
-.base-layout {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  .base-header {
-    height: 60px;
-    min-height: 60px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #eee;
-  }
-  .base-main {
-    flex: 1;
-  }
+.base-header {
+  box-shadow: var(--fz-box-shadow-light);
+}
+.base-footer {
+  border-top: var(--fz-border-base, 1px solid #666);
+  text-align: center;
+  line-height: 60px;
 }
 </style>

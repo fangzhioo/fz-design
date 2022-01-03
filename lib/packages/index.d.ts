@@ -8,3 +8,4 @@ export default FzUIPlugin;
 export * from './Button';
 export * from './Input';
 export * from './ConfigProvider';
+export * from './Container';

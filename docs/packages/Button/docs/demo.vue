@@ -7,6 +7,16 @@
     <fz-button type="info" @click="handleClick">info</fz-button>
     <fz-button type="error" @click="handleClick">error</fz-button>
     <fz-button type="text" @click="handleClick">text</fz-button>
+    <fz-button plain @click="handleClick">plain</fz-button>
+    <fz-button round @click="handleClick">round</fz-button>
+    <fz-button circle @click="handleClick">c</fz-button>
+    <fz-button disabled @click="handleClick">disabled</fz-button>
+    <fz-button loading @click="handleClick">loading</fz-button>
+
+    <fz-button size="mini" @click="handleClick">mini</fz-button>
+    <fz-button size="small" @click="handleClick">small</fz-button>
+    <fz-button size="medium" @click="handleClick">medium</fz-button>
+    <fz-button size="large" @click="handleClick">large</fz-button>
   </div>
 </template>
 

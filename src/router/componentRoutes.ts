@@ -19,6 +19,11 @@ export const componentRoutes = [
         name: 'ComponentConfigProvider',
         path: '/components/ConfigProvider',
         component: () => import('packages/ConfigProvider/docs/README.md'),
+      },{
+        title: '布局容器',
+        name: 'ComponentContainer',
+        path: '/components/Container',
+        component: () => import('packages/Container/docs/README.md'),
       }
 ];
 

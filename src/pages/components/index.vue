@@ -1,17 +1,14 @@
 <template>
-  <div class="my-fzui-doc">
-    <aside>
-      <router-link
-        v-for="(link, index) in data.links"
-        :key="index"
-        :to="link.path"
-        >{{ link.name }}</router-link
-      >
-    </aside>
-    <main>
+  <fz-container class="my-fzui-doc">
+    <fz-aside width="200px" class="my-doc-aside">
+      <div class="link-item" v-for="(link, index) in data.links" :key="index">
+        <router-link :to="link.path">{{ link.name }}</router-link>
+      </div>
+    </fz-aside>
+    <fz-main>
       <router-view></router-view>
-    </main>
-  </div>
+    </fz-main>
+  </fz-container>
 </template>
 
 <script setup>
@@ -26,26 +23,11 @@ const data = reactive({
 });
 </script>
 
-<style lang="less">
-html,
-body {
-  margin: 0;
-  padding: 0;
+<style lang="less" scoped>
+.my-doc-aside {
+  border-right: var(--fz-border-base);
 }
-.my-fzui-doc {
-  display: flex;
-  min-height: 100vh;
-  aside {
-    width: 200px;
-    padding: 15px;
-    border-right: 1px solid #ccc;
-    display: flex;
-    flex-direction: column;
-  }
-  main {
-    width: 100%;
-    flex: 1;
-    padding: 15px;
-  }
+.link-item {
+  padding: 6px 10px;
 }
 </style>

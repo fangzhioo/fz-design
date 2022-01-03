@@ -1,13 +1,11 @@
 <template>
   <div class="fzui-preview">
-    <section>
+    <section class="preview-container">
       <slot></slot>
     </section>
 
     <div v-show="codeVisible" class="source-code">
-      <pre
-        class="language-html"
-      ><code class="language-html">{{ previewSourceCode }}</code></pre>
+      <pre class="language-html"><code class="language-html">{{ previewSourceCode }}</code></pre>
     </div>
 
     <div class="preview-bottom">
@@ -52,15 +50,9 @@ export default {
   async mounted() {
     if (this.compName && this.demoName) {
       if (isDev) {
-        this.sourceCode = (
-          await import(
-            /* @vite-ignore */ `../../packages/${this.compName}/docs/${this.demoName}.vue?raw`
-          )
-        ).default;
+        this.sourceCode = (await import(/* @vite-ignore */ `../../packages/${this.compName}/docs/${this.demoName}.vue?raw`)).default;
       } else {
-        this.sourceCode = await fetch(
-          `/fz-ui/packages/${this.compName}/docs/${this.demoName}.vue`,
-        ).then((res) => res.text());
+        this.sourceCode = await fetch(`/fz-ui/packages/${this.compName}/docs/${this.demoName}.vue`).then((res) => res.text());
       }
     }
     await this.$nextTick();
@@ -85,7 +77,7 @@ pre {
   border: 1px dashed #e7e7e7;
   padding: 10px;
   border-bottom: 1px dashed #e7e7e7;
-  section {
+  .preview-container {
     margin: 15px;
   }
 }
