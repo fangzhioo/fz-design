@@ -1,6 +1,6 @@
 {
   "name": "fz-ui",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Vue3 UI Components",
   "typings": "lib/packages/index.d.ts",
   "main": "lib/fzui.umd.js",
