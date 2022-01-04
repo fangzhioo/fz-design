@@ -9,7 +9,7 @@
     </div>
 
     <div class="preview-bottom">
-      <span name="Code" @click="showSourceCode">查看代码</span>
+      <span name="Code" @click="showSourceCode">{{ codeVisible ? '收起代码' : '查看代码' }}</span>
     </div>
   </div>
 </template>
@@ -50,9 +50,9 @@ export default {
   async mounted() {
     if (this.compName && this.demoName) {
       if (isDev) {
-        this.sourceCode = (await import(/* @vite-ignore */ `../../packages/${this.compName}/docs/${this.demoName}.vue?raw`)).default;
+        this.sourceCode = (await import(/* @vite-ignore */ `../../packages/components/${this.compName}/docs/${this.demoName}.vue?raw`)).default;
       } else {
-        this.sourceCode = await fetch(`/fz-ui/packages/${this.compName}/docs/${this.demoName}.vue`).then((res) => res.text());
+        this.sourceCode = await fetch(`/fz-ui/packages/components/${this.compName}/docs/${this.demoName}.vue`).then((res) => res.text());
       }
     }
     await this.$nextTick();
@@ -88,6 +88,7 @@ pre {
 .language-html {
   margin: 0;
   padding: 0 15px;
+  box-sizing: border-box;
 }
 .preview-bottom {
   height: 40px;
@@ -95,5 +96,6 @@ pre {
   justify-content: center;
   align-items: center;
   border-top: 1px dashed #e7e7e7;
+  cursor: pointer;
 }
 </style>

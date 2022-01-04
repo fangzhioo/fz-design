@@ -1,8 +1,7 @@
 <script lang="ts">
-import { provideLocale } from 'packages/hooks/use-locale';
-import { useTheme } from 'packages/hooks/use-theme';
-import { FZ_CONFIG_PROVIDER_INJECT_KEY } from 'packages/utils/constants';
 import { defineComponent, provide, watch } from 'vue';
+import { useTheme, provideLocale } from '@fzui/hooks';
+import { FZ_CONFIG_PROVIDER_INJECT_KEY } from '@fzui/utils/constants';
 import { configProviderProps } from './ConfigProvider';
 
 export default defineComponent({

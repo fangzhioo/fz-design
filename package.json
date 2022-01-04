@@ -12,10 +12,10 @@
     "build:lib": "vue-tsc --noEmit && vite build --config ./build/lib.config.ts",
     "gen": "node ./scripts/genNewComp/index.js",
     "gen:reflesh": "node ./scripts/genNewComp/index.js just-gen",
-    "publish": "npm publish --registry https://registry.npmjs.org",
-    "version": "npm version patch && npm run publish",
-    "version:minor": "npm version minor && npm run publish",
-    "version:major": "npm version major && npm run publish"
+    "p": "npm publish --registry https://registry.npmjs.org",
+    "version": "npm version patch && npm run p",
+    "version:minor": "npm version minor && npm run p",
+    "version:major": "npm version major && npm run p"
   },
   "peerDependencies": {
     "vue": "^3.2.25"
@@ -41,8 +41,11 @@
     "less": "^4.1.2",
     "prettier": "^2.5.1",
     "prismjs": "^1.25.0",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-esbuild": "^4.8.2",
     "typescript": "^4.4.4",
     "vite": "^2.7.2",
+    "vite-plugin-dts": "^0.9.7",
     "vite-plugin-md": "^0.11.6",
     "vue-router": "^4.0.12",
     "vue-tsc": "^0.29.8"

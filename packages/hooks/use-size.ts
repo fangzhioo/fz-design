@@ -1,8 +1,8 @@
-import { computed, inject, Ref, ref, unref } from 'vue';
+import { computed, inject, ref, unref } from 'vue';
 import type { MaybeRef } from '@vueuse/core';
 import { useProp } from './use-prop';
 import { useGlobalConfig } from './use-global-config';
-import { FZ_FORMITEM_INJECT_KEY, FZ_FORM_INJECT_KEY } from 'packages/utils/constants';
+import { FZ_FORMITEM_INJECT_KEY, FZ_FORM_INJECT_KEY } from '@fzui/utils/constants';
 
 export type ComponentSize = 'mini' | 'small' | 'medium' | 'large';
 

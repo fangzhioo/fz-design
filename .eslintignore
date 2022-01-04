@@ -2,9 +2,9 @@ vite.config.ts
 .eslintrc.js
 tsconfig.json
 *.min.js
-/public
-/config
+public/
+config/
 **/*.d.ts
-/src/api
-/lib
-/docs
+src/api/
+lib/
+docs/

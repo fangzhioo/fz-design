@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import ComponentList from 'packages/components/list.json';
+import ComponentList from '@fzui/components/list.json';
 import { reactive } from 'vue';
 
 const data = reactive({

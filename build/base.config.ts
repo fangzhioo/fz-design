@@ -6,7 +6,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, '../src'),
-      packages: resolve(__dirname, '../packages'),
+      '@fzui': resolve(__dirname, '../packages'),
     },
   },
 });

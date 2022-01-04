@@ -1,7 +1,7 @@
 import type { Component, ExtractPropTypes, PropType } from 'vue';
-import { ComponentSize } from 'packages/hooks/use-size';
-import { UPDATE_MODEL_EVENT } from 'packages/utils/constants';
-import { isString } from 'packages/utils';
+import { ComponentSize } from '@fzui/hooks/use-size';
+import { UPDATE_MODEL_EVENT } from '@fzui/utils/constants';
+import { isString } from '@fzui/utils';
 import type Input from './Input.vue';
 
 export type InputModelValue = string | number | null | undefined;

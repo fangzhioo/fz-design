@@ -32,9 +32,9 @@
 </template>
 
 <script lang="ts">
-import { useSize } from 'packages/hooks/use-size';
-import { FZ_BUTTON_GROUP_INJECT_KEY } from 'packages/utils/constants';
 import { computed, defineComponent, inject, ref } from 'vue';
+import { useSize } from '@fzui/hooks';
+import { FZ_BUTTON_GROUP_INJECT_KEY } from '@fzui/utils/constants';
 import { buttonEmits, buttonProps, ButtonProps } from './Button';
 import { ButtonGroupInstance } from './ButtonGroup';
 

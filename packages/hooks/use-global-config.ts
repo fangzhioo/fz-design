@@ -1,7 +1,7 @@
 import { inject, toRef } from 'vue';
 import type { Ref } from 'vue';
-import { FZ_CONFIG_PROVIDER_INJECT_KEY } from 'packages/utils/constants';
-import { ConfigProviderContext } from 'packages/components/ConfigProvider/src/ConfigProvider';
+import { FZ_CONFIG_PROVIDER_INJECT_KEY } from '@fzui/utils/constants';
+import { ConfigProviderContext } from '@fzui/components/ConfigProvider/src/ConfigProvider';
 
 export function useGlobalConfig<K extends keyof ConfigProviderContext>(key: K): Ref<ConfigProviderContext[K]>;
 // eslint-disable-next-line no-redeclare

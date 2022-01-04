@@ -1,8 +1,8 @@
 import { get } from 'lodash';
-import { Language } from 'packages/locale';
-import { FZ_LOCALE_INJECT_KEY } from 'packages/utils/constants';
+import type { Language } from '@fzui/locale';
+import English from '@fzui/locale/lang/en';
+import { FZ_LOCALE_INJECT_KEY } from '@fzui/utils/constants';
 import { computed, inject, provide, ref, Ref, unref } from 'vue';
-import English from 'packages/locale/lang/en';
 import { MaybeRef } from '@vueuse/core';
 import { useProp } from './use-prop';
 

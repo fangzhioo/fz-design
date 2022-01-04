@@ -1,5 +1,5 @@
 import { ExtractPropTypes, PropType } from 'vue';
-import { ComponentSize } from 'packages/hooks/use-size';
+import { ComponentSize } from '@fzui/hooks/use-size';
 import type Button from './Button.vue';
 
 export type ButtonType = 'default' | 'primary' | 'success' | 'warning' | 'info' | 'error' | 'text';

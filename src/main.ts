@@ -4,8 +4,8 @@ import router from './router';
 
 import './assets/markdown.css';
 
-import FzUI from 'packages/components';
-import 'packages/components/style.less';
+import FzUI from '@fzui/components';
+import '@fzui/components/style.less';
 import './assets/commom.less';
 import Preview from './components/Preview.vue';
 

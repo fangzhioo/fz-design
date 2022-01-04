@@ -76,8 +76,7 @@ export default {
       pagesize: '/page',
       total: 'Total {total}',
       pageClassifier: '',
-      deprecationWarning:
-        'Deprecated usages detected, please refer to the el-pagination documentation for more details',
+      deprecationWarning: 'Deprecated usages detected, please refer to the el-pagination documentation for more details',
     },
     messagebox: {
       title: 'Message',
@@ -104,16 +103,16 @@ export default {
     transfer: {
       noMatch: 'No matching data',
       noData: 'No data',
-      titles: ['List 1', 'List 2'], // to be translated
-      filterPlaceholder: 'Enter keyword', // to be translated
-      noCheckedFormat: '{total} items', // to be translated
-      hasCheckedFormat: '{checked}/{total} checked', // to be translated
+      titles: ['List 1', 'List 2'],
+      filterPlaceholder: 'Enter keyword',
+      noCheckedFormat: '{total} items',
+      hasCheckedFormat: '{checked}/{total} checked',
     },
     image: {
       error: 'FAILED',
     },
     pageHeader: {
-      title: 'Back', // to be translated
+      title: 'Back',
     },
     popconfirm: {
       confirmButtonText: 'Yes',

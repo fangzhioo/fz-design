@@ -1,4 +1,4 @@
-import { isNumber } from 'packages/utils';
+import { isNumber } from '@fzui/utils';
 
 // eslint-disable-next-line init-declarations
 let hiddenTextarea: HTMLTextAreaElement | undefined;

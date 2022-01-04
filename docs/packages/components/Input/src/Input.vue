@@ -130,11 +130,9 @@
 
 <script lang="ts">
 import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, onUpdated, ref, shallowRef, StyleValue, watch } from 'vue';
-import { useSize } from 'packages/hooks/use-size';
-import { UPDATE_MODEL_EVENT } from 'packages/utils/constants';
-import { isObject, isKorean } from 'packages/utils';
-import { useForm } from 'packages/hooks/use-form';
-import { useDisabled } from 'packages/hooks/use-disabled';
+import { UPDATE_MODEL_EVENT } from '@fzui/utils/constants';
+import { isObject, isKorean } from '@fzui/utils';
+import { useAttrs, useSize, useForm, useDisabled } from '@fzui/hooks';
 import { isClient } from '@vueuse/core';
 import { calcTextareaHeight } from './calc-textarea-height';
 import { inputEmits, inputProps, PENDANT_MAP, TargetElement } from './Input';
@@ -147,6 +145,7 @@ export default defineComponent({
   setup(props, { slots, emit, attrs: rawAttrs }) {
     const instance = getCurrentInstance();
     const { form, formItem } = useForm();
+    const attrs = useAttrs();
     const inputSize = useSize();
     const inputDisabled = useDisabled();
 
@@ -172,7 +171,7 @@ export default defineComponent({
     const isWordLimitVisible = computed(
       () =>
         props.showWordLimit &&
-        Boolean(rawAttrs.maxlength) &&
+        Boolean(attrs.value.maxlength) &&
         (props.type === 'text' || props.type === 'textarea') &&
         !inputDisabled.value &&
         !props.readonly &&
@@ -182,7 +181,7 @@ export default defineComponent({
     const inputExceed = computed(
       () =>
         // show exceed style if length of initial value greater then maxlength
-        Boolean(isWordLimitVisible.value) && textLength.value > Number(rawAttrs.maxlength),
+        Boolean(isWordLimitVisible.value) && textLength.value > Number(attrs.value.maxlength),
     );
 
     const suffixVisible = computed(
@@ -399,7 +398,7 @@ export default defineComponent({
     return {
       input,
       textarea,
-      attrs: rawAttrs,
+      attrs,
       inputSize,
       validateState,
       containerStyle,

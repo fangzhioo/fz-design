@@ -1,7 +1,7 @@
-import { ComponentSize } from 'packages/hooks/use-size';
-import { Theme } from 'packages/hooks/use-theme';
-import { Language } from 'packages/locale';
 import { ExtractPropTypes, PropType } from 'vue';
+import { ComponentSize } from '@fzui/hooks/use-size';
+import { Theme } from '@fzui/hooks/use-theme';
+import { Language } from '@fzui/locale';
 
 export const configProviderProps = {
   locale: {
