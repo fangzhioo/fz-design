@@ -6,3 +6,5 @@ tsconfig.json
 /config
 **/*.d.ts
 /src/api
+/lib
+/docs
