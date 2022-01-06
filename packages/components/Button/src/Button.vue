@@ -19,12 +19,8 @@
     :style="buttonStyle"
     @click="handleClick"
   >
-    <!-- <fz-icon v-if="loading" class="is-loading">
-      <loading />
-    </fz-icon>
-    <fz-icon v-else-if="icon">
-      <component :is="icon" />
-    </fz-icon> -->
+    <fz-icon class="fz-button__icon" v-if="loading" name="loading" />
+    <fz-icon class="fz-button__icon" v-else-if="icon" :name="icon" />
     <span v-if="$slots.default" :class="{ 'fz-button__text--expand': shouldAddSpace }">
       <slot></slot>
     </span>
@@ -37,9 +33,13 @@ import { useSize } from '@fzui/hooks';
 import { FZ_BUTTON_GROUP_INJECT_KEY } from '@fzui/utils/constants';
 import { buttonEmits, buttonProps, ButtonProps } from './Button';
 import { ButtonGroupInstance } from './ButtonGroup';
+import { Icon } from '@fzui/components/Icon';
 
 export default defineComponent({
   name: 'FzButton',
+  components: {
+    FzIcon: Icon,
+  },
   props: buttonProps,
   emits: buttonEmits,
   setup(props: ButtonProps, { slots, emit }) {

@@ -53,9 +53,7 @@
       <span v-if="$slots.prefix || prefixIcon" class="fz-input__prefix">
         <span class="fz-input__prefix-inner">
           <slot name="prefix"></slot>
-          <!-- <fz-icon v-if="prefixIcon" class="fz-input__icon">
-            <component :is="prefixIcon" />
-          </fz-icon> -->
+          <fz-icon v-if="prefixIcon" :name="prefixIcon" class="fz-input__icon" />
         </span>
       </span>
 
@@ -64,35 +62,15 @@
         <span class="fz-input__suffix-inner">
           <template v-if="!showClear || !showPwdVisible || !isWordLimitVisible">
             <slot name="suffix"></slot>
-            <!-- <fz-icon v-if="suffixIcon" class="fz-input__icon">
-              <component :is="suffixIcon" />
-            </fz-icon> -->
+            <fz-icon v-if="suffixIcon" :name="suffixIcon" class="fz-input__icon" />
           </template>
-          <!-- <fz-icon
-            v-if="showClear"
-            class="fz-input__icon fz-input__clear"
-            @mousedown.prevent
-            @click="clear"
-          >
-            <circle-close />
-          </fz-icon> -->
-          <!-- <fz-icon
-            v-if="showPwdVisible"
-            class="fz-input__icon fz-input__clear"
-            @click="handlePasswordVisible"
-          >
-            <icon-view />
-          </fz-icon> -->
+          <fz-icon v-if="showClear" class="fz-input__icon fz-input__clear" name="delete-filling" @mousedown.prevent @click="clear" />
+          <fz-icon v-if="showPwdVisible" class="fz-input__icon fz-input__clear" name="browse" @click="handlePasswordVisible" />
           <span v-if="isWordLimitVisible" class="fz-input__count">
             <span class="fz-input__count-inner"> {{ textLength }} / {{ attrs.maxlength }} </span>
           </span>
         </span>
-        <!-- <fz-icon
-          v-if="validateState && validateIcon"
-          class="fz-input__icon fz-input__validateIcon"
-        >
-          <component :is="validateIcon" />
-        </fz-icon> -->
+        <fz-icon v-if="validateState && validateIcon" :name="validateIcon" class="fz-input__icon fz-input__validateIcon" />
       </span>
 
       <!-- append slot -->
@@ -135,10 +113,14 @@ import { isObject, isKorean } from '@fzui/utils';
 import { useAttrs, useSize, useForm, useDisabled } from '@fzui/hooks';
 import { isClient } from '@vueuse/core';
 import { calcTextareaHeight } from './calc-textarea-height';
-import { inputEmits, inputProps, PENDANT_MAP, TargetElement } from './Input';
+import { inputEmits, inputProps, PENDANT_MAP, TargetElement, ValidateIconsMap } from './Input';
+import { Icon } from '@fzui/components/Icon';
 
 export default defineComponent({
   name: 'FzInput',
+  components: {
+    FzIcon: Icon,
+  },
   props: inputProps,
   emits: inputEmits,
   inheritAttrs: false,
@@ -159,8 +141,8 @@ export default defineComponent({
 
     const inputOrTextarea = computed(() => input.value || textarea.value);
     const needStatusIcon = computed(() => form?.statusIcon ?? false);
-    const validateState = computed(() => formItem?.validateState || '');
-
+    const validateState = computed<string>(() => formItem?.validateState || '');
+    const validateIcon = computed<string | undefined>(() => ValidateIconsMap[validateState.value]);
     const containerStyle = computed(() => rawAttrs.style as StyleValue);
     const computedTextareaStyle = computed<StyleValue>(() => [props.inputStyle, textareaCalcStyle.value, { resize: props.resize }]);
     const nativeInputValue = computed(() => (props.modelValue === null || props.modelValue === undefined ? '' : String(props.modelValue)));
@@ -183,7 +165,6 @@ export default defineComponent({
         // show exceed style if length of initial value greater then maxlength
         Boolean(isWordLimitVisible.value) && textLength.value > Number(attrs.value.maxlength),
     );
-
     const suffixVisible = computed(
       () =>
         Boolean(slots.suffix) ||
@@ -257,12 +238,10 @@ export default defineComponent({
       const { value } = event.target as TargetElement;
 
       // should not emit input during composition
-      // see: https://github.com/ElemeFE/element/issues/10516
       if (isComposing.value) {
         return;
       }
 
-      // hack for https://github.com/ElemeFE/element/issues/8548
       // should remove the following line when we don't support IE
       if (value === nativeInputValue.value) {
         return;
@@ -272,7 +251,6 @@ export default defineComponent({
       emit('input', value);
 
       // ensure native input value is controlled
-      // see: https://github.com/ElemeFE/element/issues/12850
       nextTick(setNativeInputValue);
     };
 
@@ -282,7 +260,6 @@ export default defineComponent({
     };
 
     const focus = () => {
-      // see: https://github.com/ElemeFE/element/issues/18573
       nextTick(() => {
         inputOrTextarea.value?.focus();
       });
@@ -368,12 +345,10 @@ export default defineComponent({
 
     // native input value is set explicitly
     // do not use v-model / :value in template
-    // see: https://github.com/ElemeFE/element/issues/14521
     watch(nativeInputValue, () => setNativeInputValue());
 
     // when change between <input> and <textarea>,
     // update DOM dependent value and styles
-    // https://github.com/ElemeFE/element/issues/14857
     watch(
       () => props.type,
       () => {
@@ -401,6 +376,7 @@ export default defineComponent({
       attrs,
       inputSize,
       validateState,
+      validateIcon,
       containerStyle,
       computedTextareaStyle,
       inputDisabled,

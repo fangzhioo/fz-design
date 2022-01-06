@@ -26,3 +26,13 @@ import demo from './demo.vue'
 :-: | :-: | :-: | :-:
 `click` | 点击事件 | $event | 原生的 dom event
 `customEvent` | 自定义事件 | [a, b, c] | a：参数一；b：参数二；c：参数三
+
+## 方法
+方法名 | 说明 | 参数列表 | 参数说明
+:-: | :-: | :-: | :-:
+`update` | 手动更新 | - | -
+
+## 插槽
+插槽名 | 说明
+:-: | :-:
+`default` | 自定义默认内容

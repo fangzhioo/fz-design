@@ -31,6 +31,10 @@ export const buttonProps = {
     type: String,
     default: '',
   },
+  icon: {
+    type: String,
+    default: '',
+  },
   loading: {
     type: Boolean,
     default: false,

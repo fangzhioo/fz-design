@@ -8,6 +8,8 @@ import { ButtonPlugin } from './Button';
 import { InputPlugin } from './Input';
 import { ConfigProviderPlugin } from './ConfigProvider';
 import { ContainerPlugin } from './Container';
+import { AffixPlugin } from './Affix';
+import { IconPlugin } from './Icon';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
@@ -15,6 +17,8 @@ const FzUIPlugin: Plugin = {
     InputPlugin.install?.(app);
     ConfigProviderPlugin.install?.(app);
     ContainerPlugin.install?.(app);
+    AffixPlugin.install?.(app);
+    IconPlugin.install?.(app);
   },
 };
 
@@ -24,3 +28,5 @@ export * from './Button';
 export * from './Input';
 export * from './ConfigProvider';
 export * from './Container';
+export * from './Affix';
+export * from './Icon';

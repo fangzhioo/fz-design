@@ -11,6 +11,9 @@
         <fz-button @click="handleChangeSize('medium')">medium</fz-button>
         <fz-button @click="handleChangeSize('large')">large</fz-button>
       </fz-button-group>
+
+      <div>val</div>
+      <fz-input placeholder="请输入" v-model="val"></fz-input>
     </fz-config-provider>
   </div>
 </template>
@@ -22,6 +25,7 @@ export default defineComponent({
   setup() {
     const theme = ref('dark'); // 'dark' | 'light'
     const size = ref('medium'); // 'mini' | 'small' | 'medium' | 'large'
+    const val = ref('fzui');
 
     const toggleTheme = () => {
       theme.value = theme.value === 'light' ? 'dark' : 'light';
@@ -34,6 +38,7 @@ export default defineComponent({
     return {
       theme,
       size,
+      val,
 
       toggleTheme,
       handleChangeSize,

@@ -19,4 +19,8 @@ app.use(router);
 
 router.isReady().finally(() => {
   app.mount('#app');
+  const isDarkTheme = window.matchMedia('(prefers-color-scheme: dark)');
+  if (isDarkTheme.matches) {
+    document.documentElement.setAttribute('data-mode', 'dark');
+  }
 });

@@ -30,5 +30,21 @@
     "compClassName": "container",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Affix",
+    "compZhName": "固钉",
+    "compDesc": "将页面元素固定在特定可视区域",
+    "compClassName": "affix",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Icon",
+    "compZhName": "图标",
+    "compDesc": "一些常用的图标",
+    "compClassName": "icon",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]

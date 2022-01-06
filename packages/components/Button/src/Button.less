@@ -63,12 +63,10 @@
   }
 
   // icon
-  &[class*='fz-icon'] {
+  &__icon {
+    vertical-align: bottom;
     & + span {
       margin-left: 5px;
-    }
-    svg {
-      vertical-align: bottom;
     }
   }
 
@@ -373,5 +371,18 @@
     }
 
   }
+}
 
+:root[data-mode='dark']{
+  .fz-button {
+    &--primary,
+    &--success,
+    &--warning,
+    &--error,
+    &--info {
+      --fz-button-text-color: var(--fz-text-color-primary);
+      --fz-button-hover-text-color: var(--fz-text-color-primary);
+      --fz-button-active-text-color: var(--fz-text-color-primary);
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import type { Component, ExtractPropTypes, PropType } from 'vue';
+import type { ExtractPropTypes, PropType } from 'vue';
 import { ComponentSize } from '@fzui/hooks/use-size';
 import { UPDATE_MODEL_EVENT } from '@fzui/utils/constants';
 import { isString } from '@fzui/utils';
@@ -8,6 +8,12 @@ export type InputModelValue = string | number | null | undefined;
 export type InputSize = ComponentSize;
 export type AutoSize = { minRows?: number; maxRows?: number } | boolean;
 export type TargetElement = HTMLInputElement | HTMLTextAreaElement;
+
+export const ValidateIconsMap: Record<string, string> = {
+  validating: 'loading',
+  success: 'success-filling',
+  error: 'delete-filling',
+};
 
 export const PENDANT_MAP = {
   suffix: 'append',
@@ -63,11 +69,11 @@ export const inputProps = {
     default: false,
   },
   suffixIcon: {
-    type: [String, Object] as PropType<string | Component>,
+    type: String,
     default: '',
   },
   prefixIcon: {
-    type: [String, Object] as PropType<string | Component>,
+    type: String,
     default: '',
   },
   label: {

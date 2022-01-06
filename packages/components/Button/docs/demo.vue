@@ -12,6 +12,7 @@
     <fz-button circle @click="handleClick">c</fz-button>
     <fz-button disabled @click="handleClick">disabled</fz-button>
     <fz-button loading @click="handleClick">loading</fz-button>
+    <fz-button icon="modular" @click="handleClick">icon</fz-button>
 
     <fz-button size="mini" @click="handleClick">mini</fz-button>
     <fz-button size="small" @click="handleClick">small</fz-button>

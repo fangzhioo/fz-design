@@ -8,7 +8,6 @@
     <fz-main>
       <router-view></router-view>
     </fz-main>
-    <fz-footer class="base-footer"> 版权©️ xxxxxxx </fz-footer>
   </fz-container>
 </template>
 
@@ -26,10 +25,5 @@ export default defineComponent({
 <style scoped lang="less">
 .base-header {
   box-shadow: var(--fz-box-shadow-light);
-}
-.base-footer {
-  border-top: var(--fz-border-base, 1px solid #666);
-  text-align: center;
-  line-height: 60px;
 }
 </style>

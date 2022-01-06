@@ -24,6 +24,16 @@ export const componentRoutes = [
         name: 'ComponentContainer',
         path: '/components/Container',
         component: () => import('@fzui/components/Container/docs/README.md'),
+      },{
+        title: '固钉',
+        name: 'ComponentAffix',
+        path: '/components/Affix',
+        component: () => import('@fzui/components/Affix/docs/README.md'),
+      },{
+        title: '图标',
+        name: 'ComponentIcon',
+        path: '/components/Icon',
+        component: () => import('@fzui/components/Icon/docs/README.md'),
       }
 ];
 

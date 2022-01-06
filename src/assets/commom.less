@@ -1,4 +1,13 @@
 :root {
   background: var(--fz-color-white, #fff);
   color: var(--fz-color-black, #333);
+
+  &[data-mode='dark'] {
+    a {
+      color: #ddd;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
 }
