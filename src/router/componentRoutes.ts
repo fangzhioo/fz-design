@@ -34,6 +34,16 @@ export const componentRoutes = [
         name: 'ComponentIcon',
         path: '/components/Icon',
         component: () => import('@fzui/components/Icon/docs/README.md'),
+      },{
+        title: '弹出框',
+        name: 'ComponentPopper',
+        path: '/components/Popper',
+        component: () => import('@fzui/components/Popper/docs/README.md'),
+      },{
+        title: '弹出信息',
+        name: 'ComponentPopover',
+        path: '/components/Popover',
+        component: () => import('@fzui/components/Popover/docs/README.md'),
       }
 ];
 

@@ -1,0 +1,41 @@
+.fz-popover {
+  --fz-popover-bg-color: var(--fz-color-white);
+  --fz-popover-font-size: var(--fz-font-size-base);
+  --fz-popover-border-color: var(--fz-border-color-lighter);
+  --fz-popover-padding: 12px;
+  --fz-popover-padding-large: 18px 20px;
+  --fz-popover-title-font-size: 16px;
+  --fz-popover-title-text-color: var(--fz-text-color-primary);
+  --fz-popover-border-radius: 4px;
+}
+.fz-popover.fz-popper {
+  background: var(--fz-popover-bg-color);
+  min-width: 150px;
+  border-radius: var(--fz-popover-border-radius);
+  border: 1px solid var(--fz-popover-border-color);
+  padding: var(--fz-popover-padding);
+  z-index: var(--fz-index-popper);
+  color: var(--fz-text-color-regular);
+  line-height: 1.4;
+  text-align: justify;
+  font-size: var(--fz-popover-font-size);
+  box-shadow: var(--fz-box-shadow-light);
+  word-break: break-all;
+}
+.fz-popover.fz-popper--plain {
+  padding: var(--fz-popover-padding-large);
+}
+.fz-popover__title {
+  color: var(--fz-popover-title-text-color);
+  font-size: var(--fz-popover-title-font-size);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.fz-popover__reference:focus:hover,
+.fz-popover__reference:focus:not(.focusing) {
+  outline-width: 0;
+}
+.fz-popover.fz-popper:focus,
+.fz-popover.fz-popper:focus:active {
+  outline-width: 0;
+}

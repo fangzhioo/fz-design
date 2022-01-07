@@ -10,6 +10,8 @@ import { ConfigProviderPlugin } from './ConfigProvider';
 import { ContainerPlugin } from './Container';
 import { AffixPlugin } from './Affix';
 import { IconPlugin } from './Icon';
+import { PopperPlugin } from './Popper';
+import { PopoverPlugin } from './Popover';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
@@ -19,6 +21,8 @@ const FzUIPlugin: Plugin = {
     ContainerPlugin.install?.(app);
     AffixPlugin.install?.(app);
     IconPlugin.install?.(app);
+    PopperPlugin.install?.(app);
+    PopoverPlugin.install?.(app);
   },
 };
 
@@ -30,3 +34,5 @@ export * from './ConfigProvider';
 export * from './Container';
 export * from './Affix';
 export * from './Icon';
+export * from './Popper';
+export * from './Popover';

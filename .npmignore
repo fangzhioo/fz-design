@@ -9,7 +9,7 @@ packages/
 public/
 node_modules/
 typings/
-script/
+scripts/
 dist/
  
 # 忽略指定文件

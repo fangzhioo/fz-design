@@ -1,7 +1,21 @@
 /* eslint-disable no-param-reassign */
-import { isClient } from '@vueuse/core';
+import { Fn, isClient } from '@vueuse/core';
 import { camelize } from '.';
 import { Nullable } from './types';
+
+/* istanbul ignore next */
+const trimArr = function (s: string) {
+  return (s || '').split(' ').filter((item) => Boolean(item.trim()));
+};
+
+/* istanbul ignore next */
+export const on = function (element: HTMLElement | Document | Window, event: string, handler: (args: any) => void, useCapture = false): void {
+  if (element && event && handler) {
+    element?.addEventListener(event, handler, useCapture);
+  }
+};
+
+export const stop = (e: Event) => e.stopPropagation();
 
 /* istanbul ignore next */
 // Here I want to use the type CSSProperties, but the definition for CSSProperties
@@ -59,3 +73,39 @@ export const getScrollContainer = (el: HTMLElement, isVertical?: Nullable<boolea
   }
   return parent;
 };
+
+/* istanbul ignore next */
+export function addClass(el: HTMLElement | Element, cls: string): void {
+  if (!el) {
+    return;
+  }
+  let className = el.getAttribute('class') || '';
+  const curClass = trimArr(className);
+  const classes = (cls || '').split(' ').filter((item) => !curClass.includes(item) && Boolean(item.trim()));
+
+  if (el.classList) {
+    el.classList.add(...classes);
+  } else {
+    className += ` ${classes.join(' ')}`;
+    el.setAttribute('class', className);
+  }
+}
+
+/* istanbul ignore next */
+export function removeClass(el: HTMLElement | Element, cls: string): void {
+  if (!el || !cls) {
+    return;
+  }
+  const classes = trimArr(cls);
+  let curClass = el.getAttribute('class') || '';
+
+  if (el.classList) {
+    el.classList.remove(...classes);
+    return;
+  }
+  classes.forEach((item) => {
+    curClass = curClass.replace(` ${item} `, ' ');
+  });
+  const className = trimArr(curClass).join(' ');
+  el.setAttribute('class', className);
+}

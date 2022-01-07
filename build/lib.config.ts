@@ -1,10 +1,16 @@
 import baseConfig from './base.config';
 import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
+// import dts from 'vite-plugin-dts';
 import css from 'rollup-plugin-css-only';
 import vuePlugin from 'rollup-plugin-vue';
 import esbuild from 'rollup-plugin-esbuild';
+import banner from 'vite-plugin-banner';
 import { resolve } from 'path';
+import pkg from '../package.json';
+
+const fileBanner = banner(
+  `/**\n * name: ${pkg.name}\n * version: v${pkg.version}\n * description: v${pkg.description}\n * author: ${pkg.author.email}\n * homepage: ${pkg.homepage}\n */`,
+);
 
 export default defineConfig({
   ...baseConfig,
@@ -13,11 +19,12 @@ export default defineConfig({
     vuePlugin({
       target: 'browser',
     }),
-    dts(),
+    // dts(),
     esbuild({
       sourceMap: true,
       target: 'es2018',
     }),
+    fileBanner,
   ],
   build: {
     minify: false,

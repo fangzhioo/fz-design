@@ -46,5 +46,21 @@
     "compClassName": "icon",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Popper",
+    "compZhName": "弹出框",
+    "compDesc": "弹出隐藏内容",
+    "compClassName": "popper",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Popover",
+    "compZhName": "弹出信息",
+    "compDesc": "展示元素隐藏信息浮窗",
+    "compClassName": "popover",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]

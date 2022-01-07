@@ -2,6 +2,11 @@
   "name": "fz-ui",
   "version": "0.0.8",
   "description": "Vue3 UI Components",
+  "author": {
+    "name": "tongren",
+    "email": "fangzhioooo@gmail.com"
+  },
+  "homepage": "https://fangzhioo.github.io/fz-ui",
   "typings": "lib/packages/index.d.ts",
   "main": "lib/fzui.umd.js",
   "module": "lib/fzui.es.js",
@@ -21,9 +26,9 @@
     "vue": "^3.2.25"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.2",
     "@vueuse/core": "^7.4.1",
-    "lodash": "^4.17.21",
-    "rollup-plugin-vue": "^6.0.0"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.178",
@@ -43,8 +48,10 @@
     "prismjs": "^1.25.0",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-esbuild": "^4.8.2",
+    "rollup-plugin-vue": "^6.0.0",
     "typescript": "^4.4.4",
     "vite": "^2.7.2",
+    "vite-plugin-banner": "^0.1.3",
     "vite-plugin-dts": "^0.9.7",
     "vite-plugin-md": "^0.11.6",
     "vue-router": "^4.0.12",

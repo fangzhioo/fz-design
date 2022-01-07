@@ -2,6 +2,7 @@
 <script setup>
 import demo from './demo.vue'
 import demo2 from './demo2.vue'
+import demo3 from './demo3.vue'
 </script>
 <!-- 加载 demo 组件 end -->
 
@@ -15,6 +16,14 @@ import demo2 from './demo2.vue'
 
 <Preview comp-name="Button" demo-name="demo">
   <demo />
+</Preview>
+
+## 其他基础用法
+
+尺寸、加载状态、图标等设置
+
+<Preview comp-name="Button" demo-name="demo2">
+  <demo2 />
 </Preview>
 
 ## 按钮组

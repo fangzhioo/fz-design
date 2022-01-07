@@ -17,7 +17,8 @@
 
   display: inline-block;
   line-height: 1;
-  min-height: 40px;
+  min-height: 36px;
+  padding: 10px 20px;
   white-space: nowrap;
   cursor: pointer;
   background-color: var(--fz-button-bg-color, var(--fz-color-white));
@@ -33,7 +34,6 @@
   font-weight: var(--fz-button-font-weight);
   -webkit-user-select: none;
   user-select: none;
-  padding: 12px 20px;
   font-size: var(--fz-font-size-base, 14px);
   border-radius: var(--fz-border-radius-base);
 
@@ -57,6 +57,7 @@
   &::-moz-focus-inner {
     border: 0;
   }
+
   &__text--expand {
     letter-spacing: 0.3em;
     margin-right: -0.3em;
@@ -71,13 +72,26 @@
   }
 
   // size
-  &--medium {
-    min-height: 36px;
-    padding: 10px 20px;
-    font-size: var(--fz-font-size-base, 14px);
+  &--large {
+    min-height: 40px;
+    padding: 12px 20px;
+    font-size: var(--fz-font-size-large, 18px);
     border-radius: var(--fz-border-radius-base);
     &.is-round {
-      padding: 10px 20px;
+      padding: 12px 20px;
+    }
+    &.is-circle {
+      padding: 12px;
+    }
+  }
+
+  &--medium {
+    min-height: 36px;
+    padding: 10px 16px;
+    font-size: var(--fz-font-size-medium, 16px);
+    border-radius: var(--fz-border-radius-base);
+    &.is-round {
+      padding: 10px 16px;
     }
     &.is-circle {
       padding: 10px;
@@ -86,30 +100,31 @@
 
   &--small {
     min-height: 32px;
-    padding: 9px 15px;
-    font-size: 12px;
+    padding: 8px 14px;
+    font-size: var(--fz-font-size-small);
     border-radius: calc(var(--fz-border-radius-base) - 1px);
     &.is-round {
-      padding: 9px 15px;
+      padding: 8px 14px;
     }
     &.is-circle {
-      padding: 9px;
+      padding: 8px;
     }
   }
 
   &--mini {
     min-height: 28px;
-    padding: 7px 15px;
-    font-size: 12px;
+    padding: 6px 12px;
+    font-size: var(--fz-font-size-mini);
     border-radius: calc(var(--fz-border-radius-base) - 1px);
     &.is-round {
-      padding: 7px 15px;
+      padding: 6px 12px;
     }
     &.is-circle {
-      padding: 7px;
+      padding: 6px;
     }
   }  
 
+  // active
   &.is-active {
     color: var(--fz-button-active-text-color);
     border-color: var(--fz-button-active-border-color, --fz-button-active-bg-color);
@@ -122,14 +137,7 @@
     border-radius: var(--fz-border-radius-round);
     padding: 12px 23px;
   }
-  // plain
-  &.is-plain {
-    --fz-button-active-text-color: var(--fz-color-primary-light-1);
-    --fz-button-active-border-color: var(--fz-color-primary-light-1);
-    --fz-button-hover-text-color: var(--fz-color-primary);
-    --fz-button-hover-bg-color: var(--fz-color-white);
-    --fz-button-hover-border-color: var(--fz-color-primary);
-  }
+  
   // disabled
   &.is-disabled,
   &.is-disabled:focus,
@@ -174,6 +182,19 @@
     padding: 12px;
   }
 
+  // type--default
+  &--default {
+
+    // plain
+    &.is-plain {
+      --fz-button-active-text-color: var(--fz-color-primary-light-1);
+      --fz-button-active-border-color: var(--fz-color-primary-light-1);
+      --fz-button-hover-text-color: var(--fz-color-primary);
+      --fz-button-hover-bg-color: var(--fz-color-white);
+      --fz-button-hover-border-color: var(--fz-color-primary);
+    }
+  }
+
   // type-primary
   &--primary {
     --fz-button-text-color: var(--fz-color-white);
@@ -187,8 +208,8 @@
 
     &.is-plain {
       --fz-button-text-color: var(--fz-color-primary);
-      --fz-button-bg-color: var(--fz-color-primary-light-6);
-      --fz-button-border-color: var(--fz-color-primary-light-6)
+      --fz-button-bg-color: var(--fz-color-white);
+      --fz-button-border-color: var(--fz-color-primary)
       --fz-button-hover-text-color: var(--fz-color-white);
       --fz-button-hover-bg-color: var(--fz-color-primary);
       --fz-button-hover-border-color: var(--fz-color-primary);
@@ -221,8 +242,8 @@
 
     &.is-plain {
       --fz-button-text-color: var(--fz-color-success);
-      --fz-button-bg-color: var(--fz-color-success-lighter);
-      --fz-button-border-color: var(--fz-color-success-light);
+      --fz-button-bg-color: var(--fz-color-white);
+      --fz-button-border-color: var(--fz-color-success);
       --fz-button-hover-text-color: var(--fz-color-white);
       --fz-button-hover-bg-color: var(--fz-color-success);
       --fz-button-hover-border-color: var(--fz-color-success);
@@ -256,8 +277,8 @@
 
     &.is-plain {
       --fz-button-text-color: var(--fz-color-warning);
-      --fz-button-bg-color: var(--fz-color-warning-lighter);
-      --fz-button-border-color: var(--fz-color-warning-light);
+      --fz-button-bg-color: var(--fz-color-white);
+      --fz-button-border-color: var(--fz-color-warning);
       --fz-button-hover-text-color: var(--fz-color-white);
       --fz-button-hover-bg-color: var(--fz-color-warning);
       --fz-button-hover-border-color: var(--fz-color-warning);
@@ -291,8 +312,8 @@
 
     &.is-plain {
       --fz-button-text-color: var(--fz-color-error);
-      --fz-button-bg-color: var(--fz-color-error-lighter);
-      --fz-button-border-color: var(--fz-color-error-light);
+      --fz-button-bg-color: var(--fz-color-white);
+      --fz-button-border-color: var(--fz-color-error);
       --fz-button-hover-text-color: var(--fz-color-white);
       --fz-button-hover-bg-color: var(--fz-color-error);
       --fz-button-hover-border-color: var(--fz-color-error);
@@ -326,8 +347,8 @@
 
     &.is-plain {
       --fz-button-text-color: var(--fz-color-info);
-      --fz-button-bg-color: var(--fz-color-info-lighter);
-      --fz-button-border-color: var(--fz-color-info-light);
+      --fz-button-bg-color: var(--fz-color-white);
+      --fz-button-border-color: var(--fz-color-info);
       --fz-button-hover-text-color: var(--fz-color-white);
       --fz-button-hover-bg-color: var(--fz-color-info);
       --fz-button-hover-border-color: var(--fz-color-info);
@@ -369,20 +390,23 @@
       border-color: transparent;
 
     }
-
   }
 }
 
+// theme
 :root[data-mode='dark']{
   .fz-button {
+    
     &--primary,
     &--success,
     &--warning,
     &--error,
     &--info {
-      --fz-button-text-color: var(--fz-text-color-primary);
-      --fz-button-hover-text-color: var(--fz-text-color-primary);
-      --fz-button-active-text-color: var(--fz-text-color-primary);
+      &, &.is-disabled {
+        --fz-button-text-color: var(--fz-text-color-primary);
+        --fz-button-hover-text-color: var(--fz-text-color-primary);
+        --fz-button-active-text-color: var(--fz-text-color-primary);
+      }
     }
   }
 }
