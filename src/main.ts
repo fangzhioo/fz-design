@@ -1,12 +1,11 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-
-import './assets/markdown.css';
+import './assets/commom.less';
+import './assets/markdown.less';
 
 import FzUI from '@fzui/components';
 import '@fzui/components/style.less';
-import './assets/commom.less';
 import Preview from './components/Preview.vue';
 
 const app = createApp(App);

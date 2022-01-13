@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, Fragment, createTextVNode, renderSlot, toDisplayString, createCommentVNode, withDirectives, Teleport, h } from 'vue';
 import { ClickOutside } from '@fzui/directives';
-import FzPopper, { Effect, renderArrow, renderPopper, renderTrigger } from '@fzui/components/Popper';
+import FzPopper, { renderArrow, renderPopper, renderTrigger } from '@fzui/components/Popper';
 import { debugWarn } from '@fzui/utils/error';
 import { renderIf, PatchFlags } from '@fzui/utils/vnode';
 import usePopover from './usePopover';
@@ -51,7 +51,7 @@ export default defineComponent({
 
     const popover = renderPopper(
       {
-        effect: Effect.LIGHT,
+        effect: 'light',
         name: transition,
         popperClass: kls,
         popperStyle,

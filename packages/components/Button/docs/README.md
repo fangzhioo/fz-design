@@ -28,8 +28,8 @@ import demo3 from './demo3.vue'
 
 ## 按钮组
 
-<Preview comp-name="Button" demo-name="demo2">
-  <demo2 />
+<Preview comp-name="Button" demo-name="demo3">
+  <demo3 />
 </Preview>
 
 ## 属性

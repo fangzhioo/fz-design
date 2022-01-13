@@ -12,6 +12,7 @@ import {
   withDirectives,
   h,
 } from 'vue';
+// TODO maybe use https://vueuse.org/core/onclickoutside/
 import { ClickOutside } from '@fzui/directives';
 import usePopper from './use-popper/index';
 import { popperProps } from './Popper';

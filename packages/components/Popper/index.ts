@@ -12,11 +12,11 @@ const _Popper = Popper as SFCWithInstall<typeof Popper>;
 
 export default _Popper;
 
-export { popperProps, Effect } from './src/Popper';
+export { popperProps } from './src/Popper';
 export * from './src/renderers';
 export { default as usePopper } from './src/use-popper';
 export type { Placement, Options } from '@popperjs/core';
 export type { EmitType } from './src/use-popper';
-export type { TriggerType, IPopperOptions, PopperInstance } from './src/Popper';
+export type { TriggerType, IPopperOptions, PopperInstance, PopperEffect } from './src/Popper';
 
 export { Popper };

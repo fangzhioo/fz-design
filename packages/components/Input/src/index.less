@@ -1,80 +1,3 @@
-.fz-textarea {
-  --fz-input-text-color: var(--fz-text-color-regular);
-  --fz-input-border: var(--fz-border-base);
-  --fz-input-border-color: var(--fz-border-color-base);
-  --fz-input-border-radius: var(--fz-border-radius-base);
-  --fz-input-bg-color: var(--fz-color-white);
-  --fz-input-icon-color: var(--fz-text-color-placeholder);
-  --fz-input-placeholder-color: var(--fz-text-color-placeholder);
-  --fz-input-hover-border: var(--fz-border-color-hover);
-  --fz-input-clear-hover-color: var(--fz-text-color-secondary);
-  --fz-input-focus-border: var(--fz-color-primary);
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  vertical-align: bottom;
-  font-size: var(--fz-font-size-base);
-
-  &__inner {
-    display: block;
-    resize: vertical;
-    padding: 5px 15px;
-    line-height: 1.5;
-    box-sizing: border-box;
-    width: 100%;
-    font-size: inherit;
-    font-family: inherit;
-    color: var(--fz-input-text-color, var(--fz-text-color-regular));
-    background-color: var(--fz-input-bg-color, var(--fz-color-white));
-    background-image: none;
-    border: var(--fz-input-border, var(--fz-border-base));
-    border-radius: var(--fz-input-border-radius, var(--fz-border-radius-base));
-    transition: var(--fz-transition-border);
-    &::placeholder {
-      color: var(--fz-input-placeholder-color, var(--fz-text-color-placeholder));
-    }
-    &:hover {
-      border-color: var(--fz-input-hover-border, var(--fz-border-color-hover));
-    }
-    &:focus {
-      outline: 0;
-      border-color: var(--fz-input-focus-border, var(--fz-color-primary));
-    }
-  }
-
-  .fz-input__count {
-    color: var(--fz-color-info);
-    background: var(--fz-color-white);
-    position: absolute;
-    font-size: 12px;
-    line-height: 14px;
-    bottom: 5px;
-    right: 10px;
-  }
-
-  &.is-disabled {
-    .fz-textarea__inner {
-      background-color: var(--fz-disabled-bg-color);
-      border-color: var(--fz-disabled-border-color);
-      color: var(--fz-disabled-text-color);
-      cursor: not-allowed;
-
-      &::placeholder {
-        color: var(--fz-text-color-placeholder);
-      }
-    }
-  }
-
-  &.is-exceed {
-    .fz-textarea__inner {
-      border-color: var(--fz-color-danger);
-    }
-    .fz-input__count {
-      color: var(--fz-color-danger);
-    }
-  }
-}
-
 .fz-input {
   --fz-input-text-color: var(--fz-text-color-regular);
   --fz-input-border: var(--fz-border-base);
@@ -395,6 +318,84 @@
       .fz-select .fz-input.is-focus .fz-input__inner {
         border-color: transparent;
       }
+    }
+  }
+}
+
+.fz-textarea {
+  --fz-input-text-color: var(--fz-text-color-regular);
+  --fz-input-border: var(--fz-border-base);
+  --fz-input-border-color: var(--fz-border-color-base);
+  --fz-input-border-radius: var(--fz-border-radius-base);
+  --fz-input-bg-color: var(--fz-color-white);
+  --fz-input-icon-color: var(--fz-text-color-placeholder);
+  --fz-input-placeholder-color: var(--fz-text-color-placeholder);
+  --fz-input-hover-border: var(--fz-border-color-hover);
+  --fz-input-clear-hover-color: var(--fz-text-color-secondary);
+  --fz-input-focus-border: var(--fz-color-primary);
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  vertical-align: bottom;
+  font-size: var(--fz-font-size-base);
+
+  &__inner {
+    display: block;
+    resize: vertical;
+    padding: 5px 15px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: inherit;
+    font-family: inherit;
+    color: var(--fz-input-text-color, var(--fz-text-color-regular));
+    background-color: var(--fz-input-bg-color, var(--fz-color-white));
+    background-image: none;
+    border: var(--fz-input-border, var(--fz-border-base));
+    border-radius: var(--fz-input-border-radius, var(--fz-border-radius-base));
+    transition: var(--fz-transition-border);
+    &::placeholder {
+      color: var(--fz-input-placeholder-color, var(--fz-text-color-placeholder));
+    }
+    &:hover {
+      border-color: var(--fz-input-hover-border, var(--fz-border-color-hover));
+    }
+    &:focus {
+      outline: 0;
+      border-color: var(--fz-input-focus-border, var(--fz-color-primary));
+    }
+  }
+
+  .fz-input__count {
+    color: var(--fz-color-info);
+    background: var(--fz-color-white);
+    position: absolute;
+    font-size: 12px;
+    line-height: 14px;
+    bottom: 5px;
+    right: 10px;
+    height: auto;
+  }
+
+  &.is-disabled {
+    .fz-textarea__inner {
+      background-color: var(--fz-disabled-bg-color);
+      border-color: var(--fz-disabled-border-color);
+      color: var(--fz-disabled-text-color);
+      cursor: not-allowed;
+
+      &::placeholder {
+        color: var(--fz-text-color-placeholder);
+      }
+    }
+  }
+
+  &.is-exceed {
+    .fz-textarea__inner {
+      border-color: var(--fz-color-danger);
+    }
+    .fz-input__count {
+      color: var(--fz-color-danger);
     }
   }
 }

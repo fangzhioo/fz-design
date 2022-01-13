@@ -44,6 +44,46 @@ export const componentRoutes = [
         name: 'ComponentPopover',
         path: '/components/Popover',
         component: () => import('@fzui/components/Popover/docs/README.md'),
+      },{
+        title: '自动补全输入框',
+        name: 'ComponentAutocomplete',
+        path: '/components/Autocomplete',
+        component: () => import('@fzui/components/Autocomplete/docs/README.md'),
+      },{
+        title: '提示',
+        name: 'ComponentAlert',
+        path: '/components/Alert',
+        component: () => import('@fzui/components/Alert/docs/README.md'),
+      },{
+        title: '头像',
+        name: 'ComponentAvatar',
+        path: '/components/Avatar',
+        component: () => import('@fzui/components/Avatar/docs/README.md'),
+      },{
+        title: '返回头部',
+        name: 'ComponentBacktop',
+        path: '/components/Backtop',
+        component: () => import('@fzui/components/Backtop/docs/README.md'),
+      },{
+        title: '徽章',
+        name: 'ComponentBadge',
+        path: '/components/Badge',
+        component: () => import('@fzui/components/Badge/docs/README.md'),
+      },{
+        title: '面包屑',
+        name: 'ComponentBreadcrumb',
+        path: '/components/Breadcrumb',
+        component: () => import('@fzui/components/Breadcrumb/docs/README.md'),
+      },{
+        title: '滚动条',
+        name: 'ComponentScrollbar',
+        path: '/components/Scrollbar',
+        component: () => import('@fzui/components/Scrollbar/docs/README.md'),
+      },{
+        title: '多选框',
+        name: 'ComponentCheckbox',
+        path: '/components/Checkbox',
+        component: () => import('@fzui/components/Checkbox/docs/README.md'),
       }
 ];
 

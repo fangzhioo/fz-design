@@ -62,5 +62,69 @@
     "compClassName": "popover",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Autocomplete",
+    "compZhName": "自动补全输入框",
+    "compDesc": "自动补全弹窗的输入框",
+    "compClassName": "autocomplete",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Alert",
+    "compZhName": "提示",
+    "compDesc": "用于页面中展示重要的提示信息",
+    "compClassName": "alert",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Avatar",
+    "compZhName": "头像",
+    "compDesc": "用于展示头像",
+    "compClassName": "avatar",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Backtop",
+    "compZhName": "返回头部",
+    "compDesc": "用于返回头部",
+    "compClassName": "backtop",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Badge",
+    "compZhName": "徽章",
+    "compDesc": "按钮和图标上的数字或状态标记",
+    "compClassName": "badge",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Breadcrumb",
+    "compZhName": "面包屑",
+    "compDesc": "显示当前页面的路径，快速返回之前的任意页面",
+    "compClassName": "breadcrumb",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Scrollbar",
+    "compZhName": "滚动条",
+    "compDesc": "用于替换浏览器原生滚动条",
+    "compClassName": "scrollbar",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Checkbox",
+    "compZhName": "多选框",
+    "compDesc": "一组备选项中进行多选",
+    "compClassName": "checkbox",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]

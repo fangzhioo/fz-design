@@ -108,7 +108,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, onUpdated, ref, shallowRef, StyleValue, watch } from 'vue';
-import { UPDATE_MODEL_EVENT } from '@fzui/utils/constants';
+import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@fzui/utils/constants';
 import { isObject, isKorean } from '@fzui/utils';
 import { useAttrs, useSize, useForm, useDisabled } from '@fzui/hooks';
 import { isClient } from '@vueuse/core';
@@ -256,7 +256,7 @@ export default defineComponent({
 
     const handleChange = (event: Event) => {
       const target = event.target as TargetElement;
-      emit('change', target.value);
+      emit(CHANGE_EVENT, target.value);
     };
 
     const focus = () => {
@@ -309,7 +309,7 @@ export default defineComponent({
 
     const clear = () => {
       emit(UPDATE_MODEL_EVENT, '');
-      emit('change', '');
+      emit(CHANGE_EVENT, '');
       emit('clear');
       emit('input', '');
     };
@@ -338,7 +338,7 @@ export default defineComponent({
       () => {
         nextTick(resizeTextarea);
         if (props.validateEvent) {
-          formItem?.validate?.('change');
+          formItem?.validate?.(CHANGE_EVENT);
         }
       },
     );

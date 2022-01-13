@@ -1,5 +1,6 @@
 import { App, Plugin } from 'vue';
 import Input from './src/Input.vue';
+import type { InputInstance } from './src/Input';
 
 export const InputPlugin: Plugin = {
   install(app: App) {
@@ -7,4 +8,4 @@ export const InputPlugin: Plugin = {
   },
 };
 
-export { Input };
+export { Input, InputInstance };

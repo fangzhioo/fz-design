@@ -9,8 +9,10 @@ export const FZ_LOCALE_INJECT_KEY = Symbol('locale');
 export const FZ_THEME_INJECT_KEY = Symbol('theme');
 
 export const FZ_BUTTON_GROUP_INJECT_KEY = Symbol('button-group');
+export const FZ_CHECKBOX_GROUP_INJECT_KEY = Symbol('checkbox-group');
 export const FZ_FORM_INJECT_KEY = Symbol('form');
 export const FZ_FORMITEM_INJECT_KEY = Symbol('form-item');
+export const FZ_SCROLLBAR_INJECT_KEY = Symbol('scrollbar');
 
 export const EVENT_CODE = {
   tab: 'Tab',

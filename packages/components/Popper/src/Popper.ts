@@ -3,10 +3,7 @@ import type { Placement, PositioningStrategy, Instance as PopperInstance, Option
 import { Nullable } from '@fzui/utils/types';
 import type Popper from './Popper.vue';
 
-export enum Effect {
-  DARK = 'dark',
-  LIGHT = 'light',
-}
+export type PopperEffect = 'dark' | 'light';
 
 export type RefElement = Nullable<HTMLElement>;
 export type Offset = [number, number] | number;
@@ -85,8 +82,8 @@ export const popperProps = {
     default: false,
   },
   effect: {
-    type: String as PropType<Effect>,
-    default: Effect.DARK,
+    type: String as PropType<PopperEffect>,
+    default: 'dark',
   },
   enterable: {
     type: Boolean,

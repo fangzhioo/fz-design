@@ -210,6 +210,7 @@ li {
     padding: 6px;
     box-sizing: border-box;
     text-align: center;
+    cursor: pointer;
 
     & > p {
       font-size: 12px;

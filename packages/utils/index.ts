@@ -1,5 +1,6 @@
 import { camelize, toRawType, isString, isObject, isFunction, isArray } from '@vue/shared';
 import { isBoolean, isNumber } from '@vueuse/core';
+import { debugWarn } from './error';
 
 export function isKorean(text: string): boolean {
   const reg = /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi;
@@ -24,4 +25,13 @@ export const generateUUID = (): string => {
   return uuid;
 };
 
+export function addUnit(value: string | number) {
+  if (isString(value)) {
+    return value;
+  } else if (isNumber(value)) {
+    return `${value}px`;
+  }
+  debugWarn('addUnit', 'binding value must be a string or number');
+  return '';
+}
 export { isString, isObject, isArray, isFunction, isBoolean, isNumber, camelize };

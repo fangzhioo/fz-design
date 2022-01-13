@@ -16,6 +16,7 @@
   --fz-button-font-weight: var(--fz-font-weight-primary);
 
   display: inline-block;
+  position: relative;
   line-height: 1;
   min-height: 36px;
   padding: 10px 20px;
@@ -393,20 +394,3 @@
   }
 }
 
-// theme
-:root[data-mode='dark']{
-  .fz-button {
-    
-    &--primary,
-    &--success,
-    &--warning,
-    &--error,
-    &--info {
-      &, &.is-disabled {
-        --fz-button-text-color: var(--fz-text-color-primary);
-        --fz-button-hover-text-color: var(--fz-text-color-primary);
-        --fz-button-active-text-color: var(--fz-text-color-primary);
-      }
-    }
-  }
-}

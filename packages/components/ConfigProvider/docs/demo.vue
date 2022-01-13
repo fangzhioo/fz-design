@@ -23,7 +23,8 @@ import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   setup() {
-    const theme = ref('dark'); // 'dark' | 'light'
+    const isDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = ref(isDarkTheme ? 'dark' : 'light'); // 'dark' | 'light'
     const size = ref('medium'); // 'mini' | 'small' | 'medium' | 'large'
     const val = ref('fzui');
 
