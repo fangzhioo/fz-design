@@ -1,0 +1,78 @@
+.fz-popper {
+  --fz-popper-border-radius: var(--fz-popover-border-radius, 4px);
+}
+.fz-popper {
+  position: absolute;
+  border-radius: var(--fz-popper-border-radius);
+  padding: 10px;
+  z-index: 2000;
+  font-size: 12px;
+  line-height: 1.2;
+  min-width: 10px;
+  word-wrap: break-word;
+  visibility: visible;
+}
+.fz-popper.is-dark {
+  color: var(--fz-color-white);
+  background: var(--fz-text-color-primary);
+}
+.fz-popper.is-dark .fz-popper__arrow::before {
+  background: var(--fz-text-color-primary);
+  right: 0;
+}
+.fz-popper.is-light {
+  background: var(--fz-color-white);
+  border: 1px solid var(--fz-border-color-light);
+}
+.fz-popper.is-light .fz-popper__arrow::before {
+  border: 1px solid var(--fz-border-color-light);
+  background: var(--fz-color-white);
+  right: 0;
+}
+.fz-popper.is-pure {
+  padding: 0;
+}
+.fz-popper__arrow {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  z-index: -1;
+}
+.fz-popper__arrow::before {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  z-index: -1;
+  content: ' ';
+  transform: rotate(45deg);
+  background: var(--fz-text-color-primary);
+  box-sizing: border-box;
+}
+.fz-popper[data-popper-placement^='top'] > .fz-popper__arrow {
+  bottom: -5px;
+}
+.fz-popper[data-popper-placement^='bottom'] > .fz-popper__arrow {
+  top: -5px;
+}
+.fz-popper[data-popper-placement^='left'] > .fz-popper__arrow {
+  right: -5px;
+}
+.fz-popper[data-popper-placement^='right'] > .fz-popper__arrow {
+  left: -5px;
+}
+.fz-popper.is-light[data-popper-placement^='top'] .fz-popper__arrow::before {
+  border-top-color: transparent;
+  border-left-color: transparent;
+}
+.fz-popper.is-light[data-popper-placement^='bottom'] .fz-popper__arrow::before {
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+}
+.fz-popper.is-light[data-popper-placement^='left'] .fz-popper__arrow::before {
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+.fz-popper.is-light[data-popper-placement^='right'] .fz-popper__arrow::before {
+  border-right-color: transparent;
+  border-top-color: transparent;
+}

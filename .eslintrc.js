@@ -20,11 +20,7 @@ module.exports = {
       jsx: true,
     },
   },
-  extends: [
-    'plugin:vue/vue3-essential',
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
-  ],
+  extends: ['plugin:vue/vue3-essential', 'plugin:@typescript-eslint/recommended', 'prettier'],
   rules: {
     'vue/no-multiple-template-root': 'off',
     'vue/multi-word-component-names': 'off',

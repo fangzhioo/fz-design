@@ -1,6 +1,6 @@
 {
   "name": "fz-ui",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Vue3 UI Components",
   "author": {
     "name": "tongren",
@@ -20,7 +20,9 @@
     "p": "npm publish --registry https://registry.npmjs.org",
     "version": "npm version patch && npm run p",
     "version:minor": "npm version minor && npm run p",
-    "version:major": "npm version major && npm run p"
+    "version:major": "npm version major && npm run p",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore src --fix",
+    "format": "prettier . --ignore-path .gitignore --write"
   },
   "peerDependencies": {
     "vue": "^3.2.25"

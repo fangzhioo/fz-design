@@ -1,9 +1,4 @@
-import {
-  createRouter,
-  createWebHashHistory,
-  RouteRecordRaw,
-  RouterOptions,
-} from 'vue-router';
+import { createRouter, createWebHashHistory, RouteRecordRaw, RouterOptions } from 'vue-router';
 import NotFound from '@/pages/NotFound.vue';
 import { componentRoutes } from './componentRoutes';
 

@@ -8,32 +8,30 @@
 
 <script lang="ts">
 import { computed, CSSProperties, defineComponent, inject, onBeforeUnmount, ref, toRef } from 'vue';
-import { useEventListener } from '@vueuse/core';
-import { barProps, BAR_MAP } from './Bar';
 import { FZ_SCROLLBAR_INJECT_KEY } from '@fzui/utils/constants';
 import { throwError } from '@fzui/utils/error';
+import { useEventListener } from '@vueuse/core';
+import { barProps, BAR_MAP } from './SideBar';
 import { ScrollbarContext } from './Scrollbar';
 
-export const renderThumbStyle = ({ move, size, bar }): CSSProperties => ({
+export const renderThumbStyle = ({ move, size, bar }: any): CSSProperties => ({
   [bar.size]: size,
   transform: `translate${bar.axis}(${move}%)`,
 });
 
-const COMPONENT_NAME = 'Bar';
 export default defineComponent({
-  name: COMPONENT_NAME,
+  name: 'SideBar',
   props: barProps,
-
   setup(props) {
     const scrollbar = inject<ScrollbarContext>(FZ_SCROLLBAR_INJECT_KEY);
     if (!scrollbar) {
-      throwError(COMPONENT_NAME, 'can not inject scrollbar context');
+      throwError('Scrollbar SideBar', 'can not inject scrollbar context');
     }
 
     const instance = ref<HTMLDivElement>();
     const thumb = ref<HTMLDivElement>();
 
-    const barStore = ref({});
+    const barStore = ref<any>({});
     const visible = ref(false);
 
     let cursorDown = false;
@@ -50,13 +48,20 @@ export default defineComponent({
       }),
     );
 
-    const offsetRatio = computed(
-      () =>
-        // offsetRatioX = original width of thumb / current width of thumb / ratioX
-        // offsetRatioY = original height of thumb / current height of thumb / ratioY
-        // instance height = wrap height - GAP
-        instance.value![bar.value.offset] ** 2 / scrollbar.wrapElement![bar.value.scrollSize] / props.ratio / thumb.value![bar.value.offset],
-    );
+    const offsetRatio = computed(() => {
+      // offsetRatioX = original width of thumb / current width of thumb / ratioX
+      // offsetRatioY = original height of thumb / current height of thumb / ratioY
+      // instance height = wrap height - GAP
+      // instance.value[bar.value.offset] ** 2 / scrollbar.wrapElement[bar.value.scrollSize] / props.ratio / thumb.value[bar.value.offset]
+      let ratio = 0;
+      if (instance.value && thumb.value && props.ratio !== undefined) {
+        const offsetValue = instance.value[bar.value.offset];
+        const scrollbarSize = scrollbar.wrapElement[bar.value.scrollSize];
+        const thumboffsetValue = thumb.value[bar.value.offset];
+        ratio = offsetValue ** 2 / scrollbarSize / props.ratio / thumboffsetValue;
+      }
+      return ratio;
+    });
 
     const mouseMoveDocumentHandler = (e: MouseEvent) => {
       if (!instance.value || !thumb.value) {

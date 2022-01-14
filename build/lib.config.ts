@@ -1,6 +1,6 @@
 import baseConfig from './base.config';
 import { defineConfig } from 'vite';
-// import dts from 'vite-plugin-dts';
+import dts from 'vite-plugin-dts';
 import css from 'rollup-plugin-css-only';
 import vuePlugin from 'rollup-plugin-vue';
 import esbuild from 'rollup-plugin-esbuild';
@@ -19,7 +19,7 @@ export default defineConfig({
     vuePlugin({
       target: 'browser',
     }),
-    // dts(),
+    dts(),
     esbuild({
       sourceMap: true,
       target: 'es2018',

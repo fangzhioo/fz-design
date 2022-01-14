@@ -11,7 +11,18 @@ export const barProps = {
   always: Boolean,
 };
 
-export const BAR_MAP = {
+interface BarAttrMap {
+  offset: 'offsetHeight' | 'offsetWidth';
+  scroll: 'scrollTop' | 'scrollLeft';
+  scrollSize: 'scrollHeight' | 'scrollWidth';
+  size: 'height' | 'width';
+  key: 'vertical' | 'horizontal';
+  axis: 'Y' | 'X';
+  client: 'clientY' | 'clientX';
+  direction: 'top' | 'left';
+}
+
+export const BAR_MAP: Record<'vertical' | 'horizontal', BarAttrMap> = {
   vertical: {
     offset: 'offsetHeight',
     scroll: 'scrollTop',

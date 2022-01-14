@@ -1,0 +1,115 @@
+:root {
+  // 基础黑白色，主要用于暗黑模式下反转
+  --fz-color-white: #fff;
+  --fz-color-black: #333;
+  // 主题色 和1-9的主题渐变色
+  --fz-color-primary: #8670ff;
+  --fz-color-primary-light-1: #927eff;
+  --fz-color-primary-light-2: #9e8dff;
+  --fz-color-primary-light-3: #aa9bff;
+  --fz-color-primary-light-4: #b6a9ff;
+  --fz-color-primary-light-5: #c3b8ff;
+  --fz-color-primary-light-6: #cfc6ff;
+  --fz-color-primary-light-7: #dbd4ff;
+  --fz-color-primary-light-8: #e7e2ff;
+  --fz-color-primary-light-9: #f3f1ff;
+
+  // 状态色 和light、lighter两个状态渐变色
+  --fz-color-success: #67c23a;
+  --fz-color-success-light: #a4da89;
+  --fz-color-success-lighter: #e1f3d8;
+  --fz-color-warning: #e6a23c;
+  --fz-color-warning-light: #eec48a;
+  --fz-color-warning-lighter: #fdf6ec;
+  --fz-color-error: #f56c6c;
+  --fz-color-error-light: #f79696;
+  --fz-color-error-lighter: #fef0f0;
+  --fz-color-info: #909399;
+  --fz-color-info-light: #c5c5d1;
+  --fz-color-info-lighter: #f4f4f5;
+  // 字体颜色 默认 常规 次要 占位符色
+  --fz-text-color-primary: #303133;
+  --fz-text-color-regular: #606266;
+  --fz-text-color-secondary: #909399;
+  --fz-text-color-placeholder: #c0c4cc;
+  // 背景色
+  --fz-background-color-base: #f5f7fa;
+  --fz-background-color-light: #dcdfe6;
+  --fz-background-color-lighter: #c0c4cc;
+  --fz-background-color-lightest: #c5cad1;
+  // 边框颜色
+  --fz-border-color-base: #dcdfe6;
+  --fz-border-color-light: #e4e7ed;
+  --fz-border-color-lighter: #ebeef5;
+  --fz-border-color-lightest: #f2f6fc;
+  // disabled 禁用背景色、字体颜色、边框颜色
+  --fz-disabled-fill-base: var(--fz-background-color-base);
+  --fz-disabled-color-base: var(--fz-text-color-placeholder);
+  --fz-disabled-border-base: var(--fz-border-color-light);
+  // 边框其他
+  --fz-border-width-base: 1px;
+  --fz-border-style-base: solid;
+  --fz-border-color-hover: var(--fz-text-color-placeholder);
+  --fz-border-base: var(--fz-border-width-base) var(--fz-border-style-base) var(--fz-border-color-base);
+  --fz-border-radius-base: 4px;
+  --fz-border-radius-small: 2px;
+  --fz-border-radius-round: 20px;
+  --fz-border-radius-circle: 50%;
+  --fz-fill-base: var(--fz-color-white);
+  // 阴影
+  --fz-box-shadow-base: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+  --fz-box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  // 字体
+  --fz-font-size-extra-large: 20px;
+  --fz-font-size-large: 18px;
+  --fz-font-size-medium: 16px;
+  --fz-font-size-base: 14px;
+  --fz-font-size-small: 13px;
+  --fz-font-size-mini: 12px;
+  --fz-font-weight-primary: 500;
+  --fz-font-line-height-primary: 24px;
+  --fz-font-color-disabled-base: #bbb;
+  // z-index
+  --fz-index-normal: 1;
+  --fz-index-top: 1000;
+  --fz-index-popper: 2000;
+  // transition
+  --fz-transition-duration: 0.3s;
+  --fz-transition-duration-fast: 0.2s;
+  --fz-transition-function-ease-in-out-bezier: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --fz-transition-function-fast-bezier: cubic-bezier(0.23, 1, 0.32, 1);
+  --fz-transition-all: all var(--fz-transition-duration) var(--fz-transition-function-ease-in-out-bezier);
+  --fz-transition-fade: opacity var(--fz-transition-duration) var(--fz-transition-function-fast-bezier);
+  --fz-transition-md-fade: transform var(--fz-transition-duration) var(--fz-transition-function-fast-bezier),
+    opacity var(--fz-transition-duration) var(--fz-transition-function-fast-bezier);
+  --fz-transition-fade-linear: opacity var(--fz-transition-duration-fast) linear;
+  --fz-transition-border: border-color var(--fz-transition-duration-fast) var(--fz-transition-function-ease-in-out-bezier);
+  --fz-transition-color: color var(--fz-transition-duration-fast) var(--fz-transition-function-ease-in-out-bezier);
+  // box-shadow
+  --fz-box-shadow-base: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+  --fz-box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+
+  &[data-mode='dark'] {
+    --fz-color-white: #232323;
+    --fz-color-black: #aaa;
+    // 字体颜色 默认 常规 次要 占位符色
+    --fz-text-color-primary: #f7f7f7;
+    --fz-text-color-regular: #e4e4e4;
+    --fz-text-color-secondary: #bcbcbc;
+    --fz-text-color-placeholder: #989898;
+    // 背景色
+    --fz-background-color-base: #222;
+    --fz-background-color-light: #444;
+    --fz-background-color-lighter: #666;
+    --fz-background-color-lightest: #888;
+    // 边框颜色
+    --fz-border-color-base: #dcdfe6;
+    --fz-border-color-light: #cacdd3;
+    --fz-border-color-lighter: #b2b3b6;
+    --fz-border-color-lightest: #7d7e80;
+    // disabled 禁用背景色、字体颜色、边框颜色
+    --fz-disabled-fill-base: var(--fz-background-color-base);
+    --fz-disabled-color-base: var(--fz-text-color-placeholder);
+    --fz-disabled-border-base: var(--fz-border-color-light);
+  }
+}
