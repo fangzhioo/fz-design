@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { Fn, isClient } from '@vueuse/core';
+import { isClient } from '@vueuse/core';
 import { camelize } from '.';
 import { Nullable } from './types';
 

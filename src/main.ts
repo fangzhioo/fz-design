@@ -5,8 +5,9 @@ import './assets/commom.less';
 import './assets/markdown.less';
 
 import FzUI from '@fzui/components';
-import '@fzui/components/style.less';
+import '@fzui/theme/index.less';
 import Preview from './components/Preview.vue';
+import { exportAppToGlobal } from './plugins/exporter';
 
 const app = createApp(App);
 
@@ -22,4 +23,5 @@ router.isReady().finally(() => {
   if (isDarkTheme.matches) {
     document.documentElement.setAttribute('data-mode', 'dark');
   }
+  exportAppToGlobal(app);
 });

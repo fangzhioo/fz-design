@@ -2,6 +2,13 @@ import { camelize, toRawType, isString, isObject, isFunction, isArray } from '@v
 import { isBoolean, isNumber } from '@vueuse/core';
 import { debugWarn } from './error';
 
+/**
+ * 返回0到n-1的数字数组
+ * @param n 取数组
+ * @returns [0, 1, 2..., n-1]
+ */
+export const rangeArr = (n: number) => Array.from(Array(n).keys());
+
 export function isKorean(text: string): boolean {
   const reg = /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi;
   return reg.test(text);
@@ -25,6 +32,11 @@ export const generateUUID = (): string => {
   return uuid;
 };
 
+/**
+ * 处理自动带上单位 px
+ * @param value string/number
+ * @returns 带单位的字符串
+ */
 export function addUnit(value: string | number) {
   if (isString(value)) {
     return value;
@@ -34,4 +46,5 @@ export function addUnit(value: string | number) {
   debugWarn('addUnit', 'binding value must be a string or number');
   return '';
 }
+
 export { isString, isObject, isArray, isFunction, isBoolean, isNumber, camelize };

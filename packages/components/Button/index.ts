@@ -4,8 +4,8 @@ import ButtonGroup from './src/ButtonGroup.vue';
 
 export const ButtonPlugin: Plugin = {
   install(app: App) {
-    app.component('FzButton', Button);
-    app.component('FzButtonGroup', ButtonGroup);
+    app.component(Button.name, Button);
+    app.component(ButtonGroup.name, ButtonGroup);
   },
 };
 

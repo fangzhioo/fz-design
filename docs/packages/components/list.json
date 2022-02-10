@@ -126,5 +126,45 @@
     "compClassName": "checkbox",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Calendar",
+    "compZhName": "日历",
+    "compDesc": "日历的形式显示日期",
+    "compClassName": "calendar",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Card",
+    "compZhName": "卡片",
+    "compDesc": "卡片样式显示组件",
+    "compClassName": "card",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Layout",
+    "compZhName": "布局",
+    "compDesc": "通过基础的 24 分栏，迅速简便地创建布局。",
+    "compClassName": "layout",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Carousel",
+    "compZhName": "轮播",
+    "compDesc": "组件用于在循环计时器上显示大量可视内容。",
+    "compClassName": "carousel",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Message",
+    "compZhName": "消息提示",
+    "compDesc": "常用于主动操作后的反馈提示。",
+    "compClassName": "message",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]

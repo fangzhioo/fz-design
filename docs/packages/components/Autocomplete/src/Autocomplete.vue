@@ -93,7 +93,7 @@ import { autocompleteEmits, autocompleteProps } from './Autocomplete';
 import { useAttrs } from '@fzui/hooks';
 import { generateUUID, isArray } from '@fzui/utils';
 import { throwError } from '@fzui/utils/error';
-import { debounce } from 'lodash';
+import { debounce } from '@fzui/utils/lodash';
 import { UPDATE_MODEL_EVENT } from '@fzui/utils/constants';
 import { RefElement } from '@fzui/utils/types';
 

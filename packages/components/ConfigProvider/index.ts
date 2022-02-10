@@ -3,7 +3,7 @@ import ConfigProvider from './src/ConfigProvider.vue';
 
 export const ConfigProviderPlugin: Plugin = {
   install(app: App) {
-    app.component('FzConfigProvider', ConfigProvider);
+    app.component(ConfigProvider.name, ConfigProvider);
   },
 };
 

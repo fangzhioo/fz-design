@@ -3,7 +3,7 @@ import Backtop from './src/Backtop.vue';
 
 export const BacktopPlugin: Plugin = {
   install(app: App) {
-    app.component('FzBacktop', Backtop);
+    app.component(Backtop.name, Backtop);
   },
 };
 

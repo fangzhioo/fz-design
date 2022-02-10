@@ -3,11 +3,12 @@ import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@fzui/utils/constants';
 import { ExtractPropTypes, PropType } from 'vue';
 import type Checkbox from './Checkbox.vue';
 
+export type CheckboxModelValue = boolean | number | string | undefined;
 export const checkboxEmits = [UPDATE_MODEL_EVENT, CHANGE_EVENT];
 
 export const checkboxProps = {
   modelValue: {
-    type: [Boolean, Number, String],
+    type: [Boolean, Number, String] as PropType<CheckboxModelValue>,
     default: () => undefined,
   },
   label: {

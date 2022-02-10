@@ -1,6 +1,7 @@
 <!-- 加载 demo 组件 start -->
 <script setup>
 import demo from './demo.vue'
+import demo2 from './demo2.vue'
 </script>
 <!-- 加载 demo 组件 end -->
 
@@ -14,6 +15,14 @@ import demo from './demo.vue'
 
 <Preview comp-name="Breadcrumb" demo-name="demo">
   <demo />
+</Preview>
+
+## 图标分隔符
+
+通过设置 `separator-icon` 可以使用图标作为分隔符， 注意这将使 separator 失效。
+
+<Preview comp-name="Breadcrumb" demo-name="demo2">
+  <demo2 />
 </Preview>
 
 ## 属性

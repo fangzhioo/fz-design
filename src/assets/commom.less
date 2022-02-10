@@ -6,11 +6,21 @@
   font-size: var(--fz-font-size-base, 14px);
 
   &[data-mode='dark'] {
+    img {
+      filter: brightness(0.9);
+    }
     a {
       color: #ddd;
       &:hover {
         color: #fff;
       }
     }
+  }
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
   }
 }

@@ -4,13 +4,6 @@ import type Alert from './Alert.vue';
 export type AlertEffect = 'light' | 'dark';
 export type AlertType = 'success' | 'warning' | 'info' | 'error';
 
-export const TypeIconsNameMap: Record<AlertType, string> = {
-  success: 'success-filling',
-  warning: 'warning-filling',
-  info: 'prompt-filling',
-  error: 'delete-filling',
-};
-
 export const alertEmits = {
   close: (evt: MouseEvent) => evt instanceof MouseEvent,
 };

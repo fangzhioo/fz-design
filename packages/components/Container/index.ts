@@ -7,11 +7,11 @@ import Footer from './src/Footer.vue';
 
 export const ContainerPlugin: Plugin = {
   install(app: App) {
-    app.component('FzContainer', Container);
-    app.component('FzMain', Main);
-    app.component('FzAside', Aside);
-    app.component('FzHeader', Header);
-    app.component('FzFooter', Footer);
+    app.component(Container.name, Container);
+    app.component(Main.name, Main);
+    app.component(Aside.name, Aside);
+    app.component(Header.name, Header);
+    app.component(Footer.name, Footer);
   },
 };
 

@@ -4,7 +4,7 @@ import Popover from './src/Popover.vue';
 
 export const PopoverPlugin: Plugin = {
   install(app: App) {
-    app.component('FzPopover', Popover);
+    app.component(Popover.name, Popover);
     app.directive(VPopover, PopoverDirective);
   },
 };

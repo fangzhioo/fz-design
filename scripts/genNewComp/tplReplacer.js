@@ -23,7 +23,7 @@ const getTplFilePath = (meta) => ({
   },
   vueless: {
     from: './.template/src/index.less.tpl',
-    to: `../../packages/components/${meta.compName}/src/index.less`,
+    to: `../../packages/theme/${meta.compName}.less`,
   },
   // 根目录
   install: {
@@ -72,10 +72,12 @@ const routerTplReplacer = (listFileContent) => {
   const routerMeta = {
     routes: listFileContent.map((comp) => {
       return `{
-        title: '${comp.compZhName}',
         name: 'Component${comp.compName}',
         path: '/components/${comp.compName}',
         component: () => import('@fzui/components/${comp.compName}/docs/README.md'),
+        meta: {
+          title: '${comp.compZhName}',
+        }
       }`;
     }),
   };
@@ -112,10 +114,10 @@ const installTsTplReplacer = (listFileContent) => {
 // 更新 style.less
 const styleLessTplReplacer = (listFileContent) => {
   const styleFileFrom = './.template/style.less.tpl';
-  const styleFileTo = '../../packages/components/style.less'; // 这里没有写错，别慌
+  const styleFileTo = '../../packages/theme/index.less'; // 这里没有写错，别慌
   const styleFileTpl = fs.readFileSync(resolve(__dirname, styleFileFrom), 'utf-8');
   const styleMeta = {
-    exportComStyles: listFileContent.map(({ compName }) => `@import './${compName}/src/index.less';`).join('\n'),
+    exportComStyles: listFileContent.map(({ compName }) => `@import './${compName}.less';`).join('\n'),
   };
   const styleFileContent = handlebars.compile(styleFileTpl, {
     noEscape: true,

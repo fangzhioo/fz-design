@@ -3,7 +3,7 @@ import Icon from './src/Icon.vue';
 
 export const IconPlugin: Plugin = {
   install(app: App) {
-    app.component('FzIcon', Icon);
+    app.component(Icon.name, Icon);
   },
 };
 

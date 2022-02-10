@@ -3,7 +3,7 @@ import Autocomplete from './src/Autocomplete.vue';
 
 export const AutocompletePlugin: Plugin = {
   install(app: App) {
-    app.component('FzAutocomplete', Autocomplete);
+    app.component(Autocomplete.name, Autocomplete);
   },
 };
 

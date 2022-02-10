@@ -5,9 +5,9 @@ import CheckboxButton from './src/CheckboxButton.vue';
 
 export const CheckboxPlugin: Plugin = {
   install(app: App) {
-    app.component('FzCheckbox', Checkbox);
-    app.component('FzCheckboxGroup', CheckboxGroup);
-    app.component('FzCheckboxButton', CheckboxButton);
+    app.component(Checkbox.name, Checkbox);
+    app.component(CheckboxGroup.name, CheckboxGroup);
+    app.component(CheckboxButton.name, CheckboxButton);
   },
 };
 

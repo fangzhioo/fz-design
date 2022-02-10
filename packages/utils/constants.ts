@@ -13,6 +13,9 @@ export const FZ_CHECKBOX_GROUP_INJECT_KEY = Symbol('checkbox-group');
 export const FZ_FORM_INJECT_KEY = Symbol('form');
 export const FZ_FORMITEM_INJECT_KEY = Symbol('form-item');
 export const FZ_SCROLLBAR_INJECT_KEY = Symbol('scrollbar');
+export const FZ_BREADCRUMB_INJECT_KEY = Symbol('breadcrumb');
+export const FZ_LAYOUT_ROW_INJECT_KEY = Symbol('layout-row');
+export const FZ_CAROUSEL_INJECT_KEY = Symbol('carousel');
 
 export const EVENT_CODE = {
   tab: 'Tab',

@@ -1,7 +1,7 @@
 import { getCurrentInstance, computed } from 'vue';
 import type { ComputedRef } from 'vue';
 // import { debugWarn } from '~/utils/error';
-import fromPairs from 'lodash/fromPairs';
+import { fromPairs } from '@fzui/utils/lodash';
 
 interface Params {
   excludeListeners?: boolean;

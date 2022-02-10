@@ -1,10 +1,13 @@
-import { get } from 'lodash';
+import { get } from '@fzui/utils/lodash';
 import type { Language } from '@fzui/locale';
-import English from '@fzui/locale/lang/en';
+import ZH_CN from '@fzui/locale/lang/zh-cn';
 import { FZ_LOCALE_INJECT_KEY } from '@fzui/utils/constants';
 import { computed, inject, provide, ref, Ref, unref } from 'vue';
 import { MaybeRef } from '@vueuse/core';
 import { useProp } from './use-prop';
+
+// 默认简体中文
+const defaultLanguage = ZH_CN;
 
 export type TranslatorOption = Record<string, string | number>;
 export type Translator = (path: string, option?: TranslatorOption) => string;
@@ -24,7 +27,7 @@ export const buildTranslator =
   (path, option) =>
     translate(path, option, unref(locale));
 
-export const localeProviderMaker = (locale = English) => {
+export const localeProviderMaker = (locale = defaultLanguage) => {
   const lang = ref(locale.name);
   const localeRef = ref(locale);
   return {
@@ -35,12 +38,12 @@ export const localeProviderMaker = (locale = English) => {
 };
 
 export const useLocale = () => {
-  return inject<LocaleContext>(FZ_LOCALE_INJECT_KEY, cache || localeProviderMaker(English));
+  return inject<LocaleContext>(FZ_LOCALE_INJECT_KEY, cache || localeProviderMaker(defaultLanguage));
 };
 
 export const provideLocale = () => {
   const propLocale = useProp<Language>('locale');
-  const locale = computed(() => propLocale.value || English);
+  const locale = computed(() => propLocale.value || defaultLanguage);
   const lang = computed(() => locale.value.name);
 
   const t = buildTranslator(locale);

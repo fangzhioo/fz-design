@@ -59,6 +59,9 @@ export default defineComponent({
   }
   .nav {
     flex: 1;
+    & > a {
+      margin-right: 12px;
+    }
   }
 
   .theme-btn {

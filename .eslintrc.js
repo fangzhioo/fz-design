@@ -34,7 +34,7 @@ module.exports = {
     'comma-dangle': ['off', 'never'], // 对象字面量项尾不能有逗号
     'comma-spacing': 'warn', // 逗号前后的空格
     'comma-style': ['error', 'last'], // 逗号风格，换行时在行首还是行尾
-    complexity: ['warn', 11], // 循环复杂度
+    complexity: ['warn', 30], // 循环复杂度
     'consistent-return': 'warn', // return 后面是否允许省略
     'constructor-super': 'warn', // 非派生类不能调用super，派生类必须调用super
     curly: ['error', 'all'], // 必须使用 if(){} 中的{}

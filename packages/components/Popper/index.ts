@@ -4,7 +4,7 @@ import Popper from './src/Popper.vue';
 
 export const PopperPlugin: Plugin = {
   install(app: App) {
-    app.component('FzPopper', Popper);
+    app.component(Popper.name, Popper);
   },
 };
 

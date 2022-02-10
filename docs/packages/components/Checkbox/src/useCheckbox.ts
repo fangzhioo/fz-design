@@ -4,7 +4,7 @@ import type { ExtractPropTypes } from 'vue';
 import { FzFormContext, FzFormItemContext, useSize } from '@fzui/hooks';
 import { checkboxProps } from './Checkbox';
 import { CHANGE_EVENT, FZ_CHECKBOX_GROUP_INJECT_KEY, FZ_FORMITEM_INJECT_KEY, FZ_FORM_INJECT_KEY, UPDATE_MODEL_EVENT } from '@fzui/utils/constants';
-import { isBoolean } from 'lodash';
+import { isBoolean } from '@fzui/utils';
 
 export type IUseCheckboxProps = ExtractPropTypes<typeof checkboxProps>;
 
@@ -27,6 +27,8 @@ const useModel = (props: IUseCheckboxProps) => {
   const selfModel = ref(false);
   const { isGroup, checkboxGroup } = useCheckboxGroup();
   const isLimitExceeded = ref(false);
+  const instance = getCurrentInstance()!;
+  const { emit } = instance;
   const model = computed({
     get() {
       return isGroup.value ? checkboxGroup.modelValue.value : props.modelValue ?? selfModel.value;
@@ -41,11 +43,6 @@ const useModel = (props: IUseCheckboxProps) => {
         }
       } else {
         selfModel.value = val as boolean;
-        const instance = getCurrentInstance();
-        if (!instance) {
-          return;
-        }
-        const { emit } = instance;
         emit(UPDATE_MODEL_EVENT, val);
       }
     },

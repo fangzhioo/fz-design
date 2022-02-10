@@ -3,7 +3,7 @@ import Avatar from './src/Avatar.vue';
 
 export const AvatarPlugin: Plugin = {
   install(app: App) {
-    app.component('FzAvatar', Avatar);
+    app.component(Avatar.name, Avatar);
   },
 };
 

@@ -10,6 +10,8 @@ import demo from './demo.vue'
 
 按钮和图标上的数字或状态标记
 
+> 参考 `sup` 标签
+
 ## 基础用法
 
 <Preview comp-name="Badge" demo-name="demo">

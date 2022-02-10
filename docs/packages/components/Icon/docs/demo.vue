@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="icon-container">
-      <li class="icon-item" v-for="name in icons" :key="name">
+      <li class="icon-item" v-for="name in icons" :key="name" @click="handleCopy(name)">
         <fz-icon :name="name"></fz-icon>
         <p>{{ name }}</p>
       </li>
@@ -10,6 +10,9 @@
 </template>
 
 <script setup>
+import { useClipboard } from '@vueuse/core';
+import { message } from '@fzui/components/Message';
+
 const icons = [
   'layers',
   'lock',
@@ -192,6 +195,22 @@ const icons = [
   'layout',
   'fullscreen-shrink',
 ];
+
+const { isSupported, copy } = useClipboard();
+
+const handleCopy = (name) => {
+  if (isSupported) {
+    copy(name)
+      .then(() => {
+        message.success('已复制到剪切板');
+      })
+      .catch((err) => {
+        message.error(err.message || '复制失败');
+      });
+  } else {
+    message.warning('浏览器不支持复制');
+  }
+};
 </script>
 
 <style lang="less" scoped>
@@ -211,6 +230,11 @@ li {
     box-sizing: border-box;
     text-align: center;
     cursor: pointer;
+    margin: 0 10px 10px 0;
+    border-radius: 4px;
+    &:hover {
+      box-shadow: var(--fz-box-shadow-light);
+    }
 
     & > p {
       font-size: 12px;

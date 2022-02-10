@@ -4,7 +4,7 @@ import type { InputInstance } from './src/Input';
 
 export const InputPlugin: Plugin = {
   install(app: App) {
-    app.component('FzInput', Input);
+    app.component(Input.name, Input);
   },
 };
 

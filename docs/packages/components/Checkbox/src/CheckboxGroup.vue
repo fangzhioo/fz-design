@@ -5,18 +5,18 @@
 </template>
 
 <script lang="ts">
-import { useSize } from '@fzui/hooks';
-import { CHANGE_EVENT, UPDATE_MODEL_EVENT, FZ_CHECKBOX_GROUP_INJECT_KEY } from '@fzui/utils/constants';
-import { computed, defineComponent, nextTick, provide, toRefs, watch } from 'vue';
+import { FzFormItemContext, useSize } from '@fzui/hooks';
+import { CHANGE_EVENT, UPDATE_MODEL_EVENT, FZ_CHECKBOX_GROUP_INJECT_KEY, FZ_FORMITEM_INJECT_KEY } from '@fzui/utils/constants';
+import { computed, defineComponent, inject, nextTick, provide, toRefs, watch } from 'vue';
 import { checkboxGroupEmits, checkboxGroupProps } from './CheckboxGroup';
-import { useCheckboxGroup } from './useCheckbox';
 
 export default defineComponent({
   name: 'FzCheckboxGroup',
   props: checkboxGroupProps,
   emits: checkboxGroupEmits,
   setup(props, context) {
-    const { elFormItem } = useCheckboxGroup();
+    const elFormItem = inject(FZ_FORMITEM_INJECT_KEY, {} as FzFormItemContext);
+
     const checkboxGroupSize = useSize();
 
     const changeEvent = (value: unknown) => {

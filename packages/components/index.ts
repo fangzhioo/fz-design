@@ -20,6 +20,11 @@ import { BadgePlugin } from './Badge';
 import { BreadcrumbPlugin } from './Breadcrumb';
 import { ScrollbarPlugin } from './Scrollbar';
 import { CheckboxPlugin } from './Checkbox';
+import { CalendarPlugin } from './Calendar';
+import { CardPlugin } from './Card';
+import { LayoutPlugin } from './Layout';
+import { CarouselPlugin } from './Carousel';
+import { MessagePlugin } from './Message';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
@@ -39,6 +44,11 @@ const FzUIPlugin: Plugin = {
     BreadcrumbPlugin.install?.(app);
     ScrollbarPlugin.install?.(app);
     CheckboxPlugin.install?.(app);
+    CalendarPlugin.install?.(app);
+    CardPlugin.install?.(app);
+    LayoutPlugin.install?.(app);
+    CarouselPlugin.install?.(app);
+    MessagePlugin.install?.(app);
   },
 };
 
@@ -60,3 +70,8 @@ export * from './Badge';
 export * from './Breadcrumb';
 export * from './Scrollbar';
 export * from './Checkbox';
+export * from './Calendar';
+export * from './Card';
+export * from './Layout';
+export * from './Carousel';
+export * from './Message';
