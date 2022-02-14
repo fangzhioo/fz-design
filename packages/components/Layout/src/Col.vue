@@ -1,5 +1,5 @@
 <script lang="ts">
-import { FZ_LAYOUT_ROW_INJECT_KEY } from '@fzui/utils/constants';
+import { FZ_LAYOUT_ROW_INJECT_KEY } from '@fzui/constants';
 import { computed, CSSProperties, defineComponent, h, inject, renderSlot } from 'vue';
 import { colProps } from './Col';
 

@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { computed, CSSProperties, defineComponent, getCurrentInstance, inject, onMounted, onUnmounted, reactive, toRefs } from 'vue';
-import { FZ_CAROUSEL_INJECT_KEY } from '@fzui/utils/constants';
+import { FZ_CAROUSEL_INJECT_KEY } from '@fzui/constants';
 import { debugWarn } from '@fzui/utils/error';
 import { carouselItemProps } from './CarouselItem';
 

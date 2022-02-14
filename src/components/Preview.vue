@@ -4,9 +4,11 @@
       <slot></slot>
     </section>
 
-    <div v-show="codeVisible" class="source-code">
-      <pre class="language-html"><code class="language-html">{{ previewSourceCode }}</code></pre>
-    </div>
+    <transition name="demo-collapse-transition">
+      <div v-show="codeVisible" class="source-code">
+        <pre class="language-html"><code class="language-html">{{ previewSourceCode }}</code></pre>
+      </div>
+    </transition>
 
     <div class="preview-bottom">
       <span name="Code" @click="showSourceCode">{{ codeVisible ? '收起代码' : '查看代码' }}</span>
@@ -69,6 +71,11 @@ export default {
 };
 </script>
 <style lang="less">
+.demo-collapse-transition-leave-active,
+.demo-collapse-transition-enter-active {
+  transition: 0.35s height ease-in-out;
+}
+
 pre {
   line-height: 0;
 }

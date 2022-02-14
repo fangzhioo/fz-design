@@ -17,7 +17,7 @@ import { ClickOutside } from '@fzui/directives';
 import usePopper from './use-popper/index';
 import { popperProps } from './Popper';
 import { renderPopper, renderTrigger, renderArrow } from './renderers';
-import { UPDATE_VISIBLE_EVENT } from '@fzui/utils/constants';
+import { UPDATE_VISIBLE_EVENT } from '@fzui/constants';
 import { throwError } from '@fzui/utils/error';
 
 export default defineComponent({

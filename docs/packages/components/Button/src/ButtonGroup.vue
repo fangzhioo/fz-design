@@ -5,7 +5,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, provide, reactive, toRef } from 'vue';
-import { FZ_BUTTON_GROUP_INJECT_KEY } from '@fzui/utils/constants';
+import { FZ_BUTTON_GROUP_INJECT_KEY } from '@fzui/constants';
 import { buttonGroupProps } from './ButtonGroup';
 
 export default defineComponent({

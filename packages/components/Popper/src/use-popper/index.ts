@@ -10,7 +10,7 @@ import type { IPopperOptions, TriggerType, PopperInstance, RefElement } from '..
 import { generateUUID, isArray, isBoolean, isHTMLElement, isString } from '@fzui/utils';
 import PopupManager from '@fzui/utils/popup-manager';
 import { Nullable } from '@fzui/utils/types';
-import { UPDATE_VISIBLE_EVENT } from '@fzui/utils/constants';
+import { UPDATE_VISIBLE_EVENT } from '@fzui/constants';
 
 export type ElementType = ComponentPublicInstance | HTMLElement;
 export type EmitType = 'update:visible' | 'after-enter' | 'after-leave' | 'before-enter' | 'before-leave';

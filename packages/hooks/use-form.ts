@@ -1,5 +1,5 @@
 import { inject } from 'vue';
-import { FZ_FORM_INJECT_KEY, FZ_FORMITEM_INJECT_KEY } from '@fzui/utils/constants';
+import { FZ_FORM_INJECT_KEY, FZ_FORMITEM_INJECT_KEY } from '@fzui/constants';
 import { ComponentSize } from './use-size';
 
 export interface ValidateFieldCallback {

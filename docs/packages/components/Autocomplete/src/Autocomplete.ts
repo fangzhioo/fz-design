@@ -2,7 +2,7 @@ import { ExtractPropTypes, PropType } from 'vue';
 import type Autocomplete from './Autocomplete.vue';
 import type { Placement } from '@fzui/components/Popper';
 import { NOOP } from '@vue/shared';
-import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@fzui/utils/constants';
+import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@fzui/constants';
 
 export const autocompleteEmits = [UPDATE_MODEL_EVENT, CHANGE_EVENT, 'input', 'focus', 'blur', 'clear', 'select'];
 

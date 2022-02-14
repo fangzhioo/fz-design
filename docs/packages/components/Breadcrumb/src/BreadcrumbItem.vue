@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { FZ_BREADCRUMB_INJECT_KEY } from '@fzui/utils/constants';
+import { FZ_BREADCRUMB_INJECT_KEY } from '@fzui/constants';
 import { defineComponent, getCurrentInstance, inject, onMounted, ref } from 'vue';
 import { breadcrumbItemProps } from './BreadcrumbItem';
 

@@ -1,4 +1,4 @@
-import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@fzui/utils/constants';
+import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@fzui/constants';
 import { ExtractPropTypes } from 'vue';
 import type CheckboxButton from './CheckboxButton.vue';
 

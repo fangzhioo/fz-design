@@ -2,7 +2,7 @@
 import { isClient } from '@vueuse/core';
 import * as configs from './config';
 import { addClass, removeClass, on } from './dom';
-import { EVENT_CODE } from './constants';
+import { EVENT_CODE } from '../constants';
 
 import type { Ref } from 'vue';
 interface Instance {

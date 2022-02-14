@@ -1,4 +1,4 @@
-import { CHANGE_EVENT } from '@fzui/utils/constants';
+import { CHANGE_EVENT } from '@fzui/constants';
 import { ExtractPropTypes, PropType } from 'vue';
 import type Carousel from './Carousel.vue';
 

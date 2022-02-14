@@ -1,7 +1,6 @@
 <script lang="ts">
-import { defineComponent, provide, watch } from 'vue';
-import { useTheme, provideLocale } from '@fzui/hooks';
-import { FZ_CONFIG_PROVIDER_INJECT_KEY } from '@fzui/utils/constants';
+import { defineComponent, renderSlot, watch } from 'vue';
+import { useTheme, provideLocale, provideGlobalConfig } from '@fzui/hooks';
 import { configProviderProps } from './ConfigProvider';
 
 export default defineComponent({
@@ -9,14 +8,14 @@ export default defineComponent({
   props: configProviderProps,
   setup(props, { slots }) {
     provideLocale();
-    provide(FZ_CONFIG_PROVIDER_INJECT_KEY, props);
     const theme = useTheme();
     watch(theme, () => {
       if (theme.value) {
         document.documentElement.setAttribute('data-mode', theme.value);
       }
     });
-    return () => slots.default?.();
+    const config = provideGlobalConfig(props);
+    return () => renderSlot(slots, 'default', { config: config?.value });
   },
 });
 </script>

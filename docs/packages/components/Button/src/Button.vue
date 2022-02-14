@@ -30,7 +30,7 @@
 <script lang="ts">
 import { computed, defineComponent, inject, ref } from 'vue';
 import { useSize } from '@fzui/hooks';
-import { FZ_BUTTON_GROUP_INJECT_KEY } from '@fzui/utils/constants';
+import { FZ_BUTTON_GROUP_INJECT_KEY } from '@fzui/constants';
 import { buttonEmits, buttonProps, ButtonProps } from './Button';
 import { ButtonGroupInstance } from './ButtonGroup';
 import { Icon } from '@fzui/components/Icon';

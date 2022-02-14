@@ -1,5 +1,5 @@
 import { popperProps, TriggerType } from '@fzui/components/Popper';
-import { UPDATE_VISIBLE_EVENT } from '@fzui/utils/constants';
+import { UPDATE_VISIBLE_EVENT } from '@fzui/constants';
 import { ExtractPropTypes, PropType } from 'vue';
 import type Popover from './Popover.vue';
 

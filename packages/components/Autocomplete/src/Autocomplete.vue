@@ -94,7 +94,7 @@ import { useAttrs } from '@fzui/hooks';
 import { generateUUID, isArray } from '@fzui/utils';
 import { throwError } from '@fzui/utils/error';
 import { debounce } from '@fzui/utils/lodash';
-import { UPDATE_MODEL_EVENT } from '@fzui/utils/constants';
+import { UPDATE_MODEL_EVENT } from '@fzui/constants';
 import { RefElement } from '@fzui/utils/types';
 
 export default defineComponent({

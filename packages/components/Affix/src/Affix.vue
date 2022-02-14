@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { CHANGE_EVENT } from '@fzui/utils/constants';
+import { CHANGE_EVENT } from '@fzui/constants';
 import { getScrollContainer } from '@fzui/utils/dom';
 import { useEventListener, useResizeObserver } from '@vueuse/core';
 import { computed, CSSProperties, defineComponent, onMounted, reactive, shallowRef, watch } from 'vue';

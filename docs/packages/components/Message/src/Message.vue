@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { EVENT_CODE } from '@fzui/utils/constants';
+import { EVENT_CODE } from '@fzui/constants';
 import { useEventListener, useTimeoutFn } from '@vueuse/core';
 import { computed, CSSProperties, defineComponent, onMounted, ref, watch } from 'vue';
 import { messageEmits, messageProps } from './Message';

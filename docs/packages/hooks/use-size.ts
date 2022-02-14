@@ -2,7 +2,7 @@ import { computed, inject, ref, unref } from 'vue';
 import type { MaybeRef } from '@vueuse/core';
 import { useProp } from './use-prop';
 import { useGlobalConfig } from './use-global-config';
-import { FZ_FORMITEM_INJECT_KEY, FZ_FORM_INJECT_KEY } from '@fzui/utils/constants';
+import { FZ_FORMITEM_INJECT_KEY, FZ_FORM_INJECT_KEY } from '@fzui/constants';
 
 export type ComponentSize = 'mini' | 'small' | 'medium' | 'large';
 

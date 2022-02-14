@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts">
-import { FZ_CAROUSEL_INJECT_KEY } from '@fzui/utils/constants';
+import { FZ_CAROUSEL_INJECT_KEY } from '@fzui/constants';
 import { debugWarn } from '@fzui/utils/error';
 import { useEventListener } from '@vueuse/core';
 import { throttle } from '@fzui/utils/lodash';

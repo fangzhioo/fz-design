@@ -1,7 +1,7 @@
 [
   {
     "compName": "Button",
-    "compZhName": "按钮",
+    "compZhName": "Button按钮",
     "compDesc": "按钮",
     "compClassName": "button",
     "compPrefix": "Fz",
@@ -9,7 +9,7 @@
   },
   {
     "compName": "Input",
-    "compZhName": "输入框",
+    "compZhName": "Input输入框",
     "compDesc": "文本输入框",
     "compClassName": "input",
     "compPrefix": "Fz",
@@ -17,7 +17,7 @@
   },
   {
     "compName": "ConfigProvider",
-    "compZhName": "配置提供者",
+    "compZhName": "ConfigProvider配置提供者",
     "compDesc": "组件全局配置提供者",
     "compClassName": "config-provider",
     "compPrefix": "Fz",
@@ -25,7 +25,7 @@
   },
   {
     "compName": "Container",
-    "compZhName": "布局容器",
+    "compZhName": "Container布局容器",
     "compDesc": "用于布局的容器组件",
     "compClassName": "container",
     "compPrefix": "Fz",
@@ -33,7 +33,7 @@
   },
   {
     "compName": "Affix",
-    "compZhName": "固钉",
+    "compZhName": "Affix固钉",
     "compDesc": "将页面元素固定在特定可视区域",
     "compClassName": "affix",
     "compPrefix": "Fz",
@@ -41,7 +41,7 @@
   },
   {
     "compName": "Icon",
-    "compZhName": "图标",
+    "compZhName": "Icon图标",
     "compDesc": "一些常用的图标",
     "compClassName": "icon",
     "compPrefix": "Fz",
@@ -49,7 +49,7 @@
   },
   {
     "compName": "Popper",
-    "compZhName": "弹出框",
+    "compZhName": "Popper弹出框",
     "compDesc": "弹出隐藏内容",
     "compClassName": "popper",
     "compPrefix": "Fz",
@@ -57,7 +57,7 @@
   },
   {
     "compName": "Popover",
-    "compZhName": "弹出信息",
+    "compZhName": "Popover弹出信息",
     "compDesc": "展示元素隐藏信息浮窗",
     "compClassName": "popover",
     "compPrefix": "Fz",
@@ -65,7 +65,7 @@
   },
   {
     "compName": "Autocomplete",
-    "compZhName": "自动补全输入框",
+    "compZhName": "Autocomplete自动补全输入框",
     "compDesc": "自动补全弹窗的输入框",
     "compClassName": "autocomplete",
     "compPrefix": "Fz",
@@ -73,7 +73,7 @@
   },
   {
     "compName": "Alert",
-    "compZhName": "提示",
+    "compZhName": "Alert提示",
     "compDesc": "用于页面中展示重要的提示信息",
     "compClassName": "alert",
     "compPrefix": "Fz",
@@ -81,7 +81,7 @@
   },
   {
     "compName": "Avatar",
-    "compZhName": "头像",
+    "compZhName": "Avatar头像",
     "compDesc": "用于展示头像",
     "compClassName": "avatar",
     "compPrefix": "Fz",
@@ -89,7 +89,7 @@
   },
   {
     "compName": "Backtop",
-    "compZhName": "返回头部",
+    "compZhName": "Backtop返回头部",
     "compDesc": "用于返回头部",
     "compClassName": "backtop",
     "compPrefix": "Fz",
@@ -97,7 +97,7 @@
   },
   {
     "compName": "Badge",
-    "compZhName": "徽章",
+    "compZhName": "Badge徽章",
     "compDesc": "按钮和图标上的数字或状态标记",
     "compClassName": "badge",
     "compPrefix": "Fz",
@@ -105,7 +105,7 @@
   },
   {
     "compName": "Breadcrumb",
-    "compZhName": "面包屑",
+    "compZhName": "Breadcrumb面包屑",
     "compDesc": "显示当前页面的路径，快速返回之前的任意页面",
     "compClassName": "breadcrumb",
     "compPrefix": "Fz",
@@ -113,7 +113,7 @@
   },
   {
     "compName": "Scrollbar",
-    "compZhName": "滚动条",
+    "compZhName": "Scrollbar滚动条",
     "compDesc": "用于替换浏览器原生滚动条",
     "compClassName": "scrollbar",
     "compPrefix": "Fz",
@@ -121,7 +121,7 @@
   },
   {
     "compName": "Checkbox",
-    "compZhName": "多选框",
+    "compZhName": "Checkbox多选框",
     "compDesc": "一组备选项中进行多选",
     "compClassName": "checkbox",
     "compPrefix": "Fz",
@@ -129,7 +129,7 @@
   },
   {
     "compName": "Calendar",
-    "compZhName": "日历",
+    "compZhName": "Calendar日历",
     "compDesc": "日历的形式显示日期",
     "compClassName": "calendar",
     "compPrefix": "Fz",
@@ -137,7 +137,7 @@
   },
   {
     "compName": "Card",
-    "compZhName": "卡片",
+    "compZhName": "Card卡片",
     "compDesc": "卡片样式显示组件",
     "compClassName": "card",
     "compPrefix": "Fz",
@@ -145,7 +145,7 @@
   },
   {
     "compName": "Layout",
-    "compZhName": "布局",
+    "compZhName": "Layout布局",
     "compDesc": "通过基础的 24 分栏，迅速简便地创建布局。",
     "compClassName": "layout",
     "compPrefix": "Fz",
@@ -153,7 +153,7 @@
   },
   {
     "compName": "Carousel",
-    "compZhName": "轮播",
+    "compZhName": "Carousel轮播",
     "compDesc": "组件用于在循环计时器上显示大量可视内容。",
     "compClassName": "carousel",
     "compPrefix": "Fz",
@@ -161,9 +161,33 @@
   },
   {
     "compName": "Message",
-    "compZhName": "消息提示",
+    "compZhName": "Message消息提示",
     "compDesc": "常用于主动操作后的反馈提示。",
     "compClassName": "message",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "CheckTag",
+    "compZhName": "CheckTag可选标签",
+    "compDesc": "可以选中的标签",
+    "compClassName": "check-tag",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Collapse",
+    "compZhName": "Collapse折叠面板",
+    "compDesc": "通过折叠面板收纳内容区域",
+    "compClassName": "collapse",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Tooltip",
+    "compZhName": "Tooltip文字提示",
+    "compDesc": "常用于展示鼠标 hover 时的提示信息。",
+    "compClassName": "tooltip",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   }

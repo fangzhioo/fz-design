@@ -108,7 +108,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, onUpdated, ref, shallowRef, StyleValue, watch } from 'vue';
-import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@fzui/utils/constants';
+import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@fzui/constants';
 import { isObject, isKorean } from '@fzui/utils';
 import { useAttrs, useSize, useForm, useDisabled } from '@fzui/hooks';
 import { isClient } from '@vueuse/core';

@@ -3,7 +3,7 @@ import { ref, computed, inject, getCurrentInstance, watch } from 'vue';
 import type { ExtractPropTypes } from 'vue';
 import { FzFormContext, FzFormItemContext, useSize } from '@fzui/hooks';
 import { checkboxProps } from './Checkbox';
-import { CHANGE_EVENT, FZ_CHECKBOX_GROUP_INJECT_KEY, FZ_FORMITEM_INJECT_KEY, FZ_FORM_INJECT_KEY, UPDATE_MODEL_EVENT } from '@fzui/utils/constants';
+import { CHANGE_EVENT, FZ_CHECKBOX_GROUP_INJECT_KEY, FZ_FORMITEM_INJECT_KEY, FZ_FORM_INJECT_KEY, UPDATE_MODEL_EVENT } from '@fzui/constants';
 import { isBoolean } from '@fzui/utils';
 
 export type IUseCheckboxProps = ExtractPropTypes<typeof checkboxProps>;

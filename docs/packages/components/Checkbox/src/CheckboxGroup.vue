@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { FzFormItemContext, useSize } from '@fzui/hooks';
-import { CHANGE_EVENT, UPDATE_MODEL_EVENT, FZ_CHECKBOX_GROUP_INJECT_KEY, FZ_FORMITEM_INJECT_KEY } from '@fzui/utils/constants';
+import { CHANGE_EVENT, UPDATE_MODEL_EVENT, FZ_CHECKBOX_GROUP_INJECT_KEY, FZ_FORMITEM_INJECT_KEY } from '@fzui/constants';
 import { computed, defineComponent, inject, nextTick, provide, toRefs, watch } from 'vue';
 import { checkboxGroupEmits, checkboxGroupProps } from './CheckboxGroup';
 

@@ -1,6 +1,6 @@
 import { ExtractPropTypes, PropType } from 'vue';
 import type Calendar from './Calendar.vue';
-import { UPDATE_MODEL_EVENT } from '@fzui/utils/constants';
+import { UPDATE_MODEL_EVENT } from '@fzui/constants';
 
 export type CalendarDateType = 'prev-month' | 'next-month' | 'prev-year' | 'next-year' | 'today';
 

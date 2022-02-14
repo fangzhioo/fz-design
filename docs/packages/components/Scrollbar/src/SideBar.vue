@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { computed, CSSProperties, defineComponent, inject, onBeforeUnmount, ref, toRef } from 'vue';
-import { FZ_SCROLLBAR_INJECT_KEY } from '@fzui/utils/constants';
+import { FZ_SCROLLBAR_INJECT_KEY } from '@fzui/constants';
 import { throwError } from '@fzui/utils/error';
 import { useEventListener } from '@vueuse/core';
 import { barProps, BAR_MAP } from './SideBar';

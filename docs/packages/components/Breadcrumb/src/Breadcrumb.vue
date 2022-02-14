@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, provide, onMounted } from 'vue';
-import { FZ_BREADCRUMB_INJECT_KEY } from '@fzui/utils/constants';
+import { FZ_BREADCRUMB_INJECT_KEY } from '@fzui/constants';
 import { breadcrumbProps } from './Breadcrumb';
 
 export default defineComponent({

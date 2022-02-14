@@ -25,6 +25,9 @@ import { CardPlugin } from './Card';
 import { LayoutPlugin } from './Layout';
 import { CarouselPlugin } from './Carousel';
 import { MessagePlugin } from './Message';
+import { CheckTagPlugin } from './CheckTag';
+import { CollapsePlugin } from './Collapse';
+import { TooltipPlugin } from './Tooltip';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
@@ -49,6 +52,9 @@ const FzUIPlugin: Plugin = {
     LayoutPlugin.install?.(app);
     CarouselPlugin.install?.(app);
     MessagePlugin.install?.(app);
+    CheckTagPlugin.install?.(app);
+    CollapsePlugin.install?.(app);
+    TooltipPlugin.install?.(app);
   },
 };
 
@@ -75,3 +81,6 @@ export * from './Card';
 export * from './Layout';
 export * from './Carousel';
 export * from './Message';
+export * from './CheckTag';
+export * from './Collapse';
+export * from './Tooltip';

@@ -1,5 +1,5 @@
 import { ComponentSize } from '@fzui/hooks';
-import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@fzui/utils/constants';
+import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@fzui/constants';
 import { ExtractPropTypes, PropType } from 'vue';
 import type CheckboxGroup from './CheckboxGroup.vue';
 

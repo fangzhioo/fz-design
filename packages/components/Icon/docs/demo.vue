@@ -200,7 +200,7 @@ const { isSupported, copy } = useClipboard();
 
 const handleCopy = (name) => {
   if (isSupported) {
-    copy(name)
+    copy(`fz-icon-${name}`)
       .then(() => {
         message.success('已复制到剪切板');
       })

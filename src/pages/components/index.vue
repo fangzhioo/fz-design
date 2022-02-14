@@ -28,6 +28,9 @@ const data = reactive({
   border-right: var(--fz-border-base);
 }
 .link-item {
-  padding: 6px 10px;
+  padding: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>

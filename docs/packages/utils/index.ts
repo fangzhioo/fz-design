@@ -47,4 +47,13 @@ export function addUnit(value: string | number) {
   return '';
 }
 
+export const merge = <T extends Record<string, any>>(a: T, b: T) => {
+  const keys = [...new Set([...Object.keys(a), ...Object.keys(b)])] as (keyof T)[];
+  const obj = {} as T;
+  for (const key of keys) {
+    obj[key] = b[key] ?? a[key];
+  }
+  return obj;
+};
+
 export { isString, isObject, isArray, isFunction, isBoolean, isNumber, camelize };

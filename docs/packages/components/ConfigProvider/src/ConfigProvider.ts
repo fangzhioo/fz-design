@@ -15,6 +15,10 @@ export const configProviderProps = {
     type: String as PropType<Theme>,
     default: '',
   },
+  zIndex: {
+    type: Number,
+    default: 2000,
+  },
 };
 
 export type ConfigProviderContext = ExtractPropTypes<typeof configProviderProps>;
