@@ -26,7 +26,7 @@
 import { computed, defineComponent, ref } from 'vue';
 import { alertEmits, alertProps } from './Alert';
 import { Icon } from '@fzui/components/Icon';
-import { TypeIconsNameMap } from '@fzui/utils/icon';
+import { TypeIconsNameMap } from '@fzui/utils';
 
 export default defineComponent({
   name: 'FzAlert',

@@ -28,6 +28,9 @@ import { MessagePlugin } from './Message';
 import { CheckTagPlugin } from './CheckTag';
 import { CollapsePlugin } from './Collapse';
 import { TooltipPlugin } from './Tooltip';
+import { OnlyChildPlugin } from './OnlyChild';
+import { VisuallyHiddenPlugin } from './VisuallyHidden';
+import { TagPlugin } from './Tag';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
@@ -55,6 +58,9 @@ const FzUIPlugin: Plugin = {
     CheckTagPlugin.install?.(app);
     CollapsePlugin.install?.(app);
     TooltipPlugin.install?.(app);
+    OnlyChildPlugin.install?.(app);
+    VisuallyHiddenPlugin.install?.(app);
+    TagPlugin.install?.(app);
   },
 };
 
@@ -84,3 +90,6 @@ export * from './Message';
 export * from './CheckTag';
 export * from './Collapse';
 export * from './Tooltip';
+export * from './OnlyChild';
+export * from './VisuallyHidden';
+export * from './Tag';

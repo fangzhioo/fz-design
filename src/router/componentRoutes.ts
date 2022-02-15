@@ -9,168 +9,168 @@ export const componentRoutes = [
         path: '/components/Button',
         component: () => import('@fzui/components/Button/docs/README.md'),
         meta: {
-          title: 'Button按钮',
+          title: '按钮',
         }
       },{
         name: 'ComponentInput',
         path: '/components/Input',
         component: () => import('@fzui/components/Input/docs/README.md'),
         meta: {
-          title: 'Input输入框',
+          title: '输入框',
         }
       },{
         name: 'ComponentConfigProvider',
         path: '/components/ConfigProvider',
         component: () => import('@fzui/components/ConfigProvider/docs/README.md'),
         meta: {
-          title: 'ConfigProvider配置提供者',
+          title: '配置提供者',
         }
       },{
         name: 'ComponentContainer',
         path: '/components/Container',
         component: () => import('@fzui/components/Container/docs/README.md'),
         meta: {
-          title: 'Container布局容器',
+          title: '布局容器',
         }
       },{
         name: 'ComponentAffix',
         path: '/components/Affix',
         component: () => import('@fzui/components/Affix/docs/README.md'),
         meta: {
-          title: 'Affix固钉',
+          title: '固钉',
         }
       },{
         name: 'ComponentIcon',
         path: '/components/Icon',
         component: () => import('@fzui/components/Icon/docs/README.md'),
         meta: {
-          title: 'Icon图标',
-        }
-      },{
-        name: 'ComponentPopper',
-        path: '/components/Popper',
-        component: () => import('@fzui/components/Popper/docs/README.md'),
-        meta: {
-          title: 'Popper弹出框',
+          title: '图标',
         }
       },{
         name: 'ComponentPopover',
         path: '/components/Popover',
         component: () => import('@fzui/components/Popover/docs/README.md'),
         meta: {
-          title: 'Popover弹出信息',
+          title: '弹出信息',
         }
       },{
         name: 'ComponentAutocomplete',
         path: '/components/Autocomplete',
         component: () => import('@fzui/components/Autocomplete/docs/README.md'),
         meta: {
-          title: 'Autocomplete自动补全输入框',
+          title: '自动补全输入框',
         }
       },{
         name: 'ComponentAlert',
         path: '/components/Alert',
         component: () => import('@fzui/components/Alert/docs/README.md'),
         meta: {
-          title: 'Alert提示',
+          title: '提示',
         }
       },{
         name: 'ComponentAvatar',
         path: '/components/Avatar',
         component: () => import('@fzui/components/Avatar/docs/README.md'),
         meta: {
-          title: 'Avatar头像',
+          title: '头像',
         }
       },{
         name: 'ComponentBacktop',
         path: '/components/Backtop',
         component: () => import('@fzui/components/Backtop/docs/README.md'),
         meta: {
-          title: 'Backtop返回头部',
+          title: '返回头部',
         }
       },{
         name: 'ComponentBadge',
         path: '/components/Badge',
         component: () => import('@fzui/components/Badge/docs/README.md'),
         meta: {
-          title: 'Badge徽章',
+          title: '徽章',
         }
       },{
         name: 'ComponentBreadcrumb',
         path: '/components/Breadcrumb',
         component: () => import('@fzui/components/Breadcrumb/docs/README.md'),
         meta: {
-          title: 'Breadcrumb面包屑',
+          title: '面包屑',
         }
       },{
         name: 'ComponentScrollbar',
         path: '/components/Scrollbar',
         component: () => import('@fzui/components/Scrollbar/docs/README.md'),
         meta: {
-          title: 'Scrollbar滚动条',
+          title: '滚动条',
         }
       },{
         name: 'ComponentCheckbox',
         path: '/components/Checkbox',
         component: () => import('@fzui/components/Checkbox/docs/README.md'),
         meta: {
-          title: 'Checkbox多选框',
+          title: '多选框',
         }
       },{
         name: 'ComponentCalendar',
         path: '/components/Calendar',
         component: () => import('@fzui/components/Calendar/docs/README.md'),
         meta: {
-          title: 'Calendar日历',
+          title: '日历',
         }
       },{
         name: 'ComponentCard',
         path: '/components/Card',
         component: () => import('@fzui/components/Card/docs/README.md'),
         meta: {
-          title: 'Card卡片',
+          title: '卡片',
         }
       },{
         name: 'ComponentLayout',
         path: '/components/Layout',
         component: () => import('@fzui/components/Layout/docs/README.md'),
         meta: {
-          title: 'Layout布局',
+          title: '布局',
         }
       },{
         name: 'ComponentCarousel',
         path: '/components/Carousel',
         component: () => import('@fzui/components/Carousel/docs/README.md'),
         meta: {
-          title: 'Carousel轮播',
+          title: '轮播',
         }
       },{
         name: 'ComponentMessage',
         path: '/components/Message',
         component: () => import('@fzui/components/Message/docs/README.md'),
         meta: {
-          title: 'Message消息提示',
+          title: '消息提示',
         }
       },{
         name: 'ComponentCheckTag',
         path: '/components/CheckTag',
         component: () => import('@fzui/components/CheckTag/docs/README.md'),
         meta: {
-          title: 'CheckTag可选标签',
+          title: '可选标签',
         }
       },{
         name: 'ComponentCollapse',
         path: '/components/Collapse',
         component: () => import('@fzui/components/Collapse/docs/README.md'),
         meta: {
-          title: 'Collapse折叠面板',
+          title: '折叠面板',
         }
       },{
         name: 'ComponentTooltip',
         path: '/components/Tooltip',
         component: () => import('@fzui/components/Tooltip/docs/README.md'),
         meta: {
-          title: 'Tooltip文字提示',
+          title: '文字提示',
+        }
+      },{
+        name: 'ComponentTag',
+        path: '/components/Tag',
+        component: () => import('@fzui/components/Tag/docs/README.md'),
+        meta: {
+          title: '标签',
         }
       }
 ];

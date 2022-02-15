@@ -17,11 +17,10 @@
 </template>
 
 <script lang="ts">
-import { throwError } from '@fzui/utils/error';
 import { useEventListener, useThrottleFn } from '@vueuse/core';
 import { computed, defineComponent, onMounted, ref, shallowRef } from 'vue';
+import { easeInOutCubic, throwError } from '@fzui/utils';
 import { backtopEmits, backtopProps } from './Backtop';
-import { easeInOutCubic } from '@fzui/utils/animation';
 
 import { Icon } from '@fzui/components/Icon';
 

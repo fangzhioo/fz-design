@@ -1,7 +1,6 @@
-import { isClient } from '@vueuse/core';
+import { on, Nullable, isClient } from '@fzui/utils';
+
 import type { ComponentPublicInstance, DirectiveBinding, ObjectDirective } from 'vue';
-import { on } from '@fzui/utils/dom';
-import { Nullable } from '@fzui/utils/types';
 
 type DocumentHandler = <T extends MouseEvent>(mouseup: T, mousedown: T) => void;
 type FlushList = Map<

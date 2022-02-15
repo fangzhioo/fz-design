@@ -1,17 +1,18 @@
 /* eslint-disable no-param-reassign */
-import { isClient } from '@vueuse/core';
-import { camelize } from '.';
+import { camelize, isClient } from '.';
 import { Nullable } from './types';
 
-/* istanbul ignore next */
-const trimArr = function (s: string) {
-  return (s || '').split(' ').filter((item) => Boolean(item.trim()));
-};
+const trimArr = (s: string) => (s || '').split(' ').filter((item) => Boolean(item.trim()));
 
-/* istanbul ignore next */
-export const on = function (element: HTMLElement | Document | Window, event: string, handler: (args: any) => void, useCapture = false): void {
+export const on = (element: HTMLElement | Document | Window, event: string, handler: (args: any) => void, useCapture = false): void => {
   if (element && event && handler) {
     element?.addEventListener(event, handler, useCapture);
+  }
+};
+
+export const off = (element: HTMLElement | Document | Window, event: string, handler: EventListenerOrEventListenerObject, useCapture = false): void => {
+  if (element && event && handler) {
+    element?.removeEventListener(event, handler, useCapture);
   }
 };
 
@@ -22,7 +23,7 @@ export const stop = (e: Event) => e.stopPropagation();
 // has { [index: number]: string } in its type annotation, which does not satisfy the method
 // camelize(s: string)
 // Same as the return type
-export const getStyle = function (element: HTMLElement, styleName: any): string {
+export const getStyle = (element: HTMLElement, styleName: any): string => {
   if (!isClient) {
     return '';
   }
@@ -109,3 +110,18 @@ export function removeClass(el: HTMLElement | Element, cls: string): void {
   const className = trimArr(curClass).join(' ');
   el.setAttribute('class', className);
 }
+
+export const composeEventHandlers = <E>(
+  theirsHandler?: (event: E) => boolean | void,
+  oursHandler?: (event: E) => void,
+  { checkForDefaultPrevented = true } = {},
+) => {
+  const handleEvent = (event: E) => {
+    const shouldPrevent = theirsHandler?.(event);
+
+    if (checkForDefaultPrevented === false || !shouldPrevent) {
+      return oursHandler?.(event);
+    }
+  };
+  return handleEvent;
+};

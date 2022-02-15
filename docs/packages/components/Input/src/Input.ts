@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue';
-import { ComponentSize } from '@fzui/hooks/use-size';
+import { ComponentSize } from '@fzui/hooks';
 import { UPDATE_MODEL_EVENT } from '@fzui/constants';
 import { isString } from '@fzui/utils';
 import type Input from './Input.vue';

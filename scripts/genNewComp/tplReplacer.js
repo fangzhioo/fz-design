@@ -69,8 +69,9 @@ const routerTplReplacer = (listFileContent) => {
   const routerFileFrom = './.template/router.ts.tpl';
   const routerFileTo = '../../src/router/componentRoutes.ts';
   const routerFileTpl = fs.readFileSync(resolve(__dirname, routerFileFrom), 'utf-8');
+  const routes = listFileContent.filter((i) => i.compDoc); // 仅输出需要输出文档的路由
   const routerMeta = {
-    routes: listFileContent.map((comp) => {
+    routes: routes.map((comp) => {
       return `{
         name: 'Component${comp.compName}',
         path: '/components/${comp.compName}',

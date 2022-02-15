@@ -27,10 +27,10 @@
 import { EVENT_CODE } from '@fzui/constants';
 import { useEventListener, useTimeoutFn } from '@vueuse/core';
 import { computed, CSSProperties, defineComponent, onMounted, ref, watch } from 'vue';
-import { messageEmits, messageProps } from './Message';
+import { TypeIconsNameMap } from '@fzui/utils';
 import { Icon } from '@fzui/components/Icon';
 import { BadgeProps, Badge } from '@fzui/components/Badge';
-import { TypeIconsNameMap } from '@fzui/utils/icon';
+import { messageEmits, messageProps } from './Message';
 
 export default defineComponent({
   name: 'FzMessage',

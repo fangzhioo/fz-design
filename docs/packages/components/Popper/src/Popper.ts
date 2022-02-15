@@ -1,77 +1,95 @@
-import type { ExtractPropTypes, PropType } from 'vue';
-import type { Placement, PositioningStrategy, Instance as PopperInstance, Options } from '@popperjs/core';
-import { Nullable } from '@fzui/utils/types';
-import type Popper from './Popper.vue';
+import type { ExtractPropTypes, PropType, StyleValue } from 'vue';
+import type { Placement, Options } from '@popperjs/core';
+import { ClassType } from '@fzui/utils';
 
-export type PopperEffect = 'dark' | 'light';
-
-export type RefElement = Nullable<HTMLElement>;
-export type Offset = [number, number] | number;
-
-export type { Placement, PositioningStrategy, PopperInstance, Options };
-
-export type TriggerType = 'click' | 'hover' | 'focus' | 'manual';
-
-export type Trigger = TriggerType | TriggerType[];
-
-export type IPopperOptions = {
-  arrowOffset: number;
-  autoClose: number;
-  boundariesPadding: number;
-  class: string;
-  cutoff: boolean;
-  disabled: boolean;
-  enterable: boolean;
-  hideAfter: number;
-  manualMode: boolean;
-  offset: number;
-  placement: Placement;
-  popperOptions: Partial<Options>;
-  showAfter: number;
-  showArrow: boolean;
-  strategy: PositioningStrategy;
-  trigger: Trigger;
-  visible: boolean;
-  stopPopperMouseEvent: boolean;
-  gpuAcceleration: boolean;
-  fallbackPlacements: Array<Placement>;
+export type Measurable = {
+  getBoundingClientRect: () => DOMRect;
 };
+export const Effect = {
+  LIGHT: 'light',
+  DARK: 'dark',
+};
+export type PopperjsCoreOptions = Options;
+export type PopperjsCorePlacement = Placement;
 
-// duplicate export at index.ts
-// export const DEFAULT_TRIGGER = 'hover'
-const DEFAULT_FALLBACK_PLACEMENTS: Placement[] = [];
-
-export const popperProps = {
-  // the arrow size is an equailateral triangle with 10px side length, the 3rd side length ~ 14.1px
-  // adding a offset to the ceil of 4.1 should be 5 this resolves the problem of arrow overflowing out of popper.
-  arrowOffset: {
-    type: Number,
-    default: 5,
-  },
-  appendToBody: {
-    type: Boolean,
-    default: true,
-  },
-  autoClose: {
-    type: Number,
-    default: 0,
-  },
+export const popperCoreConfigProps = {
   boundariesPadding: {
     type: Number,
     default: 0,
   },
-  content: {
-    type: String,
-    default: '',
+  fallbackPlacements: {
+    type: Array as PropType<PopperjsCorePlacement[]>,
+    default: () => [],
   },
-  class: {
-    type: String,
-    default: '',
+  gpuAcceleration: {
+    type: Boolean,
+    default: true,
   },
-  style: Object,
-  hideAfter: {
+  offset: {
     type: Number,
-    default: 200,
+    default: 12,
+  },
+  placement: {
+    type: String as PropType<PopperjsCorePlacement>,
+    default: 'bottom',
+  },
+  popperOptions: {
+    type: Object as PropType<Partial<PopperjsCoreOptions>>,
+    default: () => ({}),
+  },
+  strategy: {
+    type: String as PropType<'fixed' | 'absolute'>,
+    default: 'absolute',
+  },
+};
+
+export const popperArrowProps = {
+  arrowOffset: {
+    type: Number,
+    default: 5,
+  },
+};
+
+export const popperContentProps = {
+  ...popperCoreConfigProps,
+  style: { type: [String, Array, Object] as PropType<StyleValue> },
+  className: { type: [String, Array, Object] as PropType<ClassType> },
+  effect: {
+    type: String,
+    default: 'dark',
+  },
+  enterable: {
+    type: Boolean,
+    default: true,
+  },
+  pure: {
+    type: Boolean,
+  },
+  popperClass: {
+    type: [String, Array, Object] as PropType<ClassType>,
+  },
+  popperStyle: {
+    type: [String, Array, Object] as PropType<StyleValue>,
+  },
+  referenceEl: {
+    type: Object as PropType<HTMLElement>,
+  },
+  stopPopperMouseEvent: {
+    type: Boolean,
+    default: true,
+  },
+  zIndex: Number,
+};
+
+export const popperTriggerProps = {
+  virtualRef: { type: Object as PropType<Measurable> },
+  virtualTriggering: { type: Boolean },
+};
+
+export const popperProps = {
+  autoClose: {
+    type: Number,
+    default: 0,
   },
   cutoff: {
     type: Boolean,
@@ -81,76 +99,7 @@ export const popperProps = {
     type: Boolean,
     default: false,
   },
-  effect: {
-    type: String as PropType<PopperEffect>,
-    default: 'dark',
-  },
-  enterable: {
-    type: Boolean,
-    default: true,
-  },
-  manualMode: {
-    type: Boolean,
-    default: false,
-  },
-  showAfter: {
-    type: Number,
-    default: 0,
-  },
-  offset: {
-    type: Number,
-    default: 12,
-  },
-  placement: {
-    type: String as PropType<Placement>,
-    default: 'bottom' as Placement,
-  },
-  popperClass: {
-    type: String,
-    default: '',
-  },
-  pure: {
-    type: Boolean,
-    default: false,
-  },
-  // Once this option were given, the entire popper is under the users' control, top priority
-  popperOptions: {
-    type: Object as PropType<Partial<Options>>,
-    default: () => null,
-  },
-  showArrow: {
-    type: Boolean,
-    default: true,
-  },
-  strategy: {
-    type: String as PropType<PositioningStrategy>,
-    default: 'fixed' as PositioningStrategy,
-  },
-  transition: {
-    type: String,
-    default: 'fz-fade-in-linear',
-  },
-  trigger: {
-    type: [String, Array] as PropType<Trigger>,
-    default: 'hover',
-  },
-  visible: {
-    type: Boolean,
-    default: undefined,
-  },
-  stopPopperMouseEvent: {
-    type: Boolean,
-    default: true,
-  },
-  gpuAcceleration: {
-    type: Boolean,
-    default: true,
-  },
-  fallbackPlacements: {
-    type: Array as PropType<Placement[]>,
-    default: DEFAULT_FALLBACK_PLACEMENTS,
-  },
 };
 
 export type PopperProps = ExtractPropTypes<typeof popperProps>;
-export type IPopperInstance = InstanceType<typeof Popper>;
+export type PopperCoreConfigProps = ExtractPropTypes<typeof popperCoreConfigProps>;

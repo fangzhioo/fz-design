@@ -15,11 +15,13 @@
 import ComponentList from '@fzui/components/list.json';
 import { reactive } from 'vue';
 
+const links = ComponentList.filter((i) => i.compDoc).map((item) => ({
+  path: `/components/${item.compName}`,
+  name: `${item.compZhName}（${item.compName}）`,
+}));
+
 const data = reactive({
-  links: ComponentList.map((item) => ({
-    path: `/components/${item.compName}`,
-    name: item.compZhName,
-  })),
+  links,
 });
 </script>
 

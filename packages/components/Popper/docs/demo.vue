@@ -1,7 +1,7 @@
 <template>
   <div>
     <fz-popper>
-      <template #trigger>
+      <template #reference>
         <fz-button type="primary">Popper</fz-button>
       </template>
       Lorem ipsum dolor sit amet consectetur

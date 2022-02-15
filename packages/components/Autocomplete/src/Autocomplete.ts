@@ -1,6 +1,6 @@
 import { ExtractPropTypes, PropType } from 'vue';
 import type Autocomplete from './Autocomplete.vue';
-import type { Placement } from '@fzui/components/Popper';
+import type { PopperjsCorePlacement } from '@fzui/components/Popper';
 import { NOOP } from '@vue/shared';
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@fzui/constants';
 
@@ -20,7 +20,7 @@ export const autocompleteProps = {
     default: 300,
   },
   placement: {
-    type: String as PropType<Placement>,
+    type: String as PropType<PopperjsCorePlacement>,
     validator: (val: string): boolean => {
       return ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end'].includes(val);
     },

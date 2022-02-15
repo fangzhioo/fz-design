@@ -1,193 +1,244 @@
 [
   {
     "compName": "Button",
-    "compZhName": "Button按钮",
+    "compZhName": "按钮",
     "compDesc": "按钮",
+    "compDoc": true,
     "compClassName": "button",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Input",
-    "compZhName": "Input输入框",
+    "compZhName": "输入框",
     "compDesc": "文本输入框",
+    "compDoc": true,
     "compClassName": "input",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "ConfigProvider",
-    "compZhName": "ConfigProvider配置提供者",
+    "compZhName": "配置提供者",
     "compDesc": "组件全局配置提供者",
+    "compDoc": true,
     "compClassName": "config-provider",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Container",
-    "compZhName": "Container布局容器",
+    "compZhName": "布局容器",
     "compDesc": "用于布局的容器组件",
+    "compDoc": true,
     "compClassName": "container",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Affix",
-    "compZhName": "Affix固钉",
+    "compZhName": "固钉",
     "compDesc": "将页面元素固定在特定可视区域",
+    "compDoc": true,
     "compClassName": "affix",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Icon",
-    "compZhName": "Icon图标",
+    "compZhName": "图标",
     "compDesc": "一些常用的图标",
+    "compDoc": true,
     "compClassName": "icon",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Popper",
-    "compZhName": "Popper弹出框",
+    "compZhName": "弹出框",
     "compDesc": "弹出隐藏内容",
+    "compDoc": false,
     "compClassName": "popper",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Popover",
-    "compZhName": "Popover弹出信息",
+    "compZhName": "弹出信息",
     "compDesc": "展示元素隐藏信息浮窗",
+    "compDoc": true,
     "compClassName": "popover",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Autocomplete",
-    "compZhName": "Autocomplete自动补全输入框",
+    "compZhName": "自动补全输入框",
     "compDesc": "自动补全弹窗的输入框",
+    "compDoc": true,
     "compClassName": "autocomplete",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Alert",
-    "compZhName": "Alert提示",
+    "compZhName": "提示",
     "compDesc": "用于页面中展示重要的提示信息",
+    "compDoc": true,
     "compClassName": "alert",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Avatar",
-    "compZhName": "Avatar头像",
+    "compZhName": "头像",
     "compDesc": "用于展示头像",
+    "compDoc": true,
     "compClassName": "avatar",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Backtop",
-    "compZhName": "Backtop返回头部",
+    "compZhName": "返回头部",
     "compDesc": "用于返回头部",
+    "compDoc": true,
     "compClassName": "backtop",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Badge",
-    "compZhName": "Badge徽章",
+    "compZhName": "徽章",
     "compDesc": "按钮和图标上的数字或状态标记",
+    "compDoc": true,
     "compClassName": "badge",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Breadcrumb",
-    "compZhName": "Breadcrumb面包屑",
+    "compZhName": "面包屑",
     "compDesc": "显示当前页面的路径，快速返回之前的任意页面",
+    "compDoc": true,
     "compClassName": "breadcrumb",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Scrollbar",
-    "compZhName": "Scrollbar滚动条",
+    "compZhName": "滚动条",
     "compDesc": "用于替换浏览器原生滚动条",
+    "compDoc": true,
     "compClassName": "scrollbar",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Checkbox",
-    "compZhName": "Checkbox多选框",
+    "compZhName": "多选框",
     "compDesc": "一组备选项中进行多选",
+    "compDoc": true,
     "compClassName": "checkbox",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Calendar",
-    "compZhName": "Calendar日历",
+    "compZhName": "日历",
     "compDesc": "日历的形式显示日期",
+    "compDoc": true,
     "compClassName": "calendar",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Card",
-    "compZhName": "Card卡片",
+    "compZhName": "卡片",
     "compDesc": "卡片样式显示组件",
+    "compDoc": true,
     "compClassName": "card",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Layout",
-    "compZhName": "Layout布局",
+    "compZhName": "布局",
     "compDesc": "通过基础的 24 分栏，迅速简便地创建布局。",
+    "compDoc": true,
     "compClassName": "layout",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Carousel",
-    "compZhName": "Carousel轮播",
+    "compZhName": "轮播",
     "compDesc": "组件用于在循环计时器上显示大量可视内容。",
+    "compDoc": true,
     "compClassName": "carousel",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Message",
-    "compZhName": "Message消息提示",
+    "compZhName": "消息提示",
     "compDesc": "常用于主动操作后的反馈提示。",
+    "compDoc": true,
     "compClassName": "message",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "CheckTag",
-    "compZhName": "CheckTag可选标签",
+    "compZhName": "可选标签",
     "compDesc": "可以选中的标签",
+    "compDoc": true,
     "compClassName": "check-tag",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Collapse",
-    "compZhName": "Collapse折叠面板",
+    "compZhName": "折叠面板",
     "compDesc": "通过折叠面板收纳内容区域",
+    "compDoc": true,
     "compClassName": "collapse",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   },
   {
     "compName": "Tooltip",
-    "compZhName": "Tooltip文字提示",
+    "compZhName": "文字提示",
     "compDesc": "常用于展示鼠标 hover 时的提示信息。",
+    "compDoc": true,
     "compClassName": "tooltip",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "OnlyChild",
+    "compZhName": "单元素插槽",
+    "compDesc": "只允许一个元素的插槽组件",
+    "compDoc": false,
+    "compClassName": "only-child",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "VisuallyHidden",
+    "compZhName": "隐藏元素",
+    "compDesc": "隐藏元素",
+    "compDoc": false,
+    "compClassName": "visually-hidden",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Tag",
+    "compZhName": "标签",
+    "compDesc": "用于标记和选择",
+    "compDoc": true,
+    "compClassName": "tag",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
   }

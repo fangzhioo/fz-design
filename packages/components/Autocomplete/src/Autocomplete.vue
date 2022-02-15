@@ -1,65 +1,64 @@
 <template>
-  <fz-popper
+  <fz-tooltip
     ref="popper"
     v-model:visible="suggestionVisible"
     :placement="placement"
     :fallback-placements="['bottom-start', 'top-start']"
     :popper-class="`fz-autocomplete__popper ${popperClass}`"
-    :append-to-body="popperAppendToBody"
+    :gpu-acceleration="false"
     pure
-    effect="light"
     manual-mode
+    effect="light"
     trigger="click"
     transition="fz-zoom-in-top"
-    :gpu-acceleration="false"
+    persistent
+    @show="onSuggestionShow"
   >
-    <template #trigger>
-      <div
-        v-clickoutside="close"
-        :class="['fz-autocomplete', $attrs.class]"
-        :style="style"
-        role="combobox"
-        aria-haspopup="listbox"
-        :aria-expanded="suggestionVisible"
-        :aria-owns="id"
+    <div
+      v-clickoutside="close"
+      :class="['fz-autocomplete', $attrs.class]"
+      :style="style"
+      role="combobox"
+      aria-haspopup="listbox"
+      :aria-expanded="suggestionVisible"
+      :aria-owns="id"
+    >
+      <fz-input
+        ref="inputRef"
+        v-bind="attrs"
+        :model-value="modelValue"
+        @input="handleInput"
+        @change="handleChange"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        @clear="handleClear"
+        @keydown.up.prevent="highlight(highlightedIndex - 1)"
+        @keydown.down.prevent="highlight(highlightedIndex + 1)"
+        @keydown.enter="handleKeyEnter"
+        @keydown.tab="close"
       >
-        <fz-input
-          ref="inputRef"
-          v-bind="attrs"
-          :model-value="modelValue"
-          @input="handleInput"
-          @change="handleChange"
-          @focus="handleFocus"
-          @blur="handleBlur"
-          @clear="handleClear"
-          @keydown.up.prevent="highlight(highlightedIndex - 1)"
-          @keydown.down.prevent="highlight(highlightedIndex + 1)"
-          @keydown.enter="handleKeyEnter"
-          @keydown.tab="close"
-        >
-          <template v-if="$slots.prepend" #prepend>
-            <slot name="prepend"></slot>
-          </template>
-          <template v-if="$slots.append" #append>
-            <slot name="append"></slot>
-          </template>
-          <template v-if="$slots.prefix" #prefix>
-            <slot name="prefix"></slot>
-          </template>
-          <template v-if="$slots.suffix" #suffix>
-            <slot name="suffix"></slot>
-          </template>
-        </fz-input>
-      </div>
-    </template>
-    <template #default>
+        <template v-if="$slots.prepend" #prepend>
+          <slot name="prepend"></slot>
+        </template>
+        <template v-if="$slots.append" #append>
+          <slot name="append"></slot>
+        </template>
+        <template v-if="$slots.prefix" #prefix>
+          <slot name="prefix"></slot>
+        </template>
+        <template v-if="$slots.suffix" #suffix>
+          <slot name="suffix"></slot>
+        </template>
+      </fz-input>
+    </div>
+    <template #content>
       <div
         ref="regionRef"
         :class="['fz-autocomplete-suggestion', suggestionLoading && 'is-loading']"
         :style="{ minWidth: dropdownWidth, outline: 'none' }"
         role="region"
       >
-        <fz-scrollbar tag="ul" wrap-class="fz-autocomplete-suggestion__wrap" view-class="fz-autocomplete-suggestion__list">
+        <fz-scrollbar :id="id" tag="ul" wrap-class="fz-autocomplete-suggestion__wrap" view-class="fz-autocomplete-suggestion__list" role="listbox">
           <li v-if="suggestionLoading">
             <fz-icon class="is-loading" name="loading"></fz-icon>
           </li>
@@ -79,28 +78,26 @@
         </fz-scrollbar>
       </div>
     </template>
-  </fz-popper>
+  </fz-tooltip>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, nextTick, onMounted, onUpdated, ref, StyleValue, watch } from 'vue';
-import { Popper, PopperInstance } from '@fzui/components/Popper';
+import { Tooltip } from '@fzui/components/Tooltip';
 import { Input, InputInstance } from '@fzui/components/Input';
 import { Scrollbar } from '@fzui/components/Scrollbar';
 import { Icon } from '@fzui/components/Icon';
 import ClickOutside from '@fzui/directives/click-outside';
 import { autocompleteEmits, autocompleteProps } from './Autocomplete';
 import { useAttrs } from '@fzui/hooks';
-import { generateUUID, isArray } from '@fzui/utils';
-import { throwError } from '@fzui/utils/error';
-import { debounce } from '@fzui/utils/lodash';
+import { generateUUID, isArray, throwError, debounce } from '@fzui/utils';
+import type { RefElement } from '@fzui/utils';
 import { UPDATE_MODEL_EVENT } from '@fzui/constants';
-import { RefElement } from '@fzui/utils/types';
 
 export default defineComponent({
   name: 'FzAutocomplete',
   components: {
-    FzPopper: Popper,
+    FzTooltip: Tooltip,
     FzInput: Input,
     FzScrollbar: Scrollbar,
     FzIcon: Icon,
@@ -121,7 +118,7 @@ export default defineComponent({
     const loading = ref(false);
     const inputRef = ref<InputInstance | null>(null);
     const regionRef = ref<RefElement>(null);
-    const popper = ref<PopperInstance | null>(null);
+    const popper = ref<any>(null);
 
     const id = computed(() => {
       return `fz-autocomplete-${generateUUID()}`;
@@ -134,6 +131,14 @@ export default defineComponent({
     const suggestionLoading = computed(() => {
       return !props.hideLoading && loading.value;
     });
+
+    const onSuggestionShow = () => {
+      nextTick(() => {
+        if (suggestionVisible.value) {
+          dropdownWidth.value = `${inputRef.value!.$el.offsetWidth}px`;
+        }
+      });
+    };
 
     const updatePopperPosition = () => {
       nextTick(popper.value!.update);
@@ -279,6 +284,7 @@ export default defineComponent({
       style,
       suggestionVisible,
       suggestionLoading,
+      onSuggestionShow,
 
       getData,
       handleInput,

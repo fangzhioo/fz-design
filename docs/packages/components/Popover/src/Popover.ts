@@ -1,38 +1,42 @@
-import { popperProps, TriggerType } from '@fzui/components/Popper';
 import { UPDATE_VISIBLE_EVENT } from '@fzui/constants';
-import { ExtractPropTypes, PropType } from 'vue';
+import { ClassType } from '@fzui/utils';
+import { ExtractPropTypes, PropType, StyleValue } from 'vue';
 import type Popover from './Popover.vue';
 
-export const SHOW_EVENT = 'show';
-export const HIDE_EVENT = 'hide';
-
-export const popoverEmits = [UPDATE_VISIBLE_EVENT, SHOW_EVENT, HIDE_EVENT, 'after-enter', 'after-leave'];
+export const popoverEmits = [UPDATE_VISIBLE_EVENT, 'after-enter', 'after-leave'];
 
 export const popoverProps = {
-  ...popperProps,
+  appendToBody: {
+    type: Boolean,
+    default: undefined,
+  },
   content: {
     type: String,
+    default: '',
   },
-  trigger: {
-    type: String as PropType<TriggerType>,
-    default: 'click',
+  popperStyle: {
+    type: [String, Array, Object] as PropType<StyleValue>,
   },
-  title: {
+  popperClass: {
+    type: [String, Array, Object] as PropType<ClassType>,
+  },
+  enterable: {
+    type: Boolean,
+    default: true,
+  },
+  effect: {
     type: String,
+    default: 'light',
   },
-  transition: {
-    type: String,
-    default: 'fade-in-linear',
+  teleported: {
+    type: Boolean,
+    default: true,
   },
+  title: String,
   width: {
     type: [String, Number],
     default: 150,
   },
-  appendToBody: {
-    type: Boolean,
-    default: true,
-  },
-  tabindex: [String, Number],
 };
 
 export type PopoverProps = ExtractPropTypes<typeof popoverProps>;

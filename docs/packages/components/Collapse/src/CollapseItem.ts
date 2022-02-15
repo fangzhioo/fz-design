@@ -1,5 +1,5 @@
-import { generateUUID } from '@fzui/utils';
 import { ExtractPropTypes, PropType } from 'vue';
+import { generateUUID } from '@fzui/utils';
 import type CollapseItem from './CollapseItem.vue';
 
 export const collapseItemEmits = {};

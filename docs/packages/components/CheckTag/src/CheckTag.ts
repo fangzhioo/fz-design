@@ -1,7 +1,8 @@
 import { ExtractPropTypes } from 'vue';
 import { isBoolean } from '@fzui/utils';
-import type CheckTag from './CheckTag.vue';
 import { CHANGE_EVENT, UPDATE_CHECKED_EVENT } from '@fzui/constants';
+
+import type CheckTag from './CheckTag.vue';
 
 export const checkTagEmits = {
   [UPDATE_CHECKED_EVENT]: (value: boolean) => isBoolean(value),

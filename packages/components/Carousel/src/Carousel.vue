@@ -44,11 +44,10 @@
 </template>
 
 <script lang="ts">
-import { FZ_CAROUSEL_INJECT_KEY } from '@fzui/constants';
-import { debugWarn } from '@fzui/utils/error';
-import { useEventListener } from '@vueuse/core';
-import { throttle } from '@fzui/utils/lodash';
 import { computed, defineComponent, nextTick, onBeforeUnmount, onMounted, provide, reactive, ref, watch } from 'vue';
+import { useEventListener } from '@vueuse/core';
+import { FZ_CAROUSEL_INJECT_KEY } from '@fzui/constants';
+import { debugWarn, throttle } from '@fzui/utils';
 import { carouselProps } from './Carousel';
 
 interface CarouselState {

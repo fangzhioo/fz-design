@@ -11,3 +11,7 @@ export const FZ_BREADCRUMB_INJECT_KEY = Symbol('breadcrumb');
 export const FZ_LAYOUT_ROW_INJECT_KEY = Symbol('layout-row');
 export const FZ_CAROUSEL_INJECT_KEY = Symbol('carousel');
 export const FZ_COLLAPSE_INJECT_KEY = Symbol('collapse');
+export const FZ_FORWARD_REF_INJECT_KEY = Symbol('forward-ref');
+export const FZ_POPPER_INJECT_KEY = Symbol('popper');
+export const FZ_POPPER_CONTENT_INJECT_KEY = Symbol('popper-content');
+export const FZ_TOOLTIP_INJECT_KEY = Symbol('tooptip');

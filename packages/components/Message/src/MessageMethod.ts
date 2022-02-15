@@ -1,9 +1,8 @@
 import { createVNode, isVNode, render } from 'vue';
-import PopupManager from '@fzui/utils/popup-manager';
-import { isClient } from '@vueuse/core';
-import { Message, MessageFn, MessageProps, MessageQueue, MessageType } from './Message';
 import type { ComponentPublicInstance, VNode } from 'vue';
-import { debugWarn } from '@fzui/utils/error';
+import { useZIndex } from '@fzui/hooks';
+import { debugWarn, isClient } from '@fzui/utils';
+import { Message, MessageFn, MessageProps, MessageQueue, MessageType } from './Message';
 import MessageConstructor from './Message.vue';
 
 const instances: MessageQueue = [];
@@ -66,10 +65,12 @@ const message: MessageFn & Partial<Message> = (op = {}) => {
   });
   verticalOffset += 16;
 
+  const { nextZIndex } = useZIndex();
+
   const id = `message_${seed++}`;
   const userOnClose = options.onClose;
   const props: Partial<MessageProps> = {
-    zIndex: PopupManager.nextZIndex(),
+    zIndex: nextZIndex(),
     offset: verticalOffset,
     ...options,
     id,

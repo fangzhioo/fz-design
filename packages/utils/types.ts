@@ -35,3 +35,7 @@ export type TimeoutHandle = number;
 export type StyleValue = string | CSSProperties | Array<StyleValue>;
 
 export type Mutable<T> = { -readonly [P in keyof T]: T[P] };
+
+export type ClassObjectType = Record<string, any>;
+
+export type ClassType = string | ClassObjectType | ClassType[];

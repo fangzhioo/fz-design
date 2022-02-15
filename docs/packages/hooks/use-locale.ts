@@ -1,9 +1,9 @@
-import { get } from '@fzui/utils/lodash';
+import { computed, inject, provide, ref, Ref, unref } from 'vue';
+import { MaybeRef } from '@vueuse/core';
+import { get } from '@fzui/utils';
 import type { Language } from '@fzui/locale';
 import ZH_CN from '@fzui/locale/lang/zh-cn';
 import { FZ_LOCALE_INJECT_KEY } from '@fzui/constants';
-import { computed, inject, provide, ref, Ref, unref } from 'vue';
-import { MaybeRef } from '@vueuse/core';
 import { useProp } from './use-prop';
 
 // 默认简体中文

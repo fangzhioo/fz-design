@@ -1,10 +1,10 @@
 import { App, computed, getCurrentInstance, inject, provide, ref, toRef, unref } from 'vue';
-import type { Ref } from 'vue';
+import { MaybeRef } from '@vueuse/core';
+import { merge, debugWarn } from '@fzui/utils';
 import { FZ_CONFIG_PROVIDER_INJECT_KEY } from '@fzui/constants';
 import { ConfigProviderContext } from '@fzui/components/ConfigProvider/src/ConfigProvider';
-import { MaybeRef } from '@vueuse/core';
-import { debugWarn } from '@fzui/utils/error';
-import { merge } from '@fzui/utils';
+
+import type { Ref } from 'vue';
 
 const globalConfig = ref<ConfigProviderContext>();
 

@@ -20,7 +20,7 @@
 <script lang="ts">
 import { computed, CSSProperties, defineComponent, getCurrentInstance, inject, onMounted, onUnmounted, reactive, toRefs } from 'vue';
 import { FZ_CAROUSEL_INJECT_KEY } from '@fzui/constants';
-import { debugWarn } from '@fzui/utils/error';
+import { debugWarn } from '@fzui/utils';
 import { carouselItemProps } from './CarouselItem';
 
 const CARD_SCALE = 0.83;

@@ -1,6 +1,10 @@
-import { SFCWithInstall } from '@fzui/utils/types';
 import { App, Plugin } from 'vue';
 import Popper from './src/Popper.vue';
+import PopperArrow from './src/PopperArrow.vue';
+import PopperContent from './src/PopperContent.vue';
+import PopperTrigger from './src/PopperTrigger.vue';
+import { popperArrowProps, popperContentProps, popperTriggerProps } from './src/Popper';
+import type { PopperProps, PopperCoreConfigProps, Effect, PopperjsCoreOptions, PopperjsCorePlacement } from './src/Popper';
 
 export const PopperPlugin: Plugin = {
   install(app: App) {
@@ -8,15 +12,6 @@ export const PopperPlugin: Plugin = {
   },
 };
 
-const _Popper = Popper as SFCWithInstall<typeof Popper>;
-
-export default _Popper;
-
-export { popperProps } from './src/Popper';
-export * from './src/renderers';
-export { default as usePopper } from './src/use-popper';
-export type { Placement, Options } from '@popperjs/core';
-export type { EmitType } from './src/use-popper';
-export type { TriggerType, IPopperOptions, PopperInstance, PopperEffect } from './src/Popper';
-
-export { Popper };
+export type { PopperProps, PopperCoreConfigProps, Effect, PopperjsCoreOptions, PopperjsCorePlacement };
+export { popperArrowProps, popperContentProps, popperTriggerProps };
+export { Popper, PopperArrow, PopperContent, PopperTrigger };

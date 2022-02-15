@@ -13,11 +13,10 @@
 </template>
 
 <script lang="ts">
-import { addUnit, isNumber } from '@fzui/utils';
-import { FZ_SCROLLBAR_INJECT_KEY } from '@fzui/constants';
-import { debugWarn } from '@fzui/utils/error';
-import { useEventListener, useResizeObserver } from '@vueuse/core';
 import { computed, CSSProperties, defineComponent, nextTick, onMounted, provide, reactive, ref, StyleValue, watch } from 'vue';
+import { useEventListener, useResizeObserver } from '@vueuse/core';
+import { addUnit, isNumber, debugWarn } from '@fzui/utils';
+import { FZ_SCROLLBAR_INJECT_KEY } from '@fzui/constants';
 import { scrollbarEmits, scrollbarProps } from './Scrollbar';
 
 import Bar from './SideBar.vue';

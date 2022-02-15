@@ -6,4 +6,4 @@ export * from './hooks';
 export * from './constants';
 
 export const install = FzUIPlugin.install;
-export const version = '0.0.12';
+export const version = '0.0.13';

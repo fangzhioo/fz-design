@@ -1,93 +1,93 @@
-<script lang="ts">
-import { defineComponent, Fragment, createTextVNode, renderSlot, toDisplayString, createCommentVNode, withDirectives, Teleport, h } from 'vue';
-import { ClickOutside } from '@fzui/directives';
-import FzPopper, { renderArrow, renderPopper, renderTrigger } from '@fzui/components/Popper';
-import { debugWarn } from '@fzui/utils/error';
-import { renderIf, PatchFlags } from '@fzui/utils/vnode';
-import usePopover from './usePopover';
-import { popoverEmits, popoverProps } from './Popover';
+<template>
+  <fz-tooltip
+    ref="tooltipRef"
+    v-bind="$attrs"
+    :aria-label="title"
+    :effect="effect"
+    :enterable="enterable"
+    :popper-class="kls"
+    :popper-style="style"
+    persistent
+    @show="afterEnter"
+    @hide="afterLeave"
+  >
+    <template v-if="$slots.reference">
+      <slot name="reference" />
+    </template>
 
-const _hoist = { key: 0, class: 'fz-popover__title', role: 'title' };
+    <template #content>
+      <div v-if="title" class="fz-popover__title" role="title">
+        {{ title }}
+      </div>
+      <slot>
+        {{ content }}
+      </slot>
+    </template>
+  </fz-tooltip>
+</template>
+<script lang="ts">
+import { defineComponent, computed, ref, unref } from 'vue';
+import { isString } from '@fzui/utils';
+import { popoverEmits, popoverProps } from './Popover';
+import { Tooltip } from '@fzui/components/Tooltip';
+
+import type { StyleValue } from 'vue';
+
+const COMPONENT_NAME = 'FzPopover';
 
 export default defineComponent({
-  name: 'FzPopover',
+  name: COMPONENT_NAME,
   components: {
-    FzPopper,
+    FzTooltip: Tooltip,
   },
   props: popoverProps,
   emits: popoverEmits,
-  setup(props, ctx) {
-    if (props.visible && !ctx.slots.reference) {
-      debugWarn('FzPopover', 'You cannot init popover without given reference');
-    }
-    const states = usePopover(props as any, ctx as any);
+  setup(props, { emit }) {
+    const tooltipRef = ref<InstanceType<typeof Tooltip> | null>(null);
+    const popperRef = computed(() => {
+      return unref(tooltipRef)?.popperRef;
+    });
+    const width = computed(() => {
+      if (isString(props.width)) {
+        return props.width as string;
+      }
+      return `${props.width}px`;
+    });
 
-    return states;
-  },
-  render() {
-    const { $slots } = this;
-    const trigger = $slots.reference ? $slots.reference() : null;
-
-    const title = renderIf(Boolean(this.title), 'div', _hoist, toDisplayString(this.title), PatchFlags.TEXT);
-
-    const content = renderSlot($slots, 'default', {}, () => [createTextVNode(toDisplayString(this.content), PatchFlags.TEXT)]);
-
-    const {
-      events,
-      onAfterEnter,
-      onAfterLeave,
-      onPopperMouseEnter,
-      onPopperMouseLeave,
-      popperStyle,
-      popperId,
-      popperClass,
-      showArrow,
-      transition,
-      visibility,
-      tabindex,
-    } = this;
-
-    const kls = [this.content ? 'fz-popover--plain' : '', 'fz-popover', popperClass].join(' ');
-
-    const popover = renderPopper(
-      {
-        effect: 'light',
-        name: transition,
-        popperClass: kls,
-        popperStyle,
-        popperId,
-        visibility,
-        onMouseenter: onPopperMouseEnter,
-        onMouseleave: onPopperMouseLeave,
-        onAfterEnter,
-        onAfterLeave,
-        stopPopperMouseEvent: false,
-      },
-      [title, content, renderArrow(showArrow)],
-    );
-
-    // when user uses popover directively, trigger will be null so that we only
-    // render a popper window for displaying contents
-    const _trigger = trigger
-      ? renderTrigger(trigger, {
-          ariaDescribedby: popperId,
-          ref: 'triggerRef',
-          tabindex,
-          ...events,
-        })
-      : createCommentVNode('v-if', true);
-
-    return h(Fragment, null, [
-      this.trigger === 'click' ? withDirectives(_trigger, [[ClickOutside, this.hide]]) : _trigger,
-      h(
-        Teleport as any,
+    const style = computed(() => {
+      return [
         {
-          disabled: !this.appendToBody,
-          to: 'body',
+          width: width.value,
         },
-        [popover],
-      ),
-    ]);
+        props.popperStyle,
+      ] as StyleValue;
+    });
+
+    const kls = computed(() => {
+      return [{ 'fz-popover--plain': Boolean(props.content) }, 'fz-popover', props.popperClass];
+    });
+
+    const hide = () => {
+      tooltipRef.value?.hide();
+    };
+
+    const afterEnter = () => {
+      emit('after-enter');
+    };
+
+    const afterLeave = () => {
+      emit('after-leave');
+    };
+
+    return {
+      kls,
+      style,
+      tooltipRef,
+      popperRef,
+      hide,
+      afterEnter,
+      afterLeave,
+    };
   },
 });
 </script>

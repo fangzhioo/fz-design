@@ -60,6 +60,12 @@ module.exports = async () => {
       name: 'compDesc',
       default: '默认：这是一个新组件',
     },
+    {
+      type: 'confirm',
+      name: 'compDoc',
+      message: '是否输出组件文档?',
+      default: true,
+    },
   ]);
   const { compName } = meta;
   meta.compClassName = kebabCase(compName);

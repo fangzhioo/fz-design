@@ -50,9 +50,9 @@
 import { computed, defineComponent, inject, ref } from 'vue';
 import { FZ_COLLAPSE_INJECT_KEY } from '@fzui/constants';
 import { generateUUID } from '@fzui/utils';
+import { Icon } from '@fzui/components/Icon';
 import { CollapseProvider } from './Collapse';
 import { collapseItemEmits, collapseItemProps } from './CollapseItem';
-import { Icon } from '@fzui/components/Icon';
 import CollapseTransition from './CollapseTransition.vue';
 
 export default defineComponent({

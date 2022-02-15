@@ -109,9 +109,8 @@
 <script lang="ts">
 import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, onUpdated, ref, shallowRef, StyleValue, watch } from 'vue';
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@fzui/constants';
-import { isObject, isKorean } from '@fzui/utils';
+import { isObject, isKorean, isClient } from '@fzui/utils';
 import { useAttrs, useSize, useForm, useDisabled } from '@fzui/hooks';
-import { isClient } from '@vueuse/core';
 import { calcTextareaHeight } from './calc-textarea-height';
 import { inputEmits, inputProps, PENDANT_MAP, TargetElement, ValidateIconsMap } from './Input';
 import { Icon } from '@fzui/components/Icon';
