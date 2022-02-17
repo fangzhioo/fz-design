@@ -1,5 +1,5 @@
 <template>
-  <i :class="`fz-icon-${iconName}`" v-bind="$attrs"></i>
+  <i class="fz-icon" :class="`fz-icon-${iconName}`" v-bind="$attrs"></i>
 </template>
 
 <script lang="ts">

@@ -15,3 +15,5 @@ export const FZ_FORWARD_REF_INJECT_KEY = Symbol('forward-ref');
 export const FZ_POPPER_INJECT_KEY = Symbol('popper');
 export const FZ_POPPER_CONTENT_INJECT_KEY = Symbol('popper-content');
 export const FZ_TOOLTIP_INJECT_KEY = Symbol('tooptip');
+export const FZ_SELECT_INJECT_KEY = Symbol('select');
+export const FZ_SELECT_GROUP_INJECT_KEY = Symbol('select-group');

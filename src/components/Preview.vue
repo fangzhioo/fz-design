@@ -76,9 +76,6 @@ export default {
   transition: 0.35s height ease-in-out;
 }
 
-pre {
-  line-height: 0;
-}
 .fzui-preview {
   border: 4px;
   border: 1px dashed #e7e7e7;
@@ -89,9 +86,6 @@ pre {
   }
 }
 
-.source-code {
-  max-height: 500px;
-}
 .language-html {
   margin: 0;
   padding: 0 15px;

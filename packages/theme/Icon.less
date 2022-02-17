@@ -1,12 +1,12 @@
 @font-face {
-  font-family: 'fz-fonts'; /* Project id 3055557 */
+  font-family: 'fz-ui'; /* Project id 3055557 */
   src: url('./fonts/iconfont.woff2?t=1641392936319') format('woff2'), url('./fonts/iconfont.woff?t=1641392936319') format('woff'),
     url('./fonts/iconfont.ttf?t=1641392936319') format('truetype');
 }
 
 [class*=' fz-icon-'],
 [class^='fz-icon-'] {
-  font-family: 'fz-fonts' !important;
+  font-family: 'fz-ui' !important;
   speak: none;
   font-style: normal;
   font-weight: 400;
@@ -14,7 +14,9 @@
   text-transform: none;
   line-height: 1;
   vertical-align: baseline;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

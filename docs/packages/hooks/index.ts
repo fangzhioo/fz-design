@@ -14,3 +14,4 @@ export * from './use-timeout';
 export * from './use-delayed-toggle';
 export * from './use-model-toggle';
 export * from './use-escape-keydown';
+export * from './use-focus';

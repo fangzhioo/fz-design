@@ -47,6 +47,12 @@ export function addUnit(value: string | number) {
   return '';
 }
 
+/**
+ * 合并对象
+ * @param a 对象a
+ * @param b 对象b
+ * @returns 合并后的对象
+ */
 export const merge = <T extends Record<string, any>>(a: T, b: T) => {
   const keys = [...new Set([...Object.keys(a), ...Object.keys(b)])] as (keyof T)[];
   const obj = {} as T;
@@ -55,6 +61,13 @@ export const merge = <T extends Record<string, any>>(a: T, b: T) => {
   }
   return obj;
 };
+
+/**
+ * 转义正则表达式字符串
+ * @param value 字符串
+ * @returns 转义后字符串
+ */
+export const escapeRegexpString = (value = ''): string => String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
 
 export const isUndefined = (val: any): val is undefined => val === undefined;
 

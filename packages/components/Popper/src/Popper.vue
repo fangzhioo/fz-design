@@ -12,8 +12,8 @@ export default defineComponent({
   setup() {
     const popperProvides = {
       triggerRef: ref<HTMLElement | null>(null),
-      popperInstanceRef: ref(null),
-      contentRef: ref(null),
+      popperInstanceRef: ref<HTMLElement | null>(null),
+      contentRef: ref<HTMLElement | null>(null),
     };
 
     provide(FZ_POPPER_INJECT_KEY, popperProvides);

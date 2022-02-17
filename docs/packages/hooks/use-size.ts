@@ -29,6 +29,6 @@ export const useSize = (
       form?.size ||
       globalConfigSize.value ||
       // globalConfigLegacy.size ||
-      '',
+      'medium',
   );
 };

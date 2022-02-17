@@ -1,13 +1,10 @@
-import { computed, inject, provide, ref, Ref, unref } from 'vue';
-import { MaybeRef } from '@vueuse/core';
+import { computed, ref, unref, isRef } from 'vue';
+import { useGlobalConfig } from './use-global-config';
+import { zhCn } from '@fzui/locale';
 import { get } from '@fzui/utils';
+import type { MaybeRef } from '@vueuse/core';
+import type { Ref } from 'vue';
 import type { Language } from '@fzui/locale';
-import ZH_CN from '@fzui/locale/lang/zh-cn';
-import { FZ_LOCALE_INJECT_KEY } from '@fzui/constants';
-import { useProp } from './use-prop';
-
-// 默认简体中文
-const defaultLanguage = ZH_CN;
 
 export type TranslatorOption = Record<string, string | number>;
 export type Translator = (path: string, option?: TranslatorOption) => string;
@@ -16,9 +13,6 @@ export type LocaleContext = {
   lang: Ref<string>;
   t: Translator;
 };
-
-let cache: LocaleContext;
-
 export const translate = (path: string, option: undefined | TranslatorOption, locale: Language): string =>
   (get(locale, path, path) as string).replace(/\{(\w+)\}/g, (_, key) => `${option?.[key] ?? `{${key}}`}`);
 
@@ -27,41 +21,17 @@ export const buildTranslator =
   (path, option) =>
     translate(path, option, unref(locale));
 
-export const localeProviderMaker = (locale = defaultLanguage) => {
-  const lang = ref(locale.name);
-  const localeRef = ref(locale);
+export const buildLocaleContext = (locale: MaybeRef<Language>): LocaleContext => {
+  const lang = computed(() => unref(locale).name);
+  const localeRef = isRef(locale) ? locale : ref(locale);
   return {
     lang,
     locale: localeRef,
-    t: buildTranslator(localeRef),
+    t: buildTranslator(locale),
   };
 };
 
 export const useLocale = () => {
-  return inject<LocaleContext>(FZ_LOCALE_INJECT_KEY, cache || localeProviderMaker(defaultLanguage));
-};
-
-export const provideLocale = () => {
-  const propLocale = useProp<Language>('locale');
-  const locale = computed(() => propLocale.value || defaultLanguage);
-  const lang = computed(() => locale.value.name);
-
-  const t = buildTranslator(locale);
-  const provides: LocaleContext = {
-    locale,
-    lang,
-    t,
-  };
-
-  // this could be broken if someone tries to do following:
-
-  /**
-   * <config-provider :locale="lang1">
-   *   <config-provider :locale="lang2">
-   *     Something calls modal component.
-   *   </config-provider>
-   * </config-provider>
-   */
-  cache = provides;
-  provide(FZ_LOCALE_INJECT_KEY, provides);
+  const locale = useGlobalConfig('locale');
+  return buildLocaleContext(computed(() => locale.value || zhCn));
 };

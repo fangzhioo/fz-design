@@ -241,5 +241,14 @@
     "compClassName": "tag",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Select",
+    "compZhName": "选择器",
+    "compDesc": "下拉菜单展示更多内容并选择",
+    "compDoc": true,
+    "compClassName": "select",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]

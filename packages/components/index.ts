@@ -31,6 +31,7 @@ import { TooltipPlugin } from './Tooltip';
 import { OnlyChildPlugin } from './OnlyChild';
 import { VisuallyHiddenPlugin } from './VisuallyHidden';
 import { TagPlugin } from './Tag';
+import { SelectPlugin } from './Select';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
@@ -61,6 +62,7 @@ const FzUIPlugin: Plugin = {
     OnlyChildPlugin.install?.(app);
     VisuallyHiddenPlugin.install?.(app);
     TagPlugin.install?.(app);
+    SelectPlugin.install?.(app);
   },
 };
 
@@ -93,3 +95,4 @@ export * from './Tooltip';
 export * from './OnlyChild';
 export * from './VisuallyHidden';
 export * from './Tag';
+export * from './Select';

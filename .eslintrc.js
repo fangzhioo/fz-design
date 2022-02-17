@@ -134,7 +134,7 @@ module.exports = {
     'no-underscore-dangle': 'warn', // 标识符不能以_开头或结尾
     'no-unneeded-ternary': 'error', // 禁止不必要的嵌套 var isYes = answer === 'warn' ? true : false;
     'no-unreachable': 'error', // 不能有无法执行的代码
-    'no-unused-expressions': 'error', // 禁止无用的表达式
+    'no-unused-expressions': 'warn', // 禁止无用的表达式
     'no-use-before-define': 'error', // 未定义前不能使用
     'no-useless-call': 'error', // 禁止不必要的call和apply
     'no-void': 'error', // 禁用void操作符

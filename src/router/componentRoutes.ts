@@ -172,6 +172,13 @@ export const componentRoutes = [
         meta: {
           title: '标签',
         }
+      },{
+        name: 'ComponentSelect',
+        path: '/components/Select',
+        component: () => import('@fzui/components/Select/docs/README.md'),
+        meta: {
+          title: '选择器',
+        }
       }
 ];
 

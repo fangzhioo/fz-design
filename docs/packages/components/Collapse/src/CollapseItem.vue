@@ -26,7 +26,7 @@
         @blur="focusing = false"
       >
         <slot name="title">{{ title }}</slot>
-        <fz-icon class="fz-icon-arrow-right-bold" :class="['fz-collapse-item__arrow', { 'is-active': isActive }]"></fz-icon>
+        <fz-icon name="arrow-right-bold" :class="['fz-collapse-item__arrow', { 'is-active': isActive }]"></fz-icon>
       </div>
     </div>
     <fz-collapse-transition>

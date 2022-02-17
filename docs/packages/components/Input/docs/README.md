@@ -2,6 +2,7 @@
 <script setup>
 import demo from './demo.vue'
 import demo2 from './demo2.vue'
+import demo3 from './demo3.vue'
 </script>
 <!-- 加载 demo 组件 end -->
 
@@ -21,6 +22,12 @@ import demo2 from './demo2.vue'
 
 <Preview comp-name="Input" demo-name="demo2">
   <demo2 />
+</Preview>
+
+## 禁用状态
+
+<Preview comp-name="Input" demo-name="demo3">
+  <demo3 />
 </Preview>
 
 ## 属性
