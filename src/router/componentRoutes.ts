@@ -179,6 +179,13 @@ export const componentRoutes = [
         meta: {
           title: '选择器',
         }
+      },{
+        name: 'ComponentDialog',
+        path: '/components/Dialog',
+        component: () => import('@fzui/components/Dialog/docs/README.md'),
+        meta: {
+          title: '对话框',
+        }
       }
 ];
 

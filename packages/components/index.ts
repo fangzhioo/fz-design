@@ -32,6 +32,8 @@ import { OnlyChildPlugin } from './OnlyChild';
 import { VisuallyHiddenPlugin } from './VisuallyHidden';
 import { TagPlugin } from './Tag';
 import { SelectPlugin } from './Select';
+import { OverlayPlugin } from './Overlay';
+import { DialogPlugin } from './Dialog';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
@@ -63,6 +65,8 @@ const FzUIPlugin: Plugin = {
     VisuallyHiddenPlugin.install?.(app);
     TagPlugin.install?.(app);
     SelectPlugin.install?.(app);
+    OverlayPlugin.install?.(app);
+    DialogPlugin.install?.(app);
   },
 };
 
@@ -96,3 +100,5 @@ export * from './OnlyChild';
 export * from './VisuallyHidden';
 export * from './Tag';
 export * from './Select';
+export * from './Overlay';
+export * from './Dialog';

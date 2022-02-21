@@ -10,7 +10,7 @@ export const on = (element: HTMLElement | Document | Window, event: string, hand
   }
 };
 
-export const off = (element: HTMLElement | Document | Window, event: string, handler: EventListenerOrEventListenerObject, useCapture = false): void => {
+export const off = (element: HTMLElement | Document | Window, event: string, handler: (args: any) => void, useCapture = false): void => {
   if (element && event && handler) {
     element?.removeEventListener(event, handler, useCapture);
   }
@@ -73,6 +73,16 @@ export const getScrollContainer = (el: HTMLElement, isVertical?: Nullable<boolea
     parent = parent.parentNode as HTMLElement;
   }
   return parent;
+};
+
+export const hasClass = (el: Element, cls: string): boolean => {
+  if (!el || !cls) {
+    return false;
+  }
+  if (cls.includes(' ')) {
+    throw new Error('className should not contain space.');
+  }
+  return el.classList.contains(cls);
 };
 
 /* istanbul ignore next */
@@ -159,3 +169,87 @@ export function scrollIntoView(container: HTMLElement, selected: HTMLElement): v
     container.scrollTop = bottom - container.clientHeight;
   }
 }
+
+let scrollBarWidth: number;
+export const getScrollBarWidth = (): number => {
+  if (!isClient) {
+    return 0;
+  }
+  if (scrollBarWidth !== undefined) {
+    return scrollBarWidth;
+  }
+
+  const outer = document.createElement('div');
+  outer.className = 'el-scrollbar__wrap';
+  outer.style.visibility = 'hidden';
+  outer.style.width = '100px';
+  outer.style.position = 'absolute';
+  outer.style.top = '-9999px';
+  document.body.appendChild(outer);
+
+  const widthNoScroll = outer.offsetWidth;
+  outer.style.overflow = 'scroll';
+
+  const inner = document.createElement('div');
+  inner.style.width = '100%';
+  outer.appendChild(inner);
+
+  const widthWithScroll = inner.offsetWidth;
+  outer.parentNode?.removeChild(outer);
+  scrollBarWidth = widthNoScroll - widthWithScroll;
+
+  return scrollBarWidth;
+};
+
+/**
+ * Determine if the testing element is visible on screen no matter if its on the viewport or not
+ */
+export const isVisible = (element: HTMLElement) => {
+  if (process.env.NODE_ENV === 'test') {
+    return true;
+  }
+  const computed = getComputedStyle(element);
+  // element.offsetParent won't work on fix positioned
+  // WARNING: potential issue here, going to need some expert advices on this issue
+  return computed.position === 'fixed' ? false : element.offsetParent !== null;
+};
+
+/**
+ * @desc Determine if target element is focusable
+ * @param element {HTMLElement}
+ * @returns {Boolean} true if it is focusable
+ */
+export const isFocusable = (element: HTMLElement): boolean => {
+  if (element.tabIndex > 0 || (element.tabIndex === 0 && element.getAttribute('tabIndex') !== null)) {
+    return true;
+  }
+  // HTMLButtonElement has disabled
+  if ((element as HTMLButtonElement).disabled) {
+    return false;
+  }
+
+  switch (element.nodeName) {
+    case 'A': {
+      // casting current element to Specific HTMLElement in order to be more type precise
+      return Boolean((element as HTMLAnchorElement).href) && (element as HTMLAnchorElement).rel !== 'ignore';
+    }
+    case 'INPUT': {
+      return !((element as HTMLInputElement).type === 'hidden' || (element as HTMLInputElement).type === 'file');
+    }
+    case 'BUTTON':
+    case 'SELECT':
+    case 'TEXTAREA': {
+      return true;
+    }
+    default: {
+      return false;
+    }
+  }
+};
+
+const FOCUSABLE_ELEMENT_SELECTORS =
+  'a[href],button:not([disabled]),button:not([hidden]),:not([tabindex="-1"]),input:not([disabled]),input:not([type="hidden"]),select:not([disabled]),textarea:not([disabled])';
+
+export const obtainAllFocusableElements = (element: HTMLElement): HTMLElement[] => {
+  return Array.from(element.querySelectorAll<HTMLElement>(FOCUSABLE_ELEMENT_SELECTORS)).filter((item: HTMLElement) => isFocusable(item) && isVisible(item));
+};

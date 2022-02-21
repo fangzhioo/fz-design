@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.15
+
+### Features
+
+- ✨ 新增弹出框（Dialog）组件；
+
 ## 0.0.14
 
 ### Features

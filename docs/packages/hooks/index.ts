@@ -15,3 +15,8 @@ export * from './use-delayed-toggle';
 export * from './use-model-toggle';
 export * from './use-escape-keydown';
 export * from './use-focus';
+export * from './use-same-target';
+export * from './use-draggable';
+export * from './use-modal';
+export * from './use-restore-active';
+export * from './use-lockscreen';

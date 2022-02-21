@@ -1,13 +1,12 @@
 <template>
   <div ref="scrollbarRef" class="fz-scrollbar">
-    <div ref="wrapRef" :class="[wrapClass, 'fz-scrollbar__wrap', native ? '' : 'fz-scrollbar__wrap--hidden-default']" :style="style" @scroll="handleScroll">
+    <div ref="wrapRef" :class="[wrapClass, 'fz-scrollbar__wrap', { 'fz-scrollbar__wrap--hidden-default': !native }]" :style="style" @scroll="handleScroll">
       <component :is="tag" ref="resizeRef" :class="['fz-scrollbar__view', viewClass]" :style="viewStyle">
         <slot />
       </component>
     </div>
     <template v-if="!native">
-      <bar :move="moveX" :ratio="ratioX" :size="sizeWidth" :always="always" />
-      <bar :move="moveY" :ratio="ratioY" :size="sizeHeight" vertical :always="always" />
+      <bar ref="barRef" :height="sizeHeight" :width="sizeWidth" :always="always" :ratio-x="ratioX" :ratio-y="ratioY"></bar>
     </template>
   </div>
 </template>
@@ -33,6 +32,7 @@ export default defineComponent({
     const scrollbarRef = ref<HTMLDivElement>();
     const wrapRef = ref<HTMLDivElement>();
     const resizeRef = ref<HTMLElement>();
+    const barRef = ref();
 
     const sizeWidth = ref('0');
     const sizeHeight = ref('0');
@@ -55,11 +55,7 @@ export default defineComponent({
 
     const handleScroll = () => {
       if (wrapRef.value) {
-        const offsetHeight = wrapRef.value.offsetHeight - GAP;
-        const offsetWidth = wrapRef.value.offsetWidth - GAP;
-
-        moveY.value = ((wrapRef.value.scrollTop * 100) / offsetHeight) * ratioY.value;
-        moveX.value = ((wrapRef.value.scrollLeft * 100) / offsetWidth) * ratioX.value;
+        barRef.value?.handleScroll(wrapRef.value);
 
         emit('scroll', {
           scrollTop: wrapRef.value.scrollTop,
@@ -118,6 +114,20 @@ export default defineComponent({
       { immediate: true },
     );
 
+    watch(
+      () => [props.maxHeight, props.height],
+      () => {
+        if (!props.native) {
+          nextTick(() => {
+            update();
+            if (wrapRef.value) {
+              barRef.value?.handleScroll(wrapRef.value);
+            }
+          });
+        }
+      },
+    );
+
     provide(
       FZ_SCROLLBAR_INJECT_KEY,
       reactive({
@@ -136,6 +146,7 @@ export default defineComponent({
       scrollbarRef,
       wrapRef,
       resizeRef,
+      barRef,
 
       moveX,
       moveY,

@@ -1,5 +1,6 @@
 // TODO 作为packages的主入口！！！
 import FzUIPlugin from './components';
+import { version } from '../package.json';
 
 // less
 import './theme/index.less';
@@ -9,5 +10,9 @@ export * from './hooks';
 export * from './constants';
 export * from './locale';
 
-export const install = FzUIPlugin.install;
-export const version = '0.0.14';
+const install = FzUIPlugin.install;
+
+export default {
+  install,
+  version,
+};

@@ -250,5 +250,23 @@
     "compClassName": "select",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Overlay",
+    "compZhName": "覆盖层",
+    "compDesc": "弹出框下的覆盖层",
+    "compDoc": false,
+    "compClassName": "overlay",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Dialog",
+    "compZhName": "对话框",
+    "compDesc": "在保留当前页面状态的情况下，告知用户并承载相关操作。",
+    "compDoc": true,
+    "compClassName": "dialog",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]

@@ -1,5 +1,5 @@
 import { isClient, MaybeRef } from '@vueuse/core';
-import { ref, unref } from 'vue';
+import { ref, unref, watch } from 'vue';
 
 export type Theme = 'light' | 'dark' | '';
 
@@ -10,9 +10,16 @@ export const useTheme = (fallback?: MaybeRef<Theme | undefined>) => {
     theme.value = isDarkTheme.matches ? 'dark' : 'light';
   }
 
+  watch(theme, () => {
+    if (theme.value) {
+      document.documentElement.setAttribute('data-mode', theme.value);
+    }
+  });
+
   const setTheme = (a: Theme) => {
     theme.value = a;
   };
+
   return {
     theme,
     setTheme,
