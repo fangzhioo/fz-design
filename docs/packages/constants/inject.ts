@@ -17,3 +17,4 @@ export const FZ_POPPER_CONTENT_INJECT_KEY = Symbol('popper-content');
 export const FZ_TOOLTIP_INJECT_KEY = Symbol('tooptip');
 export const FZ_SELECT_INJECT_KEY = Symbol('select');
 export const FZ_SELECT_GROUP_INJECT_KEY = Symbol('select-group');
+export const FZ_TABLE_INJECT_KEY = Symbol('table');

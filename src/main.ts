@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router';
 import './assets/commom.less';
 import './assets/markdown.less';
+import './assets/prism.css';
 
 import FzUI from '@fzui/components';
 import '@fzui/theme/index.less';

@@ -6,3 +6,5 @@ export * from './icon';
 export * from './animation';
 export * from './lodash';
 export * from './vnode';
+export * from './browser';
+export * from './event';

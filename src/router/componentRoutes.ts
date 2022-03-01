@@ -186,6 +186,13 @@ export const componentRoutes = [
         meta: {
           title: '对话框',
         }
+      },{
+        name: 'ComponentTable',
+        path: '/components/Table',
+        component: () => import('@fzui/components/Table/docs/README.md'),
+        meta: {
+          title: '表格',
+        }
       }
 ];
 

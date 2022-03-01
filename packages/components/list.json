@@ -268,5 +268,14 @@
     "compClassName": "dialog",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Table",
+    "compZhName": "表格",
+    "compDesc": "用于展示多条结构类似的数据， 可对数据进行排序、筛选、对比或其他自定义操作。",
+    "compDoc": true,
+    "compClassName": "table",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]

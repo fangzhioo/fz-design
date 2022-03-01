@@ -53,7 +53,7 @@ module.exports = {
     'newline-after-var': 'off', // 声明后必须换行
     'no-alert': 'error', // 禁止使用alert confirm prompt
     'no-array-constructor': 'error', // 禁止使用数组构造器
-    'no-bitwise': 'error', // 禁止使用按位运算符
+    'no-bitwise': 'off', // 禁止使用按位运算符
     'no-caller': 'error', // 禁止使用arguments.caller或arguments.callee
     'no-catch-shadow': 'error', // 禁止catch子句参数与外部作用域变量同名
     'no-class-assign': 'error', // 禁止给类赋值
@@ -135,7 +135,7 @@ module.exports = {
     'no-unneeded-ternary': 'error', // 禁止不必要的嵌套 var isYes = answer === 'warn' ? true : false;
     'no-unreachable': 'error', // 不能有无法执行的代码
     'no-unused-expressions': 'warn', // 禁止无用的表达式
-    'no-use-before-define': 'error', // 未定义前不能使用
+    'no-use-before-define': 'off', // 未定义前不能使用
     'no-useless-call': 'error', // 禁止不必要的call和apply
     'no-void': 'error', // 禁用void操作符
     'no-var': 'error', // 禁用var，用let和const代替

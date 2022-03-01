@@ -10,7 +10,7 @@ export * from './hooks';
 export * from './constants';
 export * from './locale';
 
-const install = FzUIPlugin.install;
+const install = FzUIPlugin.install!;
 
 export default {
   install,

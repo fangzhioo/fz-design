@@ -6,6 +6,7 @@
 
     <transition name="demo-collapse-transition">
       <div v-show="codeVisible" class="source-code">
+        <div v-if="loading" style="padding: 50px; text-align: center">加载中……</div>
         <pre class="language-html"><code class="language-html">{{ previewSourceCode }}</code></pre>
       </div>
     </transition>
@@ -18,7 +19,6 @@
 
 <script>
 import Prism from 'prismjs';
-import '../assets/prism.css';
 
 const isDev = import.meta.env.MODE === 'development';
 
@@ -41,31 +41,40 @@ export default {
     return {
       sourceCode: '',
       codeVisible: false,
+      loading: false,
     };
   },
   computed: {
     previewSourceCode() {
       return this.sourceCode;
-      // return this.sourceCode.replace(/'\.\.\/\.\.\/index'/g, '@tencent/my-kit');
     },
-  },
-  async mounted() {
-    if (this.compName && this.demoName) {
-      if (isDev) {
-        this.sourceCode = (await import(/* @vite-ignore */ `../../packages/components/${this.compName}/docs/${this.demoName}.vue?raw`)).default;
-      } else {
-        this.sourceCode = await fetch(`/fz-ui/packages/components/${this.compName}/docs/${this.demoName}.vue`).then((res) => res.text());
-      }
-    }
-    await this.$nextTick();
-    Prism.highlightAll();
   },
   methods: {
     async copyCode() {
       // this.$copyText(this.sourceCode);
     },
-    showSourceCode() {
+    async showSourceCode() {
+      if (!this.sourceCode) {
+        await this.getSourceCode();
+      }
       this.codeVisible = !this.codeVisible;
+    },
+    async getSourceCode() {
+      if (this.loading) {
+        return;
+      }
+      if (this.compName && this.demoName) {
+        this.loading = true;
+        if (isDev) {
+          this.sourceCode = (await import(/* @vite-ignore */ `../../packages/components/${this.compName}/docs/${this.demoName}.vue?raw`)).default;
+        } else {
+          this.sourceCode = await fetch(`/fz-ui/packages/components/${this.compName}/docs/${this.demoName}.vue`).then((res) => res.text());
+        }
+      }
+      this.$nextTick(() => {
+        Prism.highlightAll();
+      });
+      this.loading = false;
     },
   },
 };
