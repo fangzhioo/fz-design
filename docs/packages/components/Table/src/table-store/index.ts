@@ -182,7 +182,7 @@ function useStore<T>(): any {
     }
   };
   const updateTableScrollY = () => {
-    nextTick(() => instance.layout.updateScrollY());
+    nextTick(() => Reflect.apply(instance.layout.updateScrollY, instance.layout, []));
   };
   return {
     ...watcher,

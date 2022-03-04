@@ -22,7 +22,8 @@ const doFlattenColumns = (columns: any[]) => {
   const result: any[] = [];
   columns.forEach((column) => {
     if (column.children) {
-      result.push(doFlattenColumns(column.children));
+      Reflect.apply(result.push, result, doFlattenColumns(column.children));
+      // result.push.apply(result, doFlattenColumns(column.children))
     } else {
       result.push(column);
     }
@@ -159,6 +160,7 @@ function useWatcher<T>() {
     }
   };
 
+  // eslint-disable-next-line no-underscore-dangle
   const _toggleAllSelection = () => {
     // when only some rows are selected (but not all), select or deselect all of them
     // depending on the value of selectOnIndeterminate
@@ -171,7 +173,8 @@ function useWatcher<T>() {
     data.value.forEach((row, index) => {
       const rowIndex = index + childrenCount;
       if (selectable.value) {
-        if (selectable.value(row, rowIndex) && toggleRowStatus(selection.value, row, value)) {
+        const sd = Reflect.apply(selectable.value, null, [row, rowIndex]);
+        if (sd && toggleRowStatus(selection.value, row, value)) {
           selectionChanged = true;
         }
       } else if (toggleRowStatus(selection.value, row, value)) {
@@ -221,7 +224,7 @@ function useWatcher<T>() {
       const keyProp = instance?.store?.states?.rowKey.value;
       const rowIndex = i + childrenCount;
       const item = data.value[i];
-      const isRowSelectable = selectable.value && selectable.value(item, rowIndex);
+      const isRowSelectable = selectable.value && Reflect.apply(selectable.value, null, [item, rowIndex]);
       if (!isSelected(item)) {
         if (!selectable.value || isRowSelectable) {
           isAllSelected_ = false;
@@ -294,7 +297,7 @@ function useWatcher<T>() {
       );
       if (column && column.filterMethod) {
         sourceData = sourceData.filter((row) => {
-          return values.some((value) => column.filterMethod(value, row, column));
+          return values.some((value) => Reflect.apply(column.filterMethod, null, [value, row, column]));
         });
       }
     });

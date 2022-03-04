@@ -58,7 +58,7 @@ export const cellForced = {
     },
     renderCell<T>({ row, column, store, $index }: { row: T; column: TableColumnCtx<T>; store: Store<T>; $index: number }) {
       return h(Checkbox, {
-        disabled: column.selectable ? !column.selectable(row, $index) : false,
+        disabled: column.selectable ? !Reflect.apply(column.selectable, null, [row, $index]) : false,
         size: store.states.tableSize.value,
         onChange: () => {
           store.commit('rowSelectedChanged', row);

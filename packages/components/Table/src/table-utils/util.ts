@@ -159,7 +159,8 @@ export const getRowIdentity = <T>(row: T, rowKey: string | ((row: T) => any)): s
     }
     return `${current}`;
   } else if (typeof rowKey === 'function') {
-    return rowKey(row);
+    return Reflect.apply(rowKey, null, [row]);
+    // return rowKey.call(null,row);
   }
   return '';
 };

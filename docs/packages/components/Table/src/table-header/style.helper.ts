@@ -10,7 +10,8 @@ function useStyle<T>(props: TableHeaderProps<T>) {
   const getHeaderRowStyle = (rowIndex: number) => {
     const headerRowStyle = parent?.props.headerRowStyle;
     if (typeof headerRowStyle === 'function') {
-      return headerRowStyle({ rowIndex });
+      return Reflect.apply(headerRowStyle, null, [{ rowIndex }]);
+      // return headerRowStyle({ rowIndex });
     }
     return headerRowStyle;
   };
@@ -21,7 +22,8 @@ function useStyle<T>(props: TableHeaderProps<T>) {
     if (typeof headerRowClassName === 'string') {
       classes.push(headerRowClassName);
     } else if (typeof headerRowClassName === 'function') {
-      classes.push(headerRowClassName({ rowIndex }));
+      const rowClazz = Reflect.apply(headerRowClassName, null, [{ rowIndex }]);
+      classes.push(rowClazz);
     }
 
     return classes.join(' ');
@@ -30,12 +32,20 @@ function useStyle<T>(props: TableHeaderProps<T>) {
   const getHeaderCellStyle = (rowIndex: number, columnIndex: number, row: T, column: TableColumnCtx<T>) => {
     let headerCellStyles = parent?.props.headerCellStyle ?? {};
     if (typeof headerCellStyles === 'function') {
-      headerCellStyles = headerCellStyles({
-        rowIndex,
-        columnIndex,
-        row,
-        column,
-      });
+      headerCellStyles = Reflect.apply(headerCellStyles, null, [
+        {
+          rowIndex,
+          columnIndex,
+          row,
+          column,
+        },
+      ]);
+      // headerCellStyles = headerCellStyles.call(null,{
+      //   rowIndex,
+      //   columnIndex,
+      //   row,
+      //   column,
+      // });
     }
     const fixedStyle = column.isSubColumn ? null : getFixedColumnOffset<T>(columnIndex, column.fixed, props.store, row as unknown as TableColumnCtx<T>[]);
     ensurePosition(fixedStyle, 'left');
@@ -61,14 +71,15 @@ function useStyle<T>(props: TableHeaderProps<T>) {
     if (typeof headerCellClassName === 'string') {
       classes.push(headerCellClassName);
     } else if (typeof headerCellClassName === 'function') {
-      classes.push(
-        headerCellClassName({
+      const cellClazz = Reflect.apply(headerCellClassName, null, [
+        {
           rowIndex,
           columnIndex,
           row,
           column,
-        }),
-      );
+        },
+      ]);
+      classes.push(cellClazz);
     }
 
     classes.push('fz-table__cell');

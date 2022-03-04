@@ -1,5 +1,5 @@
 import { Nullable } from '@fzui/utils';
-import { ComponentInternalInstance, CSSProperties, ExtractPropTypes, PropType, Ref, VNode } from 'vue';
+import { ComponentInternalInstance, CSSProperties, PropType, Ref, VNode } from 'vue';
 import { TableColumnCtx } from './table-column/defaults';
 import { Store } from './table-store';
 import TableLayout from './table-utils/table-layout';

@@ -145,7 +145,8 @@ function useRender<T>(props: TableColumnCtx<T> & any, slots: any, owner: Compute
     }, {});
   };
   const getColumnElIndex = (children: any[], child: any) => {
-    return children.indexOf(child);
+    // eslint-disable-next-line prefer-reflect
+    return [].indexOf.call(children, child as never);
   };
 
   return {

@@ -8,7 +8,8 @@ const getAllColumns = <T>(columns: TableColumnCtx<T>[]): TableColumnCtx<T>[] => 
   columns.forEach((column) => {
     if (column.children) {
       result.push(column);
-      result.push(getAllColumns(column.children) as any);
+      Reflect.apply(result.push, result, getAllColumns(column.children));
+      // result.push.apply(result, getAllColumns(column.children))
     } else {
       result.push(column);
     }
@@ -17,6 +18,8 @@ const getAllColumns = <T>(columns: TableColumnCtx<T>[]): TableColumnCtx<T>[] => 
 };
 
 const convertToRows = <T>(originColumns: TableColumnCtx<T>[]): TableColumnCtx<T>[] => {
+  console.log('originColumns', originColumns);
+
   let maxLevel = 1;
   const traverse = (column: TableColumnCtx<T>, parent: TableColumnCtx<T> | undefined) => {
     if (parent) {
@@ -56,7 +59,10 @@ const convertToRows = <T>(originColumns: TableColumnCtx<T>[]): TableColumnCtx<T>
       column.rowSpan = 1;
       column.children.forEach((col) => (col.isSubColumn = true));
     }
-    rows[column.level - 1].push(column);
+    const idx = column.level - 1;
+    if (!isNaN(idx)) {
+      rows[column.level - 1].push(column);
+    }
   });
 
   return rows;

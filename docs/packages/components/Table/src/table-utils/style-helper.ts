@@ -1,13 +1,13 @@
-import { onMounted, onBeforeUnmount, computed, ref, watchEffect, watch, unref, nextTick, StyleValue } from 'vue';
-import { addResizeListener, removeResizeListener, on, off, isNumber, isString } from '@fzui/utils';
+import { onMounted, computed, ref, watchEffect, watch, unref, nextTick, StyleValue } from 'vue';
+import { isNumber, isString } from '@fzui/utils';
 import { useSize } from '@fzui/hooks';
 import { parseHeight } from '../table-utils/util';
 
-import type { ResizableElement } from '@fzui/utils';
 import type { Table, TableProps } from '../Table';
 import type { Store } from '../table-store';
 import type TableLayout from './table-layout';
 import type { TableColumnCtx } from '../table-column/defaults';
+import { useEventListener, useResizeObserver } from '@vueuse/core';
 
 function useStyle<T>(props: TableProps<T>, layout: TableLayout<T>, store: Store<T>, table: Table<T>) {
   const isHidden = ref(false);
@@ -23,10 +23,10 @@ function useStyle<T>(props: TableProps<T>, layout: TableLayout<T>, store: Store<
   const isGroup = ref(false);
 
   watchEffect(() => {
-    layout.setHeight(props.height || 0);
+    layout.setHeight(props.height || 'auto');
   });
   watchEffect(() => {
-    layout.setMaxHeight(props.maxHeight || 0);
+    layout.setMaxHeight(props.maxHeight || 'auto');
   });
   watch(
     () => [props.currentRowKey, store.states.rowKey],
@@ -152,26 +152,14 @@ function useStyle<T>(props: TableProps<T>, layout: TableLayout<T>, store: Store<
     if (!table.refs.scrollWrapper) {
       return;
     }
-    table.refs.scrollWrapper.wrapRef?.addEventListener('scroll', syncPostion, {
-      passive: true,
-    });
+    useEventListener(table.refs.scrollWrapper.wrapRef, 'scroll', syncPostion, { passive: true });
     if (props.fit) {
-      addResizeListener(table.vnode.el as ResizableElement, resizeListener);
+      useResizeObserver(table.vnode.el as any, resizeListener);
     } else {
-      on(window, 'resize', doLayout);
+      useEventListener('resize', doLayout);
     }
   };
-  onBeforeUnmount(() => {
-    unbindEvents();
-  });
-  const unbindEvents = () => {
-    table.refs.scrollWrapper.wrapRef?.removeEventListener('scroll', syncPostion, true);
-    if (props.fit) {
-      removeResizeListener(table.vnode.el as ResizableElement, resizeListener);
-    } else {
-      off(window, 'resize', doLayout);
-    }
-  };
+
   const resizeListener = () => {
     if (!table.$ready) {
       return;

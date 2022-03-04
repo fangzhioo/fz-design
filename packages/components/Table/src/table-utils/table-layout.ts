@@ -129,7 +129,7 @@ class TableLayout<T> {
     const columns: any[] = this.table!.store.states.columns.value;
     columns.forEach((column) => {
       if (column.isColumnGroup) {
-        flattenColumns.push(column.columns);
+        Reflect.apply(flattenColumns.push, flattenColumns, column.columns);
       } else {
         flattenColumns.push(column);
       }

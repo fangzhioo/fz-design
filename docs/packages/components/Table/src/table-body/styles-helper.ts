@@ -11,10 +11,7 @@ function useStyles<T>(props: Partial<TableBodyProps<T>>) {
   const getRowStyle = (row: T, rowIndex: number) => {
     const rowStyle = parent?.props.rowStyle;
     if (typeof rowStyle === 'function') {
-      return rowStyle({
-        row,
-        rowIndex,
-      });
+      return Reflect.apply(rowStyle, null, [{ row, rowIndex }]);
     }
     return rowStyle || null;
   };
@@ -32,12 +29,8 @@ function useStyles<T>(props: Partial<TableBodyProps<T>>) {
     if (typeof rowClassName === 'string') {
       classes.push(rowClassName);
     } else if (typeof rowClassName === 'function') {
-      classes.push(
-        rowClassName({
-          row,
-          rowIndex,
-        }),
-      );
+      const clazz = Reflect.apply(rowClassName, null, [{ row, rowIndex }]);
+      classes.push(clazz);
     }
 
     if (props.store.states.expandRows.value.indexOf(row) > -1) {
@@ -51,12 +44,14 @@ function useStyles<T>(props: Partial<TableBodyProps<T>>) {
     const cellStyle = parent?.props.cellStyle;
     let cellStyles = cellStyle ?? {};
     if (typeof cellStyle === 'function') {
-      cellStyles = cellStyle({
-        rowIndex,
-        columnIndex,
-        row,
-        column,
-      });
+      cellStyles = Reflect.apply(cellStyle, null, [
+        {
+          rowIndex,
+          columnIndex,
+          row,
+          column,
+        },
+      ]);
     }
     const fixedStyle = column.isSubColumn ? null : getFixedColumnOffset(columnIndex, props?.fixed === undefined ? false : props?.fixed, props.store);
     ensurePosition(fixedStyle, 'left');
@@ -73,14 +68,15 @@ function useStyles<T>(props: Partial<TableBodyProps<T>>) {
     if (typeof cellClassName === 'string') {
       classes.push(cellClassName);
     } else if (typeof cellClassName === 'function') {
-      classes.push(
-        cellClassName({
+      const cellClazz = Reflect.apply(cellClassName, null, [
+        {
           rowIndex,
           columnIndex,
           row,
           column,
-        }),
-      );
+        },
+      ]);
+      classes.push(cellClazz);
     }
     classes.push('fz-table__cell');
     return classes.join(' ');

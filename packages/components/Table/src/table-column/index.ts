@@ -88,7 +88,7 @@ export default defineComponent({
     onMounted(() => {
       const parent = columnOrTableParent.value;
       const children = isSubColumn.value ? parent.vnode.el.children : parent.refs.hiddenColumns?.children;
-      const getColumnIndex = () => getColumnElIndex(children || [], instance.vnode.el);
+      const getColumnIndex = () => getColumnElIndex(children || [], instance.vnode.el!);
       columnConfig.value.getColumnIndex = getColumnIndex;
       const columnIndex = getColumnIndex();
       columnIndex > -1 && owner.value.store.commit('insertColumn', columnConfig.value, isSubColumn.value ? parent.columnConfig.value : null);
