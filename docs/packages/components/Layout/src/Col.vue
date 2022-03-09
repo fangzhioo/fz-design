@@ -7,7 +7,7 @@ export default defineComponent({
   name: 'FzCol',
   props: colProps,
   setup(props, { slots }) {
-    const { gutter } = inject(FZ_LAYOUT_ROW_INJECT_KEY, { gutter: { value: 0 } });
+    const { gutter } = inject(FZ_LAYOUT_ROW_INJECT_KEY, { gutter: computed(() => 0) });
 
     const style = computed<CSSProperties>(() => {
       if (gutter.value) {

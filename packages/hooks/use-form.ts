@@ -11,7 +11,7 @@ export interface FzFormItemContext {
   size?: ComponentSize;
   validateState: string;
   $el: HTMLDivElement;
-  validate(trigger: string, callback?: ValidateFieldCallback): void;
+  validate(trigger: string, callback?: ValidateFieldCallback): Promise<any>;
   updateComputedLabelWidth(width: number): void;
   evaluateValidationEnabled(): void;
   resetField(): void;

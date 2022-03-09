@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.18
+
+### Features
+
+- ✨ 新增颜色选择器（ColorPicker）组件；
+- ✨ 新增单选框（Radio）组件；
+
 ## 0.0.17
 
 ### Bug fixes

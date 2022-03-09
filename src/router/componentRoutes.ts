@@ -193,6 +193,20 @@ export const componentRoutes = [
         meta: {
           title: '表格',
         }
+      },{
+        name: 'ComponentColorPicker',
+        path: '/components/ColorPicker',
+        component: () => import('@fzui/components/ColorPicker/docs/README.md'),
+        meta: {
+          title: '颜色选择器',
+        }
+      },{
+        name: 'ComponentRadio',
+        path: '/components/Radio',
+        component: () => import('@fzui/components/Radio/docs/README.md'),
+        meta: {
+          title: '单选框',
+        }
       }
 ];
 

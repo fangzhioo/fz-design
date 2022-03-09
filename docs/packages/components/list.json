@@ -277,5 +277,23 @@
     "compClassName": "table",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "ColorPicker",
+    "compZhName": "颜色选择器",
+    "compDesc": "颜色选择器",
+    "compDoc": true,
+    "compClassName": "color-picker",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Radio",
+    "compZhName": "单选框",
+    "compDesc": "在一组备选项中进行单选",
+    "compDoc": true,
+    "compClassName": "radio",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]

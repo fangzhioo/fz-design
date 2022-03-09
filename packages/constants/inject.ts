@@ -18,3 +18,5 @@ export const FZ_TOOLTIP_INJECT_KEY = Symbol('tooptip');
 export const FZ_SELECT_INJECT_KEY = Symbol('select');
 export const FZ_SELECT_GROUP_INJECT_KEY = Symbol('select-group');
 export const FZ_TABLE_INJECT_KEY = Symbol('table');
+export const FZ_COLOR_PICKER_OPTIONS_KEY_INJECT_KEY = Symbol('color-picker-options-key');
+export const FZ_RADIO_GROUP_INJECT_KEY = Symbol('radio-group');

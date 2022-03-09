@@ -35,6 +35,8 @@ import { SelectPlugin } from './Select';
 import { OverlayPlugin } from './Overlay';
 import { DialogPlugin } from './Dialog';
 import { TablePlugin } from './Table';
+import { ColorPickerPlugin } from './ColorPicker';
+import { RadioPlugin } from './Radio';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
@@ -69,6 +71,8 @@ const FzUIPlugin: Plugin = {
     OverlayPlugin.install?.(app);
     DialogPlugin.install?.(app);
     TablePlugin.install?.(app);
+    ColorPickerPlugin.install?.(app);
+    RadioPlugin.install?.(app);
   },
 };
 
@@ -105,3 +109,5 @@ export * from './Select';
 export * from './Overlay';
 export * from './Dialog';
 export * from './Table';
+export * from './ColorPicker';
+export * from './Radio';

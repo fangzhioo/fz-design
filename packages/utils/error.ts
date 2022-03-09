@@ -22,7 +22,7 @@ export function throwError(scope: string, m: string): never {
  * @param scope
  * @param message
  */
-export function debugWarn(scope: string, message: string): void {
+export function debugWarn(scope: string, message?: string): void {
   if (process.env.NODE_ENV !== 'production') {
     console.warn(new FzUIError(`[${scope}] ${message}`));
   }

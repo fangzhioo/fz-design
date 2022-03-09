@@ -253,3 +253,22 @@ const FOCUSABLE_ELEMENT_SELECTORS =
 export const obtainAllFocusableElements = (element: HTMLElement): HTMLElement[] => {
   return Array.from(element.querySelectorAll<HTMLElement>(FOCUSABLE_ELEMENT_SELECTORS)).filter((item: HTMLElement) => isFocusable(item) && isVisible(item));
 };
+
+export const getClientXY = (event: MouseEvent | TouchEvent | Event) => {
+  let clientX: number;
+  let clientY: number;
+  if (event.type === 'touchend') {
+    clientY = (event as TouchEvent).changedTouches[0].clientY;
+    clientX = (event as TouchEvent).changedTouches[0].clientX;
+  } else if (event.type.startsWith('touch')) {
+    clientY = (event as TouchEvent).touches[0].clientY;
+    clientX = (event as TouchEvent).touches[0].clientX;
+  } else {
+    clientY = (event as MouseEvent).clientY;
+    clientX = (event as MouseEvent).clientX;
+  }
+  return {
+    clientX,
+    clientY,
+  };
+};
