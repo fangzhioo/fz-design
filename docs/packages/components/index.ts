@@ -37,6 +37,7 @@ import { DialogPlugin } from './Dialog';
 import { TablePlugin } from './Table';
 import { ColorPickerPlugin } from './ColorPicker';
 import { RadioPlugin } from './Radio';
+import { DrawerPlugin } from './Drawer';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
@@ -73,6 +74,7 @@ const FzUIPlugin: Plugin = {
     TablePlugin.install?.(app);
     ColorPickerPlugin.install?.(app);
     RadioPlugin.install?.(app);
+    DrawerPlugin.install?.(app);
   },
 };
 
@@ -111,3 +113,4 @@ export * from './Dialog';
 export * from './Table';
 export * from './ColorPicker';
 export * from './Radio';
+export * from './Drawer';

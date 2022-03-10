@@ -295,5 +295,14 @@
     "compClassName": "radio",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Drawer",
+    "compZhName": "抽屉",
+    "compDesc": "弹窗展示内容，比 Dialog 拥有更丰富的展示方式。",
+    "compDoc": true,
+    "compClassName": "drawer",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]

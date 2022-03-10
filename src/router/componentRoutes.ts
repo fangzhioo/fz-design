@@ -207,6 +207,13 @@ export const componentRoutes = [
         meta: {
           title: '单选框',
         }
+      },{
+        name: 'ComponentDrawer',
+        path: '/components/Drawer',
+        component: () => import('@fzui/components/Drawer/docs/README.md'),
+        meta: {
+          title: '抽屉',
+        }
       }
 ];
 

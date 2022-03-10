@@ -1,9 +1,10 @@
+import { CHANGE_EVENT } from '@fzui/constants';
 import { ExtractPropTypes, PropType } from 'vue';
 import type Affix from './Affix.vue';
 
 export const affixEmits = {
   scroll: ({ scrollTop, fixed }: { scrollTop: number; fixed: boolean }) => typeof scrollTop === 'number' && typeof fixed === 'boolean',
-  change: (fixed: boolean) => typeof fixed === 'boolean',
+  [CHANGE_EVENT]: (fixed: boolean) => typeof fixed === 'boolean',
 };
 
 export const affixProps = {
