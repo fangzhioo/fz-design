@@ -13,17 +13,17 @@ import demo2 from './demo2.vue'
 
 ## 基础用法
 
-<Preview comp-name="Drawer" demo-name="demo">
+<demo-preview comp-name="Drawer" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>
 
 ## 多层嵌套
 
 你可以像 `Dialog` 一样拥有多层嵌套的 `Drawer`，如果你需要在不同图层中多个抽屉，你必须设置 `append-to-body` 属性到 `true`
 
-<Preview comp-name="Drawer" demo-name="demo2">
+<demo-preview comp-name="Drawer" demo-name="demo2">
   <demo2 />
-</Preview>
+</demo-preview>
 
 ## 属性
 

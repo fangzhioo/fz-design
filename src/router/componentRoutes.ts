@@ -214,6 +214,20 @@ export const componentRoutes = [
         meta: {
           title: '抽屉',
         }
+      },{
+        name: 'ComponentSwitch',
+        path: '/components/Switch',
+        component: () => import('@fzui/components/Switch/docs/README.md'),
+        meta: {
+          title: '开关',
+        }
+      },{
+        name: 'ComponentTimePicker',
+        path: '/components/TimePicker',
+        component: () => import('@fzui/components/TimePicker/docs/README.md'),
+        meta: {
+          title: '时间选择器',
+        }
       }
 ];
 

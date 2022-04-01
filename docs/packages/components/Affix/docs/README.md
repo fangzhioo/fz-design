@@ -18,9 +18,9 @@ import demo3 from './demo3.vue'
 
 通过设置 `offset` 属性来改变吸顶距离，默认值为 0。
 
-<Preview comp-name="Affix" demo-name="demo">
+<demo-preview comp-name="Affix" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>
 
 ## 为 Affix 组件指定容器
 
@@ -28,9 +28,9 @@ import demo3 from './demo3.vue'
 
 请注意容器避免出现滚动条。
 
-<Preview comp-name="Affix" demo-name="demo2">
+<demo-preview comp-name="Affix" demo-name="demo2">
   <demo2 />
-</Preview>
+</demo-preview>
 
 ## 固定 Affix 组件的位置
 
@@ -38,9 +38,9 @@ Affix 组件提供 2 个固定的位置参数 `top` 和 `bottom。`
 
 通过设置 `position` 属性来改变固定位置，默认值为 `top` 。
 
-<Preview comp-name="Affix" demo-name="demo3">
+<demo-preview comp-name="Affix" demo-name="demo3">
   <demo3 />
-</Preview>
+</demo-preview>
 
 ## 属性
 

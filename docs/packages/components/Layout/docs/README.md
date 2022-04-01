@@ -13,17 +13,17 @@ import demo2 from './demo2.vue'
 
 ## 基础用法
 
-<Preview comp-name="Layout" demo-name="demo">
+<demo-preview comp-name="Layout" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>
 
 ## 响应式
 
 参照了 Bootstrap 的 响应式设计，预设了五个响应尺寸：`xs`、`sm`、`md`、`lg` 和 `xl`。
 
-<Preview comp-name="Layout" demo-name="demo2">
+<demo-preview comp-name="Layout" demo-name="demo2">
   <demo2 />
-</Preview>
+</demo-preview>
 
 ## 属性
 

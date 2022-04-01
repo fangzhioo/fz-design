@@ -1,11 +1,11 @@
 import { ExtractPropTypes, PropType } from 'vue';
 import type {{ compName }} from './{{ compName }}.vue';
 
-export const {{ compClassName }}Emits = {
+export const {{ compClassName }}Props = {
 
 };
 
-export const {{ compClassName }}Props = {
+export const {{ compClassName }}Emits = {
 
 };
 

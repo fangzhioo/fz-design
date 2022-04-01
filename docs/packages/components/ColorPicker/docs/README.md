@@ -15,27 +15,27 @@ import demo4 from './demo4.vue'
 
 ## 基础用法
 
-<Preview comp-name="ColorPicker" demo-name="demo">
+<demo-preview comp-name="ColorPicker" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>
 
 ## 带透明度
 
-<Preview comp-name="ColorPicker" demo-name="demo2">
+<demo-preview comp-name="ColorPicker" demo-name="demo2">
   <demo2 />
-</Preview>
+</demo-preview>
 
 ## 预定义颜色
 
-<Preview comp-name="ColorPicker" demo-name="demo3">
+<demo-preview comp-name="ColorPicker" demo-name="demo3">
   <demo3 />
-</Preview>
+</demo-preview>
 
 ## 尺寸大小
 
-<Preview comp-name="ColorPicker" demo-name="demo4">
+<demo-preview comp-name="ColorPicker" demo-name="demo4">
   <demo4 />
-</Preview>
+</demo-preview>
 
 ## 属性
 

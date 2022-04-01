@@ -9,10 +9,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
-  name: 'index',
+  name: 'GuidePage',
   setup(props, context) {
     const tableData = [
       {
@@ -37,8 +37,11 @@ export default defineComponent({
       },
     ];
 
+    const timeValue = ref([]);
+
     return {
       tableData,
+      timeValue,
     };
   },
 });

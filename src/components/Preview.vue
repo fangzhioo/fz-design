@@ -23,6 +23,7 @@ import Prism from 'prismjs';
 const isDev = import.meta.env.MODE === 'development';
 
 export default {
+  name: 'DemoPreview',
   props: {
     /** 组件名称 与 packages下的文件夹名字对应 */
     compName: {
@@ -73,6 +74,7 @@ export default {
       }
       this.$nextTick(() => {
         Prism.highlightAll();
+        this.loading = false;
       });
       this.loading = false;
     },

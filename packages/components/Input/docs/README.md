@@ -14,21 +14,21 @@ import demo3 from './demo3.vue'
 
 ## 基础用法
 
-<Preview comp-name="Input" demo-name="demo">
+<demo-preview comp-name="Input" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>
 
 ## textarea 文本框
 
-<Preview comp-name="Input" demo-name="demo2">
+<demo-preview comp-name="Input" demo-name="demo2">
   <demo2 />
-</Preview>
+</demo-preview>
 
 ## 禁用状态
 
-<Preview comp-name="Input" demo-name="demo3">
+<demo-preview comp-name="Input" demo-name="demo3">
   <demo3 />
-</Preview>
+</demo-preview>
 
 ## 属性
 

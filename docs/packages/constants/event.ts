@@ -4,6 +4,8 @@ export const UPDATE_VISIBLE_EVENT = 'update:visible';
 
 export const CHANGE_EVENT = 'change';
 export const INPUT_EVENT = 'input';
+export const BLUR_EVENT = 'blur';
+export const FOCUS_EVENT = 'focus';
 
 export const EVENT_CODE = {
   tab: 'Tab',

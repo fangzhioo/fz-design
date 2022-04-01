@@ -1,3 +1,3 @@
-import { debounce, throttle, fromPairs, get, toString, toNumber, isEqual } from 'lodash-es';
+import { debounce, throttle, fromPairs, get, toString, toNumber, isEqual, union } from 'lodash-es';
 
-export { debounce, throttle, fromPairs, get, toString, toNumber, isEqual };
+export { debounce, throttle, fromPairs, get, toString, toNumber, isEqual, union };

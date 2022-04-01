@@ -1,4 +1,4 @@
-import { camelize, toRawType, isString, isObject, isFunction, isArray, hasOwn } from '@vue/shared';
+import { camelize, toRawType, isString, isObject, isFunction, isArray, isPromise, hasOwn } from '@vue/shared';
 import { isBoolean, isNumber, isClient } from '@vueuse/core';
 import { debugWarn } from './error';
 
@@ -73,4 +73,4 @@ export const isUndefined = (val: any): val is undefined => val === undefined;
 
 export const isEmpty = (val: unknown) => (!val && val !== 0) || (isArray(val) && val.length === 0) || (isObject(val) && !Object.keys(val).length);
 
-export { isClient, isString, isObject, isArray, isFunction, isBoolean, isNumber, camelize, hasOwn };
+export { isClient, isString, isObject, isArray, isPromise, isFunction, isBoolean, isNumber, camelize, hasOwn };

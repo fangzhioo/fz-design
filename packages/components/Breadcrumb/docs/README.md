@@ -13,17 +13,17 @@ import demo2 from './demo2.vue'
 
 ## 基础用法
 
-<Preview comp-name="Breadcrumb" demo-name="demo">
+<demo-preview comp-name="Breadcrumb" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>
 
 ## 图标分隔符
 
 通过设置 `separator-icon` 可以使用图标作为分隔符， 注意这将使 separator 失效。
 
-<Preview comp-name="Breadcrumb" demo-name="demo2">
+<demo-preview comp-name="Breadcrumb" demo-name="demo2">
   <demo2 />
-</Preview>
+</demo-preview>
 
 ## 属性
 

@@ -13,17 +13,17 @@ import demo2 from './demo2.vue'
 
 ## 基础用法
 
-<Preview comp-name="Message" demo-name="demo">
+<demo-preview comp-name="Message" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>
 
 ## 可关闭、可折叠
 
 设置 `showClose` 可以手动关闭,设置 `grouping`可以把相同的内容提示折叠。
 
-<Preview comp-name="Message" demo-name="demo2">
+<demo-preview comp-name="Message" demo-name="demo2">
   <demo2 />
-</Preview>
+</demo-preview>
 
 ## 属性
 

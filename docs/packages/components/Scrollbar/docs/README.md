@@ -13,15 +13,15 @@ import demo2 from './demo2.vue'
 
 ## 基础用法
 
-<Preview comp-name="Scrollbar" demo-name="demo">
+<demo-preview comp-name="Scrollbar" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>
 
 ## 横向用法
 
-<Preview comp-name="Scrollbar" demo-name="demo2">
+<demo-preview comp-name="Scrollbar" demo-name="demo2">
   <demo2 />
-</Preview>
+</demo-preview>
 
 ## 属性
 

@@ -77,7 +77,7 @@ export const tooltipProps = {
   },
 };
 
-export const tooltipEmits = [...useModelToggleEmits, 'show', 'hide'];
+export const tooltipEmits = [...useModelToggleEmits, 'before-show', 'before-hide', 'show', 'hide'];
 
 export type TooltipProps = ExtractPropTypes<typeof tooltipProps>;
 export type TooltipEmits = typeof tooltipEmits;

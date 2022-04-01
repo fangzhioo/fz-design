@@ -111,7 +111,7 @@ import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, onU
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@fzui/constants';
 import { isObject, isKorean, isClient } from '@fzui/utils';
 import { useAttrs, useSize, useForm, useDisabled } from '@fzui/hooks';
-import { calcTextareaHeight } from './calc-textarea-height';
+import { calcTextareaHeight } from './util';
 import { inputEmits, inputProps, PENDANT_MAP, TargetElement, ValidateIconsMap } from './Input';
 import { Icon } from '@fzui/components/Icon';
 

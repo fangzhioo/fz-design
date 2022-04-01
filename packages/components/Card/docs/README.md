@@ -13,17 +13,17 @@ import demo2 from './demo2.vue'
 
 ## 基础用法
 
-<Preview comp-name="Card" demo-name="demo">
+<demo-preview comp-name="Card" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>
 
 ## 有图片样式
 
 可配置定义更丰富的内容展示。配置 `body-style` 属性来自定义 body 部分的样式。`shadow`可以来配置阴影。
 
-<Preview comp-name="Card" demo-name="demo2">
+<demo-preview comp-name="Card" demo-name="demo2">
   <demo2 />
-</Preview>
+</demo-preview>
 
 ## 属性
 

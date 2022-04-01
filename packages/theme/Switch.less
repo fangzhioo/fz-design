@@ -1,0 +1,171 @@
+.fz-switch {
+  --fz-switch-on-color: var(--fz-color-primary);
+  --fz-switch-off-color: var(--fz-border-color-base);
+  --fz-switch-core-border-radius: 10px;
+  --fz-switch-width: 40px;
+  --fz-switch-height: 20px;
+  --fz-switch-button-size: 16px;
+}
+.fz-switch {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  font-size: 14px;
+  line-height: var(--fz-switch-height);
+  height: 32px;
+  vertical-align: middle;
+}
+.fz-switch.is-disabled .fz-switch__core,
+.fz-switch.is-disabled .fz-switch__label {
+  cursor: not-allowed;
+}
+.fz-switch__label {
+  transition: var(--fz-transition-duration-fast);
+  height: var(--fz-switch-height);
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  vertical-align: middle;
+  color: var(--fz-text-color-primary);
+}
+.fz-switch__label.is-active {
+  color: var(--fz-color-primary);
+}
+.fz-switch__label--left {
+  margin-right: 10px;
+}
+.fz-switch__label--right {
+  margin-left: 10px;
+}
+.fz-switch__label * {
+  line-height: 1;
+  font-size: 14px;
+  display: inline-block;
+}
+.fz-switch__label .fz-icon {
+  height: inherit;
+}
+.fz-switch__label .fz-icon svg {
+  vertical-align: middle;
+}
+.fz-switch__input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  margin: 0;
+}
+.fz-switch__core {
+  margin: 0;
+  display: inline-block;
+  position: relative;
+  width: var(--fz-switch-width);
+  height: var(--fz-switch-height);
+  border: 1px solid var(--fz-switch-off-color);
+  outline: 0;
+  border-radius: var(--fz-switch-core-border-radius);
+  box-sizing: border-box;
+  background: var(--fz-switch-off-color);
+  cursor: pointer;
+  transition: border-color var(--fz-transition-duration), background-color var(--fz-transition-duration);
+  vertical-align: middle;
+}
+.fz-switch__core .fz-switch__inner {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  transition: all var(--fz-transition-duration);
+  width: var(--fz-switch-button-size);
+  height: var(--fz-switch-button-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 50%;
+  white-space: nowrap;
+}
+.fz-switch__core .fz-switch__inner .is-icon,
+.fz-switch__core .fz-switch__inner .is-text {
+  color: var(--fz-color-white);
+  transition: opacity var(--fz-transition-duration);
+  position: absolute;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.fz-switch__core .fz-switch__action {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: var(--fz-border-radius-circle);
+  transition: all var(--fz-transition-duration);
+  width: var(--fz-switch-button-size);
+  height: var(--fz-switch-button-size);
+  background-color: var(--fz-color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--fz-switch-off-color);
+}
+.fz-switch__core .fz-switch__action .is-icon,
+.fz-switch__core .fz-switch__action .is-text {
+  transition: opacity var(--fz-transition-duration);
+  position: absolute;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.fz-switch__core .is-text {
+  font-size: 12px;
+}
+.fz-switch__core .is-show {
+  opacity: 1;
+}
+.fz-switch__core .is-hide {
+  opacity: 0;
+}
+.fz-switch.is-checked .fz-switch__core {
+  border-color: var(--fz-switch-on-color);
+  background-color: var(--fz-switch-on-color);
+}
+.fz-switch.is-checked .fz-switch__core .fz-switch__action {
+  left: 100%;
+  margin-left: calc(-1px - var(--fz-switch-button-size));
+  color: var(--fz-switch-on-color);
+}
+.fz-switch.is-checked .fz-switch__core .fz-switch__inner {
+  left: 50%;
+  white-space: nowrap;
+  margin-left: calc(-1px - var(--fz-switch-button-size));
+}
+.fz-switch.is-disabled {
+  opacity: 0.6;
+}
+.fz-switch--wide .fz-switch__label.fz-switch__label--left span {
+  left: 10px;
+}
+.fz-switch--wide .fz-switch__label.fz-switch__label--right span {
+  right: 10px;
+}
+.fz-switch .label-fade-enter-from,
+.fz-switch .label-fade-leave-active {
+  opacity: 0;
+}
+.fz-switch--large {
+  font-size: 14px;
+  height: 40px;
+}
+.fz-switch--large .fz-switch__label {
+  font-size: 14px;
+}
+.fz-switch--large .fz-switch__label * {
+  font-size: 14px;
+}
+.fz-switch--small {
+  font-size: 12px;
+  height: 24px;
+}
+.fz-switch--small .fz-switch__label {
+  font-size: 12px;
+}
+.fz-switch--small .fz-switch__label * {
+  font-size: 12px;
+}

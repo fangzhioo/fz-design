@@ -14,21 +14,21 @@ import demo3 from './demo3.vue'
 
 ## 基础用法
 
-<Preview comp-name="Checkbox" demo-name="demo">
+<demo-preview comp-name="Checkbox" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>
 
 ## 多选框组
 
-<Preview comp-name="Checkbox" demo-name="demo2">
+<demo-preview comp-name="Checkbox" demo-name="demo2">
   <demo2 />
-</Preview>
+</demo-preview>
 
 ## 按钮样式
 
-<Preview comp-name="Checkbox" demo-name="demo3">
+<demo-preview comp-name="Checkbox" demo-name="demo3">
   <demo3 />
-</Preview>
+</demo-preview>
 
 ## 属性
 

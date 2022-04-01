@@ -23,41 +23,41 @@ import demo12 from './demo12.vue'
 
 ## 基础用法
 
-<Preview comp-name="Table" demo-name="demo">
+<demo-preview comp-name="Table" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>
 
 ## 固定表头
 
 纵向内容过多时，可选择固定表头。只要在 `fz-table` 元素中定义了 `height` 属性，即可实现固定表头的表格，而不需要额外的代码。
 
-<Preview comp-name="Table" demo-name="demo2">
+<demo-preview comp-name="Table" demo-name="demo2">
   <demo2 />
-</Preview>
+</demo-preview>
 
 ## 固定列
 
 横向内容过多时，可选择固定列。固定列需要使用 `fixed` 属性，它接受 `Boolean` 值 如果为 `true`, 列将被左侧固定. 它还接受传入字符串，`left` 或 `right`，表示左边固定还是右边固定。
 
-<Preview comp-name="Table" demo-name="demo3">
+<demo-preview comp-name="Table" demo-name="demo3">
   <demo3 />
-</Preview>
+</demo-preview>
 
 ## 流体高度
 
 当数据量动态变化时，可以为 Table 设置一个最大高度。通过设置 `max-height` 属性为 Table 指定最大高度。 此时若表格所需的高度大于最大高度，则会显示一个滚动条。
 
-<Preview comp-name="Table" demo-name="demo4">
+<demo-preview comp-name="Table" demo-name="demo4">
   <demo4 />
-</Preview>
+</demo-preview>
 
 ## 多级表头
 
 数据结构比较复杂的时候，可使用多级表头来展现数据的层次关系。只需要在 `fz-table-column` 里面嵌套 `fz-table-column`，就可以实现多级表头。
 
-<Preview comp-name="Table" demo-name="demo5">
+<demo-preview comp-name="Table" demo-name="demo5">
   <demo5 />
-</Preview>
+</demo-preview>
 
 ## 单选/多选
 
@@ -69,9 +69,9 @@ Table 组件提供了单选的支持， 只需要配置 `highlight-current-row` 
 
 实现多选非常简单: 手动添加一个 `fz-table-column`，设 type 属性为 `selection` 即可； 除了多个选项，此示例还使用 `show-overflow-tooltip`：默认， 如果内容过长，它会分成多行。 若需要单行显示可以使用 `show-overflow-tooltip` 属性，它接受一个 Boolean， 为 true 时多余的内容会在 hover 时以 `tooltip` 的形式显示出来。
 
-<Preview comp-name="Table" demo-name="demo6">
+<demo-preview comp-name="Table" demo-name="demo6">
   <demo6 />
-</Preview>
+</demo-preview>
 
 ## 排序
 
@@ -79,9 +79,9 @@ Table 组件提供了单选的支持， 只需要配置 `highlight-current-row` 
 
 在列中设置 `sortable` 属性即可实现以该列为基准的排序， 接受一个 `Boolean`，默认为 `false`。 可以通过 Table 的 `default-sort` 属性设置默认的排序列和排序顺序。 可以使用 `sort-method` 或者 `sort-by` 使用自定义的排序规则。 如果需要后端排序，需将 `sortable` 设置为 `custom`，同时在 Table 上监听 `sort-change` 事件， 在事件回调中可以获取当前排序的字段名和排序顺序，从而向接口请求排序后的表格数据。 在本例中，我们还使用了 `formatter` 属性，它用于格式化指定列的值， 接受一个 `Function`，会传入两个参数：`row` 和 `column`， 可以根据自己的需求进行处理。
 
-<Preview comp-name="Table" demo-name="demo7">
+<demo-preview comp-name="Table" demo-name="demo7">
   <demo7 />
-</Preview>
+</demo-preview>
 
 ## 筛选
 
@@ -89,33 +89,33 @@ Table 组件提供了单选的支持， 只需要配置 `highlight-current-row` 
 
 在列中设置 `filters` 和 f`ilter-method`属性即可开启该列的筛选， filters 是一个数组，`filter-method` 是一个方法，它用于决定某些数据是否显示， 会传入三个参数：`value`, `row` 和 `column`。
 
-<Preview comp-name="Table" demo-name="demo8">
+<demo-preview comp-name="Table" demo-name="demo8">
   <demo8 />
-</Preview>
+</demo-preview>
 
 ## 自定义列模板
 
 自定义列的显示内容，可组合其他组件使用。通过 `slot` 可以获取到 `row`, `column`, `$index` 和 `store`（table 内部的状态管理）的数据。
 
-<Preview comp-name="Table" demo-name="demo9">
+<demo-preview comp-name="Table" demo-name="demo9">
   <demo9 />
-</Preview>
+</demo-preview>
 
 ## 展开行
 
 当行内容过多并且不想显示横向滚动条时，可以使用 Table 展开行功能。通过设置 `type="expand"` 和 `slot` 可以开启展开行功能， `fz-table-column` 的模板会被渲染成为展开行的内容，展开行可访问的属性与使用自定义列模板时的 `slot` 相同。
 
-<Preview comp-name="Table" demo-name="demo10">
+<demo-preview comp-name="Table" demo-name="demo10">
   <demo10 />
-</Preview>
+</demo-preview>
 
 ## 树形数据与懒加载
 
 支持树类型的数据的显示。 当 `row` 中包含 `children` 字段时，被视为树形数据。 渲染树形数据时，必须要指定 `row-key`。支持子节点数据异步加载。 设置 Table 的`lazy`属性为 `true` 与加载函数 `load` 。 通过指定 `row` 中的`hasChildren`字段来指定哪些行是包含子节点。 `children` 与 `hasChildren` 都可以通过 `tree-props` 配置。
 
-<Preview comp-name="Table" demo-name="demo11">
+<demo-preview comp-name="Table" demo-name="demo11">
   <demo11 />
-</Preview>
+</demo-preview>
 
 ## 合并行或列
 
@@ -123,9 +123,9 @@ Table 组件提供了单选的支持， 只需要配置 `highlight-current-row` 
 
 通过给 table 传入`span-method`方法可以实现合并行或列， 方法的参数是一个对象，里面包含当前行 `row`、当前列 `column`、当前行号 `rowIndex`、当前列号 `columnIndex` 四个属性。 该函数可以返回一个包含两个元素的数组，第一个元素代表 `rowspan`，第二个元素代表 `colspan`。 也可以返回一个键名为 `rowspan` 和 `colspan` 的对象。
 
-<Preview comp-name="Table" demo-name="demo12">
+<demo-preview comp-name="Table" demo-name="demo12">
   <demo12 />
-</Preview>
+</demo-preview>
 
 ## Table 属性
 

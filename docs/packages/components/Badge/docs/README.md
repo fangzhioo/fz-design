@@ -14,9 +14,9 @@ import demo from './demo.vue'
 
 ## 基础用法
 
-<Preview comp-name="Badge" demo-name="demo">
+<demo-preview comp-name="Badge" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>
 
 ## 属性
 

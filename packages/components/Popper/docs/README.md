@@ -12,6 +12,6 @@ import demo from './demo.vue'
 
 ## 基础用法
 
-<Preview comp-name="Popper" demo-name="demo">
+<demo-preview comp-name="Popper" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>

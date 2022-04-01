@@ -18,8 +18,6 @@ const getAllColumns = <T>(columns: TableColumnCtx<T>[]): TableColumnCtx<T>[] => 
 };
 
 const convertToRows = <T>(originColumns: TableColumnCtx<T>[]): TableColumnCtx<T>[] => {
-  console.log('originColumns', originColumns);
-
   let maxLevel = 1;
   const traverse = (column: TableColumnCtx<T>, parent: TableColumnCtx<T> | undefined) => {
     if (parent) {

@@ -304,5 +304,23 @@
     "compClassName": "drawer",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Switch",
+    "compZhName": "开关",
+    "compDesc": "表示两种相互对立的状态间的切换，多用于触发「开/关」。",
+    "compDoc": true,
+    "compClassName": "switch",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "TimePicker",
+    "compZhName": "时间选择器",
+    "compDesc": "用于选择或输入日期",
+    "compDoc": true,
+    "compClassName": "time-picker",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]

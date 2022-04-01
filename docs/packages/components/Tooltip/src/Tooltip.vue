@@ -116,6 +116,12 @@ export default defineComponent({
       onHide: () => {
         emit('hide');
       },
+      onBeforeShow: () => {
+        emit('before-show');
+      },
+      onBeforeHide: () => {
+        emit('before-hide');
+      },
       updatePopper,
     });
 

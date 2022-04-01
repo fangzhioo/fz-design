@@ -15,27 +15,27 @@ import demo4 from './demo4.vue'
 
 ## 基础用法
 
-<Preview comp-name="Radio" demo-name="demo">
+<demo-preview comp-name="Radio" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>
 
 ## 单选框组
 
-<Preview comp-name="Radio" demo-name="demo2">
+<demo-preview comp-name="Radio" demo-name="demo2">
   <demo2 />
-</Preview>
+</demo-preview>
 
 ## 按钮样式
 
-<Preview comp-name="Radio" demo-name="demo3">
+<demo-preview comp-name="Radio" demo-name="demo3">
   <demo3 />
-</Preview>
+</demo-preview>
 
 ## 带边框
 
-<Preview comp-name="Radio" demo-name="demo4">
+<demo-preview comp-name="Radio" demo-name="demo4">
   <demo4 />
-</Preview>
+</demo-preview>
 
 ## 属性
 

@@ -12,9 +12,9 @@ import demo from './demo.vue'
 
 ## 基础用法
 
-<Preview comp-name="Container" demo-name="demo">
+<demo-preview comp-name="Container" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>
 
 ## 属性
 

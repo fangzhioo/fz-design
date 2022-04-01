@@ -12,7 +12,7 @@ import { exportAppToGlobal } from './plugins/exporter';
 
 const app = createApp(App);
 
-app.component('Preview', Preview);
+app.component(Preview.name, Preview);
 
 app.use(FzUI);
 

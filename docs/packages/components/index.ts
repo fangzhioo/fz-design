@@ -38,6 +38,8 @@ import { TablePlugin } from './Table';
 import { ColorPickerPlugin } from './ColorPicker';
 import { RadioPlugin } from './Radio';
 import { DrawerPlugin } from './Drawer';
+import { SwitchPlugin } from './Switch';
+import { TimePickerPlugin } from './TimePicker';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
@@ -75,6 +77,8 @@ const FzUIPlugin: Plugin = {
     ColorPickerPlugin.install?.(app);
     RadioPlugin.install?.(app);
     DrawerPlugin.install?.(app);
+    SwitchPlugin.install?.(app);
+    TimePickerPlugin.install?.(app);
   },
 };
 
@@ -114,3 +118,5 @@ export * from './Table';
 export * from './ColorPicker';
 export * from './Radio';
 export * from './Drawer';
+export * from './Switch';
+export * from './TimePicker';

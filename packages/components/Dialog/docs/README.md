@@ -14,9 +14,9 @@ import demo3 from './demo3.vue'
 
 ## 基础用法
 
-<Preview comp-name="Dialog" demo-name="demo">
+<demo-preview comp-name="Dialog" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>
 
 ## 嵌套
 
@@ -24,17 +24,17 @@ import demo3 from './demo3.vue'
 
 通常我们不建议使用嵌套对话框。 如果你需要在页面上呈现多个对话框，你可以简单地平整它们，呈现一个平级关系。 如果你必须在另一个对话框内排出对话框，将嵌套对话框的 `append-to-body` 设置为真 true。 并且它将附加到正文而不是其亲节点，所以两个对话框都可以被正确渲染。
 
-<Preview comp-name="Dialog" demo-name="demo2">
+<demo-preview comp-name="Dialog" demo-name="demo2">
   <demo2 />
-</Preview>
+</demo-preview>
 
 ## 可拖拽
 
 设置 `draggable` 属性为 true 来拖拽弹窗
 
-<Preview comp-name="Dialog" demo-name="demo3">
+<demo-preview comp-name="Dialog" demo-name="demo3">
   <demo3 />
-</Preview>
+</demo-preview>
 
 ## 属性
 

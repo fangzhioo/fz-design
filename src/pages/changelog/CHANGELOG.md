@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.20
+
+### Features
+
+- ✨ 新增开关（Switch）组件；
+- ✨ 新增时间选择器（TimePicker）组件；
+
 ## 0.0.19
 
 ### Features

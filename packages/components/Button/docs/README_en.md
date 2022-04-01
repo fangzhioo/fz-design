@@ -14,9 +14,9 @@ Commonly used button.
 
 ## Basic usage
 
-<Preview comp-name="Button" demo-name="demo">
+<demo-preview comp-name="Button" demo-name="demo">
   <demo />
-</Preview>
+</demo-preview>
 
 ## Advanced
 
@@ -26,9 +26,9 @@ Click the button to load data, then the button displays a loading state.
 
 Besides default size, Button component provides three additional sizes for you to choose among different scenarios.
 
-<Preview comp-name="Button" demo-name="demo2">
+<demo-preview comp-name="Button" demo-name="demo2">
   <demo2 />
-</Preview>
+</demo-preview>
 
 ## Button Group
 
@@ -36,9 +36,9 @@ Displayed as a button group, can be used to group a series of similar operations
 
 Use tag `<el-button-group>` to group your buttons.
 
-<Preview comp-name="Button" demo-name="demo3">
+<demo-preview comp-name="Button" demo-name="demo3">
   <demo3 />
-</Preview>
+</demo-preview>
 
 ## Button Attributes
 
