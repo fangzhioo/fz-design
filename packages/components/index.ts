@@ -40,6 +40,7 @@ import { RadioPlugin } from './Radio';
 import { DrawerPlugin } from './Drawer';
 import { SwitchPlugin } from './Switch';
 import { TimePickerPlugin } from './TimePicker';
+import { RichEditorPlugin } from './RichEditor';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
@@ -79,6 +80,7 @@ const FzUIPlugin: Plugin = {
     DrawerPlugin.install?.(app);
     SwitchPlugin.install?.(app);
     TimePickerPlugin.install?.(app);
+    RichEditorPlugin.install?.(app);
   },
 };
 
@@ -120,3 +122,4 @@ export * from './Radio';
 export * from './Drawer';
 export * from './Switch';
 export * from './TimePicker';
+export * from './RichEditor';

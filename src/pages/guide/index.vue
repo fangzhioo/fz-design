@@ -5,6 +5,8 @@
       <fz-table-column prop="name" label="Name" width="180" />
       <fz-table-column prop="address" label="Address" />
     </fz-table>
+    <div style="height: 40px"></div>
+    <fz-rich-editor v-model="editorValue"></fz-rich-editor>
   </div>
 </template>
 
@@ -37,18 +39,16 @@ export default defineComponent({
       },
     ];
 
+    const editorValue = ref('<p>A Vue.js wrapper component for tiptap to use <code>v-model</code>.</p>');
     const timeValue = ref([]);
 
     return {
       tableData,
       timeValue,
+      editorValue,
     };
   },
 });
 </script>
 
-<style scoped>
-.guide-wrapper {
-  background-color: aliceblue;
-}
-</style>
+<style scoped></style>

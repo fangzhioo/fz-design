@@ -22,3 +22,4 @@ export const FZ_COLOR_PICKER_OPTIONS_KEY_INJECT_KEY = Symbol('color-picker-optio
 export const FZ_RADIO_GROUP_INJECT_KEY = Symbol('radio-group');
 export const FZ_POPPER_OPTIONS_INJECT_KEY = Symbol('popper-options');
 export const FZ_PICKER_BASE_INJECT_KEY = Symbol('picker-base');
+export const FZ_RICH_EDITOR_INSTANCE_INJECT_KEY = Symbol('rich-editor-instance');

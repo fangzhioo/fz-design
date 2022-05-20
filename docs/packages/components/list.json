@@ -322,5 +322,14 @@
     "compClassName": "time-picker",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "RichEditor",
+    "compZhName": "富文本编辑器",
+    "compDesc": "用于编辑丰富的文本内容编辑器",
+    "compDoc": true,
+    "compClassName": "rich-editor",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]

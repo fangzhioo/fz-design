@@ -228,6 +228,13 @@ export const componentRoutes = [
         meta: {
           title: '时间选择器',
         }
+      },{
+        name: 'ComponentRichEditor',
+        path: '/components/RichEditor',
+        component: () => import('@fzui/components/RichEditor/docs/README.md'),
+        meta: {
+          title: '富文本编辑器',
+        }
       }
 ];
 
