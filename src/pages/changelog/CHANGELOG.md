@@ -1,6 +1,13 @@
 # Changelog
 
-## 0.0.20
+## 0.0.22
+
+### Features
+
+- ✨ 新增日期选择器（DatePicker）组件；
+- ✨ 添加富文本编辑器（RichEditor）组件文档实例；
+
+## 0.0.21
 
 ### Features
 

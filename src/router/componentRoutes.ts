@@ -235,6 +235,13 @@ export const componentRoutes = [
         meta: {
           title: '富文本编辑器',
         }
+      },{
+        name: 'ComponentDatePicker',
+        path: '/components/DatePicker',
+        component: () => import('@fzui/components/DatePicker/docs/README.md'),
+        meta: {
+          title: '日期选择器',
+        }
       }
 ];
 

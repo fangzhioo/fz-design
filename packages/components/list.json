@@ -331,5 +331,14 @@
     "compClassName": "rich-editor",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "DatePicker",
+    "compZhName": "日期选择器",
+    "compDesc": "用于选择或输入日期",
+    "compDoc": true,
+    "compClassName": "date-picker",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]

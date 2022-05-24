@@ -41,6 +41,7 @@ import { DrawerPlugin } from './Drawer';
 import { SwitchPlugin } from './Switch';
 import { TimePickerPlugin } from './TimePicker';
 import { RichEditorPlugin } from './RichEditor';
+import { DatePickerPlugin } from './DatePicker';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
@@ -81,6 +82,7 @@ const FzUIPlugin: Plugin = {
     SwitchPlugin.install?.(app);
     TimePickerPlugin.install?.(app);
     RichEditorPlugin.install?.(app);
+    DatePickerPlugin.install?.(app);
   },
 };
 
@@ -123,3 +125,4 @@ export * from './Drawer';
 export * from './Switch';
 export * from './TimePicker';
 export * from './RichEditor';
+export * from './DatePicker';

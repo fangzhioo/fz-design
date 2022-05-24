@@ -5,7 +5,7 @@ import type { ComponentSize } from '@fzui/hooks';
 import type CommonPicker from './CommonPicker.vue';
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@fzui/constants';
 
-export type FormatType = 'date' | 'week' | 'year' | 'month' | 'datetime' | 'monthrange' | 'daterange' | 'datetimerange';
+export type FormatType = 'date' | 'dates' | 'week' | 'year' | 'month' | 'datetime' | 'monthrange' | 'daterange' | 'datetimerange';
 export type PickerSize = ComponentSize;
 export type PickerModelValue = number | string | Date | (number | string | Date)[];
 

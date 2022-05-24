@@ -1,12 +1,8 @@
 // 拓展 https://tiptap.dev/extensions 带星号【*】表示拓展必须有！
 // IDEA 💡 可以使用web-component实现更多的可能！！！ https://v3.cn.vuejs.org/guide/web-components.html#%E5%9C%A8-vue-%E4%B8%AD%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E5%85%83%E7%B4%A0
 import { Extension } from '@tiptap/core';
-// 【*】document 整个编辑器容器
-import Document from '@tiptap/extension-document';
-// 【*】text 纯文本
-import Text from '@tiptap/extension-text';
-// 【*】gap 光标
-import Gapcursor from '@tiptap/extension-gapcursor';
+// 【*】基础必要的拓展
+import { Document, Text, Gapcursor } from './BasisExtension';
 // blockquote
 import Blockquote, { BlockquoteOptions } from '@tiptap/extension-blockquote';
 // drop 元素拖拽

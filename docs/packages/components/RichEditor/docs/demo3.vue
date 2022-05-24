@@ -9,13 +9,11 @@ import { ref } from 'vue';
 
 const beforeInsert = () => {
   return new Promise((resolve) => {
-    console.log('图片上传！！！');
-
+    // 上传图片
     setTimeout(() => {
-      console.log('图片上传成功！！！');
-
+      const url = window.prompt('请填写图片地址', 'https://source.unsplash.com/8xznAGy4HcY/800x400');
       resolve({
-        src: 'https://source.unsplash.com/8xznAGy4HcY/800x400',
+        src: url,
         alt: '加载失败',
         title: '这是一张图片',
       });
@@ -37,7 +35,7 @@ const content = ref(`
           This is a basic example of implementing images. Drag to re-order.
         </p>
         <p>
-          <img src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg" alt title="This is a cat!!" />
+          <img src="https://source.unsplash.com/8xznAGy4HcY/800x400" alt title="This is a cat!!" />
         </p>
 `);
 </script>

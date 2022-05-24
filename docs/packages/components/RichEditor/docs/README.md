@@ -3,6 +3,8 @@
 import demo from './demo.vue'
 import demo2 from './demo2.vue'
 import demo3 from './demo3.vue'
+import demo4 from './demo4.vue'
+import demo5 from './demo5.vue'
 </script>
 <!-- 加载 demo 组件 end -->
 
@@ -10,7 +12,7 @@ import demo3 from './demo3.vue'
 
 # 富文本编辑器
 
-用于编辑丰富的文本内容编辑器，基于[tiptap 编辑器](https://tiptap.dev/)构建。
+用于编辑丰富的文本内容编辑器，基于[tiptap 编辑器](https://tiptap.dev/)构建。支持 markdown 的方式编写。
 
 ## 基础用法
 
@@ -29,6 +31,24 @@ import demo3 from './demo3.vue'
 <demo-preview comp-name="RichEditor" demo-name="demo3">
   <demo3 />
 </demo-preview>
+
+## 自定义拓展
+
+比如这里添加一个拓展[@tiptap/extension-placeholder](https://tiptap.dev/api/extensions/placeholder) ，为编辑器添加 placeholder。别忘了添加 css！！
+
+<demo-preview comp-name="RichEditor" demo-name="demo4">
+  <demo4 />
+</demo-preview>
+
+## 自定义菜单
+
+使用 `slot="menus"` 插槽，自定义菜单功能和样式。
+
+<demo-preview comp-name="RichEditor" demo-name="demo5">
+  <demo5 />
+</demo-preview>
+
+你可完全定制自己的拓展和菜单。
 
 ## 属性
 

@@ -69,6 +69,12 @@ export const merge = <T extends Record<string, any>>(a: T, b: T) => {
  */
 export const escapeRegexpString = (value = ''): string => String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
 
+// like _.castArray
+export const castArray = (arr: any): any[] => {
+  if (!arr && arr !== 0) return [];
+  return isArray(arr) ? arr : [arr];
+};
+
 export const isUndefined = (val: any): val is undefined => val === undefined;
 
 export const isEmpty = (val: unknown) => (!val && val !== 0) || (isArray(val) && val.length === 0) || (isObject(val) && !Object.keys(val).length);

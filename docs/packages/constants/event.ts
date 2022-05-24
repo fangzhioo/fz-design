@@ -19,4 +19,8 @@ export const EVENT_CODE = {
   delete: 'Delete',
   backspace: 'Backspace',
   numpadEnter: 'NumpadEnter',
+  pageUp: 'PageUp',
+  pageDown: 'PageDown',
+  home: 'Home',
+  end: 'End',
 };
