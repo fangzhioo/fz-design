@@ -242,6 +242,13 @@ export const componentRoutes = [
         meta: {
           title: '日期选择器',
         }
+      },{
+        name: 'ComponentForm',
+        path: '/components/Form',
+        component: () => import('@fzui/components/Form/docs/README.md'),
+        meta: {
+          title: '表单',
+        }
       }
 ];
 

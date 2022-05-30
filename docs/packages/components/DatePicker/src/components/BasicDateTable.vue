@@ -38,7 +38,7 @@
 import { computed, defineComponent, nextTick, ref, watch } from 'vue';
 import dayjs from 'dayjs';
 import { useLocale } from '@fzui/hooks';
-import { castArray, Nullable } from '@fzui/utils';
+import { ensureArray, Nullable } from '@fzui/utils';
 import FzDatePickerCell from './BasicCellRender';
 
 import type { PropType } from 'vue';
@@ -137,7 +137,7 @@ export default defineComponent({
       const rows_ = tableRows.value;
       let count = 1;
 
-      const selectedDate: Dayjs[] = props.selectionMode === 'dates' && props.parsedValue ? castArray(props.parsedValue) : [];
+      const selectedDate: Dayjs[] = props.selectionMode === 'dates' && props.parsedValue ? ensureArray(props.parsedValue) : [];
 
       const calNow = dayjs().locale(lang.value).startOf('day');
 
@@ -388,8 +388,8 @@ export default defineComponent({
         });
       } else if (props.selectionMode === 'dates') {
         const newValue = cell.selected
-          ? castArray(props.parsedValue).filter((_) => _.valueOf() !== newDate.valueOf())
-          : castArray(props.parsedValue).concat([newDate]);
+          ? ensureArray(props.parsedValue).filter((_) => _.valueOf() !== newDate.valueOf())
+          : ensureArray(props.parsedValue).concat([newDate]);
         ctx.emit('pick', newValue);
       }
     };

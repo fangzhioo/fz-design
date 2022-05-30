@@ -27,7 +27,7 @@ import { computed, defineComponent, nextTick, ref, watch } from 'vue';
 import dayjs from 'dayjs';
 import { useLocale } from '@fzui/hooks';
 import { rangeArr } from '@fzui/components/TimePicker';
-import { castArray, hasClass } from '@fzui/utils';
+import { ensureArray, hasClass } from '@fzui/utils';
 
 import type { PropType } from 'vue';
 import type { Dayjs } from 'dayjs';
@@ -85,7 +85,7 @@ export default defineComponent({
 
       style.disabled = props.disabledDate ? datesInYear(year, lang.value).every(props.disabledDate) : false;
 
-      style.current = props.parsedValue && castArray(props.parsedValue).findIndex((_) => _.year() === year) >= 0;
+      style.current = props.parsedValue && ensureArray(props.parsedValue).findIndex((_) => _.year() === year) >= 0;
 
       style.today = today.year() === year;
 
@@ -95,7 +95,7 @@ export default defineComponent({
     const isSelectedCell = (year: any) => {
       return (
         (year === startYear.value && props.date.year() < startYear.value && props.date.year() > startYear.value + 9) ||
-        castArray(props.date).findIndex((_) => _.year() === year) >= 0
+        ensureArray(props.date).findIndex((_) => _.year() === year) >= 0
       );
     };
 

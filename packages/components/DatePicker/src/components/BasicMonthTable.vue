@@ -29,7 +29,7 @@ import { computed, defineComponent, nextTick, ref, watch } from 'vue';
 import dayjs from 'dayjs';
 import { useLocale } from '@fzui/hooks';
 import { rangeArr } from '@fzui/components/TimePicker';
-import { castArray, hasClass, Nullable } from '@fzui/utils';
+import { ensureArray, hasClass, Nullable } from '@fzui/utils';
 
 import type { PropType } from 'vue';
 import type { Dayjs } from 'dayjs';
@@ -168,7 +168,7 @@ export default defineComponent({
       const month = Number(cell.text);
 
       style.disabled = props.disabledDate ? datesInMonth(year, month, lang.value).every(props.disabledDate) : false;
-      style.current = props.parsedValue && castArray(props.parsedValue).findIndex((date) => date.year() === year && date.month() === month) >= 0;
+      style.current = props.parsedValue && ensureArray(props.parsedValue).findIndex((date) => date.year() === year && date.month() === month) >= 0;
       style.today = today.getFullYear() === year && today.getMonth() === month;
 
       if (cell.inRange) {
@@ -188,7 +188,7 @@ export default defineComponent({
     const isSelectedCell = (cell: DateCell) => {
       const year = props.date.year();
       const month = cell.text;
-      return castArray(props.date).findIndex((date) => date.year() === year && date.month() === month) >= 0;
+      return ensureArray(props.date).findIndex((date) => date.year() === year && date.month() === month) >= 0;
     };
 
     const handleMouseMove = (event: any) => {

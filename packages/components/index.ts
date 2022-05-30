@@ -42,6 +42,7 @@ import { SwitchPlugin } from './Switch';
 import { TimePickerPlugin } from './TimePicker';
 import { RichEditorPlugin } from './RichEditor';
 import { DatePickerPlugin } from './DatePicker';
+import { FormPlugin } from './Form';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
@@ -83,6 +84,7 @@ const FzUIPlugin: Plugin = {
     TimePickerPlugin.install?.(app);
     RichEditorPlugin.install?.(app);
     DatePickerPlugin.install?.(app);
+    FormPlugin.install?.(app);
   },
 };
 
@@ -126,3 +128,4 @@ export * from './Switch';
 export * from './TimePicker';
 export * from './RichEditor';
 export * from './DatePicker';
+export * from './Form';

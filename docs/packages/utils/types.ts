@@ -20,6 +20,8 @@ export type SFCWithInstall<T> = T & Plugin;
 
 export type Nullable<T> = T | null;
 
+export type Arrayable<T> = T | T[];
+
 export type RefElement = Nullable<HTMLElement>;
 
 export type CustomizedHTMLElement<T> = HTMLElement & T;

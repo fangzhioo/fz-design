@@ -18,7 +18,7 @@ export const ValidateIconsMap: Record<string, string> = {
 export const PENDANT_MAP = {
   suffix: 'append',
   prefix: 'prepend',
-} as const;
+};
 
 export const inputProps = {
   size: {

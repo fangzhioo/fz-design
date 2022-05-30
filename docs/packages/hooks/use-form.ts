@@ -1,45 +1,48 @@
-import { inject } from 'vue';
+import { inject, SetupContext, UnwrapRef } from 'vue';
+import type { RuleItem, ValidateError, ValidateFieldsError } from 'async-validator';
 import { FZ_FORM_INJECT_KEY, FZ_FORMITEM_INJECT_KEY } from '@fzui/constants';
-import { ComponentSize } from './use-size';
+import { FormItemProps, FormProps, FormEmits, FormItemProp, FormLabelWidthContext } from '@fzui/components';
 
-export interface ValidateFieldCallback {
-  (isValid?: string, invalidFields?: any): void;
+import type { Arrayable } from '@fzui/utils';
+import type { ComponentSize } from './use-size';
+
+export interface FormItemRule extends RuleItem {
+  trigger?: Arrayable<string>;
+}
+export type FormRules = Partial<Record<string, Arrayable<FormItemRule>>>;
+
+export type FormValidationResult = Promise<boolean>;
+export type FormValidateCallback = (isValid: boolean, invalidFields?: ValidateFieldsError) => void;
+export interface FormValidateFailure {
+  errors: ValidateError[] | null;
+  fields: ValidateFieldsError;
 }
 
-export interface FzFormItemContext {
-  prop?: string;
+export interface FzFormItemContext extends FormItemProps {
+  $el?: HTMLDivElement;
   size?: ComponentSize;
   validateState: string;
-  $el: HTMLDivElement;
-  validate(trigger: string, callback?: ValidateFieldCallback): Promise<any>;
-  updateComputedLabelWidth(width: number): void;
-  evaluateValidationEnabled(): void;
-  resetField(): void;
-  clearValidate(): void;
+  isGroup: boolean;
+  labelId: string;
+  inputIds: string[];
+  addInputId: (id: string) => void;
+  removeInputId: (id: string) => void;
+  validate: (trigger: string, callback?: FormValidateCallback) => FormValidationResult;
+  resetField: () => void;
+  clearValidate: () => void;
 }
-export interface FzFormContext {
-  registerLabelWidth(width: number, oldWidth: number): void;
-  deregisterLabelWidth(width: number): void;
-  autoLabelWidth: string | undefined;
-  emit: (evt: string, ...args: any[]) => void;
-  addField: (field: FzFormItemContext) => void;
-  removeField: (field: FzFormItemContext) => void;
-  resetFields: () => void;
-  clearValidate: (props: string | string[]) => void;
-  validateField: (props: string | string[], cb: ValidateFieldCallback) => void;
-  labelSuffix: string;
-  inline?: boolean;
-  inlineMessage?: boolean;
-  model?: Record<string, unknown>;
-  size?: ComponentSize;
-  showMessage?: boolean;
-  labelPosition?: string;
-  labelWidth?: string | number;
-  rules?: Record<string, unknown>;
-  statusIcon?: boolean;
-  hideRequiredAsterisk?: boolean;
-  disabled?: boolean;
-}
+
+export type FzFormContext = FormProps &
+  UnwrapRef<FormLabelWidthContext> & {
+    emit: SetupContext<FormEmits>['emit'];
+
+    // expose
+    addField: (field: FzFormItemContext) => void;
+    removeField: (field: FzFormItemContext) => void;
+    resetFields: (props?: Arrayable<FormItemProp>) => void;
+    clearValidate: (props?: Arrayable<FormItemProp>) => void;
+    validateField: (props?: Arrayable<FormItemProp>, callback?: FormValidateCallback) => FormValidationResult;
+  };
 
 export const useForm = () => {
   const form = inject<FzFormContext | undefined>(FZ_FORM_INJECT_KEY, undefined);

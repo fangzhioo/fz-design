@@ -29,7 +29,13 @@
 .fz-radio.fz-radio--large {
   height: 40px;
 }
+.fz-radio.fz-radio--medium {
+  height: 32px;
+}
 .fz-radio.fz-radio--small {
+  height: 28px;
+}
+.fz-radio.fz-radio--mini {
   height: 24px;
 }
 .fz-radio.is-bordered {
@@ -61,12 +67,25 @@
   border-radius: var(--fz-border-radius-base);
 }
 .fz-radio.is-bordered.fz-radio--small .fz-radio__label {
-  font-size: 12px;
+  font-size: 13px;
 }
 .fz-radio.is-bordered.fz-radio--small .fz-radio__inner {
+  height: 13px;
+  width: 13px;
+}
+
+.fz-radio.is-bordered.fz-radio--mini {
+  padding: 0 7px 0 5px;
+  border-radius: var(--fz-border-radius-base);
+}
+.fz-radio.is-bordered.fz-radio--mini .fz-radio__label {
+  font-size: 12px;
+}
+.fz-radio.is-bordered.fz-radio--mini .fz-radio__inner {
   height: 12px;
   width: 12px;
 }
+
 .fz-radio:last-child {
   margin-right: 0;
 }

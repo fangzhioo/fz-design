@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.23
+
+### Features
+
+- ✨ 新增表单（Form）组件；
+
 ## 0.0.22
 
 ### Features

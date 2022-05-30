@@ -1,6 +1,8 @@
 import { camelize, toRawType, isString, isObject, isFunction, isArray, isPromise, hasOwn } from '@vue/shared';
 import { isBoolean, isNumber, isClient } from '@vueuse/core';
+import { Arrayable } from '.';
 import { debugWarn } from './error';
+import { get, set } from './lodash';
 
 /**
  * 返回0到n-1的数字数组
@@ -69,8 +71,8 @@ export const merge = <T extends Record<string, any>>(a: T, b: T) => {
  */
 export const escapeRegexpString = (value = ''): string => String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
 
-// like _.castArray
-export const castArray = (arr: any): any[] => {
+// like _.ensureArray
+export const ensureArray = (arr: any): any[] => {
   if (!arr && arr !== 0) return [];
   return isArray(arr) ? arr : [arr];
 };
@@ -80,3 +82,21 @@ export const isUndefined = (val: any): val is undefined => val === undefined;
 export const isEmpty = (val: unknown) => (!val && val !== 0) || (isArray(val) && val.length === 0) || (isObject(val) && !Object.keys(val).length);
 
 export { isClient, isString, isObject, isArray, isPromise, isFunction, isBoolean, isNumber, camelize, hasOwn };
+
+/**
+ * like _.get
+ * @param obj obj
+ * @param path path
+ * @param defaultValue defaultValue
+ * @returns
+ */
+export const getProp = <T = any>(obj: Record<string, any>, path: Arrayable<string>, defaultValue?: any): { value: T } => {
+  return {
+    get value() {
+      return get(obj, path, defaultValue);
+    },
+    set value(val: any) {
+      set(obj, path, val);
+    },
+  };
+};
