@@ -6,8 +6,8 @@
   --fz-radio-input-width: 14px;
   --fz-radio-input-border-radius: var(--fz-border-radius-circle);
   --fz-radio-input-bg-color: var(--fz-color-white);
-  --fz-radio-input-border: var(--fz-border-base);
-  --fz-radio-input-border-color: var(--fz-border-color-base);
+  --fz-radio-input-border: var(--fz-border);
+  --fz-radio-input-border-color: var(--fz-border-color);
   --fz-radio-input-border-color-hover: var(--fz-color-primary);
 }
 .fz-radio {
@@ -41,7 +41,7 @@
 .fz-radio.is-bordered {
   padding: 0 15px 0 9px;
   border-radius: var(--fz-border-radius-base);
-  border: var(--fz-border-base);
+  border: var(--fz-border);
   box-sizing: border-box;
 }
 .fz-radio.is-bordered.is-checked {
@@ -98,20 +98,20 @@
   vertical-align: middle;
 }
 .fz-radio__input.is-disabled .fz-radio__inner {
-  background-color: var(--fz-disabled-fill-base);
-  border-color: var(--fz-disabled-border-base);
+  background-color: var(--fz-disabled-bg-color);
+  border-color: var(--fz-disabled-border-color);
   cursor: not-allowed;
 }
 .fz-radio__input.is-disabled .fz-radio__inner::after {
   cursor: not-allowed;
-  background-color: var(--fz-disabled-fill-base);
+  background-color: var(--fz-disabled-bg-color);
 }
 .fz-radio__input.is-disabled .fz-radio__inner + .fz-radio__label {
   cursor: not-allowed;
 }
 .fz-radio__input.is-disabled.is-checked .fz-radio__inner {
-  background-color: var(--fz-disabled-fill-base);
-  border-color: var(--fz-disabled-border-base);
+  background-color: var(--fz-disabled-bg-color);
+  border-color: var(--fz-disabled-border-color);
 }
 .fz-radio__input.is-disabled.is-checked .fz-radio__inner::after {
   background-color: var(--fz-text-color-placeholder);

@@ -6,17 +6,17 @@
   --fz-checkbox-input-width: 14px;
   --fz-checkbox-border-radius: var(--fz-border-radius-small);
   --fz-checkbox-bg-color: var(--fz-color-white);
-  --fz-checkbox-input-border: var(--fz-border-base);
-  --fz-checkbox-disabled-border-color: var(--fz-border-color-base);
-  --fz-checkbox-disabled-input-fill: var(--fz-border-color-lightest);
+  --fz-checkbox-input-border: var(--fz-border);
+  --fz-checkbox-disabled-border-color: var(--fz-border-color);
+  --fz-checkbox-disabled-input-fill: var(--fz-border-color-extra-light);
   --fz-checkbox-disabled-icon-color: var(--fz-text-color-placeholder);
-  --fz-checkbox-disabled-checked-input-fill: var(--fz-border-color-lightest);
-  --fz-checkbox-disabled-checked-input-border-color: var(--fz-border-color-base);
+  --fz-checkbox-disabled-checked-input-fill: var(--fz-border-color-extra-light);
+  --fz-checkbox-disabled-checked-input-border-color: var(--fz-border-color);
   --fz-checkbox-disabled-checked-icon-color: var(--fz-text-color-placeholder);
   --fz-checkbox-checked-text-color: var(--fz-color-primary);
   --fz-checkbox-checked-input-border-color: var(--fz-color-primary);
   --fz-checkbox-checked-bg-color: var(--fz-color-primary);
-  --fz-checkbox-checked-icon-color: var(--fz-fill-base);
+  --fz-checkbox-checked-icon-color: var(--fz-fill-color);
   --fz-checkbox-input-border-color-hover: var(--fz-color-primary);
 }
 .fz-checkbox {
@@ -48,7 +48,7 @@
 .fz-checkbox.is-bordered {
   padding: 0 20px 0 10px;
   border-radius: var(--fz-border-radius-base);
-  border: var(--fz-border-base);
+  border: var(--fz-border);
   box-sizing: border-box;
 }
 .fz-checkbox.is-bordered.is-checked {
@@ -290,7 +290,7 @@
   color: var(--fz-checkbox-button-checked-text-color);
   background-color: var(--fz-checkbox-button-checked-bg-color);
   border-color: var(--fz-checkbox-button-checked-border-color);
-  box-shadow: -1px 0 0 0 var(--fz-color-primary-light-4);
+  box-shadow: -1px 0 0 0 var(--fz-color-primary-light-5);
 }
 .fz-checkbox-button.is-checked:first-child .fz-checkbox-button__inner {
   border-left-color: var(--fz-checkbox-button-checked-border-color);

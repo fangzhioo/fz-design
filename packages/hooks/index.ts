@@ -20,3 +20,4 @@ export * from './use-draggable';
 export * from './use-modal';
 export * from './use-restore-active';
 export * from './use-lockscreen';
+export * from './use-cursor';

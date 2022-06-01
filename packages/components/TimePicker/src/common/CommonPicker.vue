@@ -22,7 +22,7 @@
     <template #default>
       <fz-input
         v-if="!isRangeInput"
-        :id="id"
+        :id="singleInputId"
         ref="inputRef"
         :model-value="displayValue"
         :name="name"
@@ -128,7 +128,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed, nextTick, inject, watch, provide, unref } from 'vue';
 import { onClickOutside } from '@vueuse/core';
-import { isEqual, debugWarn } from '@fzui/utils';
+import { isEqual, debugWarn, get } from '@fzui/utils';
 import { BLUR_EVENT, CHANGE_EVENT, EVENT_CODE, UPDATE_MODEL_EVENT, FZ_POPPER_OPTIONS_INJECT_KEY, FZ_PICKER_BASE_INJECT_KEY } from '@fzui/constants';
 import { Icon, Input, PopperjsCoreOptions, Tooltip } from '@fzui/components';
 import { useForm, useLocale, useSize } from '@fzui/hooks';
@@ -157,6 +157,12 @@ export default defineComponent({
     const pickerActualVisible = ref(false);
     const valueOnOpen = ref<PickerModelValue>();
     const userInput = ref<any>(null);
+    const singleInputId = computed<string>(() => {
+      if (typeof props.id === 'string') {
+        return props.id;
+      }
+      return get(props.id, '[0]');
+    });
 
     const comStyle = computed<any>(() => ctx.attrs.style);
 
@@ -539,6 +545,7 @@ export default defineComponent({
       popperOptions,
       comStyle,
 
+      singleInputId,
       isDatesPicker,
       handleEndChange,
       handleStartChange,

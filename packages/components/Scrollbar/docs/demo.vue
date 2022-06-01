@@ -12,7 +12,7 @@
   line-height: 60px;
   text-align: center;
   margin-bottom: 10px;
-  background-color: var(--fz-background-color-lighter, #eee);
+  background-color: var(--fz-fill-color-lighter, #eee);
   color: var(--fz-color-white, #66ccff);
 }
 </style>

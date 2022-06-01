@@ -1,6 +1,6 @@
 .fz-select {
   --fz-select-border-color-hover: var(--fz-border-color-hover);
-  --fz-select-disabled-border: var(--fz-disabled-border-base);
+  --fz-select-disabled-border: var(--fz-disabled-border-color);
   --fz-select-font-size: var(--fz-font-size-base);
   --fz-select-close-hover-color: var(--fz-text-color-secondary);
   --fz-select-input-color: var(--fz-text-color-placeholder);
@@ -110,7 +110,7 @@
   &:hover:not(.fz-select--disabled) .fz-input__inner {
     border-color: var(--fz-select-border-color-hover);
   }
-  
+
   // select-input
   &__input {
     border: none;
@@ -237,7 +237,7 @@
     // hover
     &.hover,
     &:hover {
-      background-color: var(--fz-background-color-lightest);
+      background-color: var(--fz-fill-color-extra-light);
     }
     // selected
     &.selected {
@@ -245,7 +245,7 @@
       font-weight: 700;
     }
   }
-  
+
   // multiple
   &.is-multiple {
     .fz-select-dropdown__item.selected {
@@ -253,7 +253,7 @@
       background-color: var(--fz-color-white);
     }
     .fz-select-dropdown__item.selected.hover {
-      background-color: var(--fz-background-color-lightest);
+      background-color: var(--fz-fill-color-extra-light);
     }
     .fz-select-dropdown__item.selected .fz-icon {
       position: absolute;

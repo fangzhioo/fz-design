@@ -3,8 +3,8 @@
   --fz-table-border: 1px solid var(--fz-table-border-color);
   --fz-table-text-color: var(--fz-text-color-regular);
   --fz-table-header-text-color: var(--fz-text-color-secondary);
-  --fz-table-row-hover-bg-color: var(--fz-background-color-base);
-  --fz-table-current-row-bg-color: var(--fz-background-color-light);
+  --fz-table-row-hover-bg-color: var(--fz-fill-color);
+  --fz-table-current-row-bg-color: var(--fz-fill-color-light);
   --fz-table-header-bg-color: var(--fz-color-white);
   --fz-table-fixed-box-shadow: 0 0 10px rgba(0, 0, 0, 0.12);
   --fz-table-bg-color: var(--fz-color-white);
@@ -449,7 +449,7 @@
   z-index: -1;
 }
 .fz-table--striped .fz-table__body tr.fz-table__row--striped td.fz-table__cell {
-  background: var(--fz-background-color-base);
+  background: var(--fz-fill-color);
 }
 .fz-table--striped .fz-table__body tr.fz-table__row--striped.current-row td.fz-table__cell {
   background-color: var(--fz-table-current-row-bg-color);
@@ -546,7 +546,7 @@
 }
 .fz-table-filter__list-item:hover {
   background-color: var(--fz-color-primary-light-9);
-  color: var(--fz-color-primary-light-2);
+  color: var(--fz-fill-color-blank);
 }
 .fz-table-filter__list-item.is-active {
   background-color: var(--fz-color-primary);

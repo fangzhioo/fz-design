@@ -23,7 +23,7 @@ export default defineConfig({
       },
       // A function providing the Markdown It instance gets the ability to apply custom settings/plugins
       markdownItSetup(md) {
-        // for example
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         md.use(require('markdown-it-anchor'), {
           permalinkClass: 'anchor',
           permalinkSpace: true,

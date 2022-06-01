@@ -149,10 +149,11 @@ export default defineComponent({
     });
 
     onMounted(() => {
-      inputRef.value!.inputOrTextarea!.setAttribute('role', 'textbox');
-      inputRef.value!.inputOrTextarea!.setAttribute('aria-autocomplete', 'list');
-      inputRef.value!.inputOrTextarea!.setAttribute('aria-controls', 'id');
-      inputRef.value!.inputOrTextarea!.setAttribute('aria-activedescendant', `${id.value}-item-${highlightedIndex.value}`);
+      (inputRef.value as any).ref!.setAttribute('role', 'textbox');
+      (inputRef.value as any).ref!.setAttribute('aria-autocomplete', 'list');
+      (inputRef.value as any).ref!.setAttribute('aria-controls', 'id');
+      (inputRef.value as any).ref!.setAttribute('aria-activedescendant', `${id.value}-item-${highlightedIndex.value}`);
+
       const $ul = regionRef.value!.querySelector('.fz-autocomplete-suggestion__list');
       $ul!.setAttribute('role', 'listbox');
       $ul!.setAttribute('id', id.value);
@@ -224,7 +225,8 @@ export default defineComponent({
         suggestion.scrollTop -= scrollHeight;
       }
       highlightedIndex.value = index;
-      inputRef.value!.inputOrTextarea!.setAttribute('aria-activedescendant', `${id.value}-item-${highlightedIndex.value}`);
+
+      (inputRef.value as any).ref!.setAttribute('aria-activedescendant', `${id.value}-item-${highlightedIndex.value}`);
     };
 
     const handleInput = (value: string | number) => {

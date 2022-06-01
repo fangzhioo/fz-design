@@ -1,10 +1,10 @@
 import { getCurrentInstance, computed } from 'vue';
 import type { ComputedRef } from 'vue';
-import { fromPairs } from '@fzui/utils';
+import { debugWarn, fromPairs } from '@fzui/utils';
 
 interface Params {
   excludeListeners?: boolean;
-  excludeKeys?: string[];
+  excludeKeys?: ComputedRef<string[]>;
 }
 
 const DEFAULT_EXCLUDE_KEYS = ['class', 'style'];
@@ -16,12 +16,14 @@ const LISTENER_PREFIX = /^on[A-Z]/;
  * @returns attrs
  */
 export const useAttrs = (params: Params = {}): ComputedRef<Record<string, unknown>> => {
-  const { excludeListeners = false, excludeKeys = [] } = params;
-  const allExcludeKeys = excludeKeys.concat(DEFAULT_EXCLUDE_KEYS);
+  const { excludeListeners = false, excludeKeys } = params;
+  const allExcludeKeys = computed<string[]>(() => {
+    return (excludeKeys?.value || []).concat(DEFAULT_EXCLUDE_KEYS);
+  });
 
   const instance = getCurrentInstance();
   if (!instance) {
-    // debugWarn('use-attrs', 'getCurrentInstance() returned null. useAttrs() must be called at the top of a setup function');
+    debugWarn('use-attrs', 'getCurrentInstance() returned null. useAttrs() must be called at the top of a setup function');
     return computed(() => ({}));
   }
 
@@ -29,7 +31,7 @@ export const useAttrs = (params: Params = {}): ComputedRef<Record<string, unknow
     fromPairs(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-      Object.entries(instance.proxy?.$attrs!).filter(([key]) => !allExcludeKeys.includes(key) && !(excludeListeners && LISTENER_PREFIX.test(key))),
+      Object.entries(instance.proxy?.$attrs!).filter(([key]) => !allExcludeKeys.value.includes(key) && !(excludeListeners && LISTENER_PREFIX.test(key))),
     ),
   );
 };

@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, PropType } from 'vue';
 import { ComponentSize } from '@fzui/hooks';
-import { UPDATE_MODEL_EVENT } from '@fzui/constants';
+import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '@fzui/constants';
 import { isString } from '@fzui/utils';
 import type Input from './Input.vue';
 
@@ -8,6 +8,7 @@ export type InputModelValue = string | number | null | undefined;
 export type InputSize = ComponentSize;
 export type AutoSize = { minRows?: number; maxRows?: number } | boolean;
 export type TargetElement = HTMLInputElement | HTMLTextAreaElement;
+export type ResizeType = 'none' | 'both' | 'horizontal' | 'vertical';
 
 export const ValidateIconsMap: Record<string, string> = {
   validating: 'loading',
@@ -21,12 +22,16 @@ export const PENDANT_MAP = {
 };
 
 export const inputProps = {
+  id: {
+    type: String,
+    default: undefined,
+  },
   size: {
     type: String as PropType<InputSize>,
   },
   disabled: Boolean,
   modelValue: {
-    type: [String, Number] as PropType<InputModelValue>,
+    type: [String, Number, Object] as PropType<InputModelValue>,
     default: '',
   },
   type: {
@@ -34,8 +39,7 @@ export const inputProps = {
     default: 'text',
   },
   resize: {
-    type: String,
-    values: ['none', 'both', 'horizontal', 'vertical'],
+    type: String as PropType<ResizeType>,
   },
   autosize: {
     type: [Boolean, Object] as PropType<AutoSize>,
@@ -44,6 +48,12 @@ export const inputProps = {
   autocomplete: {
     type: String,
     default: 'off',
+  },
+  formatter: {
+    type: Function,
+  },
+  parser: {
+    type: Function,
   },
   placeholder: {
     type: String,
@@ -76,11 +86,17 @@ export const inputProps = {
     type: String,
     default: '',
   },
+  containerRole: {
+    type: String,
+    default: undefined,
+  },
   label: {
     type: String,
+    default: undefined,
   },
   tabindex: {
-    type: [Number, String],
+    type: [String, Number],
+    default: 0,
   },
   validateEvent: {
     type: Boolean,
@@ -94,10 +110,10 @@ export const inputProps = {
 
 export const inputEmits = {
   [UPDATE_MODEL_EVENT]: (value: string) => isString(value),
-  input: (value: string) => isString(value),
-  change: (value: string) => isString(value),
-  focus: (evt: FocusEvent) => evt instanceof FocusEvent,
-  blur: (evt: FocusEvent) => evt instanceof FocusEvent,
+  [INPUT_EVENT]: (value: string) => isString(value),
+  [CHANGE_EVENT]: (value: string) => isString(value),
+  [FOCUS_EVENT]: (evt: FocusEvent) => evt instanceof FocusEvent,
+  [BLUR_EVENT]: (evt: FocusEvent) => evt instanceof FocusEvent,
   clear: () => true,
   mouseleave: (evt: MouseEvent) => evt instanceof MouseEvent,
   mouseenter: (evt: MouseEvent) => evt instanceof MouseEvent,

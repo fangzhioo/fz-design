@@ -33,7 +33,7 @@ pre[class*='language-'] {
   padding: 0;
   background: hsl(230, 1%, 98%);
   color: hsl(230, 8%, 24%);
-  /* background-color: var(--fz-background-color-lighter);
+  /* background-color: var(--fz-fill-color-lighter);
   color: var(--fz-text-color-regular); */
   font-family: 'Fira Code', 'Fira Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
   direction: ltr;

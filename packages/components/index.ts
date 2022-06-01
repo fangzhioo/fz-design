@@ -43,6 +43,8 @@ import { TimePickerPlugin } from './TimePicker';
 import { RichEditorPlugin } from './RichEditor';
 import { DatePickerPlugin } from './DatePicker';
 import { FormPlugin } from './Form';
+import { InputNumberPlugin } from './InputNumber';
+import { SliderPlugin } from './Slider';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
@@ -85,6 +87,8 @@ const FzUIPlugin: Plugin = {
     RichEditorPlugin.install?.(app);
     DatePickerPlugin.install?.(app);
     FormPlugin.install?.(app);
+    InputNumberPlugin.install?.(app);
+    SliderPlugin.install?.(app);
   },
 };
 
@@ -129,3 +133,5 @@ export * from './TimePicker';
 export * from './RichEditor';
 export * from './DatePicker';
 export * from './Form';
+export * from './InputNumber';
+export * from './Slider';

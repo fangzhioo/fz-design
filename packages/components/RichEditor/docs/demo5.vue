@@ -76,7 +76,7 @@ const handleToggleStrike = (editor: Editor) => {
     font-size: 20px;
 
     &:hover {
-      background-color: var(--fz-background-color-lighter, #dcdfe6);
+      background-color: var(--fz-fill-color-lighter, #dcdfe6);
     }
 
     &[disabled] {

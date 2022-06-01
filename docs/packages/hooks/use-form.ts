@@ -1,10 +1,11 @@
-import { inject, SetupContext, UnwrapRef } from 'vue';
+import { computed, ComputedRef, inject, onMounted, onUnmounted, ref, Ref, SetupContext, toRef, UnwrapRef, watch, WatchStopHandle } from 'vue';
 import type { RuleItem, ValidateError, ValidateFieldsError } from 'async-validator';
 import { FZ_FORM_INJECT_KEY, FZ_FORMITEM_INJECT_KEY } from '@fzui/constants';
 import { FormItemProps, FormProps, FormEmits, FormItemProp, FormLabelWidthContext } from '@fzui/components';
 
 import type { Arrayable } from '@fzui/utils';
 import type { ComponentSize } from './use-size';
+import { useId } from './use-id';
 
 export interface FormItemRule extends RuleItem {
   trigger?: Arrayable<string>;
@@ -50,5 +51,69 @@ export const useForm = () => {
   return {
     form,
     formItem,
+  };
+};
+
+export type IUseFormItemInputCommonProps = {
+  id?: string;
+  label?: string | number | boolean | Record<string, any>;
+};
+
+export const useFormItemInputId = (
+  props: Partial<IUseFormItemInputCommonProps>,
+  {
+    formItemContext,
+    disableIdGeneration,
+    disableIdManagement,
+  }: {
+    formItemContext?: FzFormItemContext;
+    disableIdGeneration?: ComputedRef<boolean> | Ref<boolean>;
+    disableIdManagement?: ComputedRef<boolean> | Ref<boolean>;
+  },
+) => {
+  if (!disableIdGeneration) {
+    disableIdGeneration = ref<boolean>(false);
+  }
+  if (!disableIdManagement) {
+    disableIdManagement = ref<boolean>(false);
+  }
+
+  const inputId = ref<string>();
+  let idUnwatch: WatchStopHandle | undefined = undefined;
+
+  const isLabeledByFormItem = computed<boolean>(() => {
+    return !!(!props.label && formItemContext && formItemContext.inputIds && formItemContext.inputIds?.length <= 1);
+  });
+
+  // Generate id for ElFormItem label if not provided as prop
+  onMounted(() => {
+    idUnwatch = watch(
+      [toRef(props, 'id'), disableIdGeneration] as any,
+      ([id, disableIdGeneration]: [string, boolean]) => {
+        const newId = id ?? (!disableIdGeneration ? useId().value : undefined);
+        if (newId !== inputId.value) {
+          if (formItemContext?.removeInputId) {
+            inputId.value && formItemContext.removeInputId(inputId.value);
+            if (!disableIdManagement?.value && !disableIdGeneration && newId) {
+              formItemContext.addInputId(newId);
+            }
+          }
+          inputId.value = newId;
+        }
+      },
+      { immediate: true },
+    );
+  });
+
+  onUnmounted(() => {
+    idUnwatch && idUnwatch();
+    if (formItemContext?.removeInputId) {
+      inputId.value && formItemContext.removeInputId(inputId.value);
+    }
+  });
+
+  return {
+    isLabeledByFormItem,
+    inputId,
   };
 };

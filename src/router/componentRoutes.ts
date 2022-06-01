@@ -249,6 +249,20 @@ export const componentRoutes = [
         meta: {
           title: '表单',
         }
+      },{
+        name: 'ComponentSlider',
+        path: '/components/Slider',
+        component: () => import('@fzui/components/Slider/docs/README.md'),
+        meta: {
+          title: '滑块',
+        }
+      },{
+        name: 'ComponentInputNumber',
+        path: '/components/InputNumber',
+        component: () => import('@fzui/components/InputNumber/docs/README.md'),
+        meta: {
+          title: '数字输入框',
+        }
       }
 ];
 

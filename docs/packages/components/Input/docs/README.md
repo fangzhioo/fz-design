@@ -3,6 +3,7 @@
 import demo from './demo.vue'
 import demo2 from './demo2.vue'
 import demo3 from './demo3.vue'
+import demo4 from './demo4.vue'
 </script>
 <!-- 加载 demo 组件 end -->
 
@@ -28,6 +29,14 @@ import demo3 from './demo3.vue'
 
 <demo-preview comp-name="Input" demo-name="demo3">
   <demo3 />
+</demo-preview>
+
+## 尺寸
+
+使用 `size` 属性改变输入框大小。 除了默认大小外，还有另外选项： `large`, `small`, `mini`。
+
+<demo-preview comp-name="Input" demo-name="demo4">
+  <demo4 />
 </demo-preview>
 
 ## 属性

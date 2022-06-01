@@ -27,7 +27,7 @@ const data = reactive({
 
 <style lang="less" scoped>
 .my-doc-aside {
-  border-right: var(--fz-border-base);
+  border-right: var(--fz-border);
 }
 .link-item {
   padding: 6px;

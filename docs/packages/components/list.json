@@ -349,5 +349,23 @@
     "compClassName": "form",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "InputNumber",
+    "compZhName": "数字输入框",
+    "compDesc": "仅允许输入标准的数字值，可定义范围",
+    "compDoc": true,
+    "compClassName": "input-number",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Slider",
+    "compZhName": "滑块",
+    "compDesc": "通过拖动滑块在一个固定区间内进行选择",
+    "compDoc": true,
+    "compClassName": "slider",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]
