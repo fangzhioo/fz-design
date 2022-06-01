@@ -1,0 +1,30 @@
+.fz-image {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+
+  .fz-image__error,
+  .fz-image__inner,
+  .fz-image__placeholder {
+    width: 100%;
+    height: 100%;
+  }
+  .fz-image__inner {
+    vertical-align: top;
+  }
+  .fz-image__placeholder {
+    background: var(--fz-fill-color-light);
+  }
+  .fz-image__error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    background: var(--fz-fill-color-light);
+    color: var(--fz-text-color-placeholder);
+    vertical-align: middle;
+  }
+  .fz-image__preview {
+    cursor: pointer;
+  }
+}

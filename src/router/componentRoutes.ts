@@ -250,6 +250,13 @@ export const componentRoutes = [
           title: '表单',
         }
       },{
+        name: 'ComponentInputNumber',
+        path: '/components/InputNumber',
+        component: () => import('@fzui/components/InputNumber/docs/README.md'),
+        meta: {
+          title: '数字输入框',
+        }
+      },{
         name: 'ComponentSlider',
         path: '/components/Slider',
         component: () => import('@fzui/components/Slider/docs/README.md'),
@@ -257,11 +264,11 @@ export const componentRoutes = [
           title: '滑块',
         }
       },{
-        name: 'ComponentInputNumber',
-        path: '/components/InputNumber',
-        component: () => import('@fzui/components/InputNumber/docs/README.md'),
+        name: 'ComponentImage',
+        path: '/components/Image',
+        component: () => import('@fzui/components/Image/docs/README.md'),
         meta: {
-          title: '数字输入框',
+          title: '图片',
         }
       }
 ];

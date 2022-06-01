@@ -46,18 +46,29 @@ export const getStyle = (element: HTMLElement, styleName: any): string => {
   }
 };
 
-export const isScroll = (el: HTMLElement, isVertical?: Nullable<boolean>): RegExpMatchArray | null => {
-  if (!isClient) {
-    return null;
-  }
-  const determinedDirection = isVertical === null || isVertical === undefined;
-  // eslint-disable-next-line no-nested-ternary
-  const overflow = determinedDirection ? getStyle(el, 'overflow') : isVertical ? getStyle(el, 'overflow-y') : getStyle(el, 'overflow-x');
+// export const isScroll = (el: HTMLElement, isVertical?: Nullable<boolean>): RegExpMatchArray | null => {
+//   if (!isClient) {
+//     return null;
+//   }
+//   const determinedDirection = isVertical === null || isVertical === undefined;
+//   // eslint-disable-next-line no-nested-ternary
+//   const overflow = determinedDirection ? getStyle(el, 'overflow') : isVertical ? getStyle(el, 'overflow-y') : getStyle(el, 'overflow-x');
 
-  return overflow.match(/(scroll|auto|overlay)/);
+//   return overflow.match(/(scroll|auto|overlay)/);
+// };
+
+export const isScroll = (el: HTMLElement, isVertical?: boolean): boolean => {
+  if (!isClient) return false;
+  const key = {
+    undefined: 'overflow',
+    true: 'overflow-y',
+    false: 'overflow-x',
+  }[String(isVertical)]!;
+  const overflow = getStyle(el, key);
+  return ['scroll', 'auto', 'overlay'].some((s) => overflow.includes(s));
 };
 
-export const getScrollContainer = (el: HTMLElement, isVertical?: Nullable<boolean>): HTMLElement | undefined => {
+export const getScrollContainer = (el: HTMLElement, isVertical?: boolean): HTMLElement | undefined => {
   if (!isClient) {
     return;
   }
@@ -271,4 +282,29 @@ export const getClientXY = (event: MouseEvent | TouchEvent | Event) => {
     clientX,
     clientY,
   };
+};
+
+/**
+ * 判断元素是否在容器中
+ * @param el 元素
+ * @param container 容器
+ * @returns boolean
+ */
+export const isInContainer = (el?: Element, container?: Element | Window): boolean => {
+  if (!isClient || !el || !container) return false;
+
+  const elRect = el.getBoundingClientRect();
+
+  let containerRect: Pick<DOMRect, 'top' | 'bottom' | 'left' | 'right'>;
+  if (container instanceof Element) {
+    containerRect = container.getBoundingClientRect();
+  } else {
+    containerRect = {
+      top: 0,
+      right: window.innerWidth,
+      bottom: window.innerHeight,
+      left: 0,
+    };
+  }
+  return elRect.top < containerRect.bottom && elRect.bottom > containerRect.top && elRect.right > containerRect.left && elRect.left < containerRect.right;
 };

@@ -100,3 +100,5 @@ export const getProp = <T = any>(obj: Record<string, any>, path: Arrayable<strin
     },
   };
 };
+
+export const keysOf = <T>(arr: T) => Object.keys(arr) as Array<keyof T>;

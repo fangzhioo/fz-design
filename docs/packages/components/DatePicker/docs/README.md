@@ -5,6 +5,7 @@ import demo2 from './demo2.vue'
 import demo3 from './demo3.vue'
 import demo4 from './demo4.vue'
 import demo5 from './demo5.vue'
+import demo6 from './demo6.vue'
 </script>
 <!-- 加载 demo 组件 end -->
 
@@ -69,6 +70,14 @@ interface DateCell {
   type: 'normal' | 'today' | 'week' | 'next-month' | 'prev-month';
 }
 ```
+
+## 日期时间选择器
+
+设置 type 为 datetimerange 即可选择日期和时间范围。 快捷方式的使用方法与 Date Picker 相同。
+
+<demo-preview comp-name="DatePicker" demo-name="demo6">
+  <demo6 />
+</demo-preview>
 
 ## 属性
 

@@ -51,7 +51,7 @@
       <div
         v-else
         ref="inputRef"
-        class="fz-date-editor fz-range-editor fz-input__inner"
+        class="fz-date-editor fz-range-editor fz-input__wrapper"
         :class="[
           'fz-date-editor--' + type,
           pickerSize ? `fz-range-editor--${pickerSize}` : '',

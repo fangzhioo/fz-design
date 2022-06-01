@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.25
+
+### Features
+
+- ✨ 新增图片（Image）组件；
+- ✨ 新增图片预览（ImageViewer）组件；
+
 ## 0.0.24
 
 ### Features

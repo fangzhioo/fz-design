@@ -45,6 +45,8 @@ import { DatePickerPlugin } from './DatePicker';
 import { FormPlugin } from './Form';
 import { InputNumberPlugin } from './InputNumber';
 import { SliderPlugin } from './Slider';
+import { ImageViewerPlugin } from './ImageViewer';
+import { ImagePlugin } from './Image';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
@@ -89,6 +91,8 @@ const FzUIPlugin: Plugin = {
     FormPlugin.install?.(app);
     InputNumberPlugin.install?.(app);
     SliderPlugin.install?.(app);
+    ImageViewerPlugin.install?.(app);
+    ImagePlugin.install?.(app);
   },
 };
 
@@ -135,3 +139,5 @@ export * from './DatePicker';
 export * from './Form';
 export * from './InputNumber';
 export * from './Slider';
+export * from './ImageViewer';
+export * from './Image';
