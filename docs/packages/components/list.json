@@ -385,5 +385,32 @@
     "compClassName": "image",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Divider",
+    "compZhName": "分割线",
+    "compDesc": "区隔内容的分割线。",
+    "compDoc": true,
+    "compClassName": "divider",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Empty",
+    "compZhName": "空状态",
+    "compDesc": "空状态",
+    "compDoc": true,
+    "compClassName": "empty",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Link",
+    "compZhName": "链接",
+    "compDesc": "文字超链接",
+    "compDoc": true,
+    "compClassName": "link",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]

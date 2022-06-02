@@ -270,6 +270,27 @@ export const componentRoutes = [
         meta: {
           title: '图片',
         }
+      },{
+        name: 'ComponentDivider',
+        path: '/components/Divider',
+        component: () => import('@fzui/components/Divider/docs/README.md'),
+        meta: {
+          title: '分割线',
+        }
+      },{
+        name: 'ComponentEmpty',
+        path: '/components/Empty',
+        component: () => import('@fzui/components/Empty/docs/README.md'),
+        meta: {
+          title: '空状态',
+        }
+      },{
+        name: 'ComponentLink',
+        path: '/components/Link',
+        component: () => import('@fzui/components/Link/docs/README.md'),
+        meta: {
+          title: '链接',
+        }
       }
 ];
 

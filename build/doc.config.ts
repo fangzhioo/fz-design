@@ -29,7 +29,8 @@ export default defineConfig({
           permalinkSpace: true,
           permalinkSymbol: '¶',
         });
-        // md.use(require('markdown-it-prism'))
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        md.use(require('markdown-it-prism'));
         // custom class for table
         md.renderer.rules['table_open'] = () => {
           return '<div class="doc-table"><table>';

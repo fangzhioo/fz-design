@@ -7,12 +7,13 @@
     <transition name="demo-collapse-transition">
       <div v-show="codeVisible" class="source-code">
         <div v-if="loading" style="padding: 50px; text-align: center">加载中……</div>
-        <pre class="language-html"><code class="language-html">{{ previewSourceCode }}</code></pre>
+        <pre v-else class="language-html"><code class="language-html" v-html="previewSourceCode"></code></pre>
       </div>
     </transition>
 
     <div class="preview-bottom">
-      <span name="Code" @click="showSourceCode">{{ codeVisible ? '收起代码' : '查看代码' }}</span>
+      <span v-if="loading">加载中……</span>
+      <span v-else name="Code" @click="showSourceCode">{{ codeVisible ? '收起代码' : '查看代码' }}</span>
     </div>
   </div>
 </template>
@@ -71,11 +72,9 @@ export default {
         } else {
           this.sourceCode = await fetch(`/fz-ui/packages/components/${this.compName}/docs/${this.demoName}.vue`).then((res) => res.text());
         }
+        const html = await Prism.highlight(this.sourceCode || '', Prism.languages.html, 'html');
+        this.sourceCode = html;
       }
-      this.$nextTick(() => {
-        Prism.highlightAll();
-        this.loading = false;
-      });
       this.loading = false;
     },
   },
