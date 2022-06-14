@@ -7,6 +7,7 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, '../src'),
       '@fzui': resolve(__dirname, '../packages'),
+      'fz-ui': resolve(__dirname, '../packages'),
     },
   },
 });

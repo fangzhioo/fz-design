@@ -25,3 +25,5 @@ export const FZ_PICKER_BASE_INJECT_KEY = Symbol('picker-base');
 export const FZ_RICH_EDITOR_INSTANCE_INJECT_KEY = Symbol('rich-editor-instance');
 export const FZ_PICKER_DATE_INJECT_KEY = Symbol('data-picker');
 export const FZ_SLIDER_INJECT_KEY = Symbol('slider');
+export const FZ_LOADING_INSTANCE_INJECT_KEY = Symbol('loading-instance');
+export const FZ_FOCUS_TRAP_INSTANCE_INJECT_KEY = Symbol('focus-trap');

@@ -53,7 +53,7 @@
 
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
-import type { FormInstance, FormRules } from '@fzui/components';
+import type { FormInstance, FormRules } from 'fz-ui';
 
 const formSize = ref('default');
 const ruleFormRef = ref<FormInstance>();

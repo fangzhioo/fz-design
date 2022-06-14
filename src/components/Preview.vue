@@ -3,18 +3,18 @@
     <section class="preview-container">
       <slot></slot>
     </section>
+    <section v-loading="loading">
+      <transition name="demo-collapse-transition">
+        <div v-show="codeVisible" class="source-code">
+          <pre class="language-html"><code class="language-html" v-html="previewSourceCode"></code></pre>
+        </div>
+      </transition>
 
-    <transition name="demo-collapse-transition">
-      <div v-show="codeVisible" class="source-code">
-        <div v-if="loading" style="padding: 50px; text-align: center">加载中……</div>
-        <pre v-else class="language-html"><code class="language-html" v-html="previewSourceCode"></code></pre>
+      <div class="preview-bottom">
+        <span v-if="loading">加载中……</span>
+        <span v-else name="Code" @click="showSourceCode">{{ codeVisible ? '收起代码' : '查看代码' }}</span>
       </div>
-    </transition>
-
-    <div class="preview-bottom">
-      <span v-if="loading">加载中……</span>
-      <span v-else name="Code" @click="showSourceCode">{{ codeVisible ? '收起代码' : '查看代码' }}</span>
-    </div>
+    </section>
   </div>
 </template>
 

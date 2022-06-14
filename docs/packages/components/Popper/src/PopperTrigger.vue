@@ -8,7 +8,7 @@
 import { defineComponent, inject, watch } from 'vue';
 import { popperTriggerProps } from './Popper';
 import { unwrapMeasurableEl } from './utils';
-import { OnlyChild } from '@fzui/components/OnlyChild';
+import { OnlyChild } from '@fzui/components';
 import { FZ_POPPER_INJECT_KEY } from '@fzui/constants';
 import { useForwardRef } from '@fzui/hooks';
 

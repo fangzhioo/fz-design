@@ -11,7 +11,7 @@
 
 <script setup>
 import { useClipboard } from '@vueuse/core';
-import { message } from '@fzui/components/Message';
+import { FzMessage } from 'fz-ui';
 
 const icons = [
   'a-b',
@@ -293,13 +293,13 @@ const handleCopy = (name) => {
   if (isSupported) {
     copy(name)
       .then(() => {
-        message.success('已复制到剪切板');
+        FzMessage.success('已复制到剪切板');
       })
       .catch((err) => {
-        message.error(err.message || '复制失败');
+        FzMessage.error(err.message || '复制失败');
       });
   } else {
-    message.warning('浏览器不支持复制');
+    FzMessage.warning('浏览器不支持复制');
   }
 };
 </script>

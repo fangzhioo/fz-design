@@ -50,6 +50,9 @@ import { ImagePlugin } from './Image';
 import { DividerPlugin } from './Divider';
 import { EmptyPlugin } from './Empty';
 import { LinkPlugin } from './Link';
+import { FocusTrapPlugin } from './FocusTrap';
+import { LoadingPlugin } from './Loading';
+import { MessageBoxPlugin } from './MessageBox';
 
 const FzUIPlugin: Plugin = {
   install(app: App) {
@@ -99,6 +102,9 @@ const FzUIPlugin: Plugin = {
     DividerPlugin.install?.(app);
     EmptyPlugin.install?.(app);
     LinkPlugin.install?.(app);
+    FocusTrapPlugin.install?.(app);
+    LoadingPlugin.install?.(app);
+    MessageBoxPlugin.install?.(app);
   },
 };
 
@@ -150,3 +156,6 @@ export * from './Image';
 export * from './Divider';
 export * from './Empty';
 export * from './Link';
+export * from './FocusTrap';
+export * from './Loading';
+export * from './MessageBox';

@@ -33,7 +33,7 @@ import { useSize } from '@fzui/hooks';
 import { FZ_BUTTON_GROUP_INJECT_KEY } from '@fzui/constants';
 import { buttonEmits, buttonProps, ButtonProps } from './Button';
 import { ButtonGroupInstance } from './ButtonGroup';
-import { Icon } from '@fzui/components/Icon';
+import { Icon } from '@fzui/components';
 
 export default defineComponent({
   name: 'FzButton',

@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { RichEditorExtension } from '@fzui/components';
+import { RichEditorExtension } from 'fz-ui';
 import Placeholder from '@tiptap/extension-placeholder';
 
 const extensions: RichEditorExtension[] = [

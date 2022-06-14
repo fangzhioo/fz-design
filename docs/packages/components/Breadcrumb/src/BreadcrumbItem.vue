@@ -15,7 +15,7 @@ import { FZ_BREADCRUMB_INJECT_KEY } from '@fzui/constants';
 import { defineComponent, getCurrentInstance, inject, onMounted, ref } from 'vue';
 import { breadcrumbItemProps } from './BreadcrumbItem';
 
-import { Icon } from '@fzui/components/Icon';
+import { Icon } from '@fzui/components';
 import { BreadcrumbInstance } from './Breadcrumb';
 
 export default defineComponent({

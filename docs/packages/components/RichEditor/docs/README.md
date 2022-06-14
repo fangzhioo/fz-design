@@ -12,7 +12,7 @@ import demo5 from './demo5.vue'
 
 # 富文本编辑器
 
-用于编辑丰富的文本内容编辑器，基于[tiptap 编辑器](https://tiptap.dev/)构建。支持 markdown 的方式编写。
+用于编辑丰富的文本内容编辑器，基于[tiptap 编辑器](https://tiptap.dev/)构建。**支持 markdown** 的方式编写。
 
 ## 基础用法
 

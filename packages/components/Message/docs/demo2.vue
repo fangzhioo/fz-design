@@ -7,27 +7,15 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { message, MessageType } from '@fzui/components/Message';
+<script setup lang="ts">
+import { FzMessage, MessageType } from 'fz-ui';
 
-export default defineComponent({
-  name: 'demo2',
-  setup() {
-    const handleClick = (type: MessageType) => {
-      message({
-        message: `this is a ${type} message`,
-        type,
-        showClose: true,
-        grouping: true,
-      });
-    };
-
-    return {
-      handleClick,
-    };
-  },
-});
+const handleClick = (type: MessageType) => {
+  FzMessage({
+    message: `this is a ${type} message`,
+    type,
+    showClose: true,
+    grouping: true,
+  });
+};
 </script>
-
-<style scoped></style>

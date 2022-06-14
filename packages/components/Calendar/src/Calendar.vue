@@ -48,7 +48,7 @@ import { computed, ComputedRef, defineComponent, ref } from 'vue';
 import dayjs from 'dayjs';
 import { useLocale } from '@fzui/hooks';
 import { debugWarn } from '@fzui/utils';
-import { Button, ButtonGroup } from '@fzui/components/Button';
+import { Button, ButtonGroup } from '@fzui/components';
 import { CalendarDateType, calendarEmits, calendarProps } from './Calendar';
 import DateTable from './DateTable.vue';
 

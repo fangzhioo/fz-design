@@ -11,4 +11,6 @@ export const MessagePlugin: Plugin = {
   },
 };
 
-export { Message, message, MessageType };
+const FzMessage = message;
+
+export { Message, FzMessage, MessageType };

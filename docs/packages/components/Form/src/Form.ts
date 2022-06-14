@@ -1,12 +1,11 @@
 import { ExtractPropTypes, PropType } from 'vue';
 import { isArray, isBoolean, isString } from '@fzui/utils';
-import { ComponentSize, FormRules as IFormRules } from '@fzui/hooks';
+import { ComponentSize, FormRules } from '@fzui/hooks';
 import Form from './Form.vue';
 
 import type { FormItemProp } from './FormItem';
 
 export type FormSize = ComponentSize;
-export type FormRules = IFormRules;
 
 export const formProps = {
   model: Object,

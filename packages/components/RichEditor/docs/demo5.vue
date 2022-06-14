@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Editor } from '@fzui/components';
+import { Editor } from 'fz-ui';
 
 const content = ref(`
   <h2>

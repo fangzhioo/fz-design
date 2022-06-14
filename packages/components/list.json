@@ -412,5 +412,32 @@
     "compClassName": "link",
     "compPrefix": "Fz",
     "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "FocusTrap",
+    "compZhName": "焦点捕获",
+    "compDesc": " 在DOM节点内捕获焦点",
+    "compDoc": false,
+    "compClassName": "focus-trap",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "Loading",
+    "compZhName": "加载",
+    "compDesc": "加载数据时显示动效。",
+    "compDoc": true,
+    "compClassName": "loading",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
+  },
+  {
+    "compName": "MessageBox",
+    "compZhName": "消息弹框",
+    "compDesc": "模拟系统的消息提示框而实现的一套模态对话框组件，用于消息提示、确认消息和提交内容。",
+    "compDoc": true,
+    "compClassName": "message-box",
+    "compPrefix": "Fz",
+    "compPrefixClass": "fz-"
   }
 ]

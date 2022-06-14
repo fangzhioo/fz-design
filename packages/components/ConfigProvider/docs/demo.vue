@@ -22,8 +22,7 @@
 </template>
 
 <script>
-import { useTheme } from '@fzui/hooks';
-import { zhCn, zhTw, enUs } from '@fzui/locale';
+import { useTheme, zhCn, zhTw, enUs } from 'fz-ui';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({

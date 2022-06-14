@@ -291,6 +291,20 @@ export const componentRoutes = [
         meta: {
           title: '链接',
         }
+      },{
+        name: 'ComponentLoading',
+        path: '/components/Loading',
+        component: () => import('@fzui/components/Loading/docs/README.md'),
+        meta: {
+          title: '加载',
+        }
+      },{
+        name: 'ComponentMessageBox',
+        path: '/components/MessageBox',
+        component: () => import('@fzui/components/MessageBox/docs/README.md'),
+        meta: {
+          title: '消息弹框',
+        }
       }
 ];
 

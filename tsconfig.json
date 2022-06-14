@@ -14,6 +14,7 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "fz-ui": ["./packages/index.ts"],
       "@fzui/*": ["./packages/*"],
       "@/*": ["./src/*"]
     }
