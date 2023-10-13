@@ -1,23 +1,41 @@
 {
-  "[javascript]": {
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-    },
+  // "editor.formatOnSave": true, // 保存自动格式化
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.vueIndentScriptAndStyle": false,
+  "eslint.enable": true,
+  "eslint.lintTask.enable": true,
+  "eslint.quiet": false,
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue"
+  ],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue"
+  ],
+  "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[typescript]": {
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-    },
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+  "cSpell.words": [
+    "commitlint",
+    "vite",
+    "vitejs",
+    "vitepress",
+    "vitest",
+    "vnode",
+    "vuejs",
+    "weixin",
+    "tongren",
+    "fz",
+    "unref"
+  ],
   "[vue]": {
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-    },
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

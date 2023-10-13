@@ -1,0 +1,26 @@
+{
+  "name": "@fz-design/fz-design-icon",
+  "version": "0.0.1-alpha.1",
+  "description": "Special svg icon library for fz-design.",
+  "main": "index",
+  "module": "index",
+  "types": "index.d.ts",
+  "keywords": [
+    "svg",
+    "icon",
+    "vue",
+    "vuejs",
+    "fz",
+    "design",
+    "fz-design-icon",
+    "fz-design"
+  ],
+  "sideEffects": false,
+  "author": {
+    "name": "fangzhioo",
+    "url": "https://github.com/fangzhioo"
+  },
+  "license": "MIT",
+  "homepage": "https://fangzhioo.github.io/fz-design",
+  "repository": "https://github.com/fangzhioo/fz-design"
+}

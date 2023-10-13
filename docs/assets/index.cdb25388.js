@@ -1,1 +1,0 @@
-import{_ as r}from"./index.ec0709f3.js";import{d as t,o as n,b as s}from"./vendor.7405601a.js";const a=t({name:"GuidePage",setup(e,o){return{}}}),c={class:"guide-wrapper"};function p(e,o,d,i,_,f){return n(),s("div",c,"guide")}var x=r(a,[["render",p]]);export{x as default};

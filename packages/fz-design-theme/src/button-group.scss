@@ -1,0 +1,86 @@
+@use '../base/var.scss';
+
+.fz-button-group {
+  display: inline-block;
+  vertical-align: middle;
+
+  &::after,
+  &::before {
+    display: table;
+    content: '';
+  }
+
+  &::after {
+    clear: both;
+  }
+
+  & > .fz-button {
+    float: left;
+    position: relative;
+  }
+
+  & > .fz-button + .fz-button {
+    margin-left: 0;
+  }
+
+  & > .fz-button:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  & > .fz-button:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  & > .fz-button:first-child:last-child {
+    border-top-right-radius: var(--fz-border-radius-base);
+    border-bottom-right-radius: var(--fz-border-radius-base);
+    border-top-left-radius: var(--fz-border-radius-base);
+    border-bottom-left-radius: var(--fz-border-radius-base);
+  }
+  & > .fz-button:first-child:last-child.is-round {
+    border-radius: var(--fz-border-radius-round);
+  }
+  & > .fz-button:first-child:last-child.is-circle {
+    border-radius: 50%;
+  }
+
+  & > .fz-button:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+  & > .fz-button:not(:last-child) {
+    margin-right: -1px;
+  }
+
+  & > .fz-button:active,
+  & > .fz-button:focus,
+  & > .fz-button:hover {
+    z-index: 1;
+  }
+
+  & > .fz-button.is-active {
+    z-index: 1;
+  }
+
+  & > .fz-dropdown > .fz-button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-color: var(--fz-button-divide-border-color);
+  }
+
+  .fz-button--primary,
+  .fz-button--success,
+  .fz-button--warning,
+  .fz-button--danger,
+  .fz-button--info {
+    &:first-child {
+      border-right-color: var(--fz-button-divide-border-color);
+    }
+    &:last-child {
+      border-left-color: var(--fz-button-divide-border-color);
+    }
+    &::not(:first-child):not(:last-child) {
+      border-left-color: var(--fz-button-divide-border-color);
+      border-right-color: var(--fz-button-divide-border-color);
+    }
+  }
+}

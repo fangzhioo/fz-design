@@ -1,0 +1,9 @@
+@use '../base/var.scss';
+
+.fz-collapse-transition {
+    &-leave-active, &-enter-active {
+        transition: var(--fz-transition-duration) max-height ease-in-out,
+        var(--fz-transition-duration) padding-top ease-in-out,
+        var(--fz-transition-duration) padding-bottom ease-in-out;
+    }
+}

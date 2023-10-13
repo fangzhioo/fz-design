@@ -1,0 +1,21 @@
+.dark {
+  /*  doc */
+  .vp-doc {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    td,
+    th {
+      color: var(--vp-c-text-dark-1);
+    }
+
+    td,
+    th {
+      border-color: var(--vp-badge-info-border);
+    }
+  }
+
+}

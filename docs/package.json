@@ -1,0 +1,17 @@
+{
+  "name": "docs",
+  "private": true,
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "serve": "vitepress serve"
+  },
+  "type": "module",
+  "dependencies": {
+    "vitepress": "1.0.0-rc.20"
+  },
+  "devDependencies": {
+    "markdown-it": "^13.0.1",
+    "markdown-it-container": "^3.0.0"
+  }
+}

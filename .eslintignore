@@ -1,10 +1,12 @@
-vite.config.ts
-.eslintrc.js
-tsconfig.json
-*.min.js
-public/
-config/
-**/*.d.ts
-src/api/
-lib/
-docs/
+# ESLint 去忽略特定的文件和目录
+#
+# 官方文档：https://eslint.bootcss.com/docs/user-guide/configuring#ignoring-files-and-directories
+
+dist
+dist-icon
+node_modules
+logo
+fz-design-add-component
+scripts/**
+fz-eslint-config
+fz-design-icon

@@ -1,0 +1,16 @@
+# 忽略文件
+#
+# 官方文档参考：https://prettier.io/docs/en/ignore.html#ignoring-files-prettierignore
+
+dist
+node_modules
+*.svg
+*.ai
+*.sh
+dist-icon
+pnpm-lock.yaml
+fz-design-add-component
+stats.html
+fz-eslint-config
+fz-design-icon
+

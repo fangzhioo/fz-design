@@ -1,0 +1,22 @@
+{
+  "name": "add-component",
+  "version": "1.0.0",
+  "description": "Add a new component catalog file",
+  "type": "module",
+  "main": "index.ts",
+  "module": "index.ts",
+  "scripts": {
+    "new": "node --trace-warnings --loader ts-node/esm ./index.ts"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@types/ejs": "^3.1.1",
+    "@types/fs-extra": "^9.0.13",
+    "@types/glob": "^8.1.0",
+    "change-case": "^4.1.2",
+    "fs-extra": "^10.1.0",
+    "ts-node": "^10.9.1",
+    "ejs": "^3.1.8",
+    "glob": "^8.1.0"
+  }
+}
