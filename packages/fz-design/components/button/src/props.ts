@@ -10,6 +10,10 @@ export const Props = {
     type: String as PropType<ButtonType>,
     default: ''
   },
+  text: {
+    type: Boolean,
+    default: false
+  },
   nativeType: {
     type: String as PropType<ButtonNative>,
     default: 'button'
@@ -45,10 +49,6 @@ export const Props = {
   autofocus: {
     type: Boolean,
     default: false
-  },
-  autoInsertSpace: {
-    type: Boolean,
-    default: undefined
   }
 } as const
 

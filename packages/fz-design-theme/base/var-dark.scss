@@ -3,7 +3,7 @@
 @use '../config/mixins-var.scss' as *;
 @use '../config/mixins.scss' as *;
 
-html.dark,  html[data-mode='dark'] {
+html.dark, html[data-mode='dark'] {
   color-scheme: dark;
 
   // hex colors

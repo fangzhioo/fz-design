@@ -1,6 +1,6 @@
 {
   "name": "@fz-design/eslint-config",
-  "version": "0.1.2",
+  "version": "0.0.1",
   "description": "fz design out of the box eslint configuration item.",
   "main": "index.js",
   "scripts": {
@@ -31,8 +31,12 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fangzhioo/fz-ui/issues"
+    "url": "https://github.com/fangzhioo/fz-design/issues"
   },
-  "homepage": "https://github.com/fangzhioo/fz-ui/tree/master/packages/fz-eslint-config",
-  "repository": "https://github.com/fangzhioo/fz-ui/tree/master/packages/fz-eslint-config"
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "homepage": "https://github.com/fangzhioo/fz-design/tree/master/packages/fz-eslint-config",
+  "repository": "https://github.com/fangzhioo/fz-design/tree/master/packages/fz-eslint-config"
 }

@@ -9,6 +9,6 @@
     justify-content: center;
     vertical-align: middle;
     color: var(--svg-icon-color);
-    font-size: var(--svg-icon-size, 20px);
+    font-size: var(--svg-icon-size, var(--fz-font-size-base, 16px));
   }
   

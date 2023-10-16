@@ -1,3 +1,3 @@
-export type ComponentSize = '' | 'mini' | 'small' | 'medium' | 'large';
+export type ComponentSize = '' | 'small' | 'default' | 'large';
 
 export type IconSlotType = any;

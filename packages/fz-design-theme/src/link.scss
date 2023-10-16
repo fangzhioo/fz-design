@@ -1,6 +1,6 @@
 @use '../base/var.scss';
 
-a.fz-link {
+.fz-link, a.fz-link {
   --fz-link-font-size: var(--fz-font-size-base);
   --fz-link-font-weight: var(--fz-font-weight-primary);
   --fz-link-text-color: var(--fz-text-color-regular);

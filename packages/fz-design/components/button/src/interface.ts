@@ -1,4 +1,4 @@
-import type { ComponentSize } from '../../../hooks/use-size'
+import type { ComponentSize } from '../../../types'
 
 export type { ButtonProps } from './props'
 
@@ -16,5 +16,4 @@ export type ButtonType =
   | 'warning'
   | 'info'
   | 'error'
-  | 'text'
 export type ButtonSize = ComponentSize

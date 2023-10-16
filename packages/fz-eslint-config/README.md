@@ -1,6 +1,6 @@
-# @fz/eslint-config <a href="https://www.npmjs.com/package/@fz/eslint-config"><img src="https://badgen.net/npm/v/@fz/eslint-config" /></a>
+# @fz/eslint-config <a href="https://www.npmjs.com/package/@fz-desgin/eslint-config"><img src="https://badgen.net/npm/v/@fz-desgin/eslint-config" /></a>
 
-中文 | <a href="https://github.com/fangzhioo/fz-ui/blob/master/packages/fz-eslint-config/README.en-US.md">English</a>
+中文 | <a href="https://github.com/fangzhioo/fz-desgin/blob/master/packages/fz-eslint-config/README.en-US.md">English</a>
 
 ## 🤟 介绍
 
@@ -59,8 +59,8 @@ pnpm lint:fix
 
 ## 🚧 规则
 
-详情参考 [index.js](https://github.com/fangzhioo/fz-ui/blob/master/packages/fz-eslint-config/index.js)
+详情参考 [index.js](https://github.com/fangzhioo/fz-design/blob/master/packages/fz-eslint-config/index.js)
 
 ## 💬 执照
 
-[MIT](https://github.com/fangzhioo/fz-ui/blob/master/packages/fz-eslint-config/LICENSE)
+[MIT](https://github.com/fangzhioo/fz-design/blob/master/packages/fz-eslint-config/LICENSE)

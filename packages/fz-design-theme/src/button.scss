@@ -1,414 +1,537 @@
 @use '../base/var.scss';
 
+// loading 动画
+@keyframes button-loading-animation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .fz-button {
-  --fz-button-bg-color: var(--fz-color-white);
-  --fz-button-text-color: var(--fz-text-color-regular);
+  --fz-button-font-weight: var(--fz-font-weight-primary);
   --fz-button-border-color: var(--fz-border-color);
-  --fz-button-disabled-text-color: var(--fz-text-color-placeholder);
-  --fz-button-disabled-bg-color: var(--fz-color-white);
+  --fz-button-bg-color: var(--fz-fill-color-blank);
+  --fz-button-text-color: var(--fz-text-color-regular);
+  --fz-button-disabled-text-color: var(--fz-disabled-text-color);
+  --fz-button-disabled-bg-color: var(--fz-fill-color-blank);
   --fz-button-disabled-border-color: var(--fz-border-color-light);
+  --fz-button-divide-border-color: rgba(255, 255, 255, 0.5);
   --fz-button-hover-text-color: var(--fz-color-primary);
   --fz-button-hover-bg-color: var(--fz-color-primary-light-9);
   --fz-button-hover-border-color: var(--fz-color-primary-light-7);
   --fz-button-active-text-color: var(--fz-button-hover-text-color);
   --fz-button-active-border-color: var(--fz-color-primary);
   --fz-button-active-bg-color: var(--fz-button-hover-bg-color);
+  --fz-button-outline-color: var(--fz-color-primary-light-5);
+  --fz-button-hover-link-text-color: var(--fz-color-info);
+  --fz-button-active-color: var(--fz-text-color-primary)
+}
 
-  --fz-button-divide-border-color: rgba(255, 255, 255, 0.5);
-  --fz-button-font-weight: var(--fz-font-weight-primary);
-
-  display: inline-block;
-  position: relative;
+.fz-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   line-height: 1;
-  min-height: 36px;
-  padding: 10px 20px;
+  height: 32px;
   white-space: nowrap;
   cursor: pointer;
-  background-color: var(--fz-button-bg-color, var(--fz-color-white));
-  border: var(--fz-border);
-  border-color: var(--fz-button-border-color, var(--fz-border-color));
-  color: var(--fz-button-text-color, var(--fz-text-color-regular));
-  -webkit-appearance: none;
+  color: var(--fz-button-text-color);
   text-align: center;
   box-sizing: border-box;
   outline: 0;
-  margin: 0;
-  transition: 0.1s;
+  transition: .1s;
   font-weight: var(--fz-button-font-weight);
   -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
-  font-size: var(--fz-font-size-base, 14px);
-  border-radius: var(--fz-border-radius-base);
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background-color: var(--fz-button-bg-color);
+  border: var(--fz-border);
+  border-color: var(--fz-button-border-color);
+  padding: 8px 15px;
+  font-size: var(--fz-font-size-base);
+  border-radius: var(--fz-border-radius-base)
+}
 
-  & + .fz-button {
-    margin-left: 10px;
-  }
+.fz-button:focus,
+.fz-button:hover {
+  color: var(--fz-button-hover-text-color);
+  border-color: var(--fz-button-hover-border-color);
+  background-color: var(--fz-button-hover-bg-color);
+  outline: 0
+}
 
-  &:focus,
-  &:hover {
-    color: var(--fz-button-hover-text-color);
-    border-color: var(--fz-button-hover-border-color, var(--fz-button-hover-bg-color));
-    background-color: var(--fz-button-hover-bg-color);
-    outline: 0;
-  }
-  &:active {
-    color: var(--fz-button-active-text-color);
-    border-color: var(--fz-button-active-border-color, var(--fz-button-active-bg-color));
-    background-color: var(--fz-button-active-bg-color, var(--fz-button-bg-color));
-    outline: 0;
-  }
-  &::-moz-focus-inner {
-    border: 0;
-  }
+.fz-button:active {
+  color: var(--fz-button-active-text-color);
+  border-color: var(--fz-button-active-border-color);
+  background-color: var(--fz-button-active-bg-color);
+  outline: 0
+}
 
-  &__text--expand {
-    letter-spacing: 0.3em;
-    margin-right: -0.3em;
-  }
+.fz-button:focus-visible {
+  outline: 2px solid var(--fz-button-outline-color);
+  outline-offset: 1px
+}
 
-  // icon
-  &__icon {
-    font-size: inherit;
-    vertical-align: bottom;
-    & + span {
-      margin-left: 5px;
-    }
+.fz-button>span {
+  display: inline-flex;
+  align-items: center
+}
 
-    &--loading {
-      animation: button-loading-animation 1s linear infinite;
-    }
+.fz-button+.fz-button {
+  margin-left: 12px
+}
 
-    // loading 动画
-    @keyframes button-loading-animation {
-      from {
-        transform: rotate(0deg);
-      }
+.fz-button.is-round {
+  padding: 8px 15px
+}
 
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  }
+.fz-button::-moz-focus-inner {
+  border: 0
+}
 
-  // size
-  &--large {
-    min-height: 40px;
-    padding: 12px 20px;
-    font-size: var(--fz-font-size-large, 18px);
-    border-radius: var(--fz-border-radius-base);
-    &.is-round {
-      padding: 12px 20px;
-    }
-    &.is-circle {
-      padding: 12px;
-    }
-  }
+.fz-button .fz-button__icon+span {
+  margin-left: 6px
+}
 
-  &--medium {
-    min-height: 36px;
-    padding: 10px 16px;
-    font-size: var(--fz-font-size-medium, 16px);
-    border-radius: var(--fz-border-radius-base);
-    &.is-round {
-      padding: 10px 16px;
-    }
-    &.is-circle {
-      padding: 10px;
-    }
-  }
+.fz-button .fz-button__icon svg {
+  vertical-align: bottom
+}
 
-  &--small {
-    min-height: 32px;
-    padding: 8px 14px;
-    font-size: var(--fz-font-size-small);
-    border-radius: calc(var(--fz-border-radius-base) - 1px);
-    &.is-round {
-      padding: 8px 14px;
-    }
-    &.is-circle {
-      padding: 8px;
-    }
-  }
+.fz-button.is-plain {
+  --fz-button-hover-text-color: var(--fz-color-primary);
+  --fz-button-hover-bg-color: var(--fz-fill-color-blank);
+  --fz-button-hover-border-color: var(--fz-color-primary)
+}
 
-  &--mini {
-    min-height: 28px;
-    padding: 6px 12px;
-    font-size: var(--fz-font-size-extra-small);
-    border-radius: calc(var(--fz-border-radius-base) - 1px);
-    &.is-round {
-      padding: 6px 12px;
-    }
-    &.is-circle {
-      padding: 6px;
-    }
-  }  
+.fz-button.is-active {
+  color: var(--fz-button-active-text-color);
+  border-color: var(--fz-button-active-border-color);
+  background-color: var(--fz-button-active-bg-color);
+  outline: 0
+}
 
-  // active
-  &.is-active {
-    color: var(--fz-button-active-text-color);
-    border-color: var(--fz-button-active-border-color, --fz-button-active-bg-color);
-    background-color: var(--fz-button-active-bg-color);
-    outline: 0;
-  }
+.fz-button.is-disabled,
+.fz-button.is-disabled:focus,
+.fz-button.is-disabled:hover {
+  color: var(--fz-button-disabled-text-color);
+  cursor: not-allowed;
+  background-image: none;
+  background-color: var(--fz-button-disabled-bg-color);
+  border-color: var(--fz-button-disabled-border-color)
+}
 
-  // round
-  &.is-round {
-    border-radius: var(--fz-border-radius-round);
-    padding: 12px 23px;
-  }
-  
-  // disabled
-  &.is-disabled,
-  &.is-disabled:focus,
-  &.is-disabled:hover {
-    color: var(--fz-button-disabled-text-color);
-    cursor: not-allowed;
-    background-image: none;
-    background-color: var(--fz-button-disabled-bg-color);
-    border-color: var(--fz-button-disabled-border-color);
-  }
-  &.is-disabled {
-    &.fz-button--text {
-      background-color: transparent;
-    }
-    &.is-plain,
-    &.is-plain:focus,
-    &.is-plain:hover {
-      background-color: var(--fz-color-white);
-      border-color: var(--fz-button-disabled-border-color);
-      color: var(--fz-button-disabled-text-color);
-    }
-  }
-  // loading
-  &.is-loading {
-    position: relative;
-    pointer-events: none;
-    &::before {
-      pointer-events: none;
-      content: '';
-      position: absolute;
-      left: -1px;
-      top: -1px;
-      right: -1px;
-      bottom: -1px;
-      border-radius: inherit;
-      background-color: rgba(255, 255, 255, 0.35);
-    }
-  }
-  // circle
-  &.is-circle {
-    border-radius: var(--fz-border-radius-circle, 50%);
-    padding: 12px;
-  }
+.fz-button.is-loading {
+  position: relative;
+  pointer-events: none;
 
-  // type--default
-  &--default {
-
-    // plain
-    &.is-plain {
-      --fz-button-active-text-color: var(--fz-color-primary);
-      --fz-button-active-border-color: var(--fz-color-primary);
-      --fz-button-hover-text-color: var(--fz-color-primary);
-      --fz-button-hover-bg-color: var(--fz-color-white);
-      --fz-button-hover-border-color: var(--fz-color-primary);
-    }
-  }
-
-  // type-primary
-  &--primary {
-    --fz-button-text-color: var(--fz-color-white);
-    --fz-button-bg-color: var(--fz-color-primary);
-    --fz-button-hover-text-color: var(--fz-color-white);
-    --fz-button-hover-bg-color: var(--fz-color-primary-light-3);
-    --fz-button-hover-border-color: var(--fz-color-primary-light-7);
-    --fz-button-disabled-text-color: var(--fz-color-white);
-    --fz-button-disabled-bg-color: var(--fz-color-primary-light-5);
-    --fz-button-disabled-border-color: var(--fz-color-primary-light-5);
-
-    &.is-plain {
-      --fz-button-text-color: var(--fz-color-primary);
-      --fz-button-bg-color: var(--fz-color-white);
-      --fz-button-border-color: var(--fz-color-primary)
-      --fz-button-hover-text-color: var(--fz-color-white);
-      --fz-button-hover-bg-color: var(--fz-color-primary);
-      --fz-button-hover-border-color: var(--fz-color-primary);
-      --fz-button-active-text-color: var(--fz-color-white);
-      --fz-button-active-border-color: var(--fz-color-primary);
-      &.is-disabled, 
-      &.is-disabled:active,
-      &.is-disabled:focus,
-      &.is-disabled:hover{
-        color: var(--fz-color-primary-light-5);
-        background-color: var(--fz-color-primary-light-9);
-        border-color: var(--fz-color-primary-light-8);
-      }
-    }
-  }
-  // type-success
-  &--success {
-    --fz-button-text-color: var(--fz-color-white);
-    --fz-button-bg-color: var(--fz-color-success);
-    --fz-button-border-color: var(--fz-color-success-light-7);
-    --fz-button-disabled-text-color: var(--fz-color-white);
-    --fz-button-disabled-bg-color: var(--fz-color-success-light-7);
-    --fz-button-disabled-border-color: var(--fz-color-success-light-9);
-    --fz-button-hover-text-color: var(--fz-color-white);
-    --fz-button-hover-bg-color: var(--fz-color-success-light-3);
-    --fz-button-hover-border-color: var(--fz-color-success-light-9);
-    --fz-button-active-text-color: var(--fz-color-white);
-    --fz-button-active-bg-color: var(--fz-color-success-light-7);
-    --fz-button-active-border-color: var(--fz-color-success-light-9);
-
-    &.is-plain {
-      --fz-button-text-color: var(--fz-color-success);
-      --fz-button-bg-color: var(--fz-color-white);
-      --fz-button-border-color: var(--fz-color-success);
-      --fz-button-hover-text-color: var(--fz-color-white);
-      --fz-button-hover-bg-color: var(--fz-color-success);
-      --fz-button-hover-border-color: var(--fz-color-success);
-      --fz-button-active-text-color: var(--fz-color-white);
-      --fz-button-active-border-color: var(--fz-color-success);
-      &.is-disabled, 
-      &.is-disabled:active,
-      &.is-disabled:focus,
-      &.is-disabled:hover{
-        color: var(--fz-color-success-light-7);
-        background-color: var(--fz-color-success-light-9);
-        border-color: var(--fz-color-success-light-9);
-      }
-    }
-  }
-
-  // type-warning
-  &--warning {
-    --fz-button-text-color: var(--fz-color-white);
-    --fz-button-bg-color: var(--fz-color-warning);
-    --fz-button-border-color: var(--fz-color-warning-light-7);
-    --fz-button-disabled-text-color: var(--fz-color-white);
-    --fz-button-disabled-bg-color: var(--fz-color-warning-light-7);
-    --fz-button-disabled-border-color: var(--fz-color-warning-light-9);
-    --fz-button-hover-text-color: var(--fz-color-white);
-    --fz-button-hover-bg-color: var(--fz-color-warning-light-3);
-    --fz-button-hover-border-color: var(--fz-color-warning-light-9);
-    --fz-button-active-text-color: var(--fz-color-white);
-    --fz-button-active-bg-color: var(--fz-color-warning-light-7);
-    --fz-button-active-border-color: var(--fz-color-warning-light-9);
-
-    &.is-plain {
-      --fz-button-text-color: var(--fz-color-warning);
-      --fz-button-bg-color: var(--fz-color-white);
-      --fz-button-border-color: var(--fz-color-warning);
-      --fz-button-hover-text-color: var(--fz-color-white);
-      --fz-button-hover-bg-color: var(--fz-color-warning);
-      --fz-button-hover-border-color: var(--fz-color-warning);
-      --fz-button-active-text-color: var(--fz-color-white);
-      --fz-button-active-border-color: var(--fz-color-warning);
-      &.is-disabled, 
-      &.is-disabled:active,
-      &.is-disabled:focus,
-      &.is-disabled:hover{
-        color: var(--fz-color-warning-light-7);
-        background-color: var(--fz-color-warning-light-9);
-        border-color: var(--fz-color-warning-light-9);
-      }
-    }
-  }
-
-  // type-error
-  &--error {
-    --fz-button-text-color: var(--fz-color-white);
-    --fz-button-bg-color: var(--fz-color-error);
-    --fz-button-border-color: var(--fz-color-error-light-7);
-    --fz-button-disabled-text-color: var(--fz-color-white);
-    --fz-button-disabled-bg-color: var(--fz-color-error-light-7);
-    --fz-button-disabled-border-color: var(--fz-color-error-light-9);
-    --fz-button-hover-text-color: var(--fz-color-white);
-    --fz-button-hover-bg-color: var(--fz-color-error-light-3);
-    --fz-button-hover-border-color: var(--fz-color-error-light-9);
-    --fz-button-active-text-color: var(--fz-color-white);
-    --fz-button-active-bg-color: var(--fz-color-error-light-7);
-    --fz-button-active-border-color: var(--fz-color-error-light-9);
-
-    &.is-plain {
-      --fz-button-text-color: var(--fz-color-error);
-      --fz-button-bg-color: var(--fz-color-white);
-      --fz-button-border-color: var(--fz-color-error);
-      --fz-button-hover-text-color: var(--fz-color-white);
-      --fz-button-hover-bg-color: var(--fz-color-error);
-      --fz-button-hover-border-color: var(--fz-color-error);
-      --fz-button-active-text-color: var(--fz-color-white);
-      --fz-button-active-border-color: var(--fz-color-error);
-      &.is-disabled, 
-      &.is-disabled:active,
-      &.is-disabled:focus,
-      &.is-disabled:hover{
-        color: var(--fz-color-error-light-7);
-        background-color: var(--fz-color-error-light-9);
-        border-color: var(--fz-color-error-light-9);
-      }
-    }
-  }
-
-  // type-info
-  &--info {
-    --fz-button-text-color: var(--fz-color-white);
-    --fz-button-bg-color: var(--fz-color-info);
-    --fz-button-border-color: var(--fz-color-info-light-7);
-    --fz-button-disabled-text-color: var(--fz-color-white);
-    --fz-button-disabled-bg-color: var(--fz-color-info-light-7);
-    --fz-button-disabled-border-color: var(--fz-color-info-light-9);
-    --fz-button-hover-text-color: var(--fz-color-white);
-    --fz-button-hover-bg-color: var(--fz-color-info-light-3);
-    --fz-button-hover-border-color: var(--fz-color-info-light-9);
-    --fz-button-active-text-color: var(--fz-color-white);
-    --fz-button-active-bg-color: var(--fz-color-info-light-7);
-    --fz-button-active-border-color: var(--fz-color-info-light-9);
-
-    &.is-plain {
-      --fz-button-text-color: var(--fz-color-info);
-      --fz-button-bg-color: var(--fz-color-white);
-      --fz-button-border-color: var(--fz-color-info);
-      --fz-button-hover-text-color: var(--fz-color-white);
-      --fz-button-hover-bg-color: var(--fz-color-info);
-      --fz-button-hover-border-color: var(--fz-color-info);
-      --fz-button-active-text-color: var(--fz-color-white);
-      --fz-button-active-border-color: var(--fz-color-info);
-      &.is-disabled, 
-      &.is-disabled:active,
-      &.is-disabled:focus,
-      &.is-disabled:hover{
-        color: var(--fz-color-info-light-7);
-        background-color: var(--fz-color-info-light-9);
-        border-color: var(--fz-color-info-light-9);
-      }
-    }
-  }
-
-  // type-text
-  &--text {
-    border-color: transparent;
-    color: var(--fz-color-primary);
-    background: 0 0;
-    padding-left: 0;
-    padding-right: 0;
-    &:focus, 
-    &:hover{
-      color: var(--fz-color-primary-light-5);
-      border-color: transparent;
-      background-color: transparent;
-    }
-    &:active{
-      color: var(--fz-color-primary);
-      border-color: transparent;
-      background-color: transparent;
-    }
-
-    &.is-disabled,
-    &.is-disabled:focus,
-    &.is-disabled:hover {
-      border-color: transparent;
-
-    }
+  .fz-button__icon {
+    animation: button-loading-animation 1s linear infinite;
   }
 }
-  
+
+.fz-button.is-loading:before {
+  z-index: 1;
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  right: -1px;
+  bottom: -1px;
+  border-radius: inherit;
+  background-color: var(--fz-mask-color-extra-light)
+}
+
+.fz-button.is-round {
+  border-radius: var(--fz-border-radius-round)
+}
+
+.fz-button.is-circle {
+  border-radius: 50%;
+  padding: 8px
+}
+
+.fz-button.is-text {
+  color: var(--fz-button-text-color);
+  border: 0 solid transparent;
+  background-color: transparent
+}
+
+.fz-button.is-text.is-disabled {
+  color: var(--fz-button-disabled-text-color);
+  background-color: transparent !important
+}
+
+.fz-button.is-text:not(.is-disabled):focus,
+.fz-button.is-text:not(.is-disabled):hover {
+  background-color: var(--fz-fill-color-light)
+}
+
+.fz-button.is-text:not(.is-disabled):focus-visible {
+  outline: 2px solid var(--fz-button-outline-color);
+  outline-offset: 1px
+}
+
+.fz-button.is-text:not(.is-disabled):active {
+  background-color: var(--fz-fill-color)
+}
+
+.fz-button.is-text:not(.is-disabled).is-has-bg {
+  background-color: var(--fz-fill-color-light)
+}
+
+.fz-button.is-text:not(.is-disabled).is-has-bg:focus,
+.fz-button.is-text:not(.is-disabled).is-has-bg:hover {
+  background-color: var(--fz-fill-color)
+}
+
+.fz-button.is-text:not(.is-disabled).is-has-bg:active {
+  background-color: var(--fz-fill-color-dark)
+}
+
+.fz-button__text--expand {
+  letter-spacing: .3em;
+  margin-right: -.3em
+}
+
+.fz-button.is-link {
+  border-color: transparent;
+  color: var(--fz-button-text-color);
+  background: 0 0;
+  padding: 2px;
+  height: auto
+}
+
+.fz-button.is-link:focus,
+.fz-button.is-link:hover {
+  color: var(--fz-button-hover-link-text-color)
+}
+
+.fz-button.is-link.is-disabled {
+  color: var(--fz-button-disabled-text-color);
+  background-color: transparent !important;
+  border-color: transparent !important
+}
+
+.fz-button.is-link:not(.is-disabled):focus,
+.fz-button.is-link:not(.is-disabled):hover {
+  border-color: transparent;
+  background-color: transparent
+}
+
+.fz-button.is-link:not(.is-disabled):active {
+  color: var(--fz-button-active-color);
+  border-color: transparent;
+  background-color: transparent
+}
+
+.fz-button--text {
+  border-color: transparent;
+  background: 0 0;
+  color: var(--fz-color-primary);
+  padding-left: 0;
+  padding-right: 0
+}
+
+.fz-button--text.is-disabled {
+  color: var(--fz-button-disabled-text-color);
+  background-color: transparent !important;
+  border-color: transparent !important
+}
+
+.fz-button--text:not(.is-disabled):focus,
+.fz-button--text:not(.is-disabled):hover {
+  color: var(--fz-color-primary-light-3);
+  border-color: transparent;
+  background-color: transparent
+}
+
+.fz-button--text:not(.is-disabled):active {
+  color: var(--fz-color-primary-dark-2);
+  border-color: transparent;
+  background-color: transparent
+}
+
+.fz-button__link--expand {
+  letter-spacing: .3em;
+  margin-right: -.3em
+}
+
+.fz-button--primary {
+  --fz-button-text-color: var(--fz-color-white);
+  --fz-button-bg-color: var(--fz-color-primary);
+  --fz-button-border-color: var(--fz-color-primary);
+  --fz-button-outline-color: var(--fz-color-primary-light-5);
+  --fz-button-active-color: var(--fz-color-primary-dark-2);
+  --fz-button-hover-text-color: var(--fz-color-white);
+  --fz-button-hover-link-text-color: var(--fz-color-primary-light-5);
+  --fz-button-hover-bg-color: var(--fz-color-primary-light-3);
+  --fz-button-hover-border-color: var(--fz-color-primary-light-3);
+  --fz-button-active-bg-color: var(--fz-color-primary-dark-2);
+  --fz-button-active-border-color: var(--fz-color-primary-dark-2);
+  --fz-button-disabled-text-color: var(--fz-color-white);
+  --fz-button-disabled-bg-color: var(--fz-color-primary-light-5);
+  --fz-button-disabled-border-color: var(--fz-color-primary-light-5)
+}
+
+.fz-button--primary.is-link,
+.fz-button--primary.is-plain,
+.fz-button--primary.is-text {
+  --fz-button-text-color: var(--fz-color-primary);
+  --fz-button-bg-color: var(--fz-color-primary-light-9);
+  --fz-button-border-color: var(--fz-color-primary-light-5);
+  --fz-button-hover-text-color: var(--fz-color-white);
+  --fz-button-hover-bg-color: var(--fz-color-primary);
+  --fz-button-hover-border-color: var(--fz-color-primary);
+  --fz-button-active-text-color: var(--fz-color-white)
+}
+
+.fz-button--primary.is-link.is-disabled,
+.fz-button--primary.is-link.is-disabled:active,
+.fz-button--primary.is-link.is-disabled:focus,
+.fz-button--primary.is-link.is-disabled:hover,
+.fz-button--primary.is-plain.is-disabled,
+.fz-button--primary.is-plain.is-disabled:active,
+.fz-button--primary.is-plain.is-disabled:focus,
+.fz-button--primary.is-plain.is-disabled:hover,
+.fz-button--primary.is-text.is-disabled,
+.fz-button--primary.is-text.is-disabled:active,
+.fz-button--primary.is-text.is-disabled:focus,
+.fz-button--primary.is-text.is-disabled:hover {
+  color: var(--fz-color-primary-light-5);
+  background-color: var(--fz-color-primary-light-9);
+  border-color: var(--fz-color-primary-light-8)
+}
+
+.fz-button--success {
+  --fz-button-text-color: var(--fz-color-white);
+  --fz-button-bg-color: var(--fz-color-success);
+  --fz-button-border-color: var(--fz-color-success);
+  --fz-button-outline-color: var(--fz-color-success-light-5);
+  --fz-button-active-color: var(--fz-color-success-dark-2);
+  --fz-button-hover-text-color: var(--fz-color-white);
+  --fz-button-hover-link-text-color: var(--fz-color-success-light-5);
+  --fz-button-hover-bg-color: var(--fz-color-success-light-3);
+  --fz-button-hover-border-color: var(--fz-color-success-light-3);
+  --fz-button-active-bg-color: var(--fz-color-success-dark-2);
+  --fz-button-active-border-color: var(--fz-color-success-dark-2);
+  --fz-button-disabled-text-color: var(--fz-color-white);
+  --fz-button-disabled-bg-color: var(--fz-color-success-light-5);
+  --fz-button-disabled-border-color: var(--fz-color-success-light-5)
+}
+
+.fz-button--success.is-link,
+.fz-button--success.is-plain,
+.fz-button--success.is-text {
+  --fz-button-text-color: var(--fz-color-success);
+  --fz-button-bg-color: var(--fz-color-success-light-9);
+  --fz-button-border-color: var(--fz-color-success-light-5);
+  --fz-button-hover-text-color: var(--fz-color-white);
+  --fz-button-hover-bg-color: var(--fz-color-success);
+  --fz-button-hover-border-color: var(--fz-color-success);
+  --fz-button-active-text-color: var(--fz-color-white)
+}
+
+.fz-button--success.is-link.is-disabled,
+.fz-button--success.is-link.is-disabled:active,
+.fz-button--success.is-link.is-disabled:focus,
+.fz-button--success.is-link.is-disabled:hover,
+.fz-button--success.is-plain.is-disabled,
+.fz-button--success.is-plain.is-disabled:active,
+.fz-button--success.is-plain.is-disabled:focus,
+.fz-button--success.is-plain.is-disabled:hover,
+.fz-button--success.is-text.is-disabled,
+.fz-button--success.is-text.is-disabled:active,
+.fz-button--success.is-text.is-disabled:focus,
+.fz-button--success.is-text.is-disabled:hover {
+  color: var(--fz-color-success-light-5);
+  background-color: var(--fz-color-success-light-9);
+  border-color: var(--fz-color-success-light-8)
+}
+
+.fz-button--warning {
+  --fz-button-text-color: var(--fz-color-white);
+  --fz-button-bg-color: var(--fz-color-warning);
+  --fz-button-border-color: var(--fz-color-warning);
+  --fz-button-outline-color: var(--fz-color-warning-light-5);
+  --fz-button-active-color: var(--fz-color-warning-dark-2);
+  --fz-button-hover-text-color: var(--fz-color-white);
+  --fz-button-hover-link-text-color: var(--fz-color-warning-light-5);
+  --fz-button-hover-bg-color: var(--fz-color-warning-light-3);
+  --fz-button-hover-border-color: var(--fz-color-warning-light-3);
+  --fz-button-active-bg-color: var(--fz-color-warning-dark-2);
+  --fz-button-active-border-color: var(--fz-color-warning-dark-2);
+  --fz-button-disabled-text-color: var(--fz-color-white);
+  --fz-button-disabled-bg-color: var(--fz-color-warning-light-5);
+  --fz-button-disabled-border-color: var(--fz-color-warning-light-5)
+}
+
+.fz-button--warning.is-link,
+.fz-button--warning.is-plain,
+.fz-button--warning.is-text {
+  --fz-button-text-color: var(--fz-color-warning);
+  --fz-button-bg-color: var(--fz-color-warning-light-9);
+  --fz-button-border-color: var(--fz-color-warning-light-5);
+  --fz-button-hover-text-color: var(--fz-color-white);
+  --fz-button-hover-bg-color: var(--fz-color-warning);
+  --fz-button-hover-border-color: var(--fz-color-warning);
+  --fz-button-active-text-color: var(--fz-color-white)
+}
+
+.fz-button--warning.is-link.is-disabled,
+.fz-button--warning.is-link.is-disabled:active,
+.fz-button--warning.is-link.is-disabled:focus,
+.fz-button--warning.is-link.is-disabled:hover,
+.fz-button--warning.is-plain.is-disabled,
+.fz-button--warning.is-plain.is-disabled:active,
+.fz-button--warning.is-plain.is-disabled:focus,
+.fz-button--warning.is-plain.is-disabled:hover,
+.fz-button--warning.is-text.is-disabled,
+.fz-button--warning.is-text.is-disabled:active,
+.fz-button--warning.is-text.is-disabled:focus,
+.fz-button--warning.is-text.is-disabled:hover {
+  color: var(--fz-color-warning-light-5);
+  background-color: var(--fz-color-warning-light-9);
+  border-color: var(--fz-color-warning-light-8)
+}
+
+.fz-button--danger {
+  --fz-button-text-color: var(--fz-color-white);
+  --fz-button-bg-color: var(--fz-color-danger);
+  --fz-button-border-color: var(--fz-color-danger);
+  --fz-button-outline-color: var(--fz-color-danger-light-5);
+  --fz-button-active-color: var(--fz-color-danger-dark-2);
+  --fz-button-hover-text-color: var(--fz-color-white);
+  --fz-button-hover-link-text-color: var(--fz-color-danger-light-5);
+  --fz-button-hover-bg-color: var(--fz-color-danger-light-3);
+  --fz-button-hover-border-color: var(--fz-color-danger-light-3);
+  --fz-button-active-bg-color: var(--fz-color-danger-dark-2);
+  --fz-button-active-border-color: var(--fz-color-danger-dark-2);
+  --fz-button-disabled-text-color: var(--fz-color-white);
+  --fz-button-disabled-bg-color: var(--fz-color-danger-light-5);
+  --fz-button-disabled-border-color: var(--fz-color-danger-light-5)
+}
+
+.fz-button--danger.is-link,
+.fz-button--danger.is-plain,
+.fz-button--danger.is-text {
+  --fz-button-text-color: var(--fz-color-danger);
+  --fz-button-bg-color: var(--fz-color-danger-light-9);
+  --fz-button-border-color: var(--fz-color-danger-light-5);
+  --fz-button-hover-text-color: var(--fz-color-white);
+  --fz-button-hover-bg-color: var(--fz-color-danger);
+  --fz-button-hover-border-color: var(--fz-color-danger);
+  --fz-button-active-text-color: var(--fz-color-white)
+}
+
+.fz-button--danger.is-link.is-disabled,
+.fz-button--danger.is-link.is-disabled:active,
+.fz-button--danger.is-link.is-disabled:focus,
+.fz-button--danger.is-link.is-disabled:hover,
+.fz-button--danger.is-plain.is-disabled,
+.fz-button--danger.is-plain.is-disabled:active,
+.fz-button--danger.is-plain.is-disabled:focus,
+.fz-button--danger.is-plain.is-disabled:hover,
+.fz-button--danger.is-text.is-disabled,
+.fz-button--danger.is-text.is-disabled:active,
+.fz-button--danger.is-text.is-disabled:focus,
+.fz-button--danger.is-text.is-disabled:hover {
+  color: var(--fz-color-danger-light-5);
+  background-color: var(--fz-color-danger-light-9);
+  border-color: var(--fz-color-danger-light-8)
+}
+
+.fz-button--info {
+  --fz-button-text-color: var(--fz-color-white);
+  --fz-button-bg-color: var(--fz-color-info);
+  --fz-button-border-color: var(--fz-color-info);
+  --fz-button-outline-color: var(--fz-color-info-light-5);
+  --fz-button-active-color: var(--fz-color-info-dark-2);
+  --fz-button-hover-text-color: var(--fz-color-white);
+  --fz-button-hover-link-text-color: var(--fz-color-info-light-5);
+  --fz-button-hover-bg-color: var(--fz-color-info-light-3);
+  --fz-button-hover-border-color: var(--fz-color-info-light-3);
+  --fz-button-active-bg-color: var(--fz-color-info-dark-2);
+  --fz-button-active-border-color: var(--fz-color-info-dark-2);
+  --fz-button-disabled-text-color: var(--fz-color-white);
+  --fz-button-disabled-bg-color: var(--fz-color-info-light-5);
+  --fz-button-disabled-border-color: var(--fz-color-info-light-5)
+}
+
+.fz-button--info.is-link,
+.fz-button--info.is-plain,
+.fz-button--info.is-text {
+  --fz-button-text-color: var(--fz-color-info);
+  --fz-button-bg-color: var(--fz-color-info-light-9);
+  --fz-button-border-color: var(--fz-color-info-light-5);
+  --fz-button-hover-text-color: var(--fz-color-white);
+  --fz-button-hover-bg-color: var(--fz-color-info);
+  --fz-button-hover-border-color: var(--fz-color-info);
+  --fz-button-active-text-color: var(--fz-color-white)
+}
+
+.fz-button--info.is-link.is-disabled,
+.fz-button--info.is-link.is-disabled:active,
+.fz-button--info.is-link.is-disabled:focus,
+.fz-button--info.is-link.is-disabled:hover,
+.fz-button--info.is-plain.is-disabled,
+.fz-button--info.is-plain.is-disabled:active,
+.fz-button--info.is-plain.is-disabled:focus,
+.fz-button--info.is-plain.is-disabled:hover,
+.fz-button--info.is-text.is-disabled,
+.fz-button--info.is-text.is-disabled:active,
+.fz-button--info.is-text.is-disabled:focus,
+.fz-button--info.is-text.is-disabled:hover {
+  color: var(--fz-color-info-light-5);
+  background-color: var(--fz-color-info-light-9);
+  border-color: var(--fz-color-info-light-8)
+}
+
+.fz-button--large {
+  --fz-button-size: 40px;
+  height: var(--fz-button-size);
+  padding: 12px 19px;
+  font-size: var(--fz-font-size-base);
+  border-radius: var(--fz-border-radius-base)
+}
+
+.fz-button--large .fz-button__icon+span {
+  margin-left: 8px
+}
+
+.fz-button--large.is-round {
+  padding: 12px 19px
+}
+
+.fz-button--large.is-circle {
+  width: var(--fz-button-size);
+  padding: 12px
+}
+
+.fz-button--small {
+  --fz-button-size: 24px;
+  height: var(--fz-button-size);
+  padding: 5px 11px;
+  font-size: 12px;
+  border-radius: calc(var(--fz-border-radius-base) - 1px)
+}
+
+.fz-button--small .fz-button__icon+span {
+  margin-left: 4px
+}
+
+.fz-button--small.is-round {
+  padding: 5px 11px
+}
+
+.fz-button--small.is-circle {
+  width: var(--fz-button-size);
+  padding: 5px
+}

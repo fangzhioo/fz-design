@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="160px" src="https://raw.githubusercontent.com/fangzhioo/images/4ad62a8f00aa2473deca61598f307430d8d4a4cf/fz-design/fz-design.svg">
+  <img height="160px" src="https://raw.githubusercontent.com/fangzhioo/fz-design/master/logo/fz-design.svg">
   <h2 align="center" style="font-weight: 600">Fz Design</h2>
 </p>
 

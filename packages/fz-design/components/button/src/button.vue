@@ -1,5 +1,7 @@
 <script lang="ts">
   import { computed, defineComponent, inject, ref } from 'vue'
+  import { IconLoading } from '@fz-design/fz-design-icon'
+  import SvgIcon from '../../svg-icon/src/svg-icon.vue';
   import { useSize } from '../../../hooks'
   import { FZ_BUTTON_GROUP_INJECT_KEY } from '../../../constants'
   import { Props } from './props'
@@ -8,29 +10,18 @@
   
   export default defineComponent({
     name: 'FzButton',
+    components: { SvgIcon },
     props: Props,
     emits: {
       click: (evt: MouseEvent) => evt instanceof MouseEvent
     },
-    setup (props: ButtonProps, { slots, emit }) {
+    setup (props: ButtonProps, { emit }) {
       const buttonRef = ref()
       const buttonGroupContext = inject<ButtonGroupInstance | undefined>(
         FZ_BUTTON_GROUP_INJECT_KEY,
         undefined
       )
-      const autoInsertSpace = computed(() => props.autoInsertSpace)
-      // add space between two characters in Chinese
-      const shouldAddSpace = computed(() => {
-        const defaultSlot = slots.default?.()
-        if (autoInsertSpace.value && defaultSlot?.length === 1) {
-          const slot = defaultSlot[0]
-          if (slot?.type === Text) {
-            const text = slot.children
-            return /^\p{Unified_Ideograph}{2}$/u.test(text as string)
-          }
-        }
-        return false
-      })
+
       const buttonType = computed(() => props.type || buttonGroupContext?.type || '')
       // size maybe from globalConfig or form;
       const buttonSize = useSize(computed(() => buttonGroupContext?.size))
@@ -71,8 +62,8 @@
       }
 
       return {
+        IconLoading,
         buttonRef,
-        shouldAddSpace,
         buttonType,
         buttonSize,
         buttonDisabled,
@@ -96,7 +87,8 @@
         'is-loading': loading,
         'is-plain': plain,
         'is-round': round,
-        'is-circle': circle
+        'is-circle': circle,
+        'is-text': text
       }
     ]"
     :disabled="buttonDisabled || loading"
@@ -105,9 +97,10 @@
     :style="buttonStyle"
     @click="handleClick"
   >
-    <!-- <fz-icon class="fz-button__icon" v-if="loading" name="loading" />
-    <fz-icon class="fz-button__icon" v-else-if="icon" :name="icon" /> -->
-    <span v-if="$slots.default" :class="{ 'fz-button__text--expand': shouldAddSpace }">
+    <svg-icon v-if="loading" name="loading" class="fz-button__icon" :icon="IconLoading" />
+    <svg-icon v-else-if="icon" class="fz-button__icon" :icon="icon" />
+    <slot v-else-if="$slots.icon" class="fz-button__icon" name="icon" />
+    <span v-if="$slots.default" class="fz-button__inner">
       <slot></slot>
     </span>
   </button>
