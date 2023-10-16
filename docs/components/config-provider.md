@@ -1,19 +1,13 @@
 # config-provider
 
-xxx
+全局配置
 
 ## 基本用法
 
 ::: demo
 
-<template #source>
-    <demo1-vue />
-</template>
+config-provider/basic
 
-```html
-<!-- 展示代码 -->
-
-```
 :::
 
 ## Attributes
@@ -33,7 +27,3 @@ xxx
 | 事件名称 | 说明 | 回调参数 |
 | -------- | ---- | -------- |
 | `xxx`    | xxx  | xxx      |
-
-<script setup lang="ts">
-  import Demo1Vue from './demos/config-provider/demo1.vue';
-</script>

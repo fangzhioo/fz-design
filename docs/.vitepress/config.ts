@@ -79,9 +79,12 @@ export default defineConfig({
     /**
      * 显示标题级别
      * 
-     * https://vitepress.dev/reference/frontmatter-config#outline
+     * https://vitepress.dev/reference/default-theme-config#outline
      */
-    outline: 3,
+    outline: {
+      level: [2, 3],
+      label: 'Contents'
+    },
     /**
      * 搜索配置
      * 
@@ -115,7 +118,7 @@ export default defineConfig({
      *
      * @see logo https://vitepress.dev/reference/default-theme-config#logo
      */
-    logo: 'https://raw.githubusercontent.com/fangzhioo/images/4ad62a8f00aa2473deca61598f307430d8d4a4cf/fz-design/fz-design.svg'
+    logo: 'https://raw.githubusercontent.com/fangzhioo/fz-design/master/logo/fz-design.svg'
   },
   /**
    * 自定义 markdown 解析器

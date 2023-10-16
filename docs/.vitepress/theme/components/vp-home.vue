@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import { useRoute } from 'vitepress'
-  import { watch, ref, computed } from 'vue'
+  import { watch, ref } from 'vue'
   import lang from '../../locale'
   import type { Route } from 'vitepress'
   import { useData } from 'vitepress'
@@ -15,10 +15,6 @@
   const route: Route = useRoute()
   /* 获取当前主题模式 */
   const { isDark } = useData()
-
-  const fontColor = computed(() =>
-    isDark.value ? 'var(--vp-c-text-dark-1)' : 'var(--vp-c-text-light-1)'
-  )
 
   /** 监视路由发生变化时，更新语言 */
   watch(
@@ -108,7 +104,7 @@
           >
             <h4 class="vp-home__footer-title">{{ listItem.title }}</h4>
             <li class="vp-home__footer-item" v-for="(list, i) in listItem.item" :key="i">
-              <fz-link :color="fontColor" target="_blank" :href="list.link">
+              <fz-link target="_blank" :href="list.link">
                 {{ list.text }}
               </fz-link>
             </li>

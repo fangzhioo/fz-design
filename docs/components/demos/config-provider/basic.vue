@@ -5,7 +5,7 @@
   export default defineComponent({
     setup () {
       const theme = useTheme() // 'dark' | 'light'
-      const size = ref('medium') // 'mini' | 'small' | 'medium' | 'large'
+      const size = ref('default') // '' | 'small' | 'default' | 'large'
       const day = ref(new Date())
       const { zhCn, enUs } = lang;
       const locale = ref(zhCn)
@@ -52,9 +52,8 @@
 
       <div>当前组件大小： {{ size }}</div>
       <fz-button-group>
-        <fz-button @click="handleChangeSize('mini')">mini</fz-button>
         <fz-button @click="handleChangeSize('small')">small</fz-button>
-        <fz-button @click="handleChangeSize('medium')">medium</fz-button>
+        <fz-button @click="handleChangeSize('default')">default</fz-button>
         <fz-button @click="handleChangeSize('large')">large</fz-button>
       </fz-button-group>
 

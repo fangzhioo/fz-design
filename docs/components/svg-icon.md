@@ -33,45 +33,22 @@ yarn add --save-dev @fz-design/fz-design-icon
 
 ::: demo
 
-<template #source>
-
-   <fz-svg-icon>
-    <icon-loading />
-  </fz-svg-icon>
-
-  <fz-svg-icon color="red">
-    <icon-alert-circle />
-  </fz-svg-icon>
-
-  <fz-svg-icon size="34px" :icon="IconAlertCircle" />
-</template>
-
-```html
-<template>
-  <fz-svg-icon>
-    <icon-loading />
-  </fz-svg-icon>
-
-  <fz-svg-icon color="red">
-    <icon-alert-circle />
-  </fz-svg-icon>
-
-  <fz-svg-icon size="34px" :icon="IconAlertCircle" />
-</template>
-
-<script lang="ts" setup>
-  import { IconLoading, IconAlertCircle } from '@fz-design/fz-design-icon'
-</script>
-```
+svg-icon/basic
 
 :::
 
 
 ## 图表集合
 
-`svg-icon` 集合，**点击即可直接复制**，共收录 {{num}} 个图标，图标来自[Feather](https://feathericons.com/)
+`svg-icon` 集合，**点击即可直接复制**，收录图标来自[Feather](https://feathericons.com/)，详细看查看 [@fz-design/fz-design-icon](https://www.npmjs.com/package/@fz-design/fz-design-icon) . 
 
-<demo1-vue />
+
+:::demo
+
+svg-icon/maps
+
+:::
+
 
 ## Attributes
 
@@ -94,17 +71,3 @@ yarn add --save-dev @fz-design/fz-design-icon
 ```ts
 import type { SvgIconInstance, SvgIconProps } from 'fz-design'
 ```
-
-
-<script setup lang="ts">
-  import Svg, { IconLoading, IconAlertCircle } from '@fz-design/fz-design-icon'
-  import Demo1Vue from './demos/svg-icon/demo1.vue';
-
-  const num = Object.keys(Svg).length
-</script>
-
-<style scoped>
-  .fz-svg-icon {
-    margin-right: 20px;
-  }
-</style>

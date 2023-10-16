@@ -1,5 +1,6 @@
 import { resolve } from 'path'
 import type { UserConfigExport } from 'vite'
+import { MarkdownTransform } from './.vitepress/plugin/markdown-transform'
 
 export default (): UserConfigExport => {
   return {
@@ -41,6 +42,9 @@ export default (): UserConfigExport => {
           }
         ]
       }
-    }
+    },
+    plugins: [
+      MarkdownTransform()
+    ]
   }
 }

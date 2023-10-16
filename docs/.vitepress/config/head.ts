@@ -11,7 +11,7 @@ export const head: HeadConfig[] = [
     'link',
     {
       rel: 'icon',
-      href: 'https://raw.githubusercontent.com/fangzhioo/images/4ad62a8f00aa2473deca61598f307430d8d4a4cf/fz-design/fz-design.svg'
+      href: 'https://raw.githubusercontent.com/fangzhioo/fz-design/master/logo/fz-design.svg'
     }
   ],
   /** 解决移动端点击输入框自动放大的问题 */
@@ -61,7 +61,7 @@ export const head: HeadConfig[] = [
     {
       property: 'og:image',
       content:
-        'https://raw.githubusercontent.com/fangzhioo/images/4ad62a8f00aa2473deca61598f307430d8d4a4cf/fz-design/fz-design.svg'
+        'https://raw.githubusercontent.com/fangzhioo/fz-design/master/logo/fz-design.svg'
     }
   ],
   /** OG 描述 */

@@ -10,52 +10,8 @@ Card 组件由 `header` 和 `body` 组成。 `header` 是可选的，其内容�
 
 ::: demo
 
-<template #source>
-  <fz-card class="box-card">
-    <template #header>
-      <div class="card-header">
-        <span>Card name</span>
-        <fz-button class="button" text>Operation button</fz-button>
-      </div>
-    </template>
-    <div v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</div>
-  </fz-card>
-</template>
+card/basic
 
-```html
-<template>
-  <fz-card class="box-card">
-    <template #header>
-      <div class="card-header">
-        <span>Card name</span>
-        <fz-button class="button" text>Operation button</fz-button>
-      </div>
-    </template>
-    <div v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</div>
-  </fz-card>
-</template>
-
-<style>
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.text {
-  font-size: 14px;
-}
-
-.item {
-  margin-bottom: 18px;
-}
-
-.box-card {
-  width: 480px;
-}
-</style>
-
-```
 :::
 
 ## Attributes
@@ -76,23 +32,3 @@ Card 组件由 `header` 和 `body` 组成。 `header` 是可选的，其内容�
 | -------- | ---- | -------- |
 | `xxx`    | xxx  | xxx      |
 
-
-<style scoped>
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.text {
-  font-size: 14px;
-}
-
-.item {
-  margin-bottom: 18px;
-}
-
-.box-card {
-  width: 480px;
-}
-</style>

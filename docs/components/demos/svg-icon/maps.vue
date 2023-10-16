@@ -9,7 +9,7 @@
 <template>
   <div class="icon-box">
     <div v-for="(key, i) of SvgIconList" :key="i" class="icon-list" @click="handleClick(i)">
-      <fz-svg-icon :size="30">
+      <fz-svg-icon :size="20">
         <component :is="key" />
       </fz-svg-icon>
       <span class="icon-name">{{ i }}</span>
@@ -18,6 +18,10 @@
 </template>
 
 <style lang="scss" scoped>
+  .fz-svg-icon + .fz-svg-icon {
+    margin-right: 10px;
+  }
+
   .icon-box {
     width: 100%;
     list-style: none;

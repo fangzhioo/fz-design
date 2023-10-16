@@ -2,7 +2,7 @@ import DefaultTheme from 'vitepress/theme'
 import './style/vitepress.scss'
 // import Layout from './components/vp-layout.vue'
 import FzDesign from '../../../packages/fz-design/index'
-import VpDemo from './components/vp-demo.vue'
+import VpDemo from './components/demo/vp-demo.vue'
 import '@fz-design/fz-design-theme'
 import '@fz-design/fz-design-theme/base/var-dark.scss'
 

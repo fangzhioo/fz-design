@@ -8,40 +8,7 @@
 
 ::: demo
 
-<template #source>
-<fz-sticky-card :open="open1">
-
-  <h1>Hello World！</h1>
-  <h1>Hello World！</h1>
-  <h1>Hello World！</h1>
-  <h1>Hello World！</h1>
-  <h1>Hello World！</h1>
-  <h1>Hello World！</h1>
-  <h1>Hello World！</h1>
-  <h1>Hello World！</h1>
-</fz-sticky-card>
-</template>
-
-```html
-<script lang="ts" setup>
-  import { ref } from 'vue'
-
-  const open1 = ref(false)
-</script>
-
-<template>
-  <fz-sticky-card :open="open1">
-    <h1>Hello World！</h1>
-    <h1>Hello World！</h1>
-    <h1>Hello World！</h1>
-    <h1>Hello World！</h1>
-    <h1>Hello World！</h1>
-    <h1>Hello World！</h1>
-    <h1>Hello World！</h1>
-    <h1>Hello World！</h1>
-  </fz-sticky-card>
-</template>
-```
+sticky-card/basic
 
 :::
 
@@ -51,53 +18,7 @@
 
 ::: demo
 
-<template #source>
-<fz-sticky-card :open="open2">
-
-<template #source>
-
-<h1>你好世界！</h1>
-<h1>你好世界！</h1>
-<h1>你好世界！</h1>
-</template>
-
-  <h1>Hello World！</h1>
-  <h1>Hello World！</h1>
-  <h1>Hello World！</h1>
-  <h1>Hello World！</h1>
-  <h1>Hello World！</h1>
-  <h1>Hello World！</h1>
-  <h1>Hello World！</h1>
-  <h1>Hello World！</h1>
-</fz-sticky-card>
-</template>
-
-```html
-<template>
-  <fz-sticky-card :open="open2">
-    <template #source>
-      <h1>你好世界！</h1>
-      <h1>你好世界！</h1>
-      <h1>你好世界！</h1>
-    </template>
-
-    <h1>Hello World！</h1>
-    <h1>Hello World！</h1>
-    <h1>Hello World！</h1>
-    <h1>Hello World！</h1>
-    <h1>Hello World！</h1>
-    <h1>Hello World！</h1>
-    <h1>Hello World！</h1>
-    <h1>Hello World！</h1>
-  </fz-sticky-card>
-</template>
-
-<script lang="ts" setup>
-  import { ref } from 'vue'
-
-  const open2 = ref(false)
-</script>
-```
+sticky-card/slot-source
 
 :::
 
@@ -131,10 +52,3 @@
 ```ts
 import type { StickyCardInstance, StickyCardProps } from 'fz-design'
 ```
-
-<script setup lang="ts">
-  import { ref } from 'vue'
-
-  const open1 = ref(false)
-  const open2 = ref(false)
-</script>

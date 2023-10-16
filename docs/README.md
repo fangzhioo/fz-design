@@ -16,7 +16,7 @@ Docs 是 fz design 官方文档目录，使用 [VitePress](https://github.com/vu
 
 首先需要在 [docs/components](https://github.com/fangzhioo/fz-design/tree/master/docs/components) 目录下，新建一个以组件小写名，去掉前缀 `Fz` 的 `*.md` 文件。如：`button`，而不是 `FzButton`。
 
-- `*.md` 内，只允许出现一个一级标题 `#`，后面全部使用二级标题 `##`，禁止出现二级标题以下的标题
+- `*.md` 内，只允许出现一个一级标题 `#`，后面全部使用 二级标题 `##`和 三级标题 `###`，禁止出现三级标题以下的标题。
 - 一级标题为`组件的名称 + 中文描述`，中间要带有空格。如：`Button 按钮`、`Icon 图标`。这里的组件名要以大写开头
 - 接下来每个二级标题用于描述配置信息，配置信息下面要写入简单的描述。如下，取自 [button.md](https://github.com/fangzhioo/fz-design/blob/master/docs/components/button.md)：
 

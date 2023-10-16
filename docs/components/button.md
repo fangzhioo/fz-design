@@ -6,33 +6,9 @@
 
 `type` 属性可以配置不同的主题类型，展示不同的颜色状态
 
-::: demo
+:::demo 基础用法
 
-<template #source>
-  <div>
-    <fz-button >default</fz-button>
-    <fz-button type="primary" >primary</fz-button>
-    <fz-button type="success" >success</fz-button>
-    <fz-button type="warning" >warning</fz-button>
-    <fz-button type="info" >info</fz-button>
-    <fz-button type="error" >error</fz-button>
-    <fz-button type="text" >text</fz-button>
-  </div>
-</template>
-
-```html
-<template>
-  <div>
-    <fz-button>default</fz-button>
-    <fz-button type="primary">primary</fz-button>
-    <fz-button type="success">success</fz-button>
-    <fz-button type="warning">warning</fz-button>
-    <fz-button type="info">info</fz-button>
-    <fz-button type="error">error</fz-button>
-    <fz-button type="text">text</fz-button>
-  </div>
-</template>
-```
+button/basic
 
 :::
 
@@ -40,21 +16,21 @@
 
 `loading` 属性可以控制加载状态。
 
-::: demo
+:::demo
 
-<template #source>
-  <div>
-    <fz-button type="primary" loading>primary</fz-button>
-  </div>
-</template>
+button/loading
 
-```html
-<template>
-  <div>
-    <fz-button type="primary" loading>primary</fz-button>
-  </div>
-</template>
-```
+:::
+
+
+
+## 自定义Icon
+
+`icon` 属性接受 `@fz-design/fz-design-icon` 提供的图标。
+
+:::demo
+
+button/icon
 
 :::
 
@@ -62,53 +38,17 @@
 
 使用 `size` 属性设置按钮的尺寸大小。
 
-::: demo
+:::demo
 
-<template #source>
-
-  <div>
-    <fz-button size="mini" >mini</fz-button>
-    <fz-button size="small" >small</fz-button>
-    <fz-button size="medium" >medium</fz-button>
-    <fz-button size="large" >large</fz-button>
-  </div>
-</template>
-
-```html
-<div>
-  <fz-button size="mini">mini</fz-button>
-  <fz-button size="small">small</fz-button>
-  <fz-button size="medium">medium</fz-button>
-  <fz-button size="large">large</fz-button>
-</div>
-```
+button/size
 
 :::
 
 ## 按钮组
 
-::: demo
+:::demo
 
-<template #source>
-
-  <div>
-    <fz-button-group>
-      <fz-button>北京</fz-button>
-      <fz-button>上海</fz-button>
-      <fz-button>杭州</fz-button>
-    </fz-button-group>
-  </div>
-</template>
-
-```html
-<div>
-  <fz-button-group>
-    <fz-button>北京</fz-button>
-    <fz-button>上海</fz-button>
-    <fz-button>杭州</fz-button>
-  </fz-button-group>
-</div>
-```
+button/button-group
 
 :::
 
@@ -118,6 +58,13 @@
 | ------ | ---- | ------ | ------ | --------- | -------- |
 | `type` | 类型 | string | -      | `default` | 否       |
 | `size` | 尺寸 | string | -      | `default` | 否       |
+
+## Slots
+
+| 名称  | 说明 |
+| ----- | ---- |
+| `icon` | 图标slot  |
+
 
 ## Events
 

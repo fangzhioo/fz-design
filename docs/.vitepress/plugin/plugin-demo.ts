@@ -1,5 +1,9 @@
 import MarkdownItContainer from 'markdown-it-container'
 import MarkdownIt from 'markdown-it'
+import fs from 'fs'
+import path from 'path'
+
+export const docRoot = path.resolve(__dirname, '..', '..')
 
 /**
  * 创建 markdown 实例
@@ -26,21 +30,38 @@ export const PluginDemo = (md): void => {
     validate(params: string): boolean {
       return !!params.trim().match(/^demo\s*(.*)$/)
     },
+    render(tokens, idx) {
+      if (tokens[idx].nesting === 1 /* means the tag is opening */) {
+        const m = tokens[idx].info.trim().match(/^demo\s*(.*)$/)
+        const description = m && m.length > 1 ? m[1] : ''
 
-    render(tokens, idx: number) {
-      if (tokens[idx].nesting === 1) {
-        const m: RegExpMatchArray = tokens[idx].info.trim().match(/^demo\s*(.*)$/)
-        const description: string = m && m.length > 1 ? m[1] : ''
-        const content: string =
-          tokens[idx + 1].type === 'fence' ? tokens[idx + 1].content : ''
-        const source: string = md.utils.escapeHtml(content)
+        const sourceFileToken = tokens[idx + 2]
+        const sourceFile = sourceFileToken.children?.[0].content ?? ''
 
-        return `<vp-demo source="${source}" >${encodeURIComponent(
-          markdown.render(description)
-        )}`
+        let source = sourceFile
+
+        if (sourceFileToken.type === 'inline') {
+          // console.log(`开始加载文件：${sourceFile}`)
+          source = fs.readFileSync(
+            path.resolve(docRoot, 'components', 'demos', `${sourceFile}.vue`),
+            'utf-8'
+          )
+          // console.log(`加载文件完成: ${sourceFile}`, source);
+        }
+        // if (!source) throw new Error(`找不到模板文件: ${sourceFile}`)
+
+        const sourceHighlight = '```html\n' + source + '\n```'
+
+        return `<vp-demo
+            :demos="demos"
+            source="${encodeURIComponent(markdown.render(sourceHighlight))}"
+            path="${sourceFile}"
+            raw-source="${encodeURIComponent(source)}"
+            description="${encodeURIComponent(markdown.render(description))}">
+          `
+      } else {
+        return '</vp-demo>'
       }
-
-      return '</vp-demo>'
     }
   })
 }

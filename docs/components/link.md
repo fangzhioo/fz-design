@@ -8,27 +8,8 @@
 
 ::: demo
 
-<template #source>
-<!-- 源码render -->
-<div>
-    <fz-link href="https://fangzhioo.github.io/fz-design" target="_blank">default</fz-link>
-    <fz-link type="primary">primary</fz-link>
-    <fz-link type="success">success</fz-link>
-    <fz-link type="warning">warning</fz-link>
-    <fz-link type="danger">danger</fz-link>
-    <fz-link type="info">info</fz-link>
-</div>
-</template>
+link/basic
 
-```html
-<!-- 展示代码 -->
-<fz-link href="https://fangzhioo.github.io/fz-design" target="_blank">default</fz-link>
-<fz-link type="primary">primary</fz-link>
-<fz-link type="success">success</fz-link>
-<fz-link type="warning">warning</fz-link>
-<fz-link type="danger">danger</fz-link>
-<fz-link type="info">info</fz-link>
-```
 :::
 
 ## Attributes
@@ -53,9 +34,3 @@
 | 事件名称 | 说明     | 回调参数   |
 | -------- | -------- | ---------- |
 | `click`  | 点击链接 | MouseEvent |
-
-<style scoped>
-    .fz-link {
-        margin-right: 16px;
-    }
-</style>

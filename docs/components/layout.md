@@ -4,16 +4,10 @@ xxx
 
 ## 基本用法
 
-::: demo
+:::demo
 
-<template #source>
-<!-- 源码render -->
-</template>
+xxx/basic
 
-```html
-<!-- 展示代码 -->
-
-```
 :::
 
 ## Attributes

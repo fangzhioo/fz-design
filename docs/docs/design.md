@@ -1,10 +1,14 @@
 # 设计规范
 
-提供一些组件默认的规范。
+提供一些组件默认的规范。主要是基于 [`element-plus` 的规范](https://github.com/element-plus/element-plus/blob/dev/packages/theme-chalk/src/common/var.scss)来实现。
 
-## 主题色
+## 主色
 
-颜色分为一下几个类型： primary, success, warning, danger, error, info
+主色区别于`element-plus`的蓝色，我们选择性感的紫色😁。
+
+<vp-color-preview :colors="primaryColor" />
+
+颜色分为一下几个类型： primary, success, warning, danger, info
 
 css变量名：--fz-color-primary
 
@@ -133,3 +137,48 @@ css变量名：--fz-bg-color / --fz-bg-color-page
 
 --fz-mask-color: rgba(255, 255, 255, .9);
 --fz-mask-color-extra-light: rgba(255, 255, 255, .3);
+
+
+<script lang="ts" setup>
+const primaryColor = [
+    // base
+    {
+        color: 'var(--fz-color-primary)',
+        text: 'Primary Color',
+        hex: '#8670ff'
+    },
+    // sub
+    {
+        color: 'var(--fz-color-primary-dark-2)',
+        text: 'Primary Color Dark',
+        hex: '#927eff' 
+    },
+    {
+        color: 'var(--fz-color-primary-light-3)',
+        text: 'Primary Color Light 3',
+        hex: '#aa9bff' 
+    },
+    {
+        color: 'var(--fz-color-primary-light-5)',
+        text: 'Primary Color Light 5',
+        hex: '#c3b8ff' 
+    },
+    {
+        color: 'var(--fz-color-primary-light-7)',
+        text: 'Primary Color Light 7',
+        hex: '#dbd4ff' 
+    },
+    {
+        color: 'var(--fz-color-primary-light-8)',
+        text: 'Primary Color Light 8',
+        hex: '#e7e2ff' 
+    },
+    {
+        color: 'var(--fz-color-primary-light-9)',
+        text: 'Primary Color Light 9',
+        hex: '#f3f1ff' 
+    },
+]
+
+
+</script>
