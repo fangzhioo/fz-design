@@ -20,6 +20,10 @@
     "name": "fangzhioo",
     "url": "https://github.com/fangzhioo"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "license": "MIT",
   "homepage": "https://fangzhioo.github.io/fz-design",
   "repository": "https://github.com/fangzhioo/fz-design"
