@@ -6,14 +6,8 @@ xxx
 
 ::: demo
 
-<template #source>
-<!-- 源码render -->
-</template>
+<%= name %>/basic
 
-```html
-<!-- 展示代码 -->
-
-```
 :::
 
 ## Attributes

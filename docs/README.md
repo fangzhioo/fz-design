@@ -2,7 +2,7 @@
 
 ## ✨ 介绍
 
-Docs 是 fz design 官方文档目录，使用 [VitePress](https://github.com/vuejs/vitepress) 进行开发。
+Docs 是 FzDesign 官方文档目录，使用 [VitePress](https://github.com/vuejs/vitepress) 进行开发。
 
 `vitePress` 是一个 `Vite` 和 `Vue` 支持的静态站点生成器，使用 [MarkDown](https://zh.wikipedia.org/zh-tw/Markdown) 进行编写。如果你还不了解 `MarkDown`，可以通过[这里](http://younghz.github.io/Markdown/)进行学习。
 
@@ -29,16 +29,12 @@ Docs 是 fz design 官方文档目录，使用 [VitePress](https://github.com/vu
 - 并不是组件的所有配置项都要带有演示用例，突出主要即可
 - 英文名要用反引号包裹，左右两边要带有空格。如： `type` 配置按钮的类型
 - 描述信息之后要带有具体的配置例子
-- 需要提供演效果的代码段，代码段使用已经封装好的 `::: demo` 语法来展示 demo 和下拉菜单内容，详情配置可参考 [plugins.ts](https://github.com/fangzhioo/fz-design/blob/master/docs/.vitepress/plugins/plugins-demo.ts) 。例：
+- 需要提供演效果的代码段，基于 element-plus 文档的 [实现逻辑](https://github.com/element-plus/element-plus/blob/dev/docs/.vitepress/config/plugins.ts) ，封装好的 `::: demo` 语法来展示 demo 和下拉菜单内容，详情配置可参考 [plugins.ts](https://github.com/fangzhioo/fz-design/blob/master/docs/.vitepress/plugin/plugin-demo.ts) 。例：
 
 ```
 ::: demo
 
-<template #source>
-<!-- source 插槽插入示例 -->
-</template>
-
-<!-- 默认插槽插入代码片段 -->
+xxx/basic
 
 :::
 
