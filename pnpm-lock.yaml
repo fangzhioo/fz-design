@@ -141,12 +141,6 @@ importers:
 
   packages/fz-design-icon: {}
 
-  packages/fz-design-plus:
-    dependencies:
-      vue:
-        specifier: 3.3.0
-        version: registry.npmmirror.com/vue@3.3.0
-
   packages/fz-design-theme: {}
 
   packages/fz-eslint-config:

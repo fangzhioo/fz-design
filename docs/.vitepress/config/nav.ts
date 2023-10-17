@@ -19,7 +19,7 @@ export const nav = [
   {
     text: '高级组件',
     activeMatch: '^/plus/',
-    link: '/plus/barrage'
+    link: '/plus/introduce'
   },
   {
     text: version,

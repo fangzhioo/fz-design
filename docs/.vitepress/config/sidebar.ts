@@ -126,6 +126,7 @@ export const sidebar = {
     {
       text: '高级组件',
       items: [
+        { text: '快速上手', link: '/plus/introduce' },
         { text: 'Barrage 弹幕', link: '/plus/barrage' },
         { text: 'Signature 签名', link: '/plus/signature' }, 
       ]
