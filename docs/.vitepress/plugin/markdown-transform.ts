@@ -4,7 +4,9 @@ export function MarkdownTransform() {
     return {
       name: 'fz-design-md-transform',
       async transform(code, id) {
-        if (!id.endsWith('.md')) return
+        
+        // 只需要对 docs/components/ 文件夹下的 md 文件进行特殊处理
+        if (!(id.endsWith('.md') && /\/docs\/components\//.test(id))) return
   
         const componentId = path.basename(id, '.md')
 
