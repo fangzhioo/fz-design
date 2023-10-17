@@ -6,7 +6,6 @@ xxx
 
 :::demo
 
-xxx/basic
 
 :::
 

@@ -1,3 +1,5 @@
+@use "./code.scss";
+
 /**
 * 参考 vitepress的默认主题 https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
 */
@@ -87,6 +89,14 @@
   // 代码部分
   div[class*='language-'], .vp-block {
     background-color: var(--vp-code-bg-color);
+  }
+
+  div[class*='language-'] pre {
+    padding: 4px;
+
+    code {
+      padding: 0;
+    }
   }
 
 }

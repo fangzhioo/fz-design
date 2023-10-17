@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { computed, getCurrentInstance, ref } from 'vue'
   import { useClipboard, useToggle } from '@vueuse/core'
-  import { IconCode, IconCopy, IconGithub } from '@fz-design/fz-design-icon'
+  import { IconCode, IconCopy, IconGithub, IconChevronsUp } from '@fz-design/fz-design-icon'
 
   import VpCollapseTransition from './vp-collapse-transition.vue'
   import VpExample from './vp-example.vue'
@@ -58,73 +58,80 @@
     }
   }
 
-  const githubLink = `https://github.com/fangzhioo/fz-design/tree/master/docs/components/demos/${props.path}.vue`;
-  
+  const githubLink = `https://github.com/fangzhioo/fz-design/tree/master/docs/components/demos/${props.path}.vue`
 </script>
 
 <template>
-  <ClientOnly>
-    <!-- danger here DO NOT USE INLINE SCRIPT TAG -->
-    <p class="description" v-html="decodedDescription" />
+  <template v-if="path">
+    <ClientOnly>
+      <!-- danger here DO NOT USE INLINE SCRIPT TAG -->
+      <p class="description" v-html="decodedDescription" />
 
-    <div class="example">
-      <VpExample :file="path" :demo="formatPathDemos[path]" />
+      <div class="example">
+        <VpExample :file="path" :demo="formatPathDemos[path]" />
 
-      <div class="line"></div>
+        <div class="line"></div>
 
-      <div class="op-btns">
-        
-        <fz-link
-          aria-label="Github Link"
-          class="op-btn"
-          :href="githubLink"
-        >
-          <fz-svg-icon :icon="IconGithub" />
-        </fz-link>
-        <button
-          aria-label="Copy Code"
-          class="op-btn"
-          tabindex="0"
-          role="button"
-          @click="copyCode"
-          @keydown.prevent.enter="copyCode"
-          @keydown.prevent.space="copyCode"
-        >
-          <fz-svg-icon :icon="IconCopy" />
-        </button>
-        <button
-          ref="sourceCodeRef"
-          :aria-label="sourceVisible ? 'hide' : 'show'"
-          class="op-btn"
-          role="button"
-          tabindex="0"
-          @click="toggleSourceVisible()"
-        >
-          <fz-svg-icon :icon="IconCode" />
-        </button>
-      </div>
-
-      <VpCollapseTransition>
-        <SourceCode v-show="sourceVisible" :source="source" />
-      </VpCollapseTransition>
-
-      <Transition name="fz-fade-in-linear">
-        <div
-          v-show="sourceVisible"
-          class="example-float-control"
-          tabindex="0"
-          role="button"
-          @click="toggleSourceVisible(false)"
-          @keydown="onSourceVisibleKeydown"
-        >
-          <span>收起</span>
+        <div class="op-btns">
+          <fz-link aria-label="Github Link" class="op-btn" :href="githubLink">
+            <fz-svg-icon :icon="IconGithub" />
+          </fz-link>
+          <button
+            aria-label="Copy Code"
+            class="op-btn"
+            tabindex="0"
+            role="button"
+            @click="copyCode"
+            @keydown.prevent.enter="copyCode"
+            @keydown.prevent.space="copyCode"
+          >
+            <fz-svg-icon :icon="IconCopy" />
+          </button>
+          <button
+            ref="sourceCodeRef"
+            :aria-label="sourceVisible ? 'hide' : 'show'"
+            class="op-btn"
+            role="button"
+            tabindex="0"
+            @click="toggleSourceVisible()"
+          >
+            <fz-svg-icon :icon="IconCode" />
+          </button>
         </div>
-      </Transition>
-    </div>
-  </ClientOnly>
+
+        <VpCollapseTransition>
+          <SourceCode v-show="sourceVisible" :source="source" />
+        </VpCollapseTransition>
+
+        <Transition name="fz-fade-in-linear">
+          <div
+            v-show="sourceVisible"
+            class="example-float-control"
+            tabindex="0"
+            role="button"
+            @click="toggleSourceVisible(false)"
+            @keydown="onSourceVisibleKeydown"
+          >
+            <fz-svg-icon :icon="IconChevronsUp" />
+            <span>隐藏源代码</span>
+          </div>
+        </Transition>
+      </div>
+    </ClientOnly>
+  </template>
+  <div v-else class="empty">暂无示例</div>
 </template>
 
 <style scoped lang="scss">
+  .empty {
+    padding: 40px 10px;
+    text-align: center;
+    border: 1px solid var(--fz-border-color);
+    border-radius: var(--fz-border-radius-base);
+    font-size: var(--fz-font-size-base, 14px);
+    color: var(--fz-text-color-secondary);
+  }
+
   .description {
     font-size: 0.875rem;
     line-height: 1.25rem;

@@ -34,7 +34,7 @@ Docs 是 FzDesign 官方文档目录，使用 [VitePress](https://github.com/vue
 ```
 ::: demo
 
-xxx/basic
+
 
 :::
 

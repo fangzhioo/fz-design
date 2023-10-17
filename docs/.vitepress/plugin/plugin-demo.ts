@@ -2,6 +2,7 @@ import MarkdownItContainer from 'markdown-it-container'
 import MarkdownIt from 'markdown-it'
 import fs from 'fs'
 import path from 'path'
+import { highlight } from '../utils/highlight'
 
 export const docRoot = path.resolve(__dirname, '..', '..')
 
@@ -50,11 +51,9 @@ export const PluginDemo = (md): void => {
         }
         // if (!source) throw new Error(`找不到模板文件: ${sourceFile}`)
 
-        const sourceHighlight = '```html\n' + source + '\n```'
-
         return `<vp-demo
             :demos="demos"
-            source="${encodeURIComponent(markdown.render(sourceHighlight))}"
+            source="${encodeURIComponent(highlight(source, 'vue'))}"
             path="${sourceFile}"
             raw-source="${encodeURIComponent(source)}"
             description="${encodeURIComponent(markdown.render(description))}">
