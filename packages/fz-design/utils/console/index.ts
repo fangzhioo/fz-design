@@ -32,4 +32,3 @@ export const warning = (location: string, message: string): void => {
   export const throwError = (location: string, message: string): never => {
     throw new Error(`[fz-design/${location}]: ${message}`)
   }
-  

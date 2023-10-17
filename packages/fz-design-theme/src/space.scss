@@ -1,2 +1,18 @@
 .fz-space {
+  display: inline-flex;
+  vertical-align: top;
+
+  &--vertical {
+    flex-direction: column;
+  }
+
+  &__item {
+    display: flex;
+    flex-wrap: wrap;
+
+    & > * {
+        flex: 1;
+    }
+  }
 }
+

@@ -1,2 +1,65 @@
 .fz-text {
+    --fz-text-font-size: var(--fz-font-size-base);
+    --fz-text-color: var(--fz-text-color-regular)
+
+    align-self: center;
+    margin: 0;
+    padding: 0;
+    font-size: var(--fz-text-font-size);
+    color: var(--fz-text-color);
+    word-break: break-all;
+
+    &--large {
+        --fz-text-font-size: var(--fz-font-size-medium)
+    }
+
+    &--default {
+        --fz-text-font-size: var(--fz-font-size-base)
+    }
+
+    &--small {
+        --fz-text-font-size: var(--fz-font-size-extra-small)
+    }
+
+    &.fz-text--primary {
+        --fz-text-color: var(--fz-color-primary)
+    }
+
+    &.fz-text--success {
+        --fz-text-color: var(--fz-color-success)
+    }
+
+    &.fz-text--warning {
+        --fz-text-color: var(--fz-color-warning)
+    }
+
+    &.fz-text--danger {
+        --fz-text-color: var(--fz-color-danger)
+    }
+
+    &.fz-text--error {
+        --fz-text-color: var(--fz-color-error)
+    }
+
+    &.fz-text--info {
+        --fz-text-color: var(--fz-color-info)
+    }
+    
+    & > .fz-svg-icon {
+        vertical-align: -2px
+    }
+
+    &.is-ellipsis {
+        display: inline-block;
+        max-width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden
+    }
+
+    &.is-line-clamp {
+        display: -webkit-inline-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden
+    }
 }

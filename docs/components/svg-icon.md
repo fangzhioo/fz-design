@@ -37,11 +37,9 @@ svg-icon/basic
 
 :::
 
-
 ## 图表集合
 
-`svg-icon` 集合，**点击即可直接复制**，收录图标来自[Feather](https://feathericons.com/)，详细看查看 [@fz-design/fz-design-icon](https://www.npmjs.com/package/@fz-design/fz-design-icon) . 
-
+`svg-icon` 集合，**点击即可直接复制**，收录图标来自[Feather](https://feathericons.com/)，详细看查看 [@fz-design/fz-design-icon](https://www.npmjs.com/package/@fz-design/fz-design-icon) .
 
 :::demo
 
@@ -49,14 +47,13 @@ svg-icon/maps
 
 :::
 
-
 ## Attributes
 
-| 参数       | 说明           | 类型                                                               | 可选值 | 默认值 |
-| ---------- | -------------- | ------------------------------------------------------------------ | ------ | ------ |
-| `color`    | icon 颜色      | string                                                             | ——     | ——     |
-| `size`     | icon 大小      | string / number                                                    | ——     | ——     |
-| `icon`     | icon 内容      | SvgIcon | ——     | ——     |
+| 参数    | 说明      | 类型            | 默认值 |
+| ------- | --------- | --------------- | ------ |
+| `color` | icon 颜色 | string          | ——     |
+| `size`  | icon 大小 | string / number | ——     |
+| `icon`  | icon 内容 | SvgIcon         | ——     |
 
 ## Slots
 

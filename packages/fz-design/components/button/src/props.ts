@@ -22,10 +22,6 @@ export const Props = {
     type: Boolean,
     default: false
   },
-  color: {
-    type: String,
-    default: ''
-  },
   icon: {
     type: String,
     default: ''

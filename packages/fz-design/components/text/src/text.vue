@@ -1,11 +1,26 @@
 <script lang="ts" setup>
   import { Props } from './props'
+  import { isUndefined } from '../../../utils';
 
   defineOptions({name: 'FzText'})
 
-  const prop = defineProps(Props)
+  defineProps(Props)
 </script>
 
 <template>
-  <div class="fz-text">FzText</div>
+  <component
+    :is="tag"
+    :class="[
+      'fz-text',
+      'fz-text--' + type,
+      'fz-text--' + size,
+      {
+        'is-ellipsis': ellipsis,
+        'is-line-clamp': !isUndefined(lineClamp),
+      }
+    ]"
+    :style="{ '-webkit-line-clamp': lineClamp }"
+  >
+    <slot />
+  </component>
 </template>

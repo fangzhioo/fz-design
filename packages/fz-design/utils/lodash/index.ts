@@ -65,6 +65,9 @@ export const isBoolean = (val: any): boolean =>
 export const isNumber = (val: any): boolean =>
   Object.prototype.toString.call(val) === '[object Number]'
 
+export const isUndefined = (val: any): boolean =>
+  Object.prototype.toString.call(val) === '[object Undefined]'
+
 export const hasOwn = (val: object, key: string | symbol): key is keyof typeof val =>
   Object.prototype.hasOwnProperty.call(val, key)
 

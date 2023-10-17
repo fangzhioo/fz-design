@@ -22,9 +22,7 @@ button/loading
 
 :::
 
-
-
-## 自定义Icon
+## 自定义 Icon
 
 `icon` 属性接受 `@fz-design/fz-design-icon` 提供的图标。
 
@@ -54,17 +52,26 @@ button/button-group
 
 ## Attributes
 
-| 参数   | 说明 | 类型   | 可选值 | 默认值    | 是否必填 |
-| ------ | ---- | ------ | ------ | --------- | -------- |
-| `type` | 类型 | string | -      | `default` | 否       |
-| `size` | 尺寸 | string | -      | `default` | 否       |
+| 参数       | 说明         | 类型                                                                                                                       | 默认值 |
+| ---------- | ------------ | -------------------------------------------------------------------------------------------------------------------------- | ------ |
+| type       | 类型         | [ButtonType](https://github.com/fangzhioo/fz-design/blob/master/packages/fz-design/components/button/src/interface.ts#L12) | -      |
+| size       | 尺寸         | [ButtonSize](https://github.com/fangzhioo/fz-design/blob/master/packages/fz-design/components/button/src/interface.ts#L19) | -      |
+| text       | 文本按钮     | `boolean`                                                                                                                  | false  |
+| nativeType | 原生类型     | [ButtonNative](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/button#attr-type)                                 | button |
+| disabled   | 是否禁用     | `boolean`                                                                                                                  | false  |
+| icon       | 图标         | [IconSlotType](https://github.com/fangzhioo/fz-design/blob/master/packages/fz-design/types/component.ts#L3)                | -      |
+| loading    | 是否加载中   | `boolean`                                                                                                                  | false  |
+| plain      | 是否简单风格 | `boolean`                                                                                                                  | false  |
+| round      | 是否圆角风格 | `boolean`                                                                                                                  | false  |
+| circle     | 是否圆形风格 | `boolean`                                                                                                                  | false  |
+| autofocus  | 自动对焦     | `boolean`                                                                                                                  | false  |
 
 ## Slots
 
-| 名称  | 说明 |
-| ----- | ---- |
-| `icon` | 图标slot  |
-
+| 名称      | 说明      |
+| --------- | --------- |
+| `default` | 默认内容  |
+| `icon`    | 图标 slot |
 
 ## Events
 

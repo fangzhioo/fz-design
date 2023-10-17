@@ -11,5 +11,5 @@ export enum PatchFlags {
   NEED_PATCH = 512,
   DYNAMIC_SLOTS = 1024,
   HOISTED = -1,
-  BAIL = -2,
+  BAIL = -2
 }

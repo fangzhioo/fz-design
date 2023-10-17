@@ -1,2 +1,84 @@
+
+.fz-scrollbar-fade-enter-active {
+    transition: opacity 340ms ease-out
+}
+
+.fz-scrollbar-fade-leave-active {
+    transition: opacity 120ms ease-out
+}
+
+.fz-scrollbar-fade-enter-from,
+.fz-scrollbar-fade-leave-active {
+    opacity: 0
+}
+
 .fz-scrollbar {
+    --fz-scrollbar-opacity: 0.3;
+    --fz-scrollbar-bg-color: var(--fz-text-color-secondary);
+    --fz-scrollbar-hover-opacity: 0.5;
+    --fz-scrollbar-hover-bg-color: var(--fz-text-color-secondary);
+
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+
+    
+
+    &__wrap {
+        overflow: auto;
+        height: 100%;
+
+        &--hidden-default {
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+        
+    }
+
+    &__thumb {
+        position: relative;
+        display: block;
+        width: 0;
+        height: 0;
+        cursor: pointer;
+        border-radius: inherit;
+        background-color: var(--fz-scrollbar-bg-color, var(--fz-text-color-secondary));
+        transition: var(--fz-transition-duration) background-color;
+        opacity: var(--fz-scrollbar-opacity, .3);
+
+        &:hover {
+            background-color: var(--fz-scrollbar-hover-bg-color, var(--fz-text-color-secondary));
+            opacity: var(--fz-scrollbar-hover-opacity, .5)
+        }
+    }
+
+    &__bar {
+        position: absolute;
+        right: 2px;
+        bottom: 2px;
+        z-index: 1;
+        border-radius: 4px;
+        
+        &.is-vertical {
+            width: 6px;
+            top: 2px;
+
+            &>div {
+                width: 100%;
+            }
+        }
+
+        &.is-horizontal {
+            height: 6px;
+            left: 2px;
+
+            &>div {
+                height: 100%;
+            }
+        }
+    }
+
 }

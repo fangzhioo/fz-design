@@ -14,13 +14,13 @@ link/basic
 
 ## Attributes
 
-| 参数        | 说明       | 类型    | 可选值                                                   | 默认值    |
-| ----------- | ---------- | ------- | -------------------------------------------------------- | --------- |
-| `type`      | 类型       | string  | `default`/`primary`/`success`、`warning`/`danger`/`info` | `default` |
-| `underline` | 是否下划线 | boolean | `true`/`false`                                           | `true`    |
-| `disabled`  | 是否禁用   | boolean | `true`/`false`                                           | `false`   |
-| `href`      | 链接地址   | string  | -                                                        | -         |
-| `icon`      | 图标       | SvgIcon | -                                                        | -         |
+| 参数        | 说明       | 类型    | 默认值    |
+| ----------- | ---------- | ------- | --------- |
+| `type`      | 类型       | string  | `default` |
+| `underline` | 是否下划线 | boolean | `true`    |
+| `disabled`  | 是否禁用   | boolean | `false`   |
+| `href`      | 链接地址   | string  | -         |
+| `icon`      | 图标       | SvgIcon | -         |
 
 ## Slots
 

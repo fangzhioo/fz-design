@@ -44,9 +44,9 @@ Docs 是 FzDesign 官方文档目录，使用 [VitePress](https://github.com/vue
 
 Attributes
 
-| 参数  | 说明 | 类型 | 可选值 | 默认值 |
-| ----- | ---- | ---- | ------ | ------ |
-| `xxx` | xxx  | xxx  | `xxx`  | xxx    |
+| 参数  | 说明 | 类型 | 默认值 | 
+| ----- | ---- | ---- | ------ | 
+| `xxx` | xxx  | xxx  | `xxx`  | 
 
 Slots
 
@@ -56,7 +56,7 @@ Slots
 
 Events
 
-| 事件名称 | 说明 | 回调参数 |
+| 事件名称 | 说明 | 类型 |
 | -------- | ---- | -------- |
 | `xxx`    | xxx  | xxx      |
 

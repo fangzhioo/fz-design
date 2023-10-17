@@ -26,32 +26,6 @@
       // size maybe from globalConfig or form;
       const buttonSize = useSize(computed(() => buttonGroupContext?.size))
       const buttonDisabled = computed(() => props.disabled)
-      const buttonStyle = computed(() => {
-        let styles = {}
-        const buttonColor = props.color
-        if (buttonColor) {
-          // TODO color genarator by @npm: @ctrl/tinycolor
-          // const shadeBgColor = new TinyColor(buttonColor).shade(10).toString()
-          if (props.plain) {
-            // const plainBgColor = new TinyColor(buttonColor).tint(90).toString();
-            // styles = {
-            //   '--fz-button-bg-color': plainBgColor
-            // };
-          } else {
-            styles = {
-              '--fz-button-text-color': buttonColor
-            }
-          }
-        }
-
-        if (buttonDisabled.value) {
-          //  const disabledButtonColor = new TinyColor(buttonColor).tint(50).toString();
-          // styles['--fz-button-disabled-bg-color'] = disabledButtonColor
-          // styles['--fz-button-disabled-border-color'] = disabledButtonColor
-        }
-
-        return styles
-      })
 
       const handleClick = (evt: MouseEvent): void => {
         if (props.nativeType === 'reset') {
@@ -67,7 +41,6 @@
         buttonType,
         buttonSize,
         buttonDisabled,
-        buttonStyle,
 
         handleClick
       }
@@ -94,7 +67,6 @@
     :disabled="buttonDisabled || loading"
     :autofocus="autofocus"
     :type="nativeType"
-    :style="buttonStyle"
     @click="handleClick"
   >
     <svg-icon v-if="loading" name="loading" class="fz-button__icon" :icon="IconLoading" />
