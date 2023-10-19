@@ -1,2 +1,61 @@
 .fz-slider {
+  --fz-slider-height: 24px;
+  --fz-slider-bar-height: 6px;
+  --fz-slider-bg-color: var(--fz-border-color-light);
+  --fz-slider-bar-bg-color: var(--fz-color-primary-light-9);
+  --fz-slider-active-color: var(--fz-color-primary);
+  
+  position: relative;
+  width: 100%;
+  border-radius: var(--fz-slider-height);
+  margin: 0;
+  padding: 0;
+  height: var(--fz-slider-height);
+  display: flex;
+  align-items: center;
+
+  // 滑道
+  &__road {
+    background-color: var(--fz-slider-bg-color);
+    height: var(--fz-slider-bar-height);
+    width: 100%;
+    border-radius: var(--fz-slider-bar-height);
+    overflow: hidden;
+  }
+
+  // 进度条
+  &__selected {
+    background-color: var(--fz-slider-active-color);
+    height: 100%;
+  }
+
+  // 拖动按钮
+  &__icon {
+    position: absolute;
+    cursor: pointer;
+    user-select: none;
+    box-sizing: border-box;
+    transform: translateX(-50%);
+    width: calc(var(--fz-slider-height) - 2px);
+    height: calc(var(--fz-slider-height) - 2px);
+    border: calc(var(--fz-slider-bar-height) / 2) solid var(--fz-slider-active-color);
+    border-radius: 9999px;
+    background-color: var(--fz-slider-bar-bg-color);
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    z-index: 10;
+  }
+
+  &:not(.is-disabled) &__icon {
+    &:hover, &:active, &:focus {
+        border-width: calc(var(--fz-slider-bar-height) / 1.2);
+    }
+  }
+
+  // 禁用状态
+  &.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }

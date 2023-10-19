@@ -7,7 +7,7 @@
 </script>
 
 <template>
-  <div class="fz-card" :class="shadow ? 'is-' + shadow + '-shadow' : 'is-always-shadow'">
+  <div :class="['fz-card', {[`is-${shadow}-shadow`]: shadow }]">
     <div v-if="$slots.header || header" class="fz-card__header">
       <slot name="header">{{ header }}</slot>
     </div>

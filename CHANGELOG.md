@@ -2,25 +2,37 @@
 
 中文 | [英文](https://github.com/fangzhioo/fz-ui/blob/master/CHANGELOG.en-US.md)
 
+## 0.0.3-alpha.3 (2023-10-19)
+
+✨ **feat**
+
+- 新增 `fz-row`、`fz-col` 布局组件；
+- 新增 `fz-slider` 滑块组件；
+- 新增 `fz-rate` 评分组件。
+
+🐞 **fix**
+
+- 修复 `fz-card` 组件样式修复
+
 ## 0.0.2-alpha.2 (2023-10-17)
 
 ✨ **feat**
 
-- 新增 `fz-text` 组件；
-- 新增 `fz-space` 组件；
-- 新增 `fz-scrollbar` 组件。
+- 新增 `fz-text` 文本组件；
+- 新增 `fz-space` 间隔组件；
+- 新增 `fz-scrollbar` 滚动条组件。
 
 🐞 **fix**
 
-- 修复图标无法设置size问题。
+- 修复 `fz-svg-icon` 图标无法设置size问题。
 
 ## 0.0.1-alpha.1 (2023-10-15)
 
 ✨ **feat**
 
-- 新增 `fz-button`、`fz-button-group` 组件；
-- 新增 `fz-link` 组件；
-- 新增 `fz-config-provider` 组件；
-- 新增 `fz-svg-icon` 组件；
-- 新增 `fz-collapse-transition`、`fz-sticky-card` 组件；
-- 新增 `fz-card` 组件。
+- 新增 `fz-button`、`fz-button-group` 按钮组件；
+- 新增 `fz-link` 链接组件；
+- 新增 `fz-config-provider` 全局布局组件；
+- 新增 `fz-svg-icon` 图标组件；
+- 新增 `fz-collapse-transition`、`fz-sticky-card` 粘性卡片组件；
+- 新增 `fz-card` 卡片组件。

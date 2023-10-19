@@ -22,8 +22,11 @@ export * from './link'
 export { FzText } from './text'
 export * from './text'
 
-export { FzLayout } from './layout'
-export * from './layout'
+export { FzRow } from './row'
+export * from './row'
+
+export { FzCol } from './col'
+export * from './col'
 
 export { FzSpace } from './space'
 export * from './space'

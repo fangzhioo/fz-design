@@ -12,11 +12,11 @@
     :is="tag"
     :class="[
       'fz-text',
-      'fz-text--' + type,
-      'fz-text--' + size,
       {
         'is-ellipsis': ellipsis,
         'is-line-clamp': !isUndefined(lineClamp),
+        [`fz-text--${type}`]: !!type,
+        [`fz-text--${size}`]: !!size,
       }
     ]"
     :style="{ '-webkit-line-clamp': lineClamp }"

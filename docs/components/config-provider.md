@@ -1,4 +1,4 @@
-# config-provider
+# ConfigProvider 全局配置
 
 全局配置
 

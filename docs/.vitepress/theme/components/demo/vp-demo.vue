@@ -73,7 +73,7 @@
         <div class="line"></div>
 
         <div class="op-btns">
-          <fz-link aria-label="Github Link" class="op-btn" :href="githubLink">
+          <fz-link aria-label="Github Link" class="op-btn" target="_blank" :href="githubLink">
             <fz-svg-icon :icon="IconGithub" />
           </fz-link>
           <button

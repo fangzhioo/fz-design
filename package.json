@@ -30,7 +30,8 @@
     "lint:fix": "pnpm run lint --fix",
     "changelog": "node scripts/set-changelog",
     "ver": "node scripts/set-version",
-    "format": "pnpm prettier && pnpm lint:fix"
+    "format": "pnpm prettier && pnpm lint:fix",
+    "publish": "nrm use npm && npm run changelog && npm run test && npm run build && cd ./dist && npm publish"
   },
   "dependencies": {
     "vue": "^3.2.25"

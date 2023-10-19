@@ -44,7 +44,7 @@ space/customized-size
 
 :::
 
-::: tips
+::: tip
 
 不要让 `FzSpace` 与使用依赖父元素百分比宽度（或高度）的元素一起使用（例如 FzSlider），这样会造成光标不同步。
 

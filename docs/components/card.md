@@ -14,21 +14,52 @@ card/basic
 
 :::
 
+## 简单卡片
+
+卡片可以只有内容区域。
+
+:::demo
+
+card/simple
+
+:::
+
+## 图片内容
+
+可配置定义更丰富的内容展示。
+
+配置 `body-style` 属性来自定义 `body` 部分的样式。 在这个例子中我们还使用了 [layout 组件](/fz-design/components/layout.html) 来布局。
+
+:::demo
+
+card/with-images
+
+:::
+
+## 阴影
+
+你可以定义什么时候展示卡片的阴影效果。
+
+通过 `shadow` 属性设置卡片阴影出现的时机。 该属性的值可以是：`always`、`hover` 或 `never`。
+
+:::demo
+
+card/shadow
+
+:::
+
 ## Attributes
 
-| 参数  | 说明 | 类型 | 默认值 | 
-| ----- | ---- | ---- | ------ | 
-| `xxx` | xxx  | xxx  | `xxx`  | 
+| 参数       | 说明                                                                                  | 类型                       | 默认值 |
+| ---------- | ------------------------------------------------------------------------------------- | -------------------------- | ------ |
+| header     | 卡片的标题 你既可以通过设置 header 来修改标题，也可以通过 `slot#header` 传入 DOM 节点 | `string`                   | —      |
+| body-style | body 的 CSS 样式                                                                      | `CSSProperties`            | —      |
+| body-class | 卡片的自定义类名                                                                      | `string`                   | —      |
+| shadow     | 卡片阴影显示时机                                                                      | `always \| never \| hover` | hover |
 
 ## Slots
 
-| 名称  | 说明 |
-| ----- | ---- |
-| `xxx` | xxx  |
-
-## Events
-
-| 事件名称 | 说明 | 类型 |
-| -------- | ---- | -------- |
-| `xxx`    | xxx  | xxx      |
-
+| 名称    | 说明     |
+| ------- | -------- |
+| default | 默认内容 |
+| header  | 卡片头部 |

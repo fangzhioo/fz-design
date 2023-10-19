@@ -34,7 +34,7 @@ Docs 是 FzDesign 官方文档目录，使用 [VitePress](https://github.com/vue
 ```
 ::: demo
 
-
+xxx/basic
 
 :::
 
@@ -46,22 +46,22 @@ Attributes
 
 | 参数  | 说明 | 类型 | 默认值 | 
 | ----- | ---- | ---- | ------ | 
-| `xxx` | xxx  | xxx  | `xxx`  | 
+| xxx | xxx  | `xxx`  | `xxx  | 
 
 Slots
 
 | 名称  | 说明 |
 | ----- | ---- |
-| `xxx` | xxx  |
+| xxx | xxx  |
 
 Events
 
 | 事件名称 | 说明 | 类型 |
 | -------- | ---- | -------- |
-| `xxx`    | xxx  | xxx      |
+| xxx    | xxx  | `xxx`      |
 
-- 在上面表格中的 `Attributes 的参数列`、`Attributes 的可选值列`、`Slots 的名称列`、`Events 的事件名称列` 的内容需要使用反引号包裹，每一项都应该使用 [kebab-case](https://staging-cn.vuejs.org/guide/components/props.html#prop-passing-details) 形式
-- 表格中需要详细的描述好每个选项
+- 在上面表格中的类型相关内容需要使用反引号包裹，名称列每一项都应该使用 [kebab-case](https://staging-cn.vuejs.org/guide/components/props.html#prop-passing-details) 形式。
+- 表格中需要详细的描述好每个选项。
 
 ## 🔍 扩展语法
 
@@ -83,6 +83,8 @@ TypeScript code...
 css code...
 <style>
 ```
+
+值得注意的是，在 `docs/components` 目录下 `*.md` 文件被 [MarkdownTransform](https://github.com/fangzhioo/fz-design/blob/master/docs/.vitepress/plugin/markdown-transform.ts) 进行了特殊处理（自动导入demos），所以无法再支持在其中添加 `script setup` 部分。
 
 ## ✏️ 引入
 

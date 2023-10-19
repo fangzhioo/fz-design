@@ -27,8 +27,7 @@ export const Props = {
    *  maximum lines
    */
   lineClamp: {
-    type: [String, Number] as PropType<number|string>,
-    default: 1
+    type: [String, Number] as PropType<number|string>
   },
   /**
    *  custom element tag

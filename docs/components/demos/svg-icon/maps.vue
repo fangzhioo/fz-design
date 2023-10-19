@@ -30,6 +30,7 @@
 
     .icon-list {
       height: 90px;
+      border-radius: 4px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -37,10 +38,11 @@
       cursor: pointer;
       padding: 8px;
       box-sizing: border-box;
-      transition: background 0.3s;
+      transition: background-color,color 0.3s;
 
       &:hover {
-        background: #eee;
+        background-color: #eee;
+        color: #333;
       }
     }
 

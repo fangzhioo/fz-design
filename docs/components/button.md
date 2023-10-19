@@ -57,7 +57,7 @@ button/button-group
 | type       | 类型         | [ButtonType](https://github.com/fangzhioo/fz-design/blob/master/packages/fz-design/components/button/src/interface.ts#L12) | -      |
 | size       | 尺寸         | [ButtonSize](https://github.com/fangzhioo/fz-design/blob/master/packages/fz-design/components/button/src/interface.ts#L19) | -      |
 | text       | 文本按钮     | `boolean`                                                                                                                  | false  |
-| nativeType | 原生类型     | [ButtonNative](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/button#attr-type)                                 | button |
+| native-type | 原生类型     | [ButtonNative](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/button#attr-type)                                 | button |
 | disabled   | 是否禁用     | `boolean`                                                                                                                  | false  |
 | icon       | 图标         | [IconSlotType](https://github.com/fangzhioo/fz-design/blob/master/packages/fz-design/types/component.ts#L3)                | -      |
 | loading    | 是否加载中   | `boolean`                                                                                                                  | false  |

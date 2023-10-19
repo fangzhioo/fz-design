@@ -7,7 +7,8 @@
 @use './src/divider';
 @use './src/link';
 @use './src/text';
-@use './src/layout';
+@use './src/col';
+@use './src/row';
 @use './src/space';
 @use './src/scrollbar';
 @use './src/config-provider';

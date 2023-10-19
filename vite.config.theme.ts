@@ -28,7 +28,11 @@ export default (): UserConfigExport => {
       outDir: resolve(__dirname, 'dist/dist'),
       emptyOutDir: false,
       rollupOptions: {
-        input: resolve(__dirname, 'packages/fz-design-theme/index.scss'),
+        input: [
+          resolve(__dirname, 'packages/fz-design-theme/index.scss'),
+          resolve(__dirname, 'packages/fz-design-theme/base/display.scss'),
+          resolve(__dirname, 'packages/fz-design-theme/base/var-dark.scss')
+        ],
         output: {
           /**
            * 取消文件名 hash 值

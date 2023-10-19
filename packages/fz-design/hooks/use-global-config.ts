@@ -1,6 +1,6 @@
 import { computed, getCurrentInstance, inject, provide, ref, unref } from 'vue';
 import { merge, warning } from '../utils';
-import { FZ_CONFIG_PROVIDER_INJECT_KEY } from '../constants';
+import { FZ_CONFIG_PROVIDER_INJECT_KEY, FZ_LOCALE_INJECT_KEY, FZ_SIZE_INJECTION_KEY, FZ_THEME_INJECT_KEY, FZ_Z_INDEX_INJECTION_KEY } from '../constants';
 import type { ConfigProviderProps as ConfigProviderContext } from '../components/config-provider';
 import type { MaybeRef } from '../types';
 import type { Ref , App} from 'vue';
@@ -42,19 +42,24 @@ export const provideGlobalConfig = (config: MaybeRef<ConfigProviderContext>, app
   
   provideFn(FZ_CONFIG_PROVIDER_INJECT_KEY, context);
 
-  // provideFn(
-  //   localeContextKey,
-  //   computed(() => context.value.locale)
-  // )
+  provideFn(
+    FZ_LOCALE_INJECT_KEY,
+    computed(() => context.value.locale)
+  )
 
-  // provideFn(
-  //   zIndexContextKey,
-  //   computed(() => context.value.zIndex)
-  // )
+  provideFn(
+    FZ_Z_INDEX_INJECTION_KEY,
+    computed(() => context.value.zIndex)
+  )
 
-  // provideFn(SIZE_INJECTION_KEY, {
-  //   size: computed(() => context.value.size || '')
-  // })
+  provideFn(
+    FZ_THEME_INJECT_KEY,
+    computed(() => context.value.theme)
+  )
+
+  provideFn(FZ_SIZE_INJECTION_KEY, {
+    size: computed(() => context.value.size || '')
+  })
 
   if (global || !globalConfig.value) {
     globalConfig.value = context.value;

@@ -10,7 +10,7 @@ import type { App } from 'vue'
  * @param { Object } app 应用实例
  * @returns { Object } 应用实例
  */
-const install = (app: App): App => {
+const install = (app: App): App => {  
   /**
    * 注册组件
    *

@@ -9,7 +9,7 @@ export const Props = {
   },
   size: {
     type: String as PropType<ComponentSize>,
-    default: 'medium'
+    default: 'default'
   },
   theme: {
     type: String as PropType<Theme>,

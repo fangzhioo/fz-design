@@ -2,6 +2,8 @@
   // "editor.formatOnSave": true, // 保存自动格式化
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.vueIndentScriptAndStyle": false,
+   // #让函数(名)和后面的括号之间加个空格
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
   "eslint.enable": true,
   "eslint.lintTask.enable": true,
   "eslint.quiet": false,

@@ -1,8 +1,8 @@
-import type { ComputedRef} from 'vue';
+import type { ComputedRef, Ref} from 'vue';
 import { computed, inject, ref, unref } from 'vue';
 import { useProp } from './use-prop';
 import { useGlobalConfig } from './use-global-config';
-import { FZ_FORMITEM_INJECT_KEY, FZ_FORM_INJECT_KEY } from '../constants';
+import { FZ_FORM_ITEM_INJECT_KEY, FZ_FORM_INJECT_KEY, FZ_SIZE_INJECTION_KEY } from '../constants';
 import type { MaybeRef, ComponentSize } from '../types';
 
 export const useSize = (
@@ -14,7 +14,7 @@ export const useSize = (
   const size = ignore.prop ? emptyRef : useProp<ComponentSize>('size');
   const globalConfigSize = ignore.global ? emptyRef : useGlobalConfig('size');
   const form = ignore.form ? { size: undefined } : inject(FZ_FORM_INJECT_KEY, undefined);
-  const formItem = ignore.formItem ? { size: undefined } : inject(FZ_FORMITEM_INJECT_KEY, undefined);
+  const formItem = ignore.formItem ? { size: undefined } : inject(FZ_FORM_ITEM_INJECT_KEY, undefined);
 
   return computed(
     () =>
@@ -23,6 +23,18 @@ export const useSize = (
       formItem?.size ||
       form?.size ||
       globalConfigSize.value ||
-      'medium'
+      'default'
   );
 };
+
+export interface SizeContext {
+  size: Ref<ComponentSize>
+}
+
+export const useGlobalSize = (): ComputedRef<ComponentSize> => {
+  const injectedSize = inject(FZ_SIZE_INJECTION_KEY, {} as SizeContext)
+
+  return computed<ComponentSize>(() => {
+    return unref(injectedSize.size) || ''
+  })
+}

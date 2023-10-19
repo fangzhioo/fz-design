@@ -1,6 +1,6 @@
 import { computed, ComputedRef, inject, onMounted, onUnmounted, ref, Ref, SetupContext, toRef, UnwrapRef, watch, WatchStopHandle } from 'vue';
 // import type { RuleItem, ValidateError, ValidateFieldsError } from 'async-validator';
-import { FZ_FORM_INJECT_KEY, FZ_FORMITEM_INJECT_KEY } from '../constants';
+import { FZ_FORM_INJECT_KEY, FZ_FORM_ITEM_INJECT_KEY } from '../constants';
 
 // TODO type
 type RuleItem = any;
@@ -56,7 +56,7 @@ export type FzFormContext = FormProps &
 
 export const useForm = () => {
   const form = inject<FzFormContext | undefined>(FZ_FORM_INJECT_KEY, undefined);
-  const formItem = inject<FzFormItemContext | undefined>(FZ_FORMITEM_INJECT_KEY, undefined);
+  const formItem = inject<FzFormItemContext | undefined>(FZ_FORM_ITEM_INJECT_KEY, undefined);
   return {
     form,
     formItem,

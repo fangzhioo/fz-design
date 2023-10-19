@@ -6,17 +6,17 @@ import { IconBell, IconCpu } from '@fz-design/fz-design-icon'
   <fz-space direction="vertical">
     <fz-text>
       <fz-svg-icon :icon="IconCpu" />
-      FzDesign
+      CPU
     </fz-text>
-    <fz-row>
-      <fz-text>Rate</fz-text>
+    <fz-space>
+      <fz-text>好评</fz-text>
       <fz-rate class="ml-1" />
-    </fz-row>
+    </fz-space>
     <fz-text>
-      This is text mixed icon
+      文本混合了Icon
       <fz-svg-icon :icon="IconBell" />
-      and component
-      <fz-button>Button</fz-button>
+      还有按钮
+      <fz-button type="primary">确认</fz-button>
     </fz-text>
   </fz-space>
 </template>
