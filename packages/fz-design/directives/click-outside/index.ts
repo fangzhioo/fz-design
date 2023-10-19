@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { on, isClient } from '../../utils';
 
 import type { Nullable } from '../../types'
@@ -28,7 +29,7 @@ if (isClient) {
   });
 }
 
-function createDocumentHandler(el: HTMLElement, binding: DirectiveBinding): DocumentHandler {
+function createDocumentHandler (el: HTMLElement, binding: DirectiveBinding): DocumentHandler {
   let excludes: HTMLElement[] = [];
   if (Array.isArray(binding.arg)) {
     excludes = binding.arg;
@@ -60,7 +61,7 @@ function createDocumentHandler(el: HTMLElement, binding: DirectiveBinding): Docu
 }
 
 const ClickOutside: ObjectDirective = {
-  beforeMount(el: HTMLElement, binding: DirectiveBinding) {
+  beforeMount (el: HTMLElement, binding: DirectiveBinding) {
     // there could be multiple handlers on the element
     if (!nodeList.has(el)) {
       nodeList.set(el, []);
@@ -68,10 +69,10 @@ const ClickOutside: ObjectDirective = {
 
     nodeList!.get(el)!.push({
       documentHandler: createDocumentHandler(el, binding),
-      bindingFn: binding.value,
+      bindingFn: binding.value
     });
   },
-  updated(el: HTMLElement, binding: DirectiveBinding) {
+  updated (el: HTMLElement, binding: DirectiveBinding) {
     if (!nodeList.has(el)) {
       nodeList.set(el, []);
     }
@@ -80,7 +81,7 @@ const ClickOutside: ObjectDirective = {
     const oldHandlerIndex = handlers!.findIndex((item) => item.bindingFn === binding.oldValue);
     const newHandler = {
       documentHandler: createDocumentHandler(el, binding),
-      bindingFn: binding.value,
+      bindingFn: binding.value
     };
 
     if (oldHandlerIndex >= 0) {
@@ -90,10 +91,10 @@ const ClickOutside: ObjectDirective = {
       handlers!.push(newHandler);
     }
   },
-  unmounted(el: HTMLElement) {
+  unmounted (el: HTMLElement) {
     // remove all listeners when a component unmounted
     nodeList.delete(el);
-  },
+  }
 };
 
 export default ClickOutside;

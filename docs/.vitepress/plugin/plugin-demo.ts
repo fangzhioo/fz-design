@@ -10,7 +10,6 @@ export const docRoot = path.resolve(__dirname, '..', '..')
  * 创建 markdown 实例
  *
  * @see markdown-it https://markdown-it.docschina.org
- * @see markdown-it https://juejin.cn/post/6844903688536850440
  */
 const markdown = MarkdownIt({
   breaks: true // 转换段落里的 '\n' 到 <br>
@@ -44,7 +43,7 @@ export const PluginDemo = (md): void => {
         if (sourceFileToken.type === 'inline') {
           // console.log(`开始加载文件：${sourceFile}`)
           source = fs.readFileSync(
-            path.resolve(docRoot, 'components', 'demos', `${sourceFile}.vue`),
+            path.resolve(docRoot, 'demos', `${sourceFile}.vue`),
             'utf-8'
           )
           // console.log(`加载文件完成: ${sourceFile}`, source);

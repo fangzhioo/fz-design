@@ -16,7 +16,8 @@ declare module '@vue/runtime-core' {
     FzDivider: typeof components.FzDivider
     FzLink: typeof components.FzLink
     FzText: typeof components.FzText
-    FzLayout: typeof components.FzLayout
+    FzRow: typeof components.FzRow
+    FzCol: typeof components.FzCol
     FzSpace: typeof components.FzSpace
     FzScrollbar: typeof components.FzScrollbar
     FzConfigProvider: typeof components.FzConfigProvider

@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { getCurrentInstance, computed } from 'vue';
 import type { ComputedRef } from 'vue';
-import { warning } from '../utils';
+import { fromPairs, warning } from '../utils';
 
 interface Params {
   excludeListeners?: boolean;
@@ -31,7 +32,7 @@ export const useAttrs = (params: Params = {}): ComputedRef<Record<string, unknow
     fromPairs(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-      Object.entries(instance.proxy?.$attrs!).filter(([key]) => !allExcludeKeys.value.includes(key) && !(excludeListeners && LISTENER_PREFIX.test(key))),
-    ),
+      Object.entries(instance.proxy?.$attrs!).filter(([key]) => !allExcludeKeys.value.includes(key) && !(excludeListeners && LISTENER_PREFIX.test(key)))
+    )
   );
 };

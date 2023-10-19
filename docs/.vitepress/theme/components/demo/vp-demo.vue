@@ -29,7 +29,7 @@
     const demos = {}
 
     Object.keys(props.demos).forEach(key => {
-      demos[key.replace('./demos/', '').replace('.vue', '')] = props.demos[key].default
+      demos[key.replace('../demos/', '').replace('.vue', '')] = props.demos[key].default
     })
 
     return demos

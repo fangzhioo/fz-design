@@ -1,11 +1,11 @@
 import type { ObjectDirective, DirectiveBinding } from 'vue';
 
 export default {
-  beforeMount(el: HTMLElement, binding: DirectiveBinding) {
+  beforeMount (el: HTMLElement, binding: DirectiveBinding) {
     let interval: any = null;
     let startTime: number;
-    const handler = () => binding.value && binding.value();
-    const clear = () => {
+    const handler = (): any => binding.value && binding.value();
+    const clear = (): any => {
       if (Date.now() - startTime < 100) {
         handler();
       }
@@ -20,5 +20,5 @@ export default {
       clearInterval(interval);
       interval = setInterval(handler, 100);
     });
-  },
+  }
 } as ObjectDirective;

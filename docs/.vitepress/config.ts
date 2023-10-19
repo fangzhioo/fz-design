@@ -50,21 +50,6 @@ export default defineConfig({
    */
   lastUpdated: true,
   /**
-   * 语言配置
-   *
-   * @see separate-directory-for-each-locale https://vitepress.vuejs.org/guide/i18n#separate-directory-for-each-locale
-   */
-  locales: {
-    '/zh-CN': {
-      lang: 'zh-CN',
-      label: '简体中文'
-    },
-    '/en-US': {
-      lang: 'en-US',
-      label: 'English'
-    }
-  },
-  /**
    * 缓存目录
    *
    * @see cacheDir https://vitepress.dev/reference/site-config#cachedir
