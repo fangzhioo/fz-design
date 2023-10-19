@@ -28,7 +28,7 @@ card/simple
 
 可配置定义更丰富的内容展示。
 
-配置 `body-style` 属性来自定义 `body` 部分的样式。 在这个例子中我们还使用了 [layout 组件](/fz-design/components/layout.html) 来布局。
+配置 `body-style` 属性来自定义 `body` 部分的样式。 在这个例子中我们还使用了 [layout 组件](https://fangzhioo.github.io/fz-design/components/layout.html) 来布局。
 
 :::demo
 
