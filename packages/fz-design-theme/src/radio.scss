@@ -1,2 +1,113 @@
-.fz-radio {
+@use 'sass:map';
+
+@use '../config/mixins.scss' as *;
+@use '../config/mixins-var.scss' as *;
+@use '../config/common-var.scss' as *;
+
+$radio-font-size: () !default;
+$radio-font-size: map.merge(
+  (
+    'large': 16px,
+    'default': 14px,
+    'small': 12px
+  ),
+  $radio-font-size
+);
+
+$radio: () !default;
+$radio: map.merge(
+  (
+    'font-size': getCssVar('font-size-base'),
+    'text-color': getCssVar('text-color-regular'),
+    'font-weight': getCssVar('font-weight-primary'),
+    'input-height': 14px,
+    'input-width': 14px,
+    'input-border-radius': getCssVar('border-radius-circle'),
+    'input-bg-color': getCssVar('fill-color', 'blank'),
+    'input-border': getCssVar('border'),
+    'input-border-color': getCssVar('border-color'),
+    'input-border-color-hover': getCssVar('color-primary')
+  ),
+  $radio
+);
+
+@include b(radio) {
+  @include set-component-css-var('radio', $radio);
+
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  outline: none;
+  user-select: none;
+  color: getCssVar('radio-text-color');
+  font-weight: getCssVar('radio-font-weight');
+  font-size: getCssVar('radio-font-size');
+  transition: all 0.3s;
+
+  // 尺寸
+  @each $size in (large, small) {
+    &.#{$namespace}-radio--#{$size} {
+      @include set-css-var-value(
+        ('radio', 'font-size'),
+        map.get($radio-font-size, $size)
+      );
+    }
+  }
+
+  // 小圆圈
+  @include e(circle) {
+    width: getCssVar('radio-font-size');
+    height: getCssVar('radio-font-size');
+    border-radius: 50%;
+    position: relative;
+    border: 1px solid getCssVar('radio-input-border-color');
+    margin-right: 7px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: calc(getCssVar('radio-font-size') / 3.5);
+      height: calc(getCssVar('radio-font-size') / 3.5);
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.15s ease-in;
+    }
+  }
+
+  // 选中状态
+  @include when(checked) {
+    & .#{$namespace}-radio__text {
+      color: getCssVar('color-primary');
+      z-index: 300;
+    }
+
+    & .#{$namespace}-radio__circle {
+      border: 1px solid getCssVar('color-primary');
+
+      &::after {
+        transform: translate(-50%, -50%) scale(2);
+        background-color: getCssVar('color-primary');
+      }
+    }
+  }
+
+  // 禁用状态
+  @include when(disabled) {
+    cursor: not-allowed;
+
+    .#{$namespace}-radio__text {
+      color: getCssVar('text-color-placeholder');
+    }
+
+    .#{$namespace}-radio__circle {
+      border-color: getCssVar('disabled-border-color');
+
+      &::after {
+        background-color: getCssVar('disabled-bg-color');
+      }
+    }
+  }
 }

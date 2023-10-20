@@ -1,7 +1,7 @@
-import type { Ref, CSSProperties, Plugin } from 'vue';
+import type { Ref, CSSProperties, Plugin, ComputedRef } from 'vue';
 
 // @vueuse/core 的 MaybeRef
-export type MaybeRef<T> = Ref<T> | T;
+export type MaybeRef<T> = Ref<T> | ComputedRef<T> | T;
 
 type OptionalKeys<T extends Record<string, unknown>> = {
     [K in keyof T]: T extends Record<K, T[K]> ? never : K;
@@ -29,19 +29,16 @@ type OptionalKeys<T extends Record<string, unknown>> = {
   
   export type CustomizedHTMLElement<T> = HTMLElement & T;
   
-  export type Indexable<T> = {
-    [key: string]: T;
-  };
+  export type Indexable<T> = Record<string, T>;
   
   export type Hash<T> = Indexable<T>;
   
   export type TimeoutHandle = number;
   
-  export type StyleValue = string | CSSProperties | Array<StyleValue>;
+  export type StyleValue = string | CSSProperties | StyleValue[];
   
   export type Mutable<T> = { -readonly [P in keyof T]: T[P] };
   
   export type ClassObjectType = Record<string, any>;
   
   export type ClassType = string | ClassObjectType | ClassType[];
-  

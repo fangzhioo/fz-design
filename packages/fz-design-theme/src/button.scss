@@ -1,15 +1,5 @@
 @use '../base/var.scss';
-
-// loading 动画
-@keyframes button-loading-animation {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
+@use '../base/animation.scss';
 
 .fz-button {
   --fz-button-font-weight: var(--fz-font-weight-primary);
@@ -132,7 +122,7 @@
   pointer-events: none;
 
   .fz-button__icon {
-    animation: button-loading-animation 1s linear infinite;
+    animation: icon-loading-animation 1s linear infinite;
   }
 }
 

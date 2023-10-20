@@ -2,6 +2,16 @@
 
 中文 | [英文](https://github.com/fangzhioo/fz-ui/blob/master/CHANGELOG.en-US.md)
 
+## 0.0.4-alpha.4 (2023-10-20)
+
+✨ **feat**
+
+- 新增 `fz-radio`、`fz-radio-group` 单选组件；
+- 新增 `fz-input` 输入框组件；
+- 新增 `fz-swap` 切换组件；
+- 新增 `fz-divider` 分割线组件；
+- 新增 `fz-switch` 开关组件。
+
 ## 0.0.3-alpha.3 (2023-10-19)
 
 ✨ **feat**

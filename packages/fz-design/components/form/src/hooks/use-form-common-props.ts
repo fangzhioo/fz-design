@@ -3,8 +3,7 @@ import { computed, inject, ref, unref } from 'vue'
 import { useGlobalSize, useProp } from '../../../../hooks'
 import { FZ_FORM_INJECT_KEY, FZ_FORM_ITEM_INJECT_KEY } from '../../../../constants'
 
-import type { ComponentSize } from '../../../../types'
-import type { MaybeRef } from '@vueuse/core'
+import type { ComponentSize, MaybeRef } from '../../../../types'
 
 export const useFormSize = (
   fallback?: MaybeRef<ComponentSize | undefined>,

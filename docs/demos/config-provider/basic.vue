@@ -1,73 +1,90 @@
-<script lang="ts">
+<script lang="ts" setup>
   import { useTheme, locale as lang } from 'fz-design'
-  import { defineComponent, ref } from 'vue'
+  import { ref } from 'vue'
+  import { IconSun, IconMoon } from '@fz-design/fz-design-icon'
 
-  export default defineComponent({
-    setup () {
-      const theme = useTheme() // 'dark' | 'light'
-      const size = ref('default') // '' | 'small' | 'default' | 'large'
-      const day = ref(new Date())
-      const { zhCn, enUs } = lang;
-      const locale = ref(zhCn)
-      const localeName = ref('zhCn')
-      const locales = [
-        { name: 'zhCn', lang: zhCn },
-        { name: 'enUs', lang: enUs }
-      ]
+  const theme = useTheme() // 'dark' | 'light'
+  const isLight = ref<boolean>(theme.value !== 'dark')
+  const size = ref('default') // '' | 'small' | 'default' | 'large'
+  const day = ref(new Date())
+  const { zhCn, enUs } = lang
+  const locale = ref(zhCn)
+  const localeName = ref<string | undefined>('zhCn')
+  const locales = [
+    { name: 'zhCn', lang: zhCn },
+    { name: 'enUs', lang: enUs }
+  ]
 
-      const toggleTheme = (): void => {
-        theme.value = theme.value === 'light' ? 'dark' : 'light'
-      }
+  const toggleTheme = (value: boolean): void => {
+    theme.value = value ? 'dark' : 'light'
+  }
 
-      const handleChangeSize = (s: string): void => {
-        size.value = s
-      }
+  const handleChangeSize = (s: string): void => {
+    size.value = s
+  }
 
-      const handleChangeLang = ({ lang, name }): void => {
-        locale.value = lang
-        localeName.value = name
-      }
-
-      return {
-        theme,
-        size,
-        locale,
-        localeName,
-        locales,
-        day,
-
-        toggleTheme,
-        handleChangeSize,
-        handleChangeLang
-      }
+  const handleChangeLang = (val: string): void => {
+    const { lang, name } = locales.find(i => i.name === val) || {}
+    if (lang || name) {
+      locale.value = lang
+      localeName.value = name
     }
-  })
+  }
 </script>
 
 <template>
   <div>
     <fz-config-provider :theme="theme" :size="size" :locale="locale">
-      <div>当前页面主题： {{ theme }}</div>
-      <fz-button @click="toggleTheme">{{ theme }}</fz-button>
+      <div class="my-4">
+        <span>当前页面主题：</span>
+        <fz-swap
+          v-model="isLight"
+          :size="24"
+          :icon-on="IconSun"
+          :icon-off="IconMoon"
+          @change="toggleTheme"
+        />
+      </div>
 
-      <div>当前组件大小： {{ size }}</div>
-      <fz-button-group>
-        <fz-button @click="handleChangeSize('small')">small</fz-button>
-        <fz-button @click="handleChangeSize('default')">default</fz-button>
-        <fz-button @click="handleChangeSize('large')">large</fz-button>
-      </fz-button-group>
+      <div class="my-4">
+        <span>当前组件大小： </span>
+        <fz-radio-group v-model="size" @change="handleChangeSize">
+          <fz-radio
+            v-for="item in ['small', 'default', 'large']"
+            :key="item"
+            :label="item"
+          >
+            {{ item }}
+          </fz-radio>
+        </fz-radio-group>
+      </div>
 
-      <div>当前语言：{{ localeName }}</div>
-      <fz-button-group>
-        <fz-button
-          v-for="item in locales"
-          :key="item.name"
-          @click="handleChangeLang(item)"
-        >
-          {{ item.name }}
-        </fz-button>
-      </fz-button-group>
-      <fz-calendar v-model="day" />
+      <div class="my-4">
+        <span>当前语言：</span>
+        <fz-radio-group v-model="localeName" @change="handleChangeLang">
+          <fz-radio v-for="item in locales" :key="item.name" :label="item.name">
+            {{ item.name }}
+          </fz-radio>
+        </fz-radio-group>
+      </div>
+
+      <!-- 示例 -->
+      <fz-divider>组件展示</fz-divider>
+
+      <fz-space direction="vertical">
+        <fz-button>我是按钮</fz-button>
+
+        <fz-input placeholder="我是输入框" />
+
+        <fz-calendar v-model="day" />
+      </fz-space>
     </fz-config-provider>
   </div>
 </template>
+
+<style>
+  .my-4 {
+    margin-bottom: 16px;
+    margin-top: 16px;
+  }
+</style>

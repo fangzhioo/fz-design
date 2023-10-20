@@ -15,6 +15,7 @@
 @use './src/form';
 @use './src/switch';
 @use './src/radio';
+@use './src/radio-group';
 @use './src/checkbox';
 @use './src/rate';
 @use './src/input';
@@ -59,3 +60,4 @@
 @use './src/confirm-box';
 @use './src/watermark';
 @use './src/count-down';
+@use './src/swap';

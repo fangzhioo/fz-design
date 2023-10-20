@@ -274,7 +274,7 @@ function isStatFile(stat: fs.Stats): void {
 
 // ======== end ============
 
-function isDir(fd:string){
+function isDir(fd: string) {
   try {
     if (!fd || typeof fd !== 'string') {
       return false;
@@ -290,35 +290,35 @@ const logInfo = (...args: string[]): void =>
 const logError = (...args: string[]): void =>
   console.error('\x1B[31m', ...args, '\x1B[0m')
 
-  async function updateFileOrDirName(
-    originalPath: string,
-    data: ejs.Data | undefined,
-    options: ejs.Options | undefined,
-    optParseDest: boolean | Function | undefined
-  ) {
-    let dest;
-    if (optParseDest === true) {
-      dest = ejs.render(originalPath, data, options);
-    } else if (optParseDest instanceof Function) {
-      dest = optParseDest(originalPath);
-    }
-  
-    if (originalPath !== dest) {
-      logInfo('updateFileOrDirName: ', dest, ' from: ', originalPath);
-      await fsExtra.move(originalPath, dest);
-    }
+async function updateFileOrDirName(
+  originalPath: string,
+  data: ejs.Data | undefined,
+  options: ejs.Options | undefined,
+  optParseDest: boolean | Function | undefined
+) {
+  let dest;
+  if (optParseDest === true) {
+    dest = ejs.render(originalPath, data, options);
+  } else if (optParseDest instanceof Function) {
+    dest = optParseDest(originalPath);
   }
-  
-  function gerenateFileContent(
-    outputPath: string,
-    tplPath: string,
-    data?: ejs.Data,
-    options?: ejs.Options,
-  ) {
-    return ejs.renderFile(tplPath, data, options).then(content => {
-      return fsExtra.writeFile(outputPath, content);
-    });
+
+  if (originalPath !== dest) {
+    logInfo('updateFileOrDirName: ', dest, ' from: ', originalPath);
+    await fsExtra.move(originalPath, dest);
   }
+}
+
+function gerenateFileContent(
+  outputPath: string,
+  tplPath: string,
+  data?: ejs.Data,
+  options?: ejs.Options,
+) {
+  return ejs.renderFile(tplPath, data, options).then(content => {
+    return fsExtra.writeFile(outputPath, content);
+  });
+}
 
 const gerenateDir = (
   cwd: string,
@@ -333,7 +333,7 @@ const gerenateDir = (
   tplDir = path.resolve(tplDir);
 
   return new Promise((resolve, reject) => {
-    glob('**', { cwd: tplDir, ignore, dot: true }, function (err: any, _files: string[]) {      
+    glob('**', { cwd: tplDir, ignore, dot: true }, function (err: any, _files: string[]) {
       if (err) {
         reject(err);
         return;
@@ -410,7 +410,7 @@ const detectPublic = async (): Promise<void> => {
 detectPublic()
 
 /** 检测组件名是否规范 */
-function fetchCompName (): string {
+function fetchCompName(): string {
   const input: string = process.argv[2]
 
   if (input === undefined) {
@@ -437,14 +437,15 @@ function fetchCompName (): string {
   process.exit(0)
 }
 
-async function generate (): Promise<[void, void, void, void, void, void]> {
+async function generate(): Promise<[void, void, void, void, void, void, void]> {
   updatedFiles.push(
     `packages/fz-design/components/${compName}/**`,
     'packages/fz-design/components/index.ts',
     `packages/fz-design-theme/src/${compName}.scss`,
     'packages/fz-design-theme/index.scss',
     `packages/fz-design/components/${compName}/__test__/${compName}.spec.ts`,
-    `docs/components/${compName}.md`
+    `docs/components/${compName}.md`,
+    `docs/demos/${compName}/basic.vue`,
   )
   const catchError = async (
     callback: Function,
@@ -462,11 +463,12 @@ async function generate (): Promise<[void, void, void, void, void, void]> {
     catchError(incrementStyle, '🚧 样式文件创建失败'),
     catchError(updateStyleEntry, '🚧 样式入口修改失败'),
     catchError(incrementTest, '🚧 测试文件创建失败'),
-    catchError(incrementDocs, '🚧 文档文件创建失败')
+    catchError(incrementDocs, '🚧 文档文件创建失败'),
+    catchError(incrementDemos, '🚧 文档示例创建失败'),
   ] as const)
 }
 
-async function generateComponentDir (): Promise<void> {
+async function generateComponentDir(): Promise<void> {
   const tplDir: string = path.resolve(__dirname, './template/component')
 
   /** 编译文件内容 */
@@ -474,7 +476,7 @@ async function generateComponentDir (): Promise<void> {
 }
 
 /** 修改组件入口文件 */
-async function updateComponentEntry (): Promise<void> {
+async function updateComponentEntry(): Promise<void> {
   const entryFilePath: string = path.resolve(
     __dirname,
     '../fz-design/components/index.ts'
@@ -494,7 +496,7 @@ async function updateComponentEntry (): Promise<void> {
 }
 
 /** 创建样式文件 */
-async function incrementStyle (): Promise<void> {
+async function incrementStyle(): Promise<void> {
   const outputDir: string = path.resolve(__dirname, '../fz-design-theme/src')
   const tplDir: string = path.resolve(__dirname, './template/style')
 
@@ -503,7 +505,7 @@ async function incrementStyle (): Promise<void> {
 }
 
 /** 添加样式入口 */
-async function updateStyleEntry (): Promise<void> {
+async function updateStyleEntry(): Promise<void> {
   const entryFilePath: string = path.resolve(
     __dirname,
     '../fz-design-theme/index.scss'
@@ -516,7 +518,7 @@ async function updateStyleEntry (): Promise<void> {
 }
 
 /** 添加测试文件 */
-async function incrementTest (): Promise<void> {
+async function incrementTest(): Promise<void> {
   const outputDir: string = path.resolve(
     __dirname,
     `../fz-design/components/${compName}/__test__`
@@ -535,7 +537,17 @@ async function incrementDocs(): Promise<void> {
   await superEjsGerenateDir(outputDir, tplDir)
 }
 
-async function superEjsGerenateDir (
+/** 添加组件示例 */
+async function incrementDemos(): Promise<void> {
+  const outputDir: string = path.resolve(
+    __dirname,
+    `../../docs/demos/${compName}`
+  )
+  const tplDir: string = path.resolve(__dirname, './template/demos')
+  await superEjsGerenateDir(outputDir, tplDir)
+}
+
+async function superEjsGerenateDir(
   outputDir: string,
   tplDir: string
 ): Promise<void> {

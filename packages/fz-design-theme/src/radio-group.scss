@@ -1,0 +1,68 @@
+@use 'sass:map';
+
+@use '../config/mixins.scss' as *;
+@use '../config/mixins-var.scss' as *;
+@use '../config/common-var.scss' as *;
+
+@include b(radio-group) {
+  display: inline-flex;
+  padding: 2px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  transition: 0.3s;
+  position: relative;
+  vertical-align: top;
+  column-gap: var(--fz-radio-group-column-gap, 20px);
+  overflow: hidden;
+
+  // 纵向排列
+  @include when(vertical) {
+    flex-direction: column;
+    row-gap: var(--fz-radio-group-row-gap, 10px);
+  }
+
+  // 背景状态
+  // 背景状态默认元素之间的间距为 0
+  @include when(background) {
+    border-radius: getCssVar('border-radius-base');
+    background-color: getCssVar('border-color-lighter');
+    padding: 2px;
+    flex-wrap: nowrap;
+    column-gap: var(--fz-radio-group-column-gap, 2px);
+    row-gap: var(--fz-radio-group-row-gap, 4px);
+
+    .#{$namespace}-radio {
+      overflow: hidden;
+      border-radius: getCssVar('border-radius-base');
+
+      .#{$namespace}-radio__text {
+        padding: 1px 15px;
+        color: getCssVar('text-color-regular');
+      }
+
+      @include when(checked) {
+        box-shadow: getCssVar('box-shadow-light');
+
+        .#{$namespace}-radio__text {
+          color: getCssVar('color-primary');
+          background-color: getCssVar('color-primary-light-9');
+        }
+      }
+
+    }
+
+    // 尺寸
+    &.#{$namespace}-radio-group--small {
+      .#{$namespace}-radio__text {
+        padding: 1px 10px;
+      }
+    }
+    &.#{$namespace}-radio-group--large {
+      .#{$namespace}-radio__text {
+        padding: 2px 20px;
+      }
+    }
+
+  }
+
+}

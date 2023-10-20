@@ -24,6 +24,7 @@ declare module '@vue/runtime-core' {
     FzForm: typeof components.FzForm
     FzSwitch: typeof components.FzSwitch
     FzRadio: typeof components.FzRadio
+    FzRadioGroup: typeof components.FzRadioGroup
     FzCheckbox: typeof components.FzCheckbox
     FzRate: typeof components.FzRate
     FzInput: typeof components.FzInput
@@ -68,6 +69,7 @@ declare module '@vue/runtime-core' {
     FzConfirmBox: typeof components.FzConfirmBox
     FzWatermark: typeof components.FzWatermark
     FzCountDown: typeof components.FzCountDown
+    FzSwap: typeof components.FzSwap
   }
 
   interface ComponentCustomProperties {

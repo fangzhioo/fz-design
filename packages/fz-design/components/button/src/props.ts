@@ -1,5 +1,6 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { ButtonNative, ButtonSize, ButtonType } from './interface'
+import type { IconSlotType } from '../../../types'
 
 export const Props = {
   size: {
@@ -23,7 +24,7 @@ export const Props = {
     default: false
   },
   icon: {
-    type: String,
+    type: Object as PropType<IconSlotType>,
     default: ''
   },
   loading: {

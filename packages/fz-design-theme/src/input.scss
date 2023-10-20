@@ -1,2 +1,259 @@
 .fz-input {
+  --fz-input-text-color: var(--fz-text-color-regular);
+  --fz-input-border: var(--fz-border);
+  --fz-input-hover-border: var(--fz-border-color-hover);
+  --fz-input-focus-border: var(--fz-color-primary);
+  --fz-input-transparent-border: 0 0 0 1px transparent inset;
+  --fz-input-border-color: var(--fz-border-color);
+  --fz-input-border-radius: var(--fz-border-radius-base);
+  --fz-input-bg-color: var(--fz-fill-color-blank);
+  --fz-input-icon-color: var(--fz-text-color-placeholder);
+  --fz-input-placeholder-color: var(--fz-text-color-placeholder);
+  --fz-input-hover-border-color: var(--fz-border-color-hover);
+  --fz-input-clear-hover-color: var(--fz-text-color-secondary);
+  --fz-input-focus-border-color: var(--fz-color-primary);
+  --fz-input-width: 100%;
+  --fz-input-height: var(--fz-component-size);
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  width: 100%;
+  font-size: var(--fz-font-size-base);
+  line-height: var(--fz-input-height);
+
+  &::-webkit-scrollbar {
+    z-index: 11;
+    width: 6px;
+
+    &:horizontal {
+      height: 6px;
+    }
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    width: 6px;
+    background: var(--fz-text-color-disabled);
+  }
+  &::-webkit-scrollbar-corner {
+    background: var(--fz-fill-color-blank);
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--fz-fill-color-blank);
+  }
+  &::-webkit-scrollbar-track-piece {
+    background: var(--fz-fill-color-blank);
+    width: 6px;
+  }
+
+  &--large {
+    --fz-input-height: var(--fz-component-size-large);
+    font-size: 14px;
+
+    .fz-input__wrapper {
+      padding: 1px 15px;
+    }
+
+    .fz-input__inner {
+      --fz-input-inner-height: calc(var(--fz-input-height, 40px) - 2px);
+    }
+  }
+
+  &--small {
+    --fz-input-height: var(--fz-component-size-small);
+    font-size: 12px;
+
+    .fz-input__wrapper {
+      padding: 1px 7px;
+    }
+
+    .fz-input__inner {
+      --fz-input-inner-height: calc(var(--fz-input-height, 24px) - 2px);
+    }
+  }
+
+  // 主容器
+  &__wrapper {
+    display: inline-flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 1px 11px;
+    box-sizing: border-box;
+    transition: 0.3s;
+    background-color: var(--fz-input-bg-color, var(--fz-fill-color-blank));
+    background-image: none;
+    border-radius: var(--fz-input-border-radius, var(--fz-border-radius-base));
+    box-shadow: 0 0 0 1px var(--fz-input-border-color, var(--fz-border-color)) inset;
+    transform: translate3d(0, 0, 0);
+    transition: var(--fz-transition-box-shadow);
+    cursor: text;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0 0 0 1px var(--fz-input-hover-border-color) inset;
+
+      .fz-input__clear-btn {
+        display: inline-block;
+      }
+    }
+
+    // 输入框
+    .fz-input__inner {
+      --fz-input-inner-height: calc(var(--fz-input-height, 32px) - 2px);
+      width: 100%;
+      flex-grow: 1;
+      -webkit-appearance: none;
+      color: var(--fz-input-text-color, var(--fz-text-color-regular));
+      font-size: inherit;
+      height: var(--fz-input-inner-height);
+      line-height: var(--fz-input-inner-height);
+      padding: 0;
+      outline: 0;
+      border: none;
+      background: 0 0;
+      box-sizing: border-box;
+
+      // 禁用原生右侧上下选择箭头
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+
+      &:focus {
+        outline: 0;
+      }
+
+      // 占位符颜色
+      &::placeholder {
+        color: var(--fz-input-placeholder-color, var(--fz-text-color-placeholder));
+      }
+      &[type='password']::-ms-reveal {
+        display: none;
+      }
+    }
+
+    // 清除按钮
+    .fz-input__clear-btn {
+      display: none;
+      margin-left: 4px;
+    }
+
+    .fz-input__show-password,
+    .fz-input__clear-btn {
+      color: var(--fz-input-icon-color);
+      font-size: 14px;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--fz-input-clear-hover-color);
+      }
+    }
+  }
+
+  // 前后缀
+  &__prefix {
+    margin-right: 4px;
+  }
+  &__suffix {
+    margin-left: 4px;
+  }
+
+  // 前后插槽
+  &__before,
+  &__after {
+    position: relative;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    border-radius: var(--fz-input-border-radius);
+    white-space: nowrap;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__before {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 1px 0 0 0 var(--fz-input-border-color) inset,
+      0 1px 0 0 var(--fz-input-border-color) inset,
+      0 -1px 0 0 var(--fz-input-border-color) inset;
+  }
+
+  &__after {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    box-shadow: 0 1px 0 0 var(--fz-input-border-color) inset,
+      0 -1px 0 0 var(--fz-input-border-color) inset,
+      -1px 0 0 0 var(--fz-input-border-color) inset;
+  }
+
+  // 搜索框
+  &.is-search {
+    cursor: pointer;
+  }
+
+  &.is-before {
+    // 移除 input 圆角
+    .fz-input__wrapper {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .fz-input__before {
+      .fz-button, .fz-input {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+  }
+
+  &.is-after {
+    // 移除 input 圆角
+    .fz-input__wrapper {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .fz-input__after {
+      // 移除 button 圆角
+      .fz-button, .fz-input {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+
+  // 禁用状态
+  &.is-disabled {
+    cursor: not-allowed;
+
+    .fz-input__inner {
+      color: var(--fz-disabled-text-color);
+      cursor: not-allowed;
+      &::placeholder {
+        color: var(--fz-text-color-placeholder);
+      }
+    }
+
+    .fz-input__clear-btn {
+      cursor: not-allowed;
+    }
+  }
+
+  // hidden
+  &.is-hidden {
+    display: none;
+  }
 }

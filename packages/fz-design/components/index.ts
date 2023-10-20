@@ -46,6 +46,9 @@ export * from './switch'
 export { FzRadio } from './radio'
 export * from './radio'
 
+export { FzRadioGroup } from './radio-group'
+export * from './radio-group'
+
 export { FzCheckbox } from './checkbox'
 export * from './checkbox'
 
@@ -177,3 +180,6 @@ export * from './watermark'
 
 export { FzCountDown } from './count-down'
 export * from './count-down'
+
+export { FzSwap } from './swap'
+export * from './swap'

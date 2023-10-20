@@ -1,0 +1,29 @@
+.fz-swap {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  vertical-align: middle;
+
+  &--sound {
+    transform: rotate(80deg);
+    transition-duration: 0.3s;
+
+    &.is-open {
+      transform: rotate(0deg);
+      transition-duration: 0.3s;
+    }
+  }
+
+  &--swap {
+    transition-duration: 0.3s;
+    transform: rotateY(180deg);
+
+    &.is-open {
+      transition-duration: 0.3s;
+      transform: rotateY(0deg);
+    }
+  }
+}
