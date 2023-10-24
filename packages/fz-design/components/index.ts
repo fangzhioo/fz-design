@@ -52,6 +52,9 @@ export * from './radio-group'
 export { FzCheckbox } from './checkbox'
 export * from './checkbox'
 
+export { FzCheckboxGroup } from './checkbox-group'
+export * from './checkbox-group'
+
 export { FzRate } from './rate'
 export * from './rate'
 
@@ -183,3 +186,6 @@ export * from './count-down'
 
 export { FzSwap } from './swap'
 export * from './swap'
+
+export { FzImagePreview } from './image-preview'
+export * from './image-preview'

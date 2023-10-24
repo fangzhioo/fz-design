@@ -97,10 +97,6 @@
     &:hover,
     &:focus {
       box-shadow: 0 0 0 1px var(--fz-input-hover-border-color) inset;
-
-      .fz-input__clear-btn {
-        display: inline-block;
-      }
     }
 
     // 输入框
@@ -140,7 +136,6 @@
 
     // 清除按钮
     .fz-input__clear-btn {
-      display: none;
       margin-left: 4px;
     }
 

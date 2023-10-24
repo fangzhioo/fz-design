@@ -1,2 +1,96 @@
-.fz-textarea {
+@use 'sass:map';
+
+@use '../config/mixins.scss' as *;
+@use '../config/mixins-var.scss' as *;
+@use '../config/common-var.scss' as *;
+
+$textarea: () !default;
+$textarea: map.merge(
+  (
+    'text-color': getCssVar('text-color-regular'),
+    'border-color': getCssVar('border-color'),
+    'border-radius': getCssVar('border-radius-base'),
+    'bg-color': getCssVar('fill-color', 'blank'),
+    'hover-border-color': getCssVar('border-color-hover'),
+    'placeholder-color': getCssVar('text-color-placeholder'),
+    'disabled-text-color': getCssVar('text-color-placeholder')
+  ),
+  $textarea
+);
+
+@include b(textarea) {
+  @include set-component-css-var('textarea', $textarea);
+
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  vertical-align: bottom;
+  font-size: getCssVar('font-size', 'base');
+
+  @include e(inner) {
+    position: relative;
+    display: block;
+    resize: vertical;
+    padding: 5px 10px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: inherit;
+    font-family: inherit;
+    color: getCssVar('textarea-text-color');
+    background-color: getCssVar('textarea-bg-color');
+    background-image: none;
+    -webkit-appearance: none;
+    box-shadow: 0 0 0 1px getCssVar('textarea', 'border-color') inset;
+
+    border-radius: getCssVar('textarea-border-radius');
+    transition: getCssVar('transition-box-shadow');
+    border: none;
+
+    &::placeholder {
+      color: getCssVar('textarea', 'placeholder-color');
+    }
+
+    &:hover {
+      box-shadow: 0 0 0 1px getCssVar('textarea', 'hover-border-color') inset;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 1px getCssVar('textarea', 'hover-border-color') inset;
+    }
+  }
+
+  @include e(count) {
+    color: getCssVar('color-info');
+    background-color: getCssVar('fill-color', 'blank');
+    position: absolute;
+    font-size: 12px;
+    line-height: 14px;
+    bottom: 5px;
+    right: 10px;
+  }
+
+  @include when(disabled) {
+    .#{$namespace}-textarea__inner {
+      background-color: getCssVar('disabled-bg-color');
+      color: getCssVar('textarea-disabled-text-color');
+
+      cursor: not-allowed;
+
+      &::placeholder {
+        color: getCssVar('textarea-disabled-text-color');
+      }
+    }
+  }
+
+  @include when(exceed) {
+    .#{$namespace}-textarea__inner {
+      box-shadow: 0 0 0 1px getCssVar('color-danger') inset;
+    }
+
+    .#{$namespace}-textarea__count {
+      color: getCssVar('color-danger');
+    }
+  }
 }

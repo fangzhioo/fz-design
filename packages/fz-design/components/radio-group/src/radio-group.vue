@@ -3,11 +3,12 @@
   import { computed, provide, reactive, toRefs } from 'vue'
   import { CHANGE_EVENT, FZ_RADIO_GROUP_INJECT_KEY } from '../../../constants'
   import { useNamespace } from '../../../hooks'
-  
+
   import type { StyleValue } from 'vue'
   import type { RadioModelValue } from '../../radio'
   import type { RadioGroupInjectContext } from './interface'
-import { useFormSize } from '../../form/src/hooks'
+  import { useFormSize } from '../../form/src/hooks'
+import { addUnit } from '../../../utils'
 
   defineOptions({ name: 'FzRadioGroup' })
 
@@ -41,8 +42,9 @@ import { useFormSize } from '../../form/src/hooks'
   ])
 
   /** 样式列表 */
-  const styleList = computed<StyleValue>(() => ({
-    //  styles(['columnGap', 'rowGap'])
+  const styleList = computed<StyleValue>(() => ns.cssVarBlock({
+    'column-gap': addUnit(prop.columnGap),
+    'row-gap': addUnit(prop.rowGap)
   }))
 
   /** 注入依赖项 */

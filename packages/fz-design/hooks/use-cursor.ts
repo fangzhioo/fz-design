@@ -3,8 +3,8 @@ import { ref } from 'vue'
 import type { ShallowRef } from 'vue'
 
 // Keep input cursor in the correct position when we use formatter.
-export function useCursor(
-  input: ShallowRef<HTMLInputElement | undefined>
+export function useCursor (
+  input: ShallowRef<HTMLInputElement | HTMLTextAreaElement | undefined>
 ): [() => void, () => void] {
   const selectionRef = ref<{
     selectionStart?: number
@@ -14,7 +14,7 @@ export function useCursor(
     afterTxt?: string
   }>()
 
-  function recordCursor() {
+  const recordCursor = (): void => {
     if (input.value === undefined) return
 
     const { selectionStart, selectionEnd, value } = input.value
@@ -32,7 +32,8 @@ export function useCursor(
       afterTxt
     }
   }
-  function setCursor() {
+
+  const setCursor = (): void => {
     if (input.value === undefined || selectionRef.value === undefined) return
 
     const { value } = input.value

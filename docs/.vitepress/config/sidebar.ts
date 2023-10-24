@@ -57,9 +57,9 @@ export const sidebar = {
         { text: 'Select 选择器', link: '/components/select' },
         { text: 'Time Picker 时间选择器', link: '/components/time-picker' },
         { text: 'Date Picker 日期选择器', link: '/components/date-picker' },
+        { text: 'Color Picker 颜色选择器', link: '/components/color-picker' },
         { text: 'Slider 滑动输入条', link: '/components/slider' },
         { text: 'Up Load 文件上传', link: '/components/up-load' },   
-        { text: 'Color Picker 颜色选择器', link: '/components/color-picker' },
 
         // TODO
         // { text: 'Cascader 级联选择器', link: '/components/cascader' },
@@ -75,6 +75,7 @@ export const sidebar = {
         { text: 'Card 卡片', link: '/components/card' },
         { text: 'Number Animate 数字动画', link: '/components/number-animate' },
         { text: 'Image 图片', link: '/components/image' },
+        { text: 'ImagePreview 图片预览', link: '/components/image-preview' },
         { text: 'Swipe 轮播', link: '/components/swipe' },
         { text: 'Progress 进度条', link: '/components/progress' },
         { text: 'Empty 空状态', link: '/components/empty' },

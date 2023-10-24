@@ -12,6 +12,6 @@
 
 <style scoped>
 .fz-radio {
-    margin-bottom: 10px;
+    margin-right: 20px;
 }
 </style>

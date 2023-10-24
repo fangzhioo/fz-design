@@ -3,22 +3,26 @@
   import { FzSvgIcon } from '../../svg-icon'
   import { FzButton } from '../../button'
   import { FzSwap } from '../../swap'
-  import { ref, toRefs, computed, watchEffect, useSlots } from 'vue'
+  import { ref, toRefs, computed, watchEffect, useSlots, useAttrs, shallowRef, nextTick } from 'vue'
   import { IconEyeOff, IconEye, IconX, IconSearch } from '@fz-design/fz-design-icon'
 
   import type { InputType } from './interface'
   import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, INPUT_EVENT } from '../../../constants'
   import { useFormSize } from '../../form/src/hooks'
+  import { useNamespace } from '../../../hooks'
 
   defineOptions({ name: 'FzInput' })
 
+  const ns = useNamespace('input')
   const props = defineProps(Props)
   const emit = defineEmits(Emits)
   const slots = useSlots()
+  const attrs = useAttrs()
   const modelValue = defineModel<string | number>({
     default: '',
     type: [String, Number]
   })
+  const input = shallowRef<HTMLInputElement>()
 
   const inputSize = useFormSize(props.size)
 
@@ -84,33 +88,47 @@
 
   /** 类名列表 */
   const classList = computed(() => [
-    'fz-input',
-    {
-      [`fz-input--${inputSize.value}`]: inputSize.value,
-      'is-disabled': props.disabled,
-      'is-search': props.search,
-      'is-hidden': props.type === 'hidden',
-      'is-before': slots.before,
-      'is-after': slots.after || props.search
-    }
+    ns.b(),
+    ns.m(inputSize.value),
+    ns.is('disabled', props.disabled),
+    ns.is('search', props.search),
+    ns.is('hidden', props.type === 'hidden'),
+    ns.is('before', slots.before),
+    ns.is('after', slots.after || props.search)
   ])
+
+  const focus = async (): Promise<void> => {
+    // see: https://github.com/ElemeFE/element/issues/18573
+    await nextTick()
+    input.value?.focus()
+  }
+
+  const blur = (): void => input.value?.blur()
+
+  defineExpose({
+    input,
+    /**  HTML input element native method */
+    focus,
+    /**  HTML input element native method */
+    blur
+  })
 </script>
 
 <template>
   <div role="input" :class="classList">
     <!-- 前缀插槽 -->
-    <div v-if="$slots.before" class="fz-input__before">
+    <div v-if="$slots.before" :class="ns.e('before')">
       <slot name="before" />
     </div>
 
     <!-- 容器盒子 -->
-    <div class="fz-input__wrapper">
+    <div :class="ns.e('wrapper')">
       <!-- 前缀 -->
-      <div class="fz-input__prefix">
+      <div :class="ns.e('prefix')">
         <!-- icon -->
         <fz-svg-icon
           v-if="prefixIcon"
-          class="fz-input__prefix-icon"
+          :class="ns.e('prefix-icon')"
           :icon="prefixIcon"
           :size="14"
         />
@@ -118,15 +136,18 @@
 
       <!-- 输入框 -->
       <input
+        ref="input"
         v-model="modelValue"
-        class="fz-input__inner"
+        v-bind="attrs"
+        :class="ns.e('inner')"
         :type="inputType"
         :maxlength="maxlength"
         :disabled="disabled"
         :readonly="readonly"
+        :aria-label="label"
+        :tabindex="tabindex"
         :autofocus="autofocus"
         :autocomplete="autocomplete"
-        :name="name"
         :placeholder="placeholder"
         @input="handleInput"
         @change="handleChange"
@@ -136,11 +157,11 @@
       />
 
       <!-- 后缀 -->
-      <div class="fz-input__suffix">
+      <div :class="ns.e('suffix')">
         <!-- 清除 icon -->
         <fz-svg-icon
           v-if="clearable"
-          class="fz-input__clear-btn"
+          :class="ns.e('clear-icon')"
           :icon="IconX"
           :size="14"
           @click="handleClear"
@@ -149,7 +170,7 @@
         <!-- 自定义 icon -->
         <fz-svg-icon
           v-if="suffixIcon"
-          class="fz-input__suffix-icon"
+          :class="ns.e('suffix-icon')"
           :icon="suffixIcon"
           :size="14"
         />
@@ -158,7 +179,7 @@
         <fz-swap
           v-if="showPassword"
           v-model="showPass"
-          class="fz-input__show-password"
+          :class="ns.e('show-password')"
           type="swap"
           :icon-on="IconEye"
           :icon-off="IconEyeOff"
@@ -169,9 +190,9 @@
     </div>
 
     <!-- 后缀插槽 -->
-    <div v-if="$slots.after || search" class="fz-input__after">
+    <div v-if="$slots.after || search" :class="ns.e('after')">
       <!-- 搜索框 -->
-      <div v-if="search" class="fz-input__search" @click="handleSearch">
+      <div v-if="search" :class="ns.e('search')" @click="handleSearch">
         <slot name="searchBtn">
           <fz-button type="primary" :icon="IconSearch" :size="inputSize"></fz-button>
         </slot>

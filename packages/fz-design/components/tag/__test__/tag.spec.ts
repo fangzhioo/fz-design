@@ -4,7 +4,18 @@ import Tag from '../index'
 
 describe('Tag', () => {
   test('class', () => {
-    const wrapper = mount(Tag)
+    const wrapper = mount(Tag, {
+      props: {
+        disableTransitions: true
+      }
+    })    
     expect(wrapper.classes()).toContain('fz-tag')
+  })
+
+  test('slot', () => {
+    const wrapper = mount(Tag, {
+      slots: { default: 'hello' }
+    })
+    expect(wrapper.text()).toBe('hello')
   })
 })

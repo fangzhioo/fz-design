@@ -63,14 +63,6 @@ export const Props = {
     type: Boolean
   },
   /**
-   * 原生 name 属性
-   *
-   * @see name https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input#attr-name
-   */
-  name: {
-    type: String
-  },
-  /**
    * 占位符
    *
    * @see placeholder https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input#attr-placeholder
@@ -100,6 +92,21 @@ export const Props = {
   prefixIcon: {
     type: Object as PropType<IconSlotType>
   },
+  /**
+   *  input tabindex
+   */
+  tabindex: {
+    type: [String, Number] as PropType<string | number>,
+    default: 0
+  },
+  /**
+   *  native input aria-label
+   */
+  label: {
+    type: String,
+    default: undefined
+  },
+
   /**
    * 是否开启自动填充特性提示
    *

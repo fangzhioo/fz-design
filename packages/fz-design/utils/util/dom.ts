@@ -32,9 +32,12 @@ export const stop = (e: Event): void => e.stopPropagation()
  * @param value string/number
  * @returns 带单位的字符串
  */
-export function addUnit (value: string | number, unit = 'px'): string {
+export function addUnit (value?: string | number, unit = 'px'): string {
+  if (!value) {
+    return '';
+  }
   if (isString(value)) {
-    return value
+    return value as string;
   } else if (isNumber(value)) {
     return `${value}${unit}`
   }
@@ -354,3 +357,19 @@ export const isInContainer = (el?: Element, container?: Element | Window): boole
 
 // NOOP @vue/shared
 export const NOOP = (): void => undefined
+
+/**
+ * Generate uuid
+ * @returns uuid
+ */
+export const generateUUID = (): string => {
+  let dt = new Date().getTime()
+  const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+    // eslint-disable-next-line no-bitwise
+    const r = (dt + Math.random() * 16) % 16 | 0
+    dt = Math.floor(dt / 16)
+    // eslint-disable-next-line no-bitwise
+    return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16)
+  })
+  return uuid
+}

@@ -20,13 +20,10 @@ $radio: map.merge(
     'font-size': getCssVar('font-size-base'),
     'text-color': getCssVar('text-color-regular'),
     'font-weight': getCssVar('font-weight-primary'),
-    'input-height': 14px,
-    'input-width': 14px,
-    'input-border-radius': getCssVar('border-radius-circle'),
-    'input-bg-color': getCssVar('fill-color', 'blank'),
     'input-border': getCssVar('border'),
     'input-border-color': getCssVar('border-color'),
-    'input-border-color-hover': getCssVar('color-primary')
+    'input-active-color': getCssVar('color-primary'),
+    'disabled-text-color': getCssVar('text-color-placeholder')
   ),
   $radio
 );
@@ -35,7 +32,7 @@ $radio: map.merge(
   @include set-component-css-var('radio', $radio);
 
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   white-space: nowrap;
   outline: none;
@@ -80,16 +77,15 @@ $radio: map.merge(
   // 选中状态
   @include when(checked) {
     & .#{$namespace}-radio__text {
-      color: getCssVar('color-primary');
-      z-index: 300;
+      color: getCssVar('radio-input-active-color');
     }
 
     & .#{$namespace}-radio__circle {
-      border: 1px solid getCssVar('color-primary');
+      border: 1px solid getCssVar('radio-input-active-color');
 
       &::after {
         transform: translate(-50%, -50%) scale(2);
-        background-color: getCssVar('color-primary');
+        background-color: getCssVar('radio-input-active-color');
       }
     }
   }
@@ -99,7 +95,7 @@ $radio: map.merge(
     cursor: not-allowed;
 
     .#{$namespace}-radio__text {
-      color: getCssVar('text-color-placeholder');
+      color: getCssVar('radio-disabled-text-color');
     }
 
     .#{$namespace}-radio__circle {

@@ -1,0 +1,40 @@
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  const showViewer = ref(false)
+  const urls = [
+    'https://pic2.zhimg.com/80/v2-fc5251c9a88b62bd7d2de6dd0706bce1_1440w.webp',
+    'https://pic3.zhimg.com/80/v2-cea87b3d83d24e0dd550f57446b4bc06_1440w.webp',
+    'https://pic2.zhimg.com/80/v2-e30dce18f800f8836a0a17a9057084ad_1440w.webp',
+    'https://pic4.zhimg.com/80/v2-1b3d0de324b13c2161760036c5641e33_1440w.webp',
+    'https://pic3.zhimg.com/80/v2-79500087812de7ae188a44a3b6097ed2_1440w.webp',
+    'https://pic3.zhimg.com/80/v2-45feb9cc46c8bb8bb52cd6ec3f89c0f2_1440w.webp',
+    'https://pic1.zhimg.com/80/v2-1f6a2bf7b07cb09c272570b8b3b0c228_1440w.webp',
+    'https://pic2.zhimg.com/80/v2-578aa5b2d99e1ba42e075ad50a3560d1_1440w.webp',
+    'https://pic4.zhimg.com/80/v2-3d3a557a8d1c41dc7353255073b94ecb_1440w.webp'
+  ]
+
+  const closeViewer = (): void => {
+    showViewer.value = false
+  }
+
+  const switchViewer = (): void => {
+    console.log('switchViewer')
+  }
+
+  const handleToggle = (): void => {
+    showViewer.value = true
+  }
+</script>
+
+<template>
+  <fz-button @click="handleToggle"> 开始预览 </fz-button>
+
+  <fz-image-preview
+    v-if="showViewer"
+    :z-index="9999"
+    :url-list="urls"
+    close-on-press-escape
+    @close="closeViewer"
+    @switch="switchViewer"
+  />
+</template>

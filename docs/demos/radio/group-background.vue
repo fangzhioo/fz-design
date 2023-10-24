@@ -1,31 +1,27 @@
 <script lang="ts" setup>
-    import { ref } from 'vue'
-  
-    const value = ref('1')
-  </script>
-  
-<template>
-  <fz-radio-group v-model="value" background size="small">
-    <fz-radio label="1">备选项1</fz-radio>
-    <fz-radio label="2">备选项2</fz-radio>
-    <fz-radio label="3">备选项3</fz-radio>
-  </fz-radio-group>
-  <br />
-  <fz-radio-group v-model="value" background>
-    <fz-radio label="1">备选项1</fz-radio>
-    <fz-radio label="2">备选项2</fz-radio>
-    <fz-radio label="3">备选项3</fz-radio>
-  </fz-radio-group>
-  <br />
-  <fz-radio-group v-model="value" background size="large">
-    <fz-radio label="1">备选项1</fz-radio>
-    <fz-radio label="2">备选项2</fz-radio>
-    <fz-radio label="3">备选项3</fz-radio>
-  </fz-radio-group>
-</template>
+  import { ref } from 'vue'
 
-<style scoped>
-.fz-radio-group {
-  margin-bottom: 20px;
-}
-</style>
+  const value = ref('1')
+</script>
+
+<template>
+  <fz-space direction="vertical" alignment="flex-start">
+    <fz-radio-group v-model="value" background size="small">
+      <fz-radio label="1">备选项1</fz-radio>
+      <fz-radio label="2">备选项2</fz-radio>
+      <fz-radio label="3">备选项3</fz-radio>
+    </fz-radio-group>
+
+    <fz-radio-group v-model="value" background>
+      <fz-radio label="1">备选项1</fz-radio>
+      <fz-radio label="2">备选项2</fz-radio>
+      <fz-radio label="3">备选项3</fz-radio>
+    </fz-radio-group>
+
+    <fz-radio-group v-model="value" background size="large">
+      <fz-radio label="1">备选项1</fz-radio>
+      <fz-radio label="2">备选项2</fz-radio>
+      <fz-radio label="3">备选项3</fz-radio>
+    </fz-radio-group>
+  </fz-space>
+</template>
