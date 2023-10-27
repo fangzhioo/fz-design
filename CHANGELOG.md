@@ -2,6 +2,16 @@
 
 中文 | [英文](https://github.com/fangzhioo/fz-ui/blob/master/CHANGELOG.en-US.md)
 
+## 0.0.6-alpha.6 (2023-10-27)
+
+✨ **feat**
+
+- 新增 `fz-avatar` 头像组件；
+- 新增 `fz-badge` 徽章组件；
+- 新增 `fz-calendar` 日历组件；
+- 新增 `fz-empty` 空状态组件；
+- 新增 `fz-number-animate` 数字滚动组件；
+
 ## 0.0.5-alpha.5 (2023-10-24)
 
 ✨ **feat**

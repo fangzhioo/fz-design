@@ -1,527 +1,566 @@
-@use '../base/var.scss';
-@use '../base/animation.scss';
+@use 'sass:map';
 
-.fz-button {
-  --fz-button-font-weight: var(--fz-font-weight-primary);
-  --fz-button-border-color: var(--fz-border-color);
-  --fz-button-bg-color: var(--fz-fill-color-blank);
-  --fz-button-text-color: var(--fz-text-color-regular);
-  --fz-button-disabled-text-color: var(--fz-disabled-text-color);
-  --fz-button-disabled-bg-color: var(--fz-fill-color-blank);
-  --fz-button-disabled-border-color: var(--fz-border-color-light);
-  --fz-button-divide-border-color: rgba(255, 255, 255, 0.5);
-  --fz-button-hover-text-color: var(--fz-color-primary);
-  --fz-button-hover-bg-color: var(--fz-color-primary-light-9);
-  --fz-button-hover-border-color: var(--fz-color-primary-light-7);
-  --fz-button-active-text-color: var(--fz-button-hover-text-color);
-  --fz-button-active-border-color: var(--fz-color-primary);
-  --fz-button-active-bg-color: var(--fz-button-hover-bg-color);
-  --fz-button-outline-color: var(--fz-color-primary-light-5);
-  --fz-button-hover-link-text-color: var(--fz-color-info);
-  --fz-button-active-color: var(--fz-text-color-primary)
+@use '../config/function.scss' as *;
+@use '../config/common-var.scss' as *;
+@use '../config/mixins.scss' as *;
+@use '../config/mixins-var.scss' as *;
+@use '../config/utils.scss' as *;
+
+// Button
+$button: () !default;
+$button: map.merge(
+  (
+    'font-weight': getCssVar('font-weight-primary'),
+    'border-color': getCssVar('border-color'),
+    'bg-color': getCssVar('fill-color', 'blank'),
+    'text-color': getCssVar('text-color', 'regular'),
+    'disabled-text-color': getCssVar('disabled-text-color'),
+    'disabled-bg-color': getCssVar('fill-color', 'blank'),
+    'disabled-border-color': getCssVar('border-color-light'),
+    'divide-border-color': rgba($color-white, 0.5),
+    'hover-text-color': getCssVar('color-primary'),
+    'hover-bg-color': getCssVar('color-primary', 'light-9'),
+    'hover-border-color': getCssVar('color-primary-light-7'),
+    'active-text-color': getCssVar('button-hover-text-color'),
+    'active-border-color': getCssVar('color-primary'),
+    'active-bg-color': getCssVar('button', 'hover-bg-color'),
+    'outline-color': getCssVar('color-primary', 'light-5'),
+    'hover-link-text-color': getCssVar('color-info'),
+    'active-color': getCssVar('text-color', 'primary'),
+  ),
+  $button
+);
+
+$button-border-width: $border-width !default;
+
+// need mix, so do not use css var
+$button-hover-tint-percent: 20%;
+$button-active-shade-percent: 10%;
+
+$button-border-color: () !default;
+$button-bg-color: () !default;
+$button-text-color: () !default;
+
+@each $type in $types {
+  $button-border-color: map.merge(
+    (
+      $type: map.get($colors, $type, 'base'),
+    ),
+    $button-border-color
+  ) !global;
+
+  $button-bg-color: map.merge(
+    (
+      $type: map.get($colors, $type, 'base'),
+    ),
+    $button-bg-color
+  ) !global;
 }
 
-.fz-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 1;
-  height: 32px;
-  white-space: nowrap;
-  cursor: pointer;
-  color: var(--fz-button-text-color);
-  text-align: center;
-  box-sizing: border-box;
-  outline: 0;
-  transition: .1s;
-  font-weight: var(--fz-button-font-weight);
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  vertical-align: middle;
-  -webkit-appearance: none;
-  background-color: var(--fz-button-bg-color);
-  border: var(--fz-border);
-  border-color: var(--fz-button-border-color);
-  padding: 8px 15px;
-  font-size: var(--fz-font-size-base);
-  border-radius: var(--fz-border-radius-base)
-}
+$button-font-size: () !default;
+$button-font-size: map.merge(
+  (
+    'large': getCssVar('font-size', 'base'),
+    'default': getCssVar('font-size', 'base'),
+    'small': 12px,
+  ),
+  $button-font-size
+);
 
-.fz-button:focus,
-.fz-button:hover {
-  color: var(--fz-button-hover-text-color);
-  border-color: var(--fz-button-hover-border-color);
-  background-color: var(--fz-button-hover-bg-color);
-  outline: 0
-}
+$button-border-radius: () !default;
+$button-border-radius: map.merge(
+  (
+    'large': getCssVar('border-radius', 'base'),
+    'default': getCssVar('border-radius', 'base'),
+    'small': calc(#{getCssVar('border-radius', 'base')} - 1px),
+  ),
+  $button-border-radius
+);
 
-.fz-button:active {
-  color: var(--fz-button-active-text-color);
-  border-color: var(--fz-button-active-border-color);
-  background-color: var(--fz-button-active-bg-color);
-  outline: 0
-}
+$button-padding-vertical: () !default;
+$button-padding-vertical: map.merge(
+  (
+    'large': 13px,
+    'default': 9px,
+    'small': 6px,
+  ),
+  $button-padding-vertical
+);
 
-.fz-button:focus-visible {
-  outline: 2px solid var(--fz-button-outline-color);
-  outline-offset: 1px
-}
+$button-padding-horizontal: () !default;
+$button-padding-horizontal: map.merge(
+  (
+    'large': 20px,
+    'default': 16px,
+    'small': 12px,
+  ),
+  $button-padding-horizontal
+);
 
-.fz-button>span {
-  display: inline-flex;
-  align-items: center
-}
+// Function
+@mixin button-plain($type) {
+  $button-color-types: (
+    '': (
+      'text-color': (
+        'color',
+        $type,
+      ),
+      'bg-color': (
+        'color',
+        $type,
+        'light-9',
+      ),
+      'border-color': (
+        'color',
+        $type,
+        'light-5',
+      ),
+    ),
+    'hover': (
+      'text-color': (
+        'color',
+        'white',
+      ),
+      'bg-color': (
+        'color',
+        $type,
+      ),
+      'border-color': (
+        'color',
+        $type,
+      ),
+    ),
+    'active': (
+      'text-color': (
+        'color',
+        'white',
+      ),
+    ),
+  );
 
-.fz-button+.fz-button {
-  margin-left: 12px
-}
+  @each $type, $typeMap in $button-color-types {
+    @each $typeColor, $list in $typeMap {
+      @include css-var-from-global(('button', $type, $typeColor), $list);
+    }
+  }
 
-.fz-button.is-round {
-  padding: 8px 15px
-}
-
-.fz-button::-moz-focus-inner {
-  border: 0
-}
-
-.fz-button .fz-button__icon+span {
-  margin-left: 6px
-}
-
-.fz-button .fz-button__icon svg {
-  vertical-align: bottom
-}
-
-.fz-button.is-plain {
-  --fz-button-hover-text-color: var(--fz-color-primary);
-  --fz-button-hover-bg-color: var(--fz-fill-color-blank);
-  --fz-button-hover-border-color: var(--fz-color-primary)
-}
-
-.fz-button.is-active {
-  color: var(--fz-button-active-text-color);
-  border-color: var(--fz-button-active-border-color);
-  background-color: var(--fz-button-active-bg-color);
-  outline: 0
-}
-
-.fz-button.is-disabled,
-.fz-button.is-disabled:focus,
-.fz-button.is-disabled:hover {
-  color: var(--fz-button-disabled-text-color);
-  cursor: not-allowed;
-  background-image: none;
-  background-color: var(--fz-button-disabled-bg-color);
-  border-color: var(--fz-button-disabled-border-color)
-}
-
-.fz-button.is-loading {
-  position: relative;
-  pointer-events: none;
-
-  .fz-button__icon {
-    animation: icon-loading-animation 1s linear infinite;
+  &.is-disabled {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: getCssVar('color', $type, 'light-5');
+      background-color: getCssVar('color', $type, 'light-9');
+      border-color: getCssVar('color', $type, 'light-8');
+    }
   }
 }
 
-.fz-button.is-loading:before {
-  z-index: 1;
-  pointer-events: none;
-  content: "";
-  position: absolute;
-  left: -1px;
-  top: -1px;
-  right: -1px;
-  bottom: -1px;
-  border-radius: inherit;
-  background-color: var(--fz-mask-color-extra-light)
+@mixin button-variant($type) {
+  $button-color-types: (
+    '': (
+      'text-color': (
+        'color',
+        'white',
+      ),
+      'bg-color': (
+        'color',
+        $type,
+      ),
+      'border-color': (
+        'color',
+        $type,
+      ),
+      'outline-color': (
+        'color',
+        $type,
+        'light-5',
+      ),
+      'active-color': (
+        'color',
+        $type,
+        'dark-2',
+      ),
+    ),
+    'hover': (
+      'text-color': (
+        'color',
+        'white',
+      ),
+      'link-text-color': (
+        'color',
+        $type,
+        'light-5',
+      ),
+      'bg-color': (
+        'color',
+        $type,
+        'light-3',
+      ),
+      'border-color': (
+        'color',
+        $type,
+        'light-3',
+      ),
+    ),
+    'active': (
+      'bg-color': (
+        'color',
+        $type,
+        'dark-2',
+      ),
+      'border-color': (
+        'color',
+        $type,
+        'dark-2',
+      ),
+    ),
+    'disabled': (
+      'text-color': (
+        'color',
+        'white',
+      ),
+      'bg-color': (
+        'color',
+        $type,
+        'light-5',
+      ),
+      'border-color': (
+        'color',
+        $type,
+        'light-5',
+      ),
+    ),
+  );
+
+  @each $type, $typeMap in $button-color-types {
+    @each $typeColor, $list in $typeMap {
+      @include css-var-from-global(('button', $type, $typeColor), $list);
+    }
+  }
+
+  &.is-plain,
+  &.is-text,
+  &.is-link {
+    @include button-plain($type);
+  }
 }
 
-.fz-button.is-round {
-  border-radius: var(--fz-border-radius-round)
+@mixin button-size(
+  $padding-vertical,
+  $padding-horizontal,
+  $font-size,
+  $border-radius
+) {
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+  border-radius: $border-radius;
+  &.is-round {
+    padding: $padding-vertical $padding-horizontal;
+  }
 }
 
-.fz-button.is-circle {
-  border-radius: 50%;
-  padding: 8px
+$button-icon-span-gap: () !default;
+$button-icon-span-gap: map.merge(
+  (
+    'large': 8px,
+    'default': 6px,
+    'small': 4px,
+  ),
+  $button-icon-span-gap
+);
+
+$button-height: () !default;
+$button-height: map.merge($common-component-size, $button-height);
+
+@include b(button) {
+  @include set-component-css-var('button', $button);
 }
 
-.fz-button.is-text {
-  color: var(--fz-button-text-color);
-  border: 0 solid transparent;
-  background-color: transparent
-}
+@include b(button) {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
-.fz-button.is-text.is-disabled {
-  color: var(--fz-button-disabled-text-color);
-  background-color: transparent !important
-}
+  line-height: 1;
+  // min-height will expand when in flex
+  height: map.get($button-height, 'default');
+  white-space: nowrap;
+  cursor: pointer;
+  color: getCssVar('button', 'text-color');
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  transition: 0.1s;
+  font-weight: getCssVar('button', 'font-weight');
+  user-select: none;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background-color: getCssVar('button', 'bg-color');
+  border: getCssVar('border');
+  border-color: getCssVar('button', 'border-color');
 
-.fz-button.is-text:not(.is-disabled):focus,
-.fz-button.is-text:not(.is-disabled):hover {
-  background-color: var(--fz-fill-color-light)
-}
+  &:hover,
+  &:focus {
+    color: getCssVar('button', 'hover', 'text-color');
+    border-color: getCssVar('button', 'hover', 'border-color');
+    background-color: getCssVar('button', 'hover', 'bg-color');
+    outline: none;
+  }
 
-.fz-button.is-text:not(.is-disabled):focus-visible {
-  outline: 2px solid var(--fz-button-outline-color);
-  outline-offset: 1px
-}
+  &:active {
+    color: getCssVar('button', 'active', 'text-color');
+    border-color: getCssVar('button', 'active', 'border-color');
+    background-color: getCssVar('button', 'active', 'bg-color');
+    outline: none;
+  }
 
-.fz-button.is-text:not(.is-disabled):active {
-  background-color: var(--fz-fill-color)
-}
+  &:focus-visible {
+    outline: 2px solid getCssVar('button', 'outline-color');
+    outline-offset: 1px;
+  }
 
-.fz-button.is-text:not(.is-disabled).is-has-bg {
-  background-color: var(--fz-fill-color-light)
-}
+  > span {
+    display: inline-flex;
+    align-items: center;
+  }
 
-.fz-button.is-text:not(.is-disabled).is-has-bg:focus,
-.fz-button.is-text:not(.is-disabled).is-has-bg:hover {
-  background-color: var(--fz-fill-color)
-}
+  & + & {
+    margin-left: 12px;
+  }
 
-.fz-button.is-text:not(.is-disabled).is-has-bg:active {
-  background-color: var(--fz-fill-color-dark)
-}
+  @include button-size(
+    map.get($button-padding-vertical, 'default') - $button-border-width,
+    map.get($button-padding-horizontal, 'default') - $button-border-width,
+    map.get($button-font-size, 'default'),
+    map.get($button-border-radius, 'default')
+  );
 
-.fz-button__text--expand {
-  letter-spacing: .3em;
-  margin-right: -.3em
-}
+  &::-moz-focus-inner {
+    border: 0;
+  }
 
-.fz-button.is-link {
-  border-color: transparent;
-  color: var(--fz-button-text-color);
-  background: 0 0;
-  padding: 2px;
-  height: auto
-}
+  & [class*='#{$namespace}-svg-icon'] {
+    & + span {
+      margin-left: map.get($button-icon-span-gap, 'default');
+    }
+    svg {
+      vertical-align: bottom;
+    }
+  }
 
-.fz-button.is-link:focus,
-.fz-button.is-link:hover {
-  color: var(--fz-button-hover-link-text-color)
-}
+  @include when(plain) {
+    @include css-var-from-global(
+      ('button', 'hover', 'text-color'),
+      ('color', 'primary')
+    );
+    @include css-var-from-global(
+      ('button', 'hover', 'bg-color'),
+      ('fill-color', 'blank')
+    );
+    @include css-var-from-global(
+      ('button', 'hover', 'border-color'),
+      ('color', 'primary')
+    );
+  }
 
-.fz-button.is-link.is-disabled {
-  color: var(--fz-button-disabled-text-color);
-  background-color: transparent !important;
-  border-color: transparent !important
-}
+  @include when(active) {
+    color: getCssVar('button', 'active', 'text-color');
+    border-color: getCssVar('button', 'active', 'border-color');
+    background-color: getCssVar('button', 'active', 'bg-color');
+    outline: none;
+  }
 
-.fz-button.is-link:not(.is-disabled):focus,
-.fz-button.is-link:not(.is-disabled):hover {
-  border-color: transparent;
-  background-color: transparent
-}
+  @include when(disabled) {
+    &,
+    &:hover,
+    &:focus {
+      color: getCssVar('button', 'disabled', 'text-color');
+      cursor: not-allowed;
+      background-image: none;
+      background-color: getCssVar('button', 'disabled', 'bg-color');
+      border-color: getCssVar('button', 'disabled', 'border-color');
+    }
+  }
 
-.fz-button.is-link:not(.is-disabled):active {
-  color: var(--fz-button-active-color);
-  border-color: transparent;
-  background-color: transparent
-}
+  @include when(loading) {
+    position: relative;
+    pointer-events: none;
 
-.fz-button--text {
-  border-color: transparent;
-  background: 0 0;
-  color: var(--fz-color-primary);
-  padding-left: 0;
-  padding-right: 0
-}
+    &:before {
+      // mask the button
+      z-index: 1;
+      pointer-events: none;
+      content: '';
+      position: absolute;
+      left: -1px;
+      top: -1px;
+      right: -1px;
+      bottom: -1px;
+      border-radius: inherit;
+      background-color: getCssVar('mask-color', 'extra-light');
+    }
 
-.fz-button--text.is-disabled {
-  color: var(--fz-button-disabled-text-color);
-  background-color: transparent !important;
-  border-color: transparent !important
-}
+    .#{$namespace}-button__icon {
+      animation: icon-loading-animation 1s linear infinite;
+    }
+  }
+  @include when(round) {
+    border-radius: getCssVar('border-radius', 'round');
+  }
+  @include when(circle) {
+    width: map.get($button-height, 'default');
+    border-radius: 50%;
+    padding: map.get($button-padding-vertical, 'default') - $button-border-width;
+  }
 
-.fz-button--text:not(.is-disabled):focus,
-.fz-button--text:not(.is-disabled):hover {
-  color: var(--fz-color-primary-light-3);
-  border-color: transparent;
-  background-color: transparent
-}
+  @include when(text) {
+    color: getCssVar('button', 'text-color');
+    border: 0 solid transparent;
+    background-color: transparent;
 
-.fz-button--text:not(.is-disabled):active {
-  color: var(--fz-color-primary-dark-2);
-  border-color: transparent;
-  background-color: transparent
-}
+    @include when(disabled) {
+      color: getCssVar('button', 'disabled', 'text-color');
+      background-color: transparent !important;
+    }
 
-.fz-button__link--expand {
-  letter-spacing: .3em;
-  margin-right: -.3em
-}
+    &:not(.is-disabled) {
+      &:hover,
+      &:focus {
+        background-color: getCssVar('fill-color', 'light');
+      }
 
-.fz-button--primary {
-  --fz-button-text-color: var(--fz-color-white);
-  --fz-button-bg-color: var(--fz-color-primary);
-  --fz-button-border-color: var(--fz-color-primary);
-  --fz-button-outline-color: var(--fz-color-primary-light-5);
-  --fz-button-active-color: var(--fz-color-primary-dark-2);
-  --fz-button-hover-text-color: var(--fz-color-white);
-  --fz-button-hover-link-text-color: var(--fz-color-primary-light-5);
-  --fz-button-hover-bg-color: var(--fz-color-primary-light-3);
-  --fz-button-hover-border-color: var(--fz-color-primary-light-3);
-  --fz-button-active-bg-color: var(--fz-color-primary-dark-2);
-  --fz-button-active-border-color: var(--fz-color-primary-dark-2);
-  --fz-button-disabled-text-color: var(--fz-color-white);
-  --fz-button-disabled-bg-color: var(--fz-color-primary-light-5);
-  --fz-button-disabled-border-color: var(--fz-color-primary-light-5)
-}
+      &:focus-visible {
+        outline: 2px solid getCssVar('button', 'outline-color');
+        outline-offset: 1px;
+      }
 
-.fz-button--primary.is-link,
-.fz-button--primary.is-plain,
-.fz-button--primary.is-text {
-  --fz-button-text-color: var(--fz-color-primary);
-  --fz-button-bg-color: var(--fz-color-primary-light-9);
-  --fz-button-border-color: var(--fz-color-primary-light-5);
-  --fz-button-hover-text-color: var(--fz-color-white);
-  --fz-button-hover-bg-color: var(--fz-color-primary);
-  --fz-button-hover-border-color: var(--fz-color-primary);
-  --fz-button-active-text-color: var(--fz-color-white)
-}
+      &:active {
+        background-color: getCssVar('fill-color');
+      }
 
-.fz-button--primary.is-link.is-disabled,
-.fz-button--primary.is-link.is-disabled:active,
-.fz-button--primary.is-link.is-disabled:focus,
-.fz-button--primary.is-link.is-disabled:hover,
-.fz-button--primary.is-plain.is-disabled,
-.fz-button--primary.is-plain.is-disabled:active,
-.fz-button--primary.is-plain.is-disabled:focus,
-.fz-button--primary.is-plain.is-disabled:hover,
-.fz-button--primary.is-text.is-disabled,
-.fz-button--primary.is-text.is-disabled:active,
-.fz-button--primary.is-text.is-disabled:focus,
-.fz-button--primary.is-text.is-disabled:hover {
-  color: var(--fz-color-primary-light-5);
-  background-color: var(--fz-color-primary-light-9);
-  border-color: var(--fz-color-primary-light-8)
-}
+      @include when(has-bg) {
+        background-color: getCssVar('fill-color', 'light');
 
-.fz-button--success {
-  --fz-button-text-color: var(--fz-color-white);
-  --fz-button-bg-color: var(--fz-color-success);
-  --fz-button-border-color: var(--fz-color-success);
-  --fz-button-outline-color: var(--fz-color-success-light-5);
-  --fz-button-active-color: var(--fz-color-success-dark-2);
-  --fz-button-hover-text-color: var(--fz-color-white);
-  --fz-button-hover-link-text-color: var(--fz-color-success-light-5);
-  --fz-button-hover-bg-color: var(--fz-color-success-light-3);
-  --fz-button-hover-border-color: var(--fz-color-success-light-3);
-  --fz-button-active-bg-color: var(--fz-color-success-dark-2);
-  --fz-button-active-border-color: var(--fz-color-success-dark-2);
-  --fz-button-disabled-text-color: var(--fz-color-white);
-  --fz-button-disabled-bg-color: var(--fz-color-success-light-5);
-  --fz-button-disabled-border-color: var(--fz-color-success-light-5)
-}
+        &:hover,
+        &:focus {
+          background-color: getCssVar('fill-color');
+        }
 
-.fz-button--success.is-link,
-.fz-button--success.is-plain,
-.fz-button--success.is-text {
-  --fz-button-text-color: var(--fz-color-success);
-  --fz-button-bg-color: var(--fz-color-success-light-9);
-  --fz-button-border-color: var(--fz-color-success-light-5);
-  --fz-button-hover-text-color: var(--fz-color-white);
-  --fz-button-hover-bg-color: var(--fz-color-success);
-  --fz-button-hover-border-color: var(--fz-color-success);
-  --fz-button-active-text-color: var(--fz-color-white)
-}
+        &:active {
+          background-color: getCssVar('fill-color', 'dark');
+        }
+      }
+    }
+  }
 
-.fz-button--success.is-link.is-disabled,
-.fz-button--success.is-link.is-disabled:active,
-.fz-button--success.is-link.is-disabled:focus,
-.fz-button--success.is-link.is-disabled:hover,
-.fz-button--success.is-plain.is-disabled,
-.fz-button--success.is-plain.is-disabled:active,
-.fz-button--success.is-plain.is-disabled:focus,
-.fz-button--success.is-plain.is-disabled:hover,
-.fz-button--success.is-text.is-disabled,
-.fz-button--success.is-text.is-disabled:active,
-.fz-button--success.is-text.is-disabled:focus,
-.fz-button--success.is-text.is-disabled:hover {
-  color: var(--fz-color-success-light-5);
-  background-color: var(--fz-color-success-light-9);
-  border-color: var(--fz-color-success-light-8)
-}
+  @include e(text) {
+    @include m(expand) {
+      letter-spacing: 0.3em;
+      margin-right: -0.3em;
+    }
+  }
 
-.fz-button--warning {
-  --fz-button-text-color: var(--fz-color-white);
-  --fz-button-bg-color: var(--fz-color-warning);
-  --fz-button-border-color: var(--fz-color-warning);
-  --fz-button-outline-color: var(--fz-color-warning-light-5);
-  --fz-button-active-color: var(--fz-color-warning-dark-2);
-  --fz-button-hover-text-color: var(--fz-color-white);
-  --fz-button-hover-link-text-color: var(--fz-color-warning-light-5);
-  --fz-button-hover-bg-color: var(--fz-color-warning-light-3);
-  --fz-button-hover-border-color: var(--fz-color-warning-light-3);
-  --fz-button-active-bg-color: var(--fz-color-warning-dark-2);
-  --fz-button-active-border-color: var(--fz-color-warning-dark-2);
-  --fz-button-disabled-text-color: var(--fz-color-white);
-  --fz-button-disabled-bg-color: var(--fz-color-warning-light-5);
-  --fz-button-disabled-border-color: var(--fz-color-warning-light-5)
-}
+  @include when(link) {
+    border-color: transparent;
+    color: getCssVar('button', 'text-color');
+    background: transparent;
+    padding: 2px;
+    height: auto;
 
-.fz-button--warning.is-link,
-.fz-button--warning.is-plain,
-.fz-button--warning.is-text {
-  --fz-button-text-color: var(--fz-color-warning);
-  --fz-button-bg-color: var(--fz-color-warning-light-9);
-  --fz-button-border-color: var(--fz-color-warning-light-5);
-  --fz-button-hover-text-color: var(--fz-color-white);
-  --fz-button-hover-bg-color: var(--fz-color-warning);
-  --fz-button-hover-border-color: var(--fz-color-warning);
-  --fz-button-active-text-color: var(--fz-color-white)
-}
+    &:hover,
+    &:focus {
+      color: getCssVar('button', 'hover', 'link-text-color');
+    }
 
-.fz-button--warning.is-link.is-disabled,
-.fz-button--warning.is-link.is-disabled:active,
-.fz-button--warning.is-link.is-disabled:focus,
-.fz-button--warning.is-link.is-disabled:hover,
-.fz-button--warning.is-plain.is-disabled,
-.fz-button--warning.is-plain.is-disabled:active,
-.fz-button--warning.is-plain.is-disabled:focus,
-.fz-button--warning.is-plain.is-disabled:hover,
-.fz-button--warning.is-text.is-disabled,
-.fz-button--warning.is-text.is-disabled:active,
-.fz-button--warning.is-text.is-disabled:focus,
-.fz-button--warning.is-text.is-disabled:hover {
-  color: var(--fz-color-warning-light-5);
-  background-color: var(--fz-color-warning-light-9);
-  border-color: var(--fz-color-warning-light-8)
-}
+    @include when(disabled) {
+      color: getCssVar('button', 'disabled', 'text-color');
+      background-color: transparent !important;
+      border-color: transparent !important;
+    }
 
-.fz-button--danger {
-  --fz-button-text-color: var(--fz-color-white);
-  --fz-button-bg-color: var(--fz-color-danger);
-  --fz-button-border-color: var(--fz-color-danger);
-  --fz-button-outline-color: var(--fz-color-danger-light-5);
-  --fz-button-active-color: var(--fz-color-danger-dark-2);
-  --fz-button-hover-text-color: var(--fz-color-white);
-  --fz-button-hover-link-text-color: var(--fz-color-danger-light-5);
-  --fz-button-hover-bg-color: var(--fz-color-danger-light-3);
-  --fz-button-hover-border-color: var(--fz-color-danger-light-3);
-  --fz-button-active-bg-color: var(--fz-color-danger-dark-2);
-  --fz-button-active-border-color: var(--fz-color-danger-dark-2);
-  --fz-button-disabled-text-color: var(--fz-color-white);
-  --fz-button-disabled-bg-color: var(--fz-color-danger-light-5);
-  --fz-button-disabled-border-color: var(--fz-color-danger-light-5)
-}
+    &:not(.is-disabled) {
+      &:hover,
+      &:focus {
+        border-color: transparent;
+        background-color: transparent;
+      }
 
-.fz-button--danger.is-link,
-.fz-button--danger.is-plain,
-.fz-button--danger.is-text {
-  --fz-button-text-color: var(--fz-color-danger);
-  --fz-button-bg-color: var(--fz-color-danger-light-9);
-  --fz-button-border-color: var(--fz-color-danger-light-5);
-  --fz-button-hover-text-color: var(--fz-color-white);
-  --fz-button-hover-bg-color: var(--fz-color-danger);
-  --fz-button-hover-border-color: var(--fz-color-danger);
-  --fz-button-active-text-color: var(--fz-color-white)
-}
+      &:active {
+        color: getCssVar('button', 'active-color');
+        border-color: transparent;
+        background-color: transparent;
+      }
+    }
+  }
 
-.fz-button--danger.is-link.is-disabled,
-.fz-button--danger.is-link.is-disabled:active,
-.fz-button--danger.is-link.is-disabled:focus,
-.fz-button--danger.is-link.is-disabled:hover,
-.fz-button--danger.is-plain.is-disabled,
-.fz-button--danger.is-plain.is-disabled:active,
-.fz-button--danger.is-plain.is-disabled:focus,
-.fz-button--danger.is-plain.is-disabled:hover,
-.fz-button--danger.is-text.is-disabled,
-.fz-button--danger.is-text.is-disabled:active,
-.fz-button--danger.is-text.is-disabled:focus,
-.fz-button--danger.is-text.is-disabled:hover {
-  color: var(--fz-color-danger-light-5);
-  background-color: var(--fz-color-danger-light-9);
-  border-color: var(--fz-color-danger-light-8)
-}
+  @include m(text) {
+    border-color: transparent;
+    background: transparent;
+    color: getCssVar('color', 'primary');
+    padding-left: 0;
+    padding-right: 0;
+    @include when(disabled) {
+      color: getCssVar('button', 'disabled', 'text-color');
+      background-color: transparent !important;
+      border-color: transparent !important;
+    }
 
-.fz-button--info {
-  --fz-button-text-color: var(--fz-color-white);
-  --fz-button-bg-color: var(--fz-color-info);
-  --fz-button-border-color: var(--fz-color-info);
-  --fz-button-outline-color: var(--fz-color-info-light-5);
-  --fz-button-active-color: var(--fz-color-info-dark-2);
-  --fz-button-hover-text-color: var(--fz-color-white);
-  --fz-button-hover-link-text-color: var(--fz-color-info-light-5);
-  --fz-button-hover-bg-color: var(--fz-color-info-light-3);
-  --fz-button-hover-border-color: var(--fz-color-info-light-3);
-  --fz-button-active-bg-color: var(--fz-color-info-dark-2);
-  --fz-button-active-border-color: var(--fz-color-info-dark-2);
-  --fz-button-disabled-text-color: var(--fz-color-white);
-  --fz-button-disabled-bg-color: var(--fz-color-info-light-5);
-  --fz-button-disabled-border-color: var(--fz-color-info-light-5)
-}
+    &:not(.is-disabled) {
+      &:hover,
+      &:focus {
+        color: getCssVar('color', 'primary', 'light-3');
+        border-color: transparent;
+        background-color: transparent;
+      }
 
-.fz-button--info.is-link,
-.fz-button--info.is-plain,
-.fz-button--info.is-text {
-  --fz-button-text-color: var(--fz-color-info);
-  --fz-button-bg-color: var(--fz-color-info-light-9);
-  --fz-button-border-color: var(--fz-color-info-light-5);
-  --fz-button-hover-text-color: var(--fz-color-white);
-  --fz-button-hover-bg-color: var(--fz-color-info);
-  --fz-button-hover-border-color: var(--fz-color-info);
-  --fz-button-active-text-color: var(--fz-color-white)
-}
+      &:active {
+        color: getCssVar('color', 'primary', 'dark-2');
+        border-color: transparent;
+        background-color: transparent;
+      }
+    }
+  }
 
-.fz-button--info.is-link.is-disabled,
-.fz-button--info.is-link.is-disabled:active,
-.fz-button--info.is-link.is-disabled:focus,
-.fz-button--info.is-link.is-disabled:hover,
-.fz-button--info.is-plain.is-disabled,
-.fz-button--info.is-plain.is-disabled:active,
-.fz-button--info.is-plain.is-disabled:focus,
-.fz-button--info.is-plain.is-disabled:hover,
-.fz-button--info.is-text.is-disabled,
-.fz-button--info.is-text.is-disabled:active,
-.fz-button--info.is-text.is-disabled:focus,
-.fz-button--info.is-text.is-disabled:hover {
-  color: var(--fz-color-info-light-5);
-  background-color: var(--fz-color-info-light-9);
-  border-color: var(--fz-color-info-light-8)
-}
+  @include e(link) {
+    @include m(expand) {
+      letter-spacing: 0.3em;
+      margin-right: -0.3em;
+    }
+  }
 
-.fz-button--large {
-  --fz-button-size: 40px;
-  height: var(--fz-button-size);
-  padding: 12px 19px;
-  font-size: var(--fz-font-size-base);
-  border-radius: var(--fz-border-radius-base)
-}
+  @each $type in (primary, success, warning, danger, info) {
+    @include m($type) {
+      @include button-variant($type);
+    }
+  }
 
-.fz-button--large .fz-button__icon+span {
-  margin-left: 8px
-}
+  @each $size in (large, small) {
+    @include m($size) {
+      @include set-css-var-value(
+        ('button', 'size'),
+        map.get($button-height, $size)
+      );
 
-.fz-button--large.is-round {
-  padding: 12px 19px
-}
+      height: getCssVar('button', 'size');
 
-.fz-button--large.is-circle {
-  width: var(--fz-button-size);
-  padding: 12px
-}
+      & [class*='#{$namespace}-svg-icon'] {
+        & + span {
+          margin-left: map.get($button-icon-span-gap, $size);
+        }
+      }
 
-.fz-button--small {
-  --fz-button-size: 24px;
-  height: var(--fz-button-size);
-  padding: 5px 11px;
-  font-size: 12px;
-  border-radius: calc(var(--fz-border-radius-base) - 1px)
-}
+      @include button-size(
+        map.get($button-padding-vertical, $size) - $button-border-width,
+        map.get($button-padding-horizontal, $size) - $button-border-width,
+        map.get($button-font-size, $size),
+        map.get($button-border-radius, $size)
+      );
 
-.fz-button--small .fz-button__icon+span {
-  margin-left: 4px
-}
-
-.fz-button--small.is-round {
-  padding: 5px 11px
-}
-
-.fz-button--small.is-circle {
-  width: var(--fz-button-size);
-  padding: 5px
+      @include when(circle) {
+        width: getCssVar('button', 'size');
+        padding: map.get($button-padding-vertical, $size) - $button-border-width;
+      }
+    }
+  }
 }

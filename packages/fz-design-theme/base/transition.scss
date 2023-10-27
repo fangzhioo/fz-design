@@ -1,122 +1,121 @@
-.fz-fade-in-linear-enter-from,
-.fz-fade-in-linear-leave-to {
-  opacity: 0;
-}
+@use '../config/config.scss' as *;
+@use '../config/mixins.scss' as *;
 
 .fade-in-linear-enter-active,
 .fade-in-linear-leave-active {
-  -webkit-transition: opacity 0.2s linear;
-  transition: opacity 0.2s linear;
+  transition: getCssVar('transition-fade', 'linear');
 }
-.fade-in-linear-enter,
-.fade-in-linear-leave,
-.fade-in-linear-leave-active {
+
+.fade-in-linear-enter-from,
+.fade-in-linear-leave-to {
   opacity: 0;
 }
-.fz-fade-in-linear-enter-active,
-.fz-fade-in-linear-leave-active {
-  -webkit-transition: opacity 0.2s linear;
-  transition: opacity 0.2s linear;
+
+.#{$namespace}-fade-in-linear-enter-active,
+.#{$namespace}-fade-in-linear-leave-active {
+  transition: getCssVar('transition-fade', 'linear');
 }
-.fz-fade-in-linear-enter,
-.fz-fade-in-linear-leave,
-.fz-fade-in-linear-leave-active {
+.#{$namespace}-fade-in-linear-enter-from,
+.#{$namespace}-fade-in-linear-leave-to {
   opacity: 0;
 }
-.fz-fade-in-enter-active,
-.fz-fade-in-leave-active {
-  -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
-  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+
+.#{$namespace}-fade-in-enter-active,
+.#{$namespace}-fade-in-leave-active {
+  transition: all getCssVar('transition-duration') cubic-bezier(0.55, 0, 0.1, 1);
 }
-.fz-fade-in-enter,
-.fz-fade-in-leave-active {
+.#{$namespace}-fade-in-enter-from,
+.#{$namespace}-fade-in-leave-active {
   opacity: 0;
 }
-.fz-zoom-in-center-enter-active,
-.fz-zoom-in-center-leave-active {
-  -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
-  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+
+.#{$namespace}-zoom-in-center-enter-active,
+.#{$namespace}-zoom-in-center-leave-active {
+  transition: all getCssVar('transition-duration') cubic-bezier(0.55, 0, 0.1, 1);
 }
-.fz-zoom-in-center-enter,
-.fz-zoom-in-center-leave-active {
+.#{$namespace}-zoom-in-center-enter-from,
+.#{$namespace}-zoom-in-center-leave-active {
   opacity: 0;
-  -webkit-transform: scaleX(0);
   transform: scaleX(0);
 }
-.fz-zoom-in-top-enter-active,
-.fz-zoom-in-top-leave-active {
+
+.#{$namespace}-zoom-in-top-enter-active,
+.#{$namespace}-zoom-in-top-leave-active {
   opacity: 1;
-  -webkit-transform: scaleY(1);
   transform: scaleY(1);
-  -webkit-transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  -webkit-transform-origin: center top;
+  transition: getCssVar('transition-md-fade');
   transform-origin: center top;
+
+  &[data-popper-placement^='top'] {
+    transform-origin: center bottom;
+  }
 }
-.fz-zoom-in-top-enter,
-.fz-zoom-in-top-leave-active {
+.#{$namespace}-zoom-in-top-enter-from,
+.#{$namespace}-zoom-in-top-leave-active {
   opacity: 0;
-  -webkit-transform: scaleY(0);
   transform: scaleY(0);
 }
-.fz-zoom-in-bottom-enter-active,
-.fz-zoom-in-bottom-leave-active {
+
+.#{$namespace}-zoom-in-bottom-enter-active,
+.#{$namespace}-zoom-in-bottom-leave-active {
   opacity: 1;
-  -webkit-transform: scaleY(1);
   transform: scaleY(1);
-  -webkit-transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  -webkit-transform-origin: center bottom;
+  transition: getCssVar('transition-md-fade');
   transform-origin: center bottom;
 }
-.fz-zoom-in-bottom-enter,
-.fz-zoom-in-bottom-leave-active {
+.#{$namespace}-zoom-in-bottom-enter-from,
+.#{$namespace}-zoom-in-bottom-leave-active {
   opacity: 0;
-  -webkit-transform: scaleY(0);
   transform: scaleY(0);
 }
-.fz-zoom-in-left-enter-active,
-.fz-zoom-in-left-leave-active {
+
+.#{$namespace}-zoom-in-left-enter-active,
+.#{$namespace}-zoom-in-left-leave-active {
   opacity: 1;
-  -webkit-transform: scale(1, 1);
   transform: scale(1, 1);
-  -webkit-transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  -webkit-transform-origin: top left;
+  transition: getCssVar('transition-md-fade');
   transform-origin: top left;
 }
-.fz-zoom-in-left-enter,
-.fz-zoom-in-left-leave-active {
+.#{$namespace}-zoom-in-left-enter-from,
+.#{$namespace}-zoom-in-left-leave-active {
   opacity: 0;
-  -webkit-transform: scale(0.45, 0.45);
   transform: scale(0.45, 0.45);
 }
+
 .collapse-transition {
-  -webkit-transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out, 0.3s padding-bottom ease-in-out;
-  transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out, 0.3s padding-bottom ease-in-out;
+  transition: getCssVar('transition-duration') height ease-in-out,
+    getCssVar('transition-duration') padding-top ease-in-out,
+    getCssVar('transition-duration') padding-bottom ease-in-out;
 }
+
+.#{$namespace}-collapse-transition-leave-active,
+.#{$namespace}-collapse-transition-enter-active {
+  transition: getCssVar('transition-duration') max-height ease-in-out,
+    getCssVar('transition-duration') padding-top ease-in-out,
+    getCssVar('transition-duration') padding-bottom ease-in-out;
+}
+
 .horizontal-collapse-transition {
-  -webkit-transition: 0.3s width ease-in-out, 0.3s padding-left ease-in-out, 0.3s padding-right ease-in-out;
-  transition: 0.3s width ease-in-out, 0.3s padding-left ease-in-out, 0.3s padding-right ease-in-out;
+  transition: getCssVar('transition-duration') width ease-in-out,
+    getCssVar('transition-duration') padding-left ease-in-out,
+    getCssVar('transition-duration') padding-right ease-in-out;
 }
-.fz-list-enter-active,
-.fz-list-leave-active {
-  -webkit-transition: all 1s;
+
+.#{$namespace}-list-enter-active,
+.#{$namespace}-list-leave-active {
   transition: all 1s;
 }
-.fz-list-enter,
-.fz-list-leave-active {
+
+.#{$namespace}-list-enter-from,
+.#{$namespace}-list-leave-to {
   opacity: 0;
-  -webkit-transform: translateY(-30px);
   transform: translateY(-30px);
 }
-.fz-opacity-transition {
-  -webkit-transition: opacity 0.3s cubic-bezier(0.55, 0, 0.1, 1);
-  transition: opacity 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+
+.#{$namespace}-list-leave-active {
+  position: absolute !important;
+}
+
+.#{$namespace}-opacity-transition {
+  transition: opacity getCssVar('transition-duration') cubic-bezier(0.55, 0, 0.1, 1);
 }

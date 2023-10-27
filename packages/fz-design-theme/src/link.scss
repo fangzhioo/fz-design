@@ -1,11 +1,36 @@
-@use '../base/var.scss';
+@use 'sass:map';
 
-.fz-link, a.fz-link {
-  --fz-link-font-size: var(--fz-font-size-base);
-  --fz-link-font-weight: var(--fz-font-weight-primary);
-  --fz-link-text-color: var(--fz-text-color-regular);
-  --fz-link-hover-text-color: var(--fz-color-primary);
-  --fz-link-disabled-text-color: var(--fz-text-color-placeholder);
+@use '../config/mixins.scss' as *;
+@use '../config/mixins-var.scss' as *;
+@use '../config/common-var.scss' as *;
+@use '../config/utils.scss' as *;
+
+// Link
+$link: () !default;
+$link: map.merge(
+  (
+    'font-size': getCssVar('font-size-base'),
+    'font-weight': getCssVar('font-weight-primary'),
+    'text-color': getCssVar('text-color-regular'),
+    'hover-text-color': getCssVar('color-primary'),
+    'disabled-text-color': getCssVar('text-color-placeholder')
+  ),
+  $link
+);
+
+$link-text-color: () !default;
+
+@each $type in $types {
+  $link-text-color: map.merge(
+    $link-text-color,
+    (
+      $type: map.get($colors, $type, 'base')
+    )
+  ) !global;
+}
+
+@include b(link, a) {
+  @include set-component-css-var('link', $link);
 
   display: inline-flex;
   flex-direction: row;
@@ -14,24 +39,18 @@
   vertical-align: middle;
   position: relative;
   text-decoration: none;
-  outline: 0;
+  outline: none;
   cursor: pointer;
   padding: 0;
-  font-size: var(--fz-link-font-size);
-  font-weight: var(--fz-link-font-weight);
-  color: var(--fz-link-text-color);
+  font-size: getCssVar('link', 'font-size');
+  font-weight: getCssVar('link', 'font-weight');
+  color: getCssVar('link', 'text-color');
 
   &:hover {
-    color: var(--fz-link-hover-text-color);
+    color: getCssVar('link', 'hover-text-color');
   }
 
-  &__inner {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  &.is-underline {
+  @include when(underline) {
     &:hover:after {
       content: '';
       position: absolute;
@@ -39,82 +58,54 @@
       right: 0;
       height: 0;
       bottom: 0;
-      border-bottom: 1px solid var(--fz-link-hover-text-color);
+      border-bottom: 1px solid getCssVar('link', 'hover-text-color');
     }
   }
 
-  &.is-disabled {
-    color: var(--fz-link-disabled-text-color);
+  @include when(disabled) {
+    color: getCssVar('link', 'disabled-text-color');
     cursor: not-allowed;
   }
 
-  [class*='fz-svg-icon-'] + span {
-    margin-left: 5px;
-  }
-
-  &.fz-link--default {
-    &::after {
-      border-color: var(--fz-link-text-color);
+  & [class*='#{$namespace}-svg-icon'] {
+    & + span {
+      margin-left: 5px;
     }
   }
 
-  &.fz-link--primary {
-    --fz-link-text-color: var(--fz-color-primary);
-    --fz-link-hover-text-color: var(--fz-color-primary-light-3);
-    --fz-link-disabled-text-color: var(--fz-color-primary-light-5);
-    &::after,
-    &.is-underline:hover:after {
-      border-color: var(--fz-link-text-color);
+  &.#{$namespace}-link--default {
+    &:after {
+      border-color: getCssVar('link', 'hover-text-color');
     }
   }
 
-  &.fz-link--success {
-    --fz-link-text-color: var(--fz-color-success);
-    --fz-link-hover-text-color: var(--fz-color-success-light-3);
-    --fz-link-disabled-text-color: var(--fz-color-success-light-5);
-    &::after,
-    &.is-underline:hover:after {
-      border-color: var(--fz-link-text-color);
-    }
+  @include e(inner) {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  &.fz-link--warning {
-    --fz-link-text-color: var(--fz-color-warning);
-    --fz-link-hover-text-color: var(--fz-color-warning-light-3);
-    --fz-link-disabled-text-color: var(--fz-color-warning-light-5);
-    &::after,
-    &.is-underline:hover:after {
-      border-color: var(--fz-link-text-color);
-    }
-  }
+  @each $type in $types {
+    &.#{$namespace}-link--#{$type} {
+      @include css-var-from-global(('link', 'text-color'), ('color', $type));
+      @include css-var-from-global(
+        ('link', 'hover-text-color'),
+        ('color', $type, 'light-3')
+      );
+      @include css-var-from-global(
+        ('link', 'disabled-text-color'),
+        ('color', $type, 'light-5')
+      );
 
-  &.fz-link--danger {
-    --fz-link-text-color: var(--fz-color-danger);
-    --fz-link-hover-text-color: var(--fz-color-danger-light-3);
-    --fz-link-disabled-text-color: var(--fz-color-danger-light-5);
-    &::after,
-    &.is-underline:hover:after {
-      border-color: var(--fz-link-text-color);
-    }
-  }
+      &:after {
+        border-color: getCssVar('link', 'text-color');
+      }
 
-  &.fz-link--error {
-    --fz-link-text-color: var(--fz-color-error);
-    --fz-link-hover-text-color: var(--fz-color-error-light-3);
-    --fz-link-disabled-text-color: var(--fz-color-error-light-5);
-    &::after,
-    &.is-underline:hover:after {
-      border-color: var(--fz-link-text-color);
-    }
-  }
-
-  &.fz-link--info {
-    --fz-link-text-color: var(--fz-color-info);
-    --fz-link-hover-text-color: var(--fz-color-info-light-3);
-    --fz-link-disabled-text-color: var(--fz-color-info-light-5);
-    &::after,
-    &.is-underline:hover:after {
-      border-color: var(--fz-link-text-color);
+      @include when(underline) {
+        &:hover:after {
+          border-color: getCssVar('link', 'text-color');
+        }
+      }
     }
   }
 }

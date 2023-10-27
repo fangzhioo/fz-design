@@ -1,44 +1,68 @@
-.fz-divider {
+@use 'sass:map';
+
+@use '../config/mixins.scss' as *;
+@use '../config/common-var.scss' as *;
+@use '../config/mixins-var.scss' as *;
+
+// Divider
+$divider: () !default;
+$divider: map.merge(
+  (
+    'border-color': getCssVar('border-color'),
+    'border-style': getCssVar('border-style'),
+    'bg-color': getCssVar('bg-color'),
+    'text-color': getCssVar('text-color-primary'),
+    'font-size': getCssVar('font-size-base')
+  ),
+  $divider
+);
+
+@include b(divider) {
+  @include set-component-css-var('divider', $divider);
+
   position: relative;
 
-  &--horizontal {
+  @include m(horizontal) {
     display: block;
     height: 1px;
     width: 100%;
     margin: 24px 0;
-    border-top: 1px var(--fz-border-color) var(--fz-border-style);
+    border-top: 1px getCssVar('divider', 'border-color')
+      getCssVar('divider', 'border-style');
   }
 
-  &--vertical {
+  @include m(vertical) {
     display: inline-block;
     width: 1px;
     height: 1em;
     margin: 0 8px;
     vertical-align: middle;
     position: relative;
-    border-left: 1px var(--fz-border-color) var(--fz-border-style);
+    border-left: 1px getCssVar('divider', 'border-color')
+      getCssVar('divider', 'border-style');
   }
 
-  &__text {
+  @include e(text) {
     position: absolute;
-    background-color: var(--fz-bg-color);
+    background-color: getCssVar('divider', 'bg-color');
     padding: 0 20px;
     font-weight: 500;
-    color: var(--fz-text-color-primary);
-    font-size: var(--fz-font-size-base, 14px);
+    color: getCssVar('divider', 'text-color');
+    font-size: getCssVar('divider', 'font-size');
 
-    &.is-left {
+    @include when(left) {
       left: 20px;
       transform: translateY(-50%);
     }
-    &.is-center {
+
+    @include when(center) {
       left: 50%;
       transform: translateX(-50%) translateY(-50%);
     }
-    &.is-right {
+
+    @include when(right) {
       right: 20px;
       transform: translateY(-50%);
     }
   }
-
 }

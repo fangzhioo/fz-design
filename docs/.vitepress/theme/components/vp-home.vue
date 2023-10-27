@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { useRoute } from 'vitepress'
+  import { useRoute, useRouter } from 'vitepress'
   import { watch, ref } from 'vue'
   import lang from '../../locale'
   import type { Route } from 'vitepress'
@@ -13,8 +13,13 @@
   const footerContent = ref()
   /** 获取路由 */
   const route: Route = useRoute()
+  const router = useRouter();
   /* 获取当前主题模式 */
   const { isDark } = useData()
+
+  const handleGoStart = () => {
+    router.go('/docs/install')
+  }
 
   /** 监视路由发生变化时，更新语言 */
   watch(
@@ -41,7 +46,7 @@
       <div class="vp-home__logo-box">
         <fz-avatar
           class="vp-home__logo"
-          src="https://raw.githubusercontent.com/fangzhioo/images/4ad62a8f00aa2473deca61598f307430d8d4a4cf/fz-design/fangzhioo.svg"
+          src="https://raw.githubusercontent.com/fangzhioo/fz-design/master/logo/fz-design.svg"
           alt="Fz Design logo"
           :draggable="false"
           :size="500"
@@ -57,7 +62,7 @@
         <fz-avatar
           class="vp-home__logo"
           draggable="false"
-          src="https://raw.githubusercontent.com/fangzhioo/images/4ad62a8f00aa2473deca61598f307430d8d4a4cf/fz-design/fangzhioo.svg"
+          src="https://raw.githubusercontent.com/fangzhioo/fz-design/master/logo/fz-design.svg"
           alt="Fz Design logo"
           :size="120"
         />
@@ -67,10 +72,7 @@
           Fz Design
 
           <!-- start 标签 -->
-          <fz-link
-            href="https://github.com/fangzhioo/fz-design"
-            target="_blank"
-          >
+          <fz-link href="https://github.com/fangzhioo/fz-design" target="_blank">
             <fz-image
               src="https://img.shields.io/github/stars/fangzhioo/fz-design?style=social"
               alt="Fz Design"
@@ -88,9 +90,11 @@
         </p>
 
         <!-- 开始按钮 -->
-        <fz-button type="primary" size="large" href="/docs/install">{{
-          homeContent.start
-        }}</fz-button>
+        <div style="padding: 20px 0;">
+          <fz-button type="primary" size="large" @click="handleGoStart">
+            {{ homeContent.start }}
+          </fz-button>
+        </div>
       </div>
 
       <!-- 页脚 -->

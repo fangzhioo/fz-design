@@ -1,2 +1,147 @@
-.fz-calendar {
+@use 'sass:map';
+
+@use '../config/mixins.scss' as *;
+@use '../config/mixins-var.scss' as *;
+@use '../config/common-var.scss' as *;
+
+$calendar: () !default;
+$calendar: map.merge(
+  (
+    'text-color': getCssVar('text-color'),
+    'active-text-color': getCssVar('color-primary'),
+    'active-bg-color': getCssVar('color-primary-light-9'),
+    'disabled-text-color': getCssVar('disabled-text-color')
+  ),
+  $calendar
+);
+
+@include b(calendar) {
+  @include set-component-css-var('calendar', $calendar);
+
+  cursor: default;
+  user-select: none;
+
+  // 头部
+  &__header {
+    width: 100%;
+    display: flex;
+    padding: 7px 20px;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: space-between;
+
+    // 切换按钮
+    .fz-svg-icon {
+      cursor: pointer;
+      padding: 4px;
+      transition: background-color 0.3s;
+      font-size: 28px;
+
+      &:hover {
+        background-color: getCssVar('fill-color');
+      }
+    }
+
+    // 操作栏
+    .fz-calendar__option {
+      display: flex;
+      align-items: center;
+      column-gap: 20px;
+    }
+  }
+
+  // 星期
+  &__week {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    background-color: getCssVar('fill-color-light');
+
+    .fz-calendar__week-item {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      justify-content: center;
+      height: var(--fz-calendar-week-cell-height, 50px);
+    }
+  }
+
+  // 天
+  &__day {
+    display: grid;
+    cursor: pointer;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+
+    .fz-calendar__day-item {
+      padding: 10px;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      align-items: center;
+      flex-direction: column;
+      box-sizing: border-box;
+      border-top: 3px solid transparent;
+      transition: 0.3s;
+      height: var(--fz-calendar-day-cell-height, 85px);
+      color: getCssVar('calendar', 'disabled-text-color');
+      row-gap: 3px;
+
+      // 当前月份
+      &.is-day-current {
+        color: getCssVar('calendar', 'text-color');
+      }
+
+      // 今天
+      &.is-day-today {
+        transition: 0.3s;
+        color: getCssVar('calendar', 'active-text-color');
+        background-color: getCssVar('calendar', 'active-bg-color');
+        border-top: 3px solid getCssVar('calendar', 'active-text-color');
+      }
+
+      // &:hover {
+      //   background: #f7f7f7;
+      // }
+
+      // 阳历
+      .fz-calendar__solar {
+        font-size: 15px;
+      }
+
+      // 农历
+      .fz-calendar__lunar {
+        font-size: 14px;
+      }
+    }
+  }
+
+  // 边框
+  &.is-border {
+    border-top: 1px solid var(--fz-calendar-border-color, getCssVar('border-color-lighter'));
+    border-left: 1px solid var(--fz-calendar-border-color, getCssVar('border-color-lighter'));
+
+    .fz-calendar__header {
+      border-right: 1px solid var(--fz-calendar-border-color, getCssVar('border-color-lighter'));
+    }
+
+    .fz-calendar__week {
+      border-bottom: 1px solid var(--fz-calendar-border-color, getCssVar('border-color-lighter'));
+      border-top: 1px solid var(--fz-calendar-border-color, getCssVar('border-color-lighter'));
+      margin: 0;
+
+      .fz-calendar__week-item {
+        border-right: 1px solid var(--fz-calendar-border-color, getCssVar('border-color-lighter'));
+      }
+    }
+
+    .fz-calendar__day {
+      margin: 0;
+
+      .fz-calendar__day-item {
+        border-right: 1px solid var(--fz-calendar-border-color, getCssVar('border-color-lighter'));
+        border-bottom: 1px solid var(--fz-calendar-border-color, getCssVar('border-color-lighter'));
+      }
+    }
+  }
 }

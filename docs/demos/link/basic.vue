@@ -3,7 +3,7 @@
   <fz-link type="primary">primary</fz-link>
   <fz-link type="success">success</fz-link>
   <fz-link type="warning">warning</fz-link>
-  <fz-link type="danger">danger</fz-link>
+  <fz-link type="error">error</fz-link>
   <fz-link type="info">info</fz-link>
 </template>
 

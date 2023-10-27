@@ -1,2 +1,48 @@
-.fz-number-animate {
+@use 'sass:map';
+
+@use '../config/mixins.scss' as *;
+@use '../config/mixins-var.scss' as *;
+@use '../config/common-var.scss' as *;
+
+$number-animate: () !default;
+$number-animate: map.merge(
+  (
+    'color': getCssVar('text-color-primary'),
+    'font-size': getCssVar('font-size-base')
+  ),
+  $number-animate
+);
+
+$number-animate-size: () !default;
+$number-animate-size: map.merge(
+  (
+    'large': 18px,
+    'default': 14px,
+    'small': 12px
+  ),
+  $number-animate-size
+);
+
+@include b(number-animate) {
+  @include set-component-css-var('number-animate', $number-animate);
+
+  color: getCssVar('number-animate', 'color');
+  font-size: getCssVar('number-animate', 'font-size');
+
+  // 类型
+  @each $type in (primary, success, warning, info, error) {
+    @include m($type) {
+      color: getCssVar('color', $type);
+    }
+  }
+
+  // 尺寸
+  @each $size in (large, small) {
+    &.#{$namespace}-number-animate--#{$size} {
+      @include set-css-var-value(
+        ('number-animate', 'font-size'),
+        map.get($number-animate-size, $size)
+      );
+    }
+  }
 }

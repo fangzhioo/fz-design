@@ -1,19 +1,70 @@
-.fz-input {
-  --fz-input-text-color: var(--fz-text-color-regular);
-  --fz-input-border: var(--fz-border);
-  --fz-input-hover-border: var(--fz-border-color-hover);
-  --fz-input-focus-border: var(--fz-color-primary);
-  --fz-input-transparent-border: 0 0 0 1px transparent inset;
-  --fz-input-border-color: var(--fz-border-color);
-  --fz-input-border-radius: var(--fz-border-radius-base);
-  --fz-input-bg-color: var(--fz-fill-color-blank);
-  --fz-input-icon-color: var(--fz-text-color-placeholder);
-  --fz-input-placeholder-color: var(--fz-text-color-placeholder);
-  --fz-input-hover-border-color: var(--fz-border-color-hover);
-  --fz-input-clear-hover-color: var(--fz-text-color-secondary);
-  --fz-input-focus-border-color: var(--fz-color-primary);
-  --fz-input-width: 100%;
-  --fz-input-height: var(--fz-component-size);
+@use 'sass:map';
+
+@use '../config/common-var.scss' as *;
+@use '../config/mixins.scss' as *;
+@use '../config/mixins-var.scss' as *;
+
+// Input
+$input: () !default;
+$input: map.merge(
+  (
+    'text-color': getCssVar('text-color-regular'),
+    'border': getCssVar('border'),
+    'hover-border': getCssVar('border-color-hover'),
+    'focus-border': getCssVar('color-primary'),
+    'transparent-border': 0 0 0 1px transparent inset,
+    'border-color': getCssVar('border-color'),
+    'border-radius': getCssVar('border-radius-base'),
+    'bg-color': getCssVar('fill-color', 'blank'),
+    'icon-color': getCssVar('text-color-placeholder'),
+    'placeholder-color': getCssVar('text-color-placeholder'),
+    'hover-border-color': getCssVar('border-color-hover'),
+    'clear-hover-color': getCssVar('text-color-secondary'),
+    'focus-border-color': getCssVar('color-primary'),
+    'width': 100%
+  ),
+  $input
+);
+
+$input-disabled: () !default;
+$input-disabled: map.merge(
+  (
+    'fill': getCssVar('disabled-bg-color'),
+    'border': getCssVar('disabled-border-color'),
+    'text-color': getCssVar('disabled-text-color'),
+    'placeholder-color': getCssVar('text-color-placeholder')
+  ),
+  $input-disabled
+);
+
+$input-font-size: () !default;
+$input-font-size: map.merge(
+  (
+    'large': 16px,
+    'default': 14px,
+    'small': 12px
+  ),
+  $input-font-size
+);
+
+$input-height: () !default;
+$input-height: map.merge($common-component-size, $input-height);
+
+$input-line-height: () !default;
+$input-line-height: map.merge($common-component-size, $input-line-height);
+
+$input-padding-horizontal: () !default;
+$input-padding-horizontal: map.merge(
+  (
+    'large': 16px,
+    'default': 12px,
+    'small': 8px
+  ),
+  $input-padding-horizontal
+);
+
+@include b(input) {
+  @include set-component-css-var('input', $input);
 
   display: inline-flex;
   justify-content: center;
@@ -21,99 +72,67 @@
   flex-wrap: nowrap;
   position: relative;
   vertical-align: middle;
-  cursor: pointer;
-  width: 100%;
-  font-size: var(--fz-font-size-base);
-  line-height: var(--fz-input-height);
+  box-sizing: border-box;
+  width: getCssVar('input', 'width');
+  font-size: map.get($input-font-size, 'default');
 
-  &::-webkit-scrollbar {
-    z-index: 11;
-    width: 6px;
+  // 滚动条
+  @include scroll-bar;
 
-    &:horizontal {
-      height: 6px;
+  // 大小
+  @each $size in (large, small) {
+    @include m($size) {
+      font-size: map.get($input-font-size, $size);
+      line-height: map.get($input-line-height, $size);
+
+      .#{$namespace}-input__wrapper {
+        padding: 1px map.get($input-padding-horizontal, $size);
+
+        .#{$namespace}-input__inner {
+          height: calc(map.get($input-height, $size) - 2px);
+          line-height: calc(map.get($input-height, $size) - 2px);
+        }
+      }
     }
   }
 
-  &::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    width: 6px;
-    background: var(--fz-text-color-disabled);
-  }
-  &::-webkit-scrollbar-corner {
-    background: var(--fz-fill-color-blank);
-  }
-  &::-webkit-scrollbar-track {
-    background: var(--fz-fill-color-blank);
-  }
-  &::-webkit-scrollbar-track-piece {
-    background: var(--fz-fill-color-blank);
-    width: 6px;
-  }
-
-  &--large {
-    --fz-input-height: var(--fz-component-size-large);
-    font-size: 14px;
-
-    .fz-input__wrapper {
-      padding: 1px 15px;
-    }
-
-    .fz-input__inner {
-      --fz-input-inner-height: calc(var(--fz-input-height, 40px) - 2px);
-    }
-  }
-
-  &--small {
-    --fz-input-height: var(--fz-component-size-small);
-    font-size: 12px;
-
-    .fz-input__wrapper {
-      padding: 1px 7px;
-    }
-
-    .fz-input__inner {
-      --fz-input-inner-height: calc(var(--fz-input-height, 24px) - 2px);
-    }
-  }
-
-  // 主容器
-  &__wrapper {
+  // wrapper
+  @include e(wrapper) {
     display: inline-flex;
     flex: 1;
     justify-content: center;
     align-items: center;
-    padding: 1px 11px;
+    padding: 1px map.get($input-padding-horizontal, 'default');
     box-sizing: border-box;
     transition: 0.3s;
-    background-color: var(--fz-input-bg-color, var(--fz-fill-color-blank));
+    border: none;
     background-image: none;
-    border-radius: var(--fz-input-border-radius, var(--fz-border-radius-base));
-    box-shadow: 0 0 0 1px var(--fz-input-border-color, var(--fz-border-color)) inset;
+    color: getCssVar('input', 'text-color');
+    background-color: getCssVar('input', 'bg-color');
+    border-radius: getCssVar('input', 'border-radius');
     transform: translate3d(0, 0, 0);
-    transition: var(--fz-transition-box-shadow);
-    cursor: text;
+    transition: getCssVar('transition-box-shadow');
+
+    @include inset-input-border(#{getCssVar('input', 'border-color')});
 
     &:hover,
     &:focus {
-      box-shadow: 0 0 0 1px var(--fz-input-hover-border-color) inset;
+      @include inset-input-border(#{getCssVar('input', 'hover-border-color')});
     }
 
-    // 输入框
-    .fz-input__inner {
-      --fz-input-inner-height: calc(var(--fz-input-height, 32px) - 2px);
-      width: 100%;
-      flex-grow: 1;
-      -webkit-appearance: none;
-      color: var(--fz-input-text-color, var(--fz-text-color-regular));
-      font-size: inherit;
-      height: var(--fz-input-inner-height);
-      line-height: var(--fz-input-inner-height);
+    // inner
+    @include e(inner) {
       padding: 0;
       outline: 0;
       border: none;
       background: 0 0;
       box-sizing: border-box;
+      font-size: inherit;
+      width: 100%;
+      flex-grow: 1;
+      height: calc(map.get($input-height, 'default') - 2px);
+      line-height: calc(map.get($input-height, 'default') - 2px);
+      cursor: text;
 
       // 禁用原生右侧上下选择箭头
       &::-webkit-outer-spin-button,
@@ -125,130 +144,151 @@
         outline: 0;
       }
 
-      // 占位符颜色
       &::placeholder {
-        color: var(--fz-input-placeholder-color, var(--fz-text-color-placeholder));
+        color: getCssVarWithDefault(
+          'input-placeholder-color',
+          map.get($input, 'placeholder-color')
+        );
       }
+
       &[type='password']::-ms-reveal {
         display: none;
       }
     }
+  }
 
-    // 清除按钮
-    .fz-input__clear-btn {
-      margin-left: 4px;
+  // 清除按钮
+  @include e(clear-btn) {
+    cursor: pointer;
+    color: getCssVar('input', 'icon-color');
+
+    &:hover {
+      color: getCssVar('input', 'clear-hover-color');
     }
+  }
 
-    .fz-input__show-password,
-    .fz-input__clear-btn {
-      color: var(--fz-input-icon-color);
-      font-size: 14px;
-      cursor: pointer;
+  // 密码展示
+  @include e(show-password) {
+    cursor: pointer;
+    color: getCssVar('input', 'icon-color');
 
-      &:hover {
-        color: var(--fz-input-clear-hover-color);
-      }
+    &:hover {
+      color: getCssVar('input', 'clear-hover-color');
     }
   }
 
   // 前后缀
-  &__prefix {
+  @include e(prefix) {
     margin-right: 4px;
   }
-  &__suffix {
+
+  @include e(suffix) {
     margin-left: 4px;
   }
 
   // 前后插槽
-  &__before,
-  &__after {
+  @include e(before) {
     position: relative;
     display: inline-flex;
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
     min-height: 100%;
-    border-radius: var(--fz-input-border-radius);
+    border-radius: getCssVar('input', 'border-radius');
     white-space: nowrap;
+
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 1px 0 0 0 getCssVar('input', 'border-color') inset,
+      0 1px 0 0 getCssVar('input', 'border-color') inset,
+      0 -1px 0 0 getCssVar('input', 'border-color') inset;
 
     &:focus {
       outline: none;
     }
   }
 
-  &__before {
-    border-right: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    box-shadow: 1px 0 0 0 var(--fz-input-border-color) inset,
-      0 1px 0 0 var(--fz-input-border-color) inset,
-      0 -1px 0 0 var(--fz-input-border-color) inset;
-  }
+  @include e(after) {
+    position: relative;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    border-radius: getCssVar('input', 'border-radius');
+    white-space: nowrap;
 
-  &__after {
     border-left: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    box-shadow: 0 1px 0 0 var(--fz-input-border-color) inset,
-      0 -1px 0 0 var(--fz-input-border-color) inset,
-      -1px 0 0 0 var(--fz-input-border-color) inset;
+    box-shadow: 0 1px 0 0 getCssVar('input', 'border-color') inset,
+      0 -1px 0 0 getCssVar('input', 'border-color') inset,
+      -1px 0 0 0 getCssVar('input', 'border-color') inset;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   // 搜索框
-  &.is-search {
+  @include when(search) {
     cursor: pointer;
   }
 
-  &.is-before {
+  // 插槽
+  @include when(before) {
     // 移除 input 圆角
-    .fz-input__wrapper {
+    .#{$namespace}-input__wrapper {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
-
-    .fz-input__before {
-      .fz-button, .fz-input {
+    .#{$namespace}-input__before {
+      .#{$namespace}-button,
+      .#{$namespace}-input {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
       }
     }
   }
 
-  &.is-after {
+  @include when(after) {
     // 移除 input 圆角
-    .fz-input__wrapper {
+    .#{$namespace}-input__wrapper {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
-
-    .fz-input__after {
-      // 移除 button 圆角
-      .fz-button, .fz-input {
+    .#{$namespace}-input__after {
+      .#{$namespace}-button,
+      .#{$namespace}-input {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }
     }
   }
 
-  // 禁用状态
-  &.is-disabled {
+  @include when(disabled) {
     cursor: not-allowed;
 
-    .fz-input__inner {
-      color: var(--fz-disabled-text-color);
-      cursor: not-allowed;
-      &::placeholder {
-        color: var(--fz-text-color-placeholder);
-      }
-    }
+    .#{$namespace}-input__wrapper {
+      background-color: map.get($input-disabled, 'fill');
 
-    .fz-input__clear-btn {
-      cursor: not-allowed;
+      .#{$namespace}-input__inner {
+        color: getCssVar('input', 'disabled-text-color');
+
+        &::placeholder {
+          color: map.get($input-disabled, 'placeholder-color');
+        }
+      }
+      .#{$namespace}-input__icon {
+        cursor: not-allowed;
+      }
     }
   }
 
   // hidden
-  &.is-hidden {
+
+  @include when(hidden) {
     display: none;
   }
 }

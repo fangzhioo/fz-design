@@ -53,10 +53,10 @@
 }
 
 // BEM
-@mixin b($block) {
+@mixin b($block, $tag: '') {
   $B: $namespace + $common-separator + $block !global;
 
-  .#{$B} {
+  #{$tag}.#{$B} {
     @content;
   }
 }

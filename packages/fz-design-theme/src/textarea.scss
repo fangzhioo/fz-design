@@ -86,11 +86,11 @@ $textarea: map.merge(
 
   @include when(exceed) {
     .#{$namespace}-textarea__inner {
-      box-shadow: 0 0 0 1px getCssVar('color-danger') inset;
+      box-shadow: 0 0 0 1px getCssVar('color-error') inset;
     }
 
     .#{$namespace}-textarea__count {
-      color: getCssVar('color-danger');
+      color: getCssVar('color-error');
     }
   }
 }

@@ -6,7 +6,6 @@
   const theme = useTheme() // 'dark' | 'light'
   const isLight = ref<boolean>(theme.value !== 'dark')
   const size = ref('default') // '' | 'small' | 'default' | 'large'
-  const day = ref(new Date())
   const { zhCn, enUs } = lang
   const locale = ref(zhCn)
   const localeName = ref<string | undefined>('zhCn')
@@ -71,12 +70,12 @@
       <!-- 示例 -->
       <fz-divider>组件展示</fz-divider>
 
-      <fz-space direction="vertical">
+      <fz-space direction="vertical" fill wrap>
         <fz-button>我是按钮</fz-button>
 
         <fz-input placeholder="我是输入框" />
 
-        <fz-calendar v-model="day" />
+        <fz-empty />
       </fz-space>
     </fz-config-provider>
   </div>

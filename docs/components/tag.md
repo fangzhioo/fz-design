@@ -70,7 +70,7 @@ tag/round
 
 | 参数                | 说明             | 类型                                                 | 默认值 |
 | ------------------- | ---------------- | ---------------------------------------------------- | ------ |
-| type                | 类型             | `'success' \| 'info' \| 'warning' \| 'danger' \| ''` | ''     |
+| type                | 类型             | `'success' \| 'info' \| 'warning' \| 'error' \| ''` | ''     |
 | closable            | 是否可清空       | `boolean`                                            | false  |
 | disable-transitions | 是否禁用渐变动画 | `boolean`                                            | false  |
 | hit                 | 是否有边框描边   | `boolean`                                            | false  |

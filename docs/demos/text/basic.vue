@@ -4,7 +4,7 @@
   <fz-text class="mx-1" type="success">Success</fz-text>
   <fz-text class="mx-1" type="info">Info</fz-text>
   <fz-text class="mx-1" type="warning">Warning</fz-text>
-  <fz-text class="mx-1" type="danger">Danger</fz-text>
+  <fz-text class="mx-1" type="error">Error</fz-text>
 </template>
 
 <style scoped>

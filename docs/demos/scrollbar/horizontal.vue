@@ -22,7 +22,7 @@
   margin: 10px;
   text-align: center;
   border-radius: 4px;
-  background: var(--fz-color-danger-light-9);
-  color: var(--fz-color-danger);
+  background: var(--fz-color-error-light-9);
+  color: var(--fz-color-error);
 }
 </style>

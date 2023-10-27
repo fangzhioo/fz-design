@@ -1,82 +1,108 @@
-.fz-rate {
-    --fz-rate-height: 20px;
-    --fz-rate-font-size: var(--fz-font-size-base);
-    --fz-rate-icon-size: 18px;
-    --fz-rate-icon-margin: 6px;
-    --fz-rate-void-color: var(--fz-border-color-darker);
-    --fz-rate-fill-color: var(--fz-color-primary);;
-    --fz-rate-disabled-void-color: var(--fz-fill-color);
-    --fz-rate-text-color: var(--fz-text-color-primary);
+@use 'sass:map';
 
-    display: inline-flex;
-    align-items: center;
-    height: 32px;
+@use '../config/mixins.scss' as *;
+@use '../config/common-var.scss' as *;
+@use '../config/mixins-var.scss' as *;
 
-    &:active, &:focus {
-        outline: 0
+// Rate
+$rate: () !default;
+$rate: map.merge(
+  (
+    'height': 32px,
+    'font-size': 18px,
+    'void-color': getCssVar('border-color', 'darker'),
+    'fill-color': getCssVar('color-primary'),
+    'disabled-void-color': getCssVar('fill-color'),
+    'text-color': getCssVar('text-color', 'primary')
+  ),
+  $rate
+);
+
+$rate-height: () !default;
+$rate-height: map.merge(
+  (
+    'large': 40px,
+    'default': 32px,
+    'small': 24px
+  ),
+  $rate-height
+);
+
+$rate-font-size: () !default;
+$rate-font-size: map.merge(
+  (
+    'large': 22px,
+    'default': 18px,
+    'small': 14px
+  ),
+  $rate-font-size
+);
+
+@include b(rate) {
+  @include set-component-css-var('rate', $rate);
+
+  display: inline-flex;
+  align-items: center;
+  height: getCssVar('rate', 'height');
+  font-size: getCssVar('rate', 'font-size');
+
+  &:active,
+  &:focus {
+    outline: 0;
+  }
+
+  // 大小
+  @each $size in (large, small) {
+    @include m($size) {
+      @include set-css-var-value('rate-height', #{map.get($rate-height, $size)});
+      @include set-css-var-value('rate-font-size', #{map.get($rate-font-size, $size)});
+    }
+  }
+
+  @include e(item) {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    font-size: 0;
+    vertical-align: middle;
+    color: getCssVar('rate', 'void-color');
+    line-height: normal;
+  }
+
+  @include e(icon) {
+    position: relative;
+    display: inline-block;
+    margin-right: calc(getCssVar('rate', 'font-size') / 3);
+    transition: getCssVar('transition-duration');
+    font-size: getCssVar('rate', 'font-size');
+
+    @include when(hover) {
+      transform: scale(1.15);
     }
 
-    &--large {
-        height: 40px
+    @include when(active) {
+      color: getCssVar('rate', 'fill-color');
     }
+  }
 
-    &--small {
-        height: 24px
+  @include e(text) {
+    vertical-align: middle;
+    color: getCssVar('rate', 'text-color');
+  }
+
+  @include e(decimal) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    overflow: hidden;
+    color: getCssVar('rate', 'fill-color');
+  }
+
+  @include when(disabled) {
+    .#{$namespace}-rate__item {
+      cursor: auto;
+      color: getCssVar('rate', 'disabled-void-color');
     }
-
-    &--small .fz-rate__icon {
-        font-size: 14px
-    }
-
-    &__item {
-        cursor: pointer;
-        display: inline-block;
-        position: relative;
-        font-size: 0;
-        vertical-align: middle;
-        color: var(--fz-rate-void-color);
-        line-height: normal;
-    }
-
-    &__icon {
-        position: relative;
-        display: inline-block;
-        font-size: var(--fz-rate-icon-size);
-        margin-right: var(--fz-rate-icon-margin);
-        transition: var(--fz-transition-duration);
-
-        &.is-hover {
-            transform: scale(1.15)
-        }
-
-        &.is-active {
-            color: var(--fz-rate-fill-color)
-        }
-
-        .path2 {
-            position: absolute;
-            left: 0;
-            top: 0
-        }
-    }
-
-    &__decimal {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: inline-block;
-        overflow: hidden;
-        color: var(--fz-rate-fill-color);
-    }
-
-    &__text {
-        font-size: var(--fz-rate-font-size);
-        vertical-align: middle;
-        color: var(--fz-rate-text-color)
-    }
-
-    &.is-disabled .fz-rate__item {
-        cursor: auto;
-        color: var(--fz-rate-disabled-void-color)
-    }
+  }
 }
