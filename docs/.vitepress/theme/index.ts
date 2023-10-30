@@ -4,7 +4,7 @@ import './style/vitepress.scss'
 import FzDesign from '../../../packages/fz-design/index'
 import VpDemo from './components/demo/vp-demo.vue'
 import '@fz-design/fz-design-theme'
-import '@fz-design/fz-design-theme/base/var-dark.scss'
+import '@fz-design/fz-design-theme/src/dark/dark.scss'
 
 export default {
   ...DefaultTheme,

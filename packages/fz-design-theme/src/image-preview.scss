@@ -1,5 +1,5 @@
-@use '../config/mixins.scss' as *;
-@use '../config/common-var.scss' as *;
+@use 'config/mixins.scss' as *;
+@use 'config/common-var.scss' as *;
 
 @mixin op-icon() {
   width: 44px;

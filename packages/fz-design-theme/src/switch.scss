@@ -1,10 +1,10 @@
 @use 'sass:map';
 
-@use '../base/animation.scss' as *;
-@use '../config/mixins.scss' as *;
-@use '../config/utils.scss' as *;
-@use '../config/mixins-var.scss' as *;
-@use '../config/common-var.scss' as *;
+@use 'base/animation.scss' as *;
+@use 'config/mixins.scss' as *;
+@use 'config/utils.scss' as *;
+@use 'config/mixins-var.scss' as *;
+@use 'config/common-var.scss' as *;
 
 // Switch
 $switch: () !default;
@@ -211,7 +211,7 @@ $switch-content-padding: map.merge(
 
       .#{$namespace}-svg-icon {
         @include when(loading) {
-          animation: icon-loading-animation 1.5s linear infinite;
+          animation: fz-icon-loading-animation 1.5s linear infinite;
         }
       }
     }

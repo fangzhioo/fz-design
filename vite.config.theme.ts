@@ -30,8 +30,8 @@ export default (): UserConfigExport => {
       rollupOptions: {
         input: [
           resolve(__dirname, 'packages/fz-design-theme/index.scss'),
-          resolve(__dirname, 'packages/fz-design-theme/base/display.scss'),
-          resolve(__dirname, 'packages/fz-design-theme/base/var-dark.scss')
+          resolve(__dirname, 'packages/fz-design-theme/src/base/display.scss'),
+          resolve(__dirname, 'packages/fz-design-theme/src/dark/dark.scss')
         ],
         output: {
           /**

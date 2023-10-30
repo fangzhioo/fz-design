@@ -1,17 +1,20 @@
 @use 'sass:map';
 
-@use '../config/mixins.scss' as *;
-@use '../config/mixins-var.scss' as *;
-@use '../config/common-var.scss' as *;
+@use 'config/mixins.scss' as *;
+@use 'config/mixins-var.scss' as *;
+@use 'config/common-var.scss' as *;
 
 // Empty
 $empty: () !default;
 $empty: map.merge(
   (
     'padding': 40px 0,
-    'image-width': 160px,
+    'image-width': 120px,
     'description-margin-top': 20px,
     'bottom-margin-top': 20px,
+    'fill-color-1': getCssVar('fill-color', 'light'),
+    'fill-color-2': getCssVar('border-color'),
+    'fill-color-3': getCssVar('fill-color', 'lighter'),
   ),
   $empty
 );

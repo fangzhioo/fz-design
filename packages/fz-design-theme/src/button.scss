@@ -1,10 +1,10 @@
 @use 'sass:map';
 
-@use '../config/function.scss' as *;
-@use '../config/common-var.scss' as *;
-@use '../config/mixins.scss' as *;
-@use '../config/mixins-var.scss' as *;
-@use '../config/utils.scss' as *;
+@use 'config/function.scss' as *;
+@use 'config/common-var.scss' as *;
+@use 'config/mixins.scss' as *;
+@use 'config/mixins-var.scss' as *;
+@use 'config/utils.scss' as *;
 
 // Button
 $button: () !default;
@@ -402,7 +402,7 @@ $button-height: map.merge($common-component-size, $button-height);
     }
 
     .#{$namespace}-button__icon {
-      animation: icon-loading-animation 1s linear infinite;
+      animation: fz-icon-loading-animation 1s linear infinite;
     }
   }
   @include when(round) {

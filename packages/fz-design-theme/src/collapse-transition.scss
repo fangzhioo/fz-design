@@ -1,4 +1,4 @@
-@use '../config/config.scss' as *;
+@use 'config/config.scss' as *;
 
 .#{$namespace}-collapse-transition {
     &-leave-active, &-enter-active {

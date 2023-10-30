@@ -1,8 +1,8 @@
 @use 'sass:map';
 
-@use '../config/common-var.scss' as *;
-@use '../config/mixins.scss' as *;
-@use '../config/utils.scss' as *;
+@use 'config/common-var.scss' as *;
+@use 'config/mixins.scss' as *;
+@use 'config/utils.scss' as *;
 @use './button.scss' as *;
 
 @include b(button-group) {

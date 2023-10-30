@@ -1,84 +1,108 @@
+@use 'sass:map';
 
-.fz-scrollbar-fade-enter-active {
-    transition: opacity 340ms ease-out
-}
+@use 'config/mixins.scss' as *;
+@use 'config/mixins-var.scss' as *;
+@use 'config/common-var.scss' as *;
 
-.fz-scrollbar-fade-leave-active {
-    transition: opacity 120ms ease-out
-}
+// Scrollbar
+$scrollbar: () !default;
+$scrollbar: map.merge(
+  (
+    'opacity': 0.3,
+    'bg-color': getCssVar('text-color-secondary'),
+    'hover-opacity': 0.5,
+    'hover-bg-color': getCssVar('text-color-secondary'),
+  ),
+  $scrollbar
+);
 
-.fz-scrollbar-fade-enter-from,
-.fz-scrollbar-fade-leave-active {
-    opacity: 0
-}
-
-.fz-scrollbar {
-    --fz-scrollbar-opacity: 0.3;
-    --fz-scrollbar-bg-color: var(--fz-text-color-secondary);
-    --fz-scrollbar-hover-opacity: 0.5;
-    --fz-scrollbar-hover-bg-color: var(--fz-text-color-secondary);
+@include b(scrollbar) {
+  @include set-component-css-var('scrollbar', $scrollbar);
 
     overflow: hidden;
     position: relative;
     height: 100%;
-
-    
-
-    &__wrap {
-        overflow: auto;
-        height: 100%;
-
-        &--hidden-default {
-            scrollbar-width: none;
-
-            &::-webkit-scrollbar {
-                display: none;
-            }
+  
+    @include e(wrap) {
+      overflow: auto;
+      height: 100%;
+  
+      @include m(hidden-default) {
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+          display: none;
         }
-        
+      }
     }
-
-    &__thumb {
-        position: relative;
-        display: block;
-        width: 0;
-        height: 0;
-        cursor: pointer;
-        border-radius: inherit;
-        background-color: var(--fz-scrollbar-bg-color, var(--fz-text-color-secondary));
-        transition: var(--fz-transition-duration) background-color;
-        opacity: var(--fz-scrollbar-opacity, .3);
-
-        &:hover {
-            background-color: var(--fz-scrollbar-hover-bg-color, var(--fz-text-color-secondary));
-            opacity: var(--fz-scrollbar-hover-opacity, .5)
-        }
+  
+    @include e(thumb) {
+      position: relative;
+      display: block;
+      width: 0;
+      height: 0;
+      cursor: pointer;
+      border-radius: inherit;
+      background-color: var(
+        #{getCssVarName('scrollbar-bg-color')},
+        map.get($scrollbar, 'bg-color')
+      );
+      transition: getCssVar('transition-duration') background-color;
+      opacity: var(
+        #{getCssVarName('scrollbar-opacity')},
+        map.get($scrollbar, 'opacity')
+      );
+  
+      &:hover {
+        background-color: var(
+          #{getCssVarName('scrollbar-hover-bg-color')},
+          map.get($scrollbar, 'hover-bg-color')
+        );
+        opacity: var(
+          #{getCssVarName('scrollbar-hover-opacity')},
+          map.get($scrollbar, 'hover-opacity')
+        );
+      }
     }
-
-    &__bar {
-        position: absolute;
-        right: 2px;
-        bottom: 2px;
-        z-index: 1;
-        border-radius: 4px;
-        
-        &.is-vertical {
-            width: 6px;
-            top: 2px;
-
-            &>div {
-                width: 100%;
-            }
+  
+    @include e(bar) {
+      position: absolute;
+      right: 2px;
+      bottom: 2px;
+      z-index: 1;
+      border-radius: 4px;
+  
+      @include when(vertical) {
+        width: 6px;
+        top: 2px;
+  
+        > div {
+          width: 100%;
         }
-
-        &.is-horizontal {
-            height: 6px;
-            left: 2px;
-
-            &>div {
-                height: 100%;
-            }
+      }
+  
+      @include when(horizontal) {
+        height: 6px;
+        left: 2px;
+  
+        > div {
+          height: 100%;
         }
+      }
     }
-
-}
+  }
+  
+  .#{$namespace}-scrollbar-fade {
+    &-enter-active {
+      transition: opacity 340ms ease-out;
+    }
+  
+    &-leave-active {
+      transition: opacity 120ms ease-out;
+    }
+  
+    &-enter-from,
+    &-leave-active {
+      opacity: 0;
+    }
+  }
+  

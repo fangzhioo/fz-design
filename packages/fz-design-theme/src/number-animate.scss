@@ -1,8 +1,8 @@
 @use 'sass:map';
 
-@use '../config/mixins.scss' as *;
-@use '../config/mixins-var.scss' as *;
-@use '../config/common-var.scss' as *;
+@use 'config/mixins.scss' as *;
+@use 'config/mixins-var.scss' as *;
+@use 'config/common-var.scss' as *;
 
 $number-animate: () !default;
 $number-animate: map.merge(

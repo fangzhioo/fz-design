@@ -1,6 +1,6 @@
-@use '../config/common-var.scss' as *;
-@use '../config/mixins.scss' as *;
-@use '../config/utils.scss' as *;
+@use 'config/common-var.scss' as *;
+@use 'config/mixins.scss' as *;
+@use 'config/utils.scss' as *;
 
 @include b(row) {
   display: flex;

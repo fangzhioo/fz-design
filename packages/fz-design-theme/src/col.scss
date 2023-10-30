@@ -1,7 +1,7 @@
 @use 'sass:math';
 
-@use '../config/common-var.scss' as *;
-@use '../config/mixins.scss' as *;
+@use 'config/common-var.scss' as *;
+@use 'config/mixins.scss' as *;
 
 @mixin col-size($size) {
   @include res($size) {

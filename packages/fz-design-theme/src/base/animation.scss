@@ -1,5 +1,7 @@
+@use '../config/config.scss' as *;
+
 // loading 动画
-@keyframes icon-loading-animation {
+@keyframes #{$namespace}-icon-loading-animation {
   from {
     transform: rotate(0deg);
   }

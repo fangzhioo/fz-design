@@ -1,10 +1,12 @@
 import { resolve } from 'path'
-import { readdirSync } from 'fs'
+// import { readdirSync } from 'fs'
 import postcssPresetEnv from 'postcss-preset-env'
 import autoprefixer from 'autoprefixer'
 import type { UserConfigExport } from 'vite'
+import { globSync } from 'fast-glob'
 
-const input: string = resolve(__dirname, 'packages/fz-design-theme/src')
+const inputDir: string = resolve(__dirname, 'packages/fz-design-theme/src')
+const input = globSync(`${inputDir}/**/*.scss`);
 
 export default (): UserConfigExport => {
   return {
@@ -49,9 +51,7 @@ export default (): UserConfigExport => {
     build: {
       assetsDir: 'theme',
       rollupOptions: {
-        input: readdirSync(input).map((name): string => {
-          return `${input}/${name}`
-        }),
+        input,
         output: {
           entryFileNames: 'theme/[name].js',
           chunkFileNames: 'theme/[name].js',
