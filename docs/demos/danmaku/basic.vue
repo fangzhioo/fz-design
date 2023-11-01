@@ -1,6 +1,8 @@
 <script lang="ts" setup>
+  import { ref } from 'vue'
+
   // 弹幕数据
-  const danmusMock = [
+  const danmusMock = ref([
     '人才不火系列',
     '双厨狂喜',
     '双厨曝炸',
@@ -10,7 +12,7 @@
     '世界名画',
     '好活，当赏',
     '全程高能'
-  ]
+  ])
 </script>
 <template>
   <fz-danmaku ref="danmakuRef" v-model:danmus="danmusMock" loop>
