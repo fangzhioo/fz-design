@@ -2,7 +2,7 @@
   import { Props } from './props'
   import { computed, inject } from 'vue'
   import { CHANGE_EVENT, FZ_CHECKBOX_GROUP_INJECT_KEY } from '../../../constants'
-  import { isArray, isBoolean } from '../../../utils'
+  import { isArray, isBoolean, isNil } from '../../../utils'
   import { useNamespace } from '../../../hooks'
 
   import type { CheckboxModelValue, CheckboxLabel } from './interface'
@@ -22,7 +22,10 @@ import { useFormSize } from '../../form/src/hooks'
   /** 当前绑定的值 */
   const keyword = computed({
     get: (): CheckboxModelValue | CheckboxLabel[] => {
-      return (parentInject && parentInject.modelValue) || prop.modelValue
+      if (!parentInject) {
+        return prop.modelValue
+      }
+      return isNil(parentInject.modelValue) ? prop.modelValue : parentInject.modelValue
     },
     set: (val: CheckboxModelValue | CheckboxLabel[]): void => {
       if (!parentInject) {

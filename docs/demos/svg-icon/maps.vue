@@ -1,8 +1,10 @@
 <script lang="ts" setup>
+  import { FzMessage } from 'fz-design'
   import SvgIconList from '@fz-design/fz-design-icon'
 
   const handleClick = (icon: string): void => {
     navigator.clipboard.writeText(icon);
+    FzMessage.success('复制成功: ' + icon);
   }
 </script>
 

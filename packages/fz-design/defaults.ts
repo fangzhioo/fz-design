@@ -10,7 +10,7 @@ import type { App } from 'vue'
  * @param { Object } app 应用实例
  * @returns { Object } 应用实例
  */
-const install = (app: App): App => {  
+const install = (app: App): App => {
   /**
    * 注册组件
    *
@@ -26,7 +26,7 @@ const install = (app: App): App => {
    *
    * @see app.config.globalProperties https://cn.vuejs.org/api/application.html#app-config-globalproperties
    */
-  // app.config.globalProperties.FMessage = components.FMessage
+  app.config.globalProperties.FzMessage = components.FzMessage
   // app.config.globalProperties.FNotification = components.FNotification
 
   /**

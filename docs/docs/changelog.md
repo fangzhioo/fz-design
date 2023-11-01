@@ -2,6 +2,18 @@
 
 中文 | [英文](https://github.com/fangzhioo/fz-ui/blob/master/CHANGELOG.en-US.md)
 
+## 0.0.7-alpha.7 (2023-11-01)
+
+✨ **feat**
+
+- 新增 `fz-watermark` 水印组件；
+- 新增 `fz-danmaku` 弹幕组件；
+- 新增 `fz-message` 消息组件和 `FzMessage` 全局方法；
+
+🐞 **fix**
+
+- 修复 `fz-radio` 和 `fz-checkbox` 设置值为 `false` 时，无法选中问题。
+
 ## 0.0.6-alpha.6 (2023-10-27)
 
 ✨ **feat**

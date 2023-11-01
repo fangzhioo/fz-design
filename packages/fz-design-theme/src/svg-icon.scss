@@ -6,7 +6,7 @@
 $svg-icon: () !default;
 $svg-icon: map.merge(
   (
-    'color': inherit,
+    'color': initial,
     'size': getCssVar('font-size-medium'),
   ),
   $svg-icon

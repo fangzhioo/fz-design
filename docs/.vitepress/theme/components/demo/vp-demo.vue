@@ -46,15 +46,20 @@
   }
 
   const copyCode = async () => {
-    //   const { $message } = vm.appContext.config.globalProperties
+      const { FzMessage } = vm.appContext.config.globalProperties
     if (!isSupported) {
-      // $message.error(locale.value['copy-error'])
+      FzMessage.error('复制失败: 该浏览器不支持复制')
     }
     try {
       await copy()
-      // $message.success(locale.value['copy-success'])
+      
+      FzMessage({
+        type: 'success',
+        message: '已复制到剪切板',
+        icon: IconCopy
+      })
     } catch (e: any) {
-      // $message.error(e.message)
+      FzMessage.error(e.message)
     }
   }
 

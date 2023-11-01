@@ -13,7 +13,7 @@
   import { useModelWrapper } from './utils'
   import { Emits, Props } from './props'
   import { useNamespace } from '../../../hooks'
-  import { addClass, removeClass } from '../../../utils'
+  import { addClass, removeClass, throwError } from '../../../utils'
 
   defineOptions({
     name: 'FzDanmaku'
@@ -80,7 +80,7 @@
     containerWidth.value = container.value.offsetWidth
     containerHeight.value = container.value.offsetHeight
     if (containerWidth.value === 0 || containerHeight.value === 0) {
-      throw new Error('获取不到容器宽高')
+      throwError('FzDanmaku', '获取不到容器宽高')
     }
   }
 

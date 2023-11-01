@@ -1,10 +1,12 @@
-import Message from './src/message.vue'
+import MessageVue from './src/message.vue'
 
-import { install } from '../../utils'
+import { installFn } from '../../utils'
 
-export const FzMessage = install(Message)
+import { useMessage } from './src/hooks/use-message'
 
-export type MessageInstance = InstanceType<typeof Message>
+const { Message } = useMessage(MessageVue, 'message')
+
+export const FzMessage = installFn(Message, 'FzMessage')
 
 export * from './src/interface'
 

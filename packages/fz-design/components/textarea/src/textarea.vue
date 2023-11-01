@@ -3,7 +3,7 @@
   import { computed, nextTick, onMounted, ref, shallowRef, useAttrs, watch } from 'vue'
   import { useCursor, useNamespace } from '../../../hooks'
   import { Props } from './props'
-  import { isClient, isEmpty, isObject, warning } from '../../../utils'
+  import { isClient, isNil, isObject, warning } from '../../../utils'
   import {
     BLUR_EVENT,
     CHANGE_EVENT,
@@ -32,7 +32,7 @@
   const textareaCalcStyle = shallowRef<StyleValue>({})
 
   const nativeInputValue = computed(() =>
-    isEmpty(prop.modelValue) ? '' : String(prop.modelValue)
+    isNil(prop.modelValue) ? '' : String(prop.modelValue)
   )
   const textLength = computed(() => nativeInputValue.value.length)
 
