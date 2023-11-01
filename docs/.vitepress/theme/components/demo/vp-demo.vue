@@ -58,7 +58,7 @@
     }
   }
 
-  const githubLink = `https://github.com/fangzhioo/fz-design/tree/master/docs/components/demos/${props.path}.vue`
+  const githubLink = `https://github.com/fangzhioo/fz-design/tree/master/docs/demos/${props.path}.vue`
 </script>
 
 <template>

@@ -1,17 +1,19 @@
-.fz-space {
+@use 'config/mixins.scss' as *;
+
+@include b(space) {
   display: inline-flex;
   vertical-align: top;
 
-  &--vertical {
+  @include m(vertical) {
     flex-direction: column;
   }
 
-  &__item {
+  @include e(item) {
     display: flex;
     flex-wrap: wrap;
 
     & > * {
-        flex: 1;
+      flex: 1;
     }
   }
 }

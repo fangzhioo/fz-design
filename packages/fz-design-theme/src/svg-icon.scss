@@ -1,14 +1,28 @@
+@use 'sass:map';
 
-.fz-svg-icon {
-    width: 1em;
-    height: 1em;
-    line-height: 1em;
-    position: relative;
-    align-items: center;
-    display: inline-flex;
-    justify-content: center;
-    vertical-align: middle;
-    color: var(--svg-icon-color);
-    font-size: var(--svg-icon-size, var(--fz-font-size-base, 16px));
-  }
-  
+@use 'config/mixins' as *;
+@use 'config/mixins-var' as *;
+
+$svg-icon: () !default;
+$svg-icon: map.merge(
+  (
+    'color': inherit,
+    'size': getCssVar('font-size-medium'),
+  ),
+  $svg-icon
+);
+
+@include b(svg-icon) {
+  @include set-component-css-var('svg-icon', $svg-icon);
+
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
+  position: relative;
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  vertical-align: middle;
+  color: getCssVar('svg-icon', 'color');
+  font-size: getCssVar('svg-icon', 'size');
+}

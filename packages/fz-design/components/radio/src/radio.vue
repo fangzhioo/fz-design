@@ -6,6 +6,7 @@
   import type { RadioModelValue } from './interface'
   import type { RadioGroupInjectContext } from '../../radio-group'
   import { useFormSize } from '../../form/src/hooks'
+  import { isNil } from '../../../utils'
 
   defineOptions({ name: 'FzRadio' })
 
@@ -27,7 +28,10 @@
   /** 当前绑定的值 */
   const keyword = computed({
     get: (): RadioModelValue => {
-      return (parentInject && parentInject.modelValue) || prop.modelValue
+      if (!parentInject) {
+        return prop.modelValue
+      }
+      return isNil(parentInject.modelValue) ? prop.modelValue : parentInject.modelValue
     },
     set: (val: RadioModelValue): void => {
       /** 判断如果注入的依赖项存在，并且没有禁用，则将最新值传递给父组件 */

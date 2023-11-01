@@ -189,3 +189,6 @@ export * from './swap'
 
 export { FzImagePreview } from './image-preview'
 export * from './image-preview'
+
+export { FzDanmaku } from './danmaku'
+export * from './danmaku'

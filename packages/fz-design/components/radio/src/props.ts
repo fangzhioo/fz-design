@@ -26,7 +26,7 @@ export const Props = {
   /** 选框对应的值 */
   label: {
     type: [String, Number, Boolean] as PropType<RadioModelValue>,
-    default: (): null => null
+    default: null
   }
 } as const
 

@@ -12,6 +12,10 @@ export const isNumber = (val: any): boolean =>
 export const isUndefined = (val: any): boolean =>
   Object.prototype.toString.call(val) === '[object Undefined]'
 
+export const isNull = (val: any): boolean => val === null
+
+export const isNil = (val: any): boolean => isUndefined(val) || isNull(val)
+
 export const hasOwn = (val: object, key: string | symbol): key is keyof typeof val =>
   Object.prototype.hasOwnProperty.call(val, key)
 

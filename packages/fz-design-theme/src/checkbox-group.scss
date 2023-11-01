@@ -2,7 +2,6 @@
 
 @use 'config/mixins.scss' as *;
 @use 'config/mixins-var.scss' as *;
-@use 'config/common-var.scss' as *;
 
 @include b(checkbox-group) {
   display: inline-flex;
@@ -12,13 +11,13 @@
   transition: 0.3s;
   position: relative;
   vertical-align: top;
-  column-gap: var(--fz-checkbox-group-column-gap, 20px);
+  column-gap: getCssVarWithDefault(('checkbox-group', 'column-gap'), 20px);
   overflow: hidden;
 
   // 纵向排列
   @include when(vertical) {
     flex-direction: column;
-    row-gap: var(--fz-checkbox-group-row-gap, 10px);
+    row-gap: getCssVarWithDefault(('checkbox-group', 'row-gap'), 10px);
   }
 
   // 背景状态
@@ -28,8 +27,8 @@
     background-color: getCssVar('border-color-lighter');
     padding: 2px;
     flex-wrap: nowrap;
-    column-gap: var(--fz-checkbox-group-column-gap, 2px);
-    row-gap: var(--fz-checkbox-group-row-gap, 4px);
+    column-gap: getCssVarWithDefault(('checkbox-group', 'column-gap'), 2px);
+    row-gap: getCssVarWithDefault(('checkbox-group', 'row-gap'), 4px);
 
     .#{$namespace}-checkbox {
       overflow: hidden;
@@ -48,7 +47,6 @@
           background-color: getCssVar('color-primary-light-9');
         }
       }
-
     }
 
     // 尺寸
@@ -62,7 +60,5 @@
         padding: 2px 20px;
       }
     }
-
   }
-
 }

@@ -1,61 +1,66 @@
-.fz-text {
-    --fz-text-font-size: var(--fz-font-size-base);
-    --fz-text-color: var(--fz-text-color-regular)
+@use 'sass:map';
 
-    align-self: center;
-    margin: 0;
-    padding: 0;
-    font-size: var(--fz-text-font-size);
-    color: var(--fz-text-color);
-    word-break: break-all;
+@use 'config/mixins' as *;
+@use 'config/mixins-var.scss' as *;
+@use 'config/common-var.scss' as *;
 
-    &--large {
-        --fz-text-font-size: var(--fz-font-size-medium)
-    }
+// Text
+$text: () !default;
+$text: map.merge(
+  (
+    'font-size': getCssVar('font-size', 'base'),
+    'color': getCssVar('text-color', 'regular')
+  ),
+  $text
+);
 
-    &--default {
-        --fz-text-font-size: var(--fz-font-size-base)
-    }
+$text-font-size: () !default;
+$text-font-size: map.merge(
+  (
+    'large': getCssVar('font-size', 'medium'),
+    'default': getCssVar('font-size', 'base'),
+    'small': getCssVar('font-size', 'extra-small')
+  ),
+  $text-font-size
+);
 
-    &--small {
-        --fz-text-font-size: var(--fz-font-size-extra-small)
-    }
+@include b(text) {
+  @include set-component-css-var('text', $text);
 
-    &.fz-text--primary {
-        --fz-text-color: var(--fz-color-primary)
-    }
+  align-self: center;
+  margin: 0;
+  padding: 0;
+  font-size: getCssVar('text', 'font-size');
+  color: getCssVar('text', 'color');
+  word-break: break-all;
 
-    &.fz-text--success {
-        --fz-text-color: var(--fz-color-success)
-    }
+  @include when(ellipsis) {
+    display: inline-block;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 
-    &.fz-text--warning {
-        --fz-text-color: var(--fz-color-warning)
-    }
+  @include when(line-clamp) {
+    display: -webkit-inline-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 
-    &.fz-text--error {
-        --fz-text-color: var(--fz-color-error)
+  @each $size in (large, default, small) {
+    @include m($size) {
+      @include set-css-var-value(('text', 'font-size'), map.get($text-font-size, $size));
     }
+  }
 
-    &.fz-text--info {
-        --fz-text-color: var(--fz-color-info)
+  @each $type in $types {
+    &.#{bem('text', '', $type)} {
+      @include css-var-from-global(('text', 'color'), ('color', $type));
     }
-    
-    & > .fz-svg-icon {
-        vertical-align: -2px
-    }
+  }
 
-    &.is-ellipsis {
-        display: inline-block;
-        max-width: 100%;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden
-    }
-
-    &.is-line-clamp {
-        display: -webkit-inline-box;
-        -webkit-box-orient: vertical;
-        overflow: hidden
-    }
+  & > .#{bem('svg-icon')} {
+    vertical-align: -2px;
+  }
 }

@@ -61,7 +61,7 @@
 
     &:hover {
       .fz-sticky-card__option-text {
-        color: #2d5af1;
+        color: var(--fz-primary-color);
       }
     }
   }

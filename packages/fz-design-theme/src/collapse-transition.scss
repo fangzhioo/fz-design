@@ -1,9 +1,11 @@
 @use 'config/config.scss' as *;
+@use 'config/function.scss' as *;
+
 
 .#{$namespace}-collapse-transition {
     &-leave-active, &-enter-active {
-        transition: var(--fz-transition-duration) max-height ease-in-out,
-        var(--fz-transition-duration) padding-top ease-in-out,
-        var(--fz-transition-duration) padding-bottom ease-in-out;
+        transition: getCssVar('transition-duration') max-height ease-in-out,
+        getCssVar('transition-duration') padding-top ease-in-out,
+        getCssVar('transition-duration') padding-bottom ease-in-out;
     }
 }

@@ -1,0 +1,80 @@
+@use 'sass:map';
+
+@use 'config/mixins.scss' as *;
+@use 'config/mixins-var.scss' as *;
+@use 'config/common-var.scss' as *;
+
+$danmaku: () !default;
+$danmaku: map.merge(
+  (
+    'font-color': getCssVar('fill-color-light'),
+    'font-size': 20px,
+  ),
+  $danmaku
+);
+
+@include b(danmaku) {
+  @include set-component-css-var('danmaku', $danmaku);
+  position: relative;
+  overflow: hidden;
+
+  @keyframes moveLeft {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(getCssVar('danmaku', 'scroll-width'));
+    }
+  }
+  @-webkit-keyframes moveLeft {
+    from {
+      -webkit-transform: translateX(0);
+    }
+    to {
+      -webkit-transform: translateX(getCssVar('danmaku', 'scroll-width'));
+    }
+  }
+  
+  @include e(container) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    z-index: 9;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+
+    @include e(cell) {
+      position: absolute;
+      font-size: getCssVar('danmaku', 'font-size');
+      color: getCssVar('danmaku', 'font-color');
+      white-space: pre;
+      transform: translateX(0);
+      transform-style: preserve-3d;
+
+      @include when(move) {
+        will-change: transform;
+        animation-name: moveLeft;
+        animation-timing-function: linear;
+        animation-play-state: running;
+      }
+
+      @include when(pause) {
+        animation-play-state: paused;
+        z-index: 100;
+      }
+    }
+
+    @include when(hidden) {
+      opacity: 0;
+      z-index: 0;
+    }
+    @include when(paused) {
+      .#{$namespace}-danmaku__cell.is-move {
+        animation-play-state: paused;
+      }
+    }
+  }
+}

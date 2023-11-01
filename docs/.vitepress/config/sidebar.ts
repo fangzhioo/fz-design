@@ -121,6 +121,7 @@ export const sidebar = {
         { text: 'Divider 分隔线', link: '/components/divider' },
         { text: 'Watermark 水印', link: '/components/watermark' },
         { text: 'Count Down 倒计时', link: '/components/count-down' }, 
+        { text: 'Danmaku 弹幕', link: '/components/danmaku' },
       ]
     }
   ],
@@ -129,7 +130,6 @@ export const sidebar = {
       text: '高级组件',
       items: [
         { text: '快速上手', link: '/plus/introduce' },
-        { text: 'Barrage 弹幕', link: '/plus/barrage' },
         { text: 'Signature 签名', link: '/plus/signature' }, 
       ]
     }
