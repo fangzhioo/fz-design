@@ -486,9 +486,6 @@ async function updateComponentEntry(): Promise<void> {
   content =
     content.slice(0, -1) +
     '\n' +
-    '\n' +
-    `export { Fz${displayName} } from './${compName}'` +
-    '\n' +
     `export * from './${compName}'` +
     '\n'
 

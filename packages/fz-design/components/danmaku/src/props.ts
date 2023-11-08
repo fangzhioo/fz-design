@@ -2,6 +2,9 @@ import type { ExtractPropTypes, PropType } from 'vue'
 import type { Danmu } from './interface'
 
 export const Props = {
+  modelValue: {
+    type: Array as PropType<Danmu[]>
+  },
   /**
    * 弹幕列表数据
    */

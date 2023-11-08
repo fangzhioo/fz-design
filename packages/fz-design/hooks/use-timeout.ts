@@ -1,24 +1,18 @@
-// import { tryOnScopeDispose } from '@vueuse/core';
-import { onUnmounted } from 'vue';
+import { tryOnScopeDispose } from '@vueuse/core'
 
 export function useTimeout() {
-  let timeoutHandle: number;
-
-  const cancelTimeout = () => window.clearTimeout(timeoutHandle);
+  let timeoutHandle: number
 
   const registerTimeout = (fn: (...args: any[]) => any, delay: number) => {
-    cancelTimeout();
-    timeoutHandle = window.setTimeout(fn, delay);
-  };
-
-  // tryOnScopeDispose(() => cancelTimeout());
-  // TODO 实现tryOnScopeDispose替换onBeforeUnmount
-  onUnmounted(() => {
     cancelTimeout()
-  })
+    timeoutHandle = window.setTimeout(fn, delay)
+  }
+  const cancelTimeout = () => window.clearTimeout(timeoutHandle)
+
+  tryOnScopeDispose(() => cancelTimeout())
 
   return {
     registerTimeout,
-    cancelTimeout,
-  };
+    cancelTimeout
+  }
 }

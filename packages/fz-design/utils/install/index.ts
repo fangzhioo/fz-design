@@ -1,3 +1,4 @@
+import { ComponentSymbol, GlobalPropertiesSymbol, DirectiveSymbol } from '../../constants'
 import type { App, Directive, Component } from 'vue'
 
 export type Install<T> = T & {
@@ -15,6 +16,8 @@ export const install = <T extends Component>(main: T): Install<T> => {
     const { name } = main
     name && app.component(name, main)
   }
+  // 标记为组件注册
+  ;(main as Record<string, unknown>)[ComponentSymbol] = true
   return main as Install<T>
 }
 
@@ -29,6 +32,8 @@ export const installFn = <T>(main: T, name: string): Install<T> => {
   (main as Install<T>).install = (app: App): void => {
     app.config.globalProperties[name] = main as Install<T>
   }
+  // 标记为全局属性
+  ;(main as Record<string, unknown>)[GlobalPropertiesSymbol] = true
   return main as Install<T>
 }
 
@@ -46,5 +51,8 @@ export const installDirective = <T extends Directive>(
   (main as Install<T>).install = (app: App): void => {
     app.directive(name, main as Install<T>)
   }
+
+  // 标记为指令属性
+  ;(main as Record<string, unknown>)[DirectiveSymbol] = true
   return main as Install<T>
 }

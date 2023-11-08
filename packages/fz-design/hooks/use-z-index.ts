@@ -1,20 +1,32 @@
-import { ref, computed } from 'vue';
-import { useGlobalConfig } from './use-global-config';
+import { computed, getCurrentInstance, inject, ref, unref } from 'vue'
 
-const zIndex = ref(0);
+import type { Ref } from 'vue'
+import { isNumber } from '../utils'
+import { FZ_Z_INDEX_INJECTION_KEY } from '../constants'
 
-export const useZIndex = () => {
-  const initialZIndex = useGlobalConfig('zIndex', 2000);
-  const currentZIndex = computed(() => initialZIndex.value + zIndex.value);
+const zIndex = ref(0)
+export const defaultInitialZIndex = 2000
 
-  const nextZIndex = () => {
-    zIndex.value++;
-    return currentZIndex.value;
-  };
+export const useZIndex = (zIndexOverrides?: Ref<number>): any => {
+  const zIndexInjection =
+    zIndexOverrides ||
+    (getCurrentInstance() ? inject(FZ_Z_INDEX_INJECTION_KEY, undefined) : undefined)
+  const initialZIndex = computed(() => {
+    const zIndexFromInjection = unref(zIndexInjection)
+    return isNumber(zIndexFromInjection) ? zIndexFromInjection : defaultInitialZIndex
+  })
+  const currentZIndex = computed(() => initialZIndex.value + zIndex.value)
+
+  const nextZIndex = (): number => {
+    zIndex.value++
+    return currentZIndex.value
+  }
 
   return {
     initialZIndex,
     currentZIndex,
-    nextZIndex,
-  };
-};
+    nextZIndex
+  }
+}
+
+export type UseZIndexReturn = ReturnType<typeof useZIndex>

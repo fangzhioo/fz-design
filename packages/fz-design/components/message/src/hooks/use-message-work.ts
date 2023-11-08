@@ -1,5 +1,4 @@
 import { ref, computed, getCurrentInstance } from 'vue'
-// import type { MessageProps, NotificationProps } from '../../components'
 import type { CSSProperties, ComputedRef, Ref, ComponentInternalInstance } from 'vue'
 import type { MessageProps } from '../interface'
 import type { Ns } from '../../../../hooks'

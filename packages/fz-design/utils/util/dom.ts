@@ -171,7 +171,8 @@ export const composeEventHandlers = <E>(
 ): ((event: E) => void) => {
   const handleEvent = (event: E): void => {
     const shouldPrevent = theirsHandler?.(event)
-
+    console.log('checkForDefaultPrevented', checkForDefaultPrevented, shouldPrevent);
+    
     if (checkForDefaultPrevented === false || !shouldPrevent) {
       return oursHandler?.(event)
     }

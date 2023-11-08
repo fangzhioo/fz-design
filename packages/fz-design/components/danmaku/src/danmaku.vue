@@ -10,7 +10,6 @@
     h
   } from 'vue'
   import type { DanChannel, DanmuItem, DanmakuItem, Danmu } from './interface'
-  import { useModelWrapper } from './utils'
   import { Emits, Props } from './props'
   import { useNamespace } from '../../../hooks'
   import { addClass, removeClass, throwError } from '../../../utils'
@@ -41,7 +40,12 @@
   const paused = ref(false)
   const danChannel = ref<DanChannel>({})
 
-  const danmuList = useModelWrapper<Danmu[]>(props, emit, 'danmus')
+  const danmuList = computed<Danmu[]>({
+    get: () => props.modelValue || [],
+    set: value => {
+      emit('update:modelValue', value)
+    }
+  })
 
   const danmaku: DanmakuItem = reactive({
     channels: computed(() => props.channels || calcChannels.value),

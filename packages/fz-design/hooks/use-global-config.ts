@@ -32,12 +32,12 @@ export const provideGlobalConfig = (config: MaybeRef<ConfigProviderContext>, app
     return;
   }
 
-  const context = computed(() => {
+  const context = computed<ConfigProviderContext>(() => {
     const cfg = unref(config);
     if (!oldConfig?.value) {
-      return cfg;
+      return cfg as ConfigProviderContext;
     }
-    return merge(oldConfig.value, cfg);
+    return merge(oldConfig.value, cfg) as ConfigProviderContext;
   });
   
   provideFn(FZ_CONFIG_PROVIDER_INJECT_KEY, context);

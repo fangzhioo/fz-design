@@ -34,7 +34,7 @@ export const isSymbol = (val: unknown): val is Symbol => is(val, 'Symbol')
 
 export const isObject = (val: unknown): val is Record<string | number | symbol, unknown> => is(val, 'Object')
 
-export const isFunction = (val: unknown): boolean => typeof val === 'function'
+export const isFunction = (val: unknown): val is Function => typeof val === 'function'
 
 export const isNull = (val: unknown): boolean => val === null
 

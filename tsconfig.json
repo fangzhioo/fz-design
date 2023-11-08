@@ -1,6 +1,7 @@
 // https://www.typescriptlang.org/zh/tsconfig
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "ESNext", // 为发出的 JavaScript 设置 JavaScript 语言版本，并包括兼容的库声明
     "useDefineForClassFields": true, // 发出符合 ECMAScript 标准的类字段
     "module": "ESNext", // 指定生成的模块代码

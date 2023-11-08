@@ -12,7 +12,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="example-showcase">
+  <div class="example-preview">
     <ClientOnly>
       <component :is="demo" v-if="demo" v-bind="$attrs" />
     </ClientOnly>
@@ -20,7 +20,7 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
-.example-showcase {
+.example-preview {
   padding: 1.5rem;
   margin: 0.5px;
   background-color: var(--fz-bg-color);

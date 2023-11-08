@@ -1,9 +1,14 @@
+import type { InjectionKey, Ref } from 'vue';
+import type { FzPopperContentInjectionContext, FzPopperInjectionContext } from '../components';
+
+// global
 export const FZ_CONFIG_PROVIDER_INJECT_KEY = Symbol('config-provider');
 export const FZ_LOCALE_INJECT_KEY = Symbol('global-locale');
 export const FZ_THEME_INJECT_KEY = Symbol('global-theme');
 export const FZ_SIZE_INJECTION_KEY = Symbol('global-size');
-export const FZ_Z_INDEX_INJECTION_KEY = Symbol('global-z-index');
+export const FZ_Z_INDEX_INJECTION_KEY: InjectionKey<Ref<number | undefined>> = Symbol('global-z-index');
 
+// 组件
 export const FZ_BUTTON_GROUP_INJECT_KEY = Symbol('button-group');
 export const FZ_CHECKBOX_GROUP_INJECT_KEY = Symbol('checkbox-group');
 export const FZ_FORM_INJECT_KEY = Symbol('form');
@@ -14,8 +19,11 @@ export const FZ_LAYOUT_ROW_INJECT_KEY = Symbol('layout-row');
 export const FZ_CAROUSEL_INJECT_KEY = Symbol('carousel');
 export const FZ_COLLAPSE_INJECT_KEY = Symbol('collapse');
 export const FZ_FORWARD_REF_INJECT_KEY = Symbol('forward-ref');
-export const FZ_POPPER_INJECT_KEY = Symbol('popper');
-export const FZ_POPPER_CONTENT_INJECT_KEY = Symbol('popper-content');
+
+// popper
+export const FZ_POPPER_INJECT_KEY: InjectionKey<FzPopperInjectionContext> = Symbol('popper');
+export const FZ_POPPER_CONTENT_INJECT_KEY: InjectionKey<FzPopperContentInjectionContext> = Symbol('popper-content');
+
 export const FZ_TOOLTIP_INJECT_KEY = Symbol('tooptip');
 export const FZ_SELECT_INJECT_KEY = Symbol('select');
 export const FZ_SELECT_GROUP_INJECT_KEY = Symbol('select-group');

@@ -1,161 +1,197 @@
-/* eslint-disable no-use-before-define */
-import { computed, getCurrentInstance, watch, onMounted, PropType } from 'vue';
-import { isBoolean, isFunction, isClient } from '../utils';
-import type { Ref, ComponentPublicInstance, ExtractPropTypes } from 'vue';
+import { computed, getCurrentInstance, onMounted, watch } from 'vue'
 
-export const createModelToggleComposable = (name: string) => {
+import type { ComponentPublicInstance, ExtractPropTypes, PropType, Ref } from 'vue'
+import { isBoolean, isClient, isFunction } from '../utils'
+
+type RouteLocationNormalizedLoaded = any
+
+const _prop = {
+  type: Boolean
+} as const
+const _event = {
+  type: Function as PropType<(val: boolean) => void>
+} as const
+
+export type UseModelTogglePropsRaw<T extends string> = {
+  [K in T]: typeof _prop
+} & {
+  [K in `onUpdate:${T}`]: typeof _event
+}
+
+export type UseModelTogglePropsGeneric<T extends string> = {
+  [K in T]: ExtractPropTypes<typeof _prop>
+} & {
+  [K in `onUpdate:${T}`]: ExtractPropTypes<typeof _event>
+}
+
+export const createModelToggleComposable = <T extends string>(name: T): any => {
+  const updateEventKey = `update:${name}` as const
+  const updateEventKeyRaw = `onUpdate:${name}` as const
+  const useModelToggleEmits = [updateEventKey]
+
   const useModelToggleProps = {
-    [name]: {
-      type: Boolean as PropType<boolean | null>,
-      default: null,
-    },
-    [`onUpdate:${name}`]: {
-      type: Function as PropType<(val: boolean) => void>,
-    },
-  };
+    [name]: _prop,
+    [updateEventKeyRaw]: _event
+  } as UseModelTogglePropsRaw<T>
 
-  const useModelToggleEmits = [`update:${name}`];
-
-  const useModelToggle = ({ indicator, shouldHideWhenRouteChanges, shouldProceed, onShow, onHide }: ModelToggleParams) => {
-    const instance = getCurrentInstance()!;
-    const props = instance.props as UseModelToggleProps & { disabled: boolean };
-    const { emit } = instance;
-
-    const updateEventKey = `update:${name}`;
-
-    const hasUpdateHandler = computed(() => isFunction(props[`onUpdate:${name}`]));
+  const useModelToggle = ({
+    indicator,
+    toggleReason,
+    shouldHideWhenRouteChanges,
+    shouldProceed,
+    onShow,
+    onHide
+  }: ModelToggleParams): any => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const instance = getCurrentInstance()!
+    const { emit } = instance
+    const props = instance.props as UseModelTogglePropsGeneric<T> & {
+      disabled: boolean
+    }
+    const hasUpdateHandler = computed(() =>
+      isFunction(props[updateEventKeyRaw])
+    )
     // when it matches the default value we say this is absent
     // though this could be mistakenly passed from the user but we need to rule out that
     // condition
-    const isModelBindingAbsent = computed(() => props[name] === null);
+    const isModelBindingAbsent = computed(() => props[name] === null)
 
-    const doShow = () => {
+    const doShow = (event?: Event): void => {
       if (indicator.value === true) {
-        return;
+        return
       }
 
-      indicator.value = true;
+      indicator.value = true
+      if (toggleReason) {
+        toggleReason.value = event
+      }
       if (isFunction(onShow)) {
-        onShow();
+        onShow(event)
       }
-    };
+    }
 
-    const doHide = () => {
+    const doHide = (event?: Event): void => {
       if (indicator.value === false) {
-        return;
+        return
       }
 
-      indicator.value = false;
-
+      indicator.value = false
+      if (toggleReason) {
+        toggleReason.value = event
+      }
       if (isFunction(onHide)) {
-        onHide();
+        onHide(event)
       }
-    };
+    }
 
-    const show = () => {
-      if (props.disabled === true || (isFunction(shouldProceed) && !shouldProceed())) {
-        return;
-      }
+    const show = (event?: Event): void => {
+      if (
+        props.disabled === true ||
+        (isFunction(shouldProceed) && !shouldProceed())
+      )
+        return
 
-      const shouldEmit = hasUpdateHandler.value && isClient;
+      const shouldEmit = hasUpdateHandler.value && isClient
 
       if (shouldEmit) {
-        emit(updateEventKey, true);
+        emit(updateEventKey, true)
       }
 
       if (isModelBindingAbsent.value || !shouldEmit) {
-        doShow();
+        doShow(event)
       }
-    };
+    }
 
-    const hide = () => {
-      if (props.disabled === true || !isClient) {
-        return;
-      }
+    const hide = (event?: Event): void => {
+      if (props.disabled === true || !isClient) return
 
-      const shouldEmit = hasUpdateHandler.value && isClient;
+      const shouldEmit = hasUpdateHandler.value && isClient
 
       if (shouldEmit) {
-        emit(updateEventKey, false);
+        emit(updateEventKey, false)
       }
 
       if (isModelBindingAbsent.value || !shouldEmit) {
-        doHide();
+        doHide(event)
       }
-    };
+    }
 
-    const onChange = (val: boolean) => {
-      if (!isBoolean(val)) {
-        return;
-      }
+    const onChange = (val: boolean): void => {
+      if (!isBoolean(val)) return
       if (props.disabled && val) {
         if (hasUpdateHandler.value) {
-          emit(updateEventKey, false);
+          emit(updateEventKey, false)
         }
       } else if (indicator.value !== val) {
         if (val) {
-          doShow();
+          doShow()
         } else {
-          doHide();
+          doHide()
         }
       }
-    };
+    }
 
-    const toggle = () => {
+    const toggle = (): void => {
       if (indicator.value) {
-        hide();
+        hide()
       } else {
-        show();
+        show()
       }
-    };
+    }
 
-    watch(() => props[name], onChange as any);
+    watch(() => props[name], onChange as any)
 
-    if (shouldHideWhenRouteChanges && instance.appContext.config.globalProperties.$route !== undefined) {
+    if (
+      shouldHideWhenRouteChanges &&
+      instance.appContext.config.globalProperties.$route !== undefined
+    ) {
       watch(
         () => ({
           ...(
             instance.proxy as ComponentPublicInstance<{
-              $route: any; // vue-router 的 RouteLocationNormalizedLoaded
+              $route: RouteLocationNormalizedLoaded
             }>
-          ).$route,
+          ).$route
         }),
         () => {
           if (shouldHideWhenRouteChanges.value && indicator.value) {
-            hide();
+            hide()
           }
-        },
-      );
+        }
+      )
     }
 
     onMounted(() => {
-      onChange(props[name] as boolean);
-    });
+      onChange(props[name] as any)
+    })
 
     return {
       hide,
       show,
       toggle,
-    };
-  };
+      hasUpdateHandler
+    }
+  }
 
   return {
     useModelToggle,
     useModelToggleProps,
-    useModelToggleEmits,
-  };
-};
+    useModelToggleEmits
+  }
+}
 
-const { useModelToggle, useModelToggleProps, useModelToggleEmits } = createModelToggleComposable('modelValue');
+const { useModelToggle, useModelToggleProps, useModelToggleEmits } =
+  createModelToggleComposable('modelValue')
 
-export type UseModelToggleProps = ExtractPropTypes<typeof useModelToggleProps>;
+export { useModelToggle, useModelToggleEmits, useModelToggleProps }
 
-export type ModelToggleParams = {
-  indicator: Ref<boolean>;
-  shouldHideWhenRouteChanges?: Ref<boolean>;
-  shouldProceed?: () => boolean;
-  onShow?: () => void;
-  onHide?: () => void;
-};
+export type UseModelToggleProps = ExtractPropTypes<typeof useModelToggleProps>
 
-export { useModelToggle, useModelToggleEmits, useModelToggleProps };
+export interface ModelToggleParams {
+  indicator: Ref<boolean>
+  toggleReason?: Ref<Event | undefined>
+  shouldHideWhenRouteChanges?: Ref<boolean>
+  shouldProceed?: () => boolean
+  onShow?: (event?: Event) => void
+  onHide?: (event?: Event) => void
+}

@@ -1,11 +1,11 @@
-export const UPDATE_MODEL_EVENT = 'update:modelValue';
-export const UPDATE_CHECKED_EVENT = 'update:checked';
-export const UPDATE_VISIBLE_EVENT = 'update:visible';
+export const UPDATE_MODEL_EVENT = 'update:modelValue'
+export const UPDATE_CHECKED_EVENT = 'update:checked'
+export const UPDATE_VISIBLE_EVENT = 'update:visible'
 
-export const CHANGE_EVENT = 'change';
-export const INPUT_EVENT = 'input';
-export const BLUR_EVENT = 'blur';
-export const FOCUS_EVENT = 'focus';
+export const CHANGE_EVENT = 'change'
+export const INPUT_EVENT = 'input'
+export const BLUR_EVENT = 'blur'
+export const FOCUS_EVENT = 'focus'
 
 export const EVENT_CODE = {
   tab: 'Tab',
@@ -22,5 +22,5 @@ export const EVENT_CODE = {
   pageUp: 'PageUp',
   pageDown: 'PageDown',
   home: 'Home',
-  end: 'End',
-};
+  end: 'End'
+}

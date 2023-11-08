@@ -1,11 +1,13 @@
-import Loading from './src/loading.vue'
+import { Loading } from './src/service'
+import { vLoading } from './src/directive'
 
-import { install } from '../../utils'
+import { installDirective, installFn } from '../../utils'
 
-export const FzLoading = install(Loading)
+// installer and everything in all
+export const loading = installDirective(vLoading, 'loading');
 
-export type LoadingInstance = InstanceType<typeof Loading>
-
+export const FzLoading = installFn(Loading, 'FzLoading');
+  
 export * from './src/interface'
 
 export default FzLoading

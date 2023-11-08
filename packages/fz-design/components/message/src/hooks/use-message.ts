@@ -30,7 +30,7 @@ export type MessageBasicType = (
 ) => ComponentPublicInstance
 
 /** message 类型 */
-export type MessageType = MessageBasicType & MessageOptionalType
+export type MessageFnType = MessageBasicType & MessageOptionalType
 
 /**
  * useMessage 返回值类型接口
@@ -38,7 +38,7 @@ export type MessageType = MessageBasicType & MessageOptionalType
  * @param { Function } Message 组件方法
  */
 export interface UseMessageReturn {
-  Message: MessageType
+  Message: MessageFnType
 }
 
 /** 组件实例对象集合 */

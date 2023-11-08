@@ -110,6 +110,7 @@ export const sidebar = {
         { text: 'Skeleton 骨架屏', link: '/components/skeleton' },
         { text: 'Dialog 对话框', link: '/components/dialog' },
         { text: 'Drawer 抽屉', link: '/components/drawer' },
+        { text: 'Popconfirm 气泡确认', link: '/components/popconfirm' },
         { text: 'Tooltip 消息提示', link: '/components/tooltip' },
         { text: 'Confirm Box 确认框', link: '/components/confirm-box' },
         { text: 'Swap 切换', link: '/components/swap' },

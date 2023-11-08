@@ -16,6 +16,7 @@ export type ButtonType =
   | 'warning'
   | 'info'
   | 'error'
+  | 'text'
   | ''
 
 export type ButtonSize = ComponentSize

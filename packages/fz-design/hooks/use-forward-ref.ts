@@ -1,34 +1,38 @@
-import { provide } from 'vue';
-import { FZ_FORWARD_REF_INJECT_KEY } from '../constants';
+import { provide } from 'vue'
 
-import type { Ref } from 'vue';
+import type { InjectionKey, ObjectDirective, Ref } from 'vue'
 
-type ForwardRefSetter = <T>(el: T) => void;
+type ForwardRefSetter = <T>(el: T) => void
 
-export type ForwardRefInjectionContext = {
-  setForwardRef: ForwardRefSetter;
-};
+export interface ForwardRefInjectionContext {
+  setForwardRef: ForwardRefSetter
+}
+
+export const FORWARD_REF_INJECTION_KEY: InjectionKey<ForwardRefInjectionContext> =
+  Symbol('elForwardRef')
 
 export const useForwardRef = <T>(forwardRef: Ref<T | null>) => {
   const setForwardRef = (el: T) => {
-    forwardRef.value = el;
-  };
+    forwardRef.value = el
+  }
 
-  provide(FZ_FORWARD_REF_INJECT_KEY, {
-    setForwardRef,
-  });
-};
+  provide(FORWARD_REF_INJECTION_KEY, {
+    setForwardRef
+  })
+}
 
-export const useForwardRefDirective = <T>(setForwardRef: ForwardRefSetter) => {
+export const useForwardRefDirective = (
+  setForwardRef: ForwardRefSetter
+): ObjectDirective => {
   return {
-    mounted(el: T) {
-      setForwardRef(el);
+    mounted (el) {
+      setForwardRef(el)
     },
-    updated(el: T) {
-      setForwardRef(el);
+    updated (el) {
+      setForwardRef(el)
     },
-    unmounted() {
-      setForwardRef(null);
-    },
-  };
-};
+    unmounted () {
+      setForwardRef(null)
+    }
+  }
+}
