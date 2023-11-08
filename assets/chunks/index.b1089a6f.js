@@ -1,0 +1,1 @@
+const s="__fz_component_symbol__",l="__fz_global_properties_symbol__",r="__fz_directive_symbol__",_=t=>(t.install=e=>{const{name:o}=t;o&&e.component(o,t)},t[s]=!0,t),n=(t,e)=>(t.install=o=>{o.config.globalProperties[e]=t},t[l]=!0,t),c=(t,e)=>(t.install=o=>{o.directive(e,t)},t[r]=!0,t);export{s as C,r as D,l as G,n as a,_ as b,c as i};

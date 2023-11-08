@@ -1,0 +1,1 @@
+import{h as I,a7 as u,M as c,g as o,l as d}from"./framework.f91504f0.js";import{F as i}from"./use-namespace.697bb1de.js";import{d as x}from"./dom.1ddecdbe.js";const r=I(0),m=2e3,p=s=>{const a=s||(u()?c(i,void 0):void 0),n=o(()=>{const t=d(a);return x(t)?t:m}),e=o(()=>n.value+r.value);return{initialZIndex:n,currentZIndex:e,nextZIndex:()=>(r.value++,e.value)}};export{p as u};
