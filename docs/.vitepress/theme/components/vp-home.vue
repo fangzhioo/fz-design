@@ -18,7 +18,7 @@
   const { isDark } = useData()
 
   const handleGoStart = () => {
-    router.go('/docs/install')
+    router.go('/fz-design/docs/install')
   }
 
   /** 监视路由发生变化时，更新语言 */

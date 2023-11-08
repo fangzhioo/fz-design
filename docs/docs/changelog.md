@@ -2,6 +2,14 @@
 
 中文 | [英文](https://github.com/fangzhioo/fz-ui/blob/master/CHANGELOG.en-US.md)
 
+## 0.0.8-alpha.8 (2023-11-08)
+
+✨ **feat**
+
+- 新增 `fz-tooltip` 提示组件；
+- 新增 `fz-popconfirm` 气泡确认组件；
+- 新增 `v-loading` 加载指令和 `FzLoading` 全局服务；
+
 ## 0.0.7-alpha.7 (2023-11-01)
 
 ✨ **feat**
