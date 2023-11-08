@@ -1,0 +1,22 @@
+{
+  "name": "@fz-design/fz-popperjs",
+  "version": "0.0.1-alpha.1",
+  "description": "fz Design popperjs",
+  "main": "build/index.js",
+  "module": "build/index.mjs",
+  "unpkg": "build/index.iife.js",
+  "exports": {
+    ".": {
+      "require": "./build/index.js",
+      "import": "./build/index.mjs"
+    },
+    "./*": "./*"
+  },
+  "types": "./index.d.ts",
+  "license": "MIT",
+  "files": [
+    "index.d.ts",
+    "/build",
+    "/lib"
+  ]
+}

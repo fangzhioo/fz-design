@@ -42,6 +42,7 @@
     "@fz-design/eslint-config": "workspace:*",
     "@fz-design/fz-design-icon": "workspace:*",
     "@fz-design/fz-design-theme": "workspace:*",
+    "@fz-design/fz-popperjs": "workspace:*",
     "@types/node": "^17.0.42",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vue/test-utils": "^2.3.2",

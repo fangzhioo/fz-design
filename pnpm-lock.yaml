@@ -23,6 +23,9 @@ importers:
       '@fz-design/fz-design-theme':
         specifier: workspace:*
         version: link:packages/fz-design-theme
+      '@fz-design/fz-popperjs':
+        specifier: workspace:*
+        version: link:packages/fz-popperjs
       '@types/node':
         specifier: ^17.0.42
         version: registry.npmmirror.com/@types/node@17.0.42
@@ -157,6 +160,8 @@ importers:
       eslint-plugin-vue:
         specifier: ^9.4.0
         version: registry.npmmirror.com/eslint-plugin-vue@9.4.0(eslint@8.23.0)
+
+  packages/fz-popperjs: {}
 
   start: {}
 
