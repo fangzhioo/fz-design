@@ -10,19 +10,21 @@ xxx
 
 :::
 
-## Attributes
+## API
+
+### Attributes
 
 | 参数  | 说明 | 类型 | 默认值 | 
 | ----- | ---- | ---- | ------ | 
 | `xxx` | xxx  | xxx  | `xxx`  | 
 
-## Slots
+### Slots
 
 | 名称  | 说明 |
 | ----- | ---- |
 | `xxx` | xxx  |
 
-## Events
+### Events
 
 | 事件名称 | 说明 | 类型 |
 | -------- | ---- | -------- |

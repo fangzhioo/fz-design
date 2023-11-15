@@ -52,6 +52,8 @@ button/button-group
 
 ## Button API
 
+### API
+
 ### Attributes
 
 | 参数        | 说明         | 类型                                                                                                                       | 默认值 |
@@ -68,20 +70,20 @@ button/button-group
 | circle      | 是否圆形风格 | `boolean`                                                                                                                  | false  |
 | autofocus   | 自动对焦     | `boolean`                                                                                                                  | false  |
 
-### Slots
+#### Slots
 
 | 名称      | 说明      |
 | --------- | --------- |
 | `default` | 默认内容  |
 | `icon`    | 图标 slot |
 
-### Events
+#### Events
 
 | 事件名  | 说明     | 参数列表 | 参数说明         |
 | ------- | -------- | -------- | ---------------- |
 | `click` | 点击事件 | $event   | 原生的 dom event |
 
-### Interface
+#### Interface
 
 组件导出以下类型定义：
 
@@ -101,6 +103,8 @@ import type { ButtonInstance, ButtonProps, ButtonType, ButtonSize } from 'fz-des
 
 ## ButtonGroup API
 
+### API
+
 ### Attributes
 
 | 参数 | 说明 | 类型     | 默认值 |
@@ -108,7 +112,7 @@ import type { ButtonInstance, ButtonProps, ButtonType, ButtonSize } from 'fz-des
 | type | 类型 | `string` | -      |
 | size | 尺寸 | `string` | -      |
 
-### Slots
+#### Slots
 
 | 名称      | 说明      |
 | --------- | --------- |

@@ -28,6 +28,8 @@ const fontSize = computed(() => props.font?.fontSize ?? 16)
 const fontWeight = computed(() => props.font?.fontWeight ?? 'normal')
 const fontStyle = computed(() => props.font?.fontStyle ?? 'normal')
 const fontFamily = computed(() => props.font?.fontFamily ?? 'sans-serif')
+const textAlign = computed(() => props.font?.textAlign ?? 'center')
+const textBaseline = computed(() => props.font?.textBaseline ?? 'top')
 
 const gapX = computed(() => props.gap[0])
 const gapY = computed(() => props.gap[1])
@@ -157,7 +159,9 @@ const renderWatermark = (): void => {
           fontSize: fontSize.value,
           fontStyle: fontStyle.value,
           fontWeight: fontWeight.value,
-          fontFamily: fontFamily.value
+          fontFamily: fontFamily.value,
+          textAlign: textAlign.value,
+          textBaseline: textBaseline.value
         },
         gapX.value,
         gapY.value

@@ -57,7 +57,9 @@ export const getStyle = (element: HTMLElement, styleName: any): string => {
   if (!element || !styleName) {
     return ''
   }
+
   styleName = camelize(styleName)
+
   if (styleName === 'float') {
     styleName = 'cssFloat'
   }
@@ -92,6 +94,7 @@ export const isScroll = (el: HTMLElement, isVertical?: boolean): boolean => {
     false: 'overflow-x'
   }[String(isVertical)]
   const overflow = getStyle(el, key)
+  
   return ['scroll', 'auto', 'overlay'].some(s => overflow.includes(s))
 }
 
@@ -171,7 +174,6 @@ export const composeEventHandlers = <E>(
 ): ((event: E) => void) => {
   const handleEvent = (event: E): void => {
     const shouldPrevent = theirsHandler?.(event)
-    console.log('checkForDefaultPrevented', checkForDefaultPrevented, shouldPrevent);
     
     if (checkForDefaultPrevented === false || !shouldPrevent) {
       return oursHandler?.(event)

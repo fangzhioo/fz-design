@@ -59,6 +59,10 @@ export default {
         dec: 'Dec'
       }
     },
+    inputNumber: {
+      decrease: 'decrease number',
+      increase: 'increase number'
+    },
     select: {
       loading: 'Loading',
       noMatch: 'No matching data',

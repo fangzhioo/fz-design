@@ -70,6 +70,8 @@ checkbox/group-vertical
 
 ## Checkbox API
 
+### API
+
 ### Attributes
 
 | 参数        | 说明         | 类型                 | 默认值 |
@@ -80,19 +82,19 @@ checkbox/group-vertical
 | label       | 选框对应的值 | `CheckboxModelValue` | -      |
 | disabled    | 是否禁用     | `boolean`            | -      |
 
-### Slots
+#### Slots
 
 | 名称    | 说明                       |
 | ------- | -------------------------- |
 | default | 展示的内容，默认为 `label` |
 
-### Events
+#### Events
 
 | 事件名称 | 说明       | 类型                                |
 | -------- | ---------- | ----------------------------------- |
 | change   | 改变时触发 | `(val: CheckboxModelValue) => void` |
 
-### Interface
+#### Interface
 
 组件导出以下类型定义：
 
@@ -108,6 +110,8 @@ import type {
 
 ## CheckboxGroup API
 
+### API
+
 ### Attributes
 
 | 参数        | 说明           | 类型              | 默认值 |
@@ -120,19 +124,19 @@ import type {
 | columnGap   | 横向排列的间距 | `string\|number`  | -      |
 | rowGap      | 纵向排列的间距 | `string\|number`  | -      |
 
-### Slots
+#### Slots
 
 | 名称    | 说明          |
 | ------- | ------------- |
 | default | Checkbox 组件 |
 
-### Events
+#### Events
 
 | 事件名称 | 说明       | 类型                                |
 | -------- | ---------- | ----------------------------------- |
 | change   | 改变时触发 | `(val: CheckboxLabel[]) => void` |
 
-### Interface
+#### Interface
 
 组件导出以下类型定义：
 

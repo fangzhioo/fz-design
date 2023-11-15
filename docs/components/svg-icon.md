@@ -47,7 +47,9 @@ svg-icon/maps
 
 :::
 
-## Attributes
+## API
+
+### Attributes
 
 | 参数    | 说明      | 类型            | 默认值 |
 | ------- | --------- | --------------- | ------ |
@@ -55,13 +57,13 @@ svg-icon/maps
 | `size`  | icon 大小 | string / number | ——     |
 | `icon`  | icon 内容 | SvgIcon         | ——     |
 
-## Slots
+### Slots
 
 | 名称      | 说明        |
 | --------- | ----------- |
 | `default` | icon 的内容 |
 
-## Interface
+### Interface
 
 组件导出以下类型定义：
 

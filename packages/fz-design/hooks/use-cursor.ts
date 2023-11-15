@@ -14,12 +14,12 @@ export function useCursor (
     afterTxt?: string
   }>()
 
-  const recordCursor = (): void => {
-    if (input.value === undefined) return
+  function recordCursor (): void {
+    if (input.value == undefined) return
 
     const { selectionStart, selectionEnd, value } = input.value
 
-    if (selectionStart === null || selectionEnd === null) return
+    if (selectionStart == null || selectionEnd == null) return
 
     const beforeTxt = value.slice(0, Math.max(0, selectionStart))
     const afterTxt = value.slice(Math.max(0, selectionEnd))
@@ -32,14 +32,17 @@ export function useCursor (
       afterTxt
     }
   }
-
-  const setCursor = (): void => {
-    if (input.value === undefined || selectionRef.value === undefined) return
+  function setCursor (): void {
+    if (input.value == undefined || selectionRef.value == undefined) return
 
     const { value } = input.value
     const { beforeTxt, afterTxt, selectionStart } = selectionRef.value
 
-    if (beforeTxt === undefined || afterTxt === undefined || selectionStart === undefined)
+    if (
+      beforeTxt == undefined ||
+      afterTxt == undefined ||
+      selectionStart == undefined
+    )
       return
 
     let startPos = value.length

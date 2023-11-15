@@ -2,17 +2,18 @@
   import { useNamespace } from '../../../hooks';
 import { isNumber, warning } from '../../../utils';
 import { Emits, Props } from './props'
-  import { onMounted, ref, computed } from 'vue'
+  import { onMounted, ref, computed, watch, onBeforeUnmount } from 'vue'
 
   defineOptions({ name: 'FzNumberAnimate' })
 
-  const prop = defineProps(Props)
+  const props = defineProps(Props)
   const emit = defineEmits(Emits)
+  const timer = ref<ReturnType<typeof setInterval> | null>(null)
 
   const ns = useNamespace('number-animate');
 
   /** 开始值 */
-  const fromNum = ref<number>(prop.from)
+  const fromNum = ref<number>(props.from)
   /**是否重新执行动画 */
   const again = ref<boolean>(false)
 
@@ -25,11 +26,11 @@ import { Emits, Props } from './props'
     /**判断是否需要重新执行 */
     if (again.value) {
       /** 如果需要重新执行，则需要将开始值重新赋值 */
-      fromNum.value = prop.from
+      fromNum.value = props.from
       again.value = false
     }
     /** 目标值 */
-    const toNum = Number(prop.to)
+    const toNum = Number(props.to)
 
     /** 检测两个值是否为数字 */
     if (!isNumber(Number(fromNum.value)) || !isNumber(toNum)) {
@@ -39,7 +40,7 @@ import { Emits, Props } from './props'
     }
 
     /** 计算出 执行到达时间 相差值 */
-    fromNum.value += (toNum / prop.duration) * 20
+    fromNum.value += Math.floor((toNum / props.duration) * 20)
 
     if (fromNum.value >= toNum) {
       fromNum.value = toNum
@@ -61,7 +62,7 @@ import { Emits, Props } from './props'
    * @see toLocaleString https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString
    */
   const content = computed((): number | string => {
-    return prop.formatter ? fromNum.value.toLocaleString() : fromNum.value
+    return props.formatter ? props.formatter(fromNum.value) : fromNum.value
   })
 
   /**
@@ -74,12 +75,48 @@ import { Emits, Props } from './props'
     window && window.requestAnimationFrame(animate)
   }
 
+  const pauseTimer = (): void => {
+    if (timer.value) {
+      clearInterval(timer.value)
+      timer.value = null
+    }
+  }
+
+  const startTimer = (): void => {
+    if (props.interval <= 0 || !props.autoplay || timer.value) return
+    timer.value = setInterval(() => run(), props.interval + props.duration)
+  }
+
+  const resetTimer = (): void => {
+    pauseTimer()
+    startTimer() 
+  }
+
   /** 初始化执行 */
   onMounted((): void => {
     /** 第一次执行不需要重新执行，所以传入 false */
-    prop.automatic && start(false)
+    props.autoplay && start(false)
+    props.loop && startTimer()
   })
 
+  onBeforeUnmount(() => {
+    pauseTimer();
+  })
+
+  watch(
+    () => props.interval,
+    () => {
+      resetTimer()
+    }
+  )
+
+  watch(
+    () => props.loop,
+    () => {
+      resetTimer()
+    }
+  )
+  
   /**
    * 暴露给外部调用的方法
    *
@@ -93,8 +130,8 @@ import { Emits, Props } from './props'
 
   const classes = computed(() => [
     ns.b(), 
-    ns.m(prop.size),
-    ns.m(prop.type)
+    ns.m(props.size),
+    ns.m(props.type)
   ])
 
   /** 暴露给外部重新执行动画的方法 */

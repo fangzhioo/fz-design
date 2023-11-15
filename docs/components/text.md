@@ -52,7 +52,9 @@ text/mixed
 
 :::
 
-## Attributes
+## API
+
+### Attributes
 
 | 参数       | 说明       | 类型                | 默认值  |
 | ---------- | ---------- | ------------------- | ------- |
@@ -62,13 +64,13 @@ text/mixed
 | ellipsis   | 显示省略号 | `boolean`           | false   |
 | line-clamp | 最大行数   | `string` / `number` | -       |
 
-## Slots
+### Slots
 
 | 名称      | 说明     |
 | --------- | -------- |
 | `default` | 默认内容 |
 
-## Interface
+### Interface
 
 组件导出以下类型定义：
 

@@ -1,14 +1,12 @@
-import { placements } from '@fz-design/fz-popperjs'
-
 import type { ExtractPropTypes, PropType, StyleValue } from 'vue'
-import type { Options, Placement } from '@fz-design/fz-popperjs'
-import type { Measurable } from '../utils/constants'
+import type { Measurable } from '../interface'
 import type Content from './content.vue'
+import type { PopperOptions, PopperPlacement } from '../../../../hooks/use-popper'
 
 type ClassObjectType = Record<string, boolean>
 type ClassType = string | ClassObjectType | ClassType[]
 
-const POSITIONING_STRATEGIES = ['fixed', 'absolute'] as const
+export type PopperPositionStrategy = 'fixed' | 'absolute';
 
 export interface CreatePopperInstanceParams {
   referenceEl: Measurable
@@ -22,7 +20,7 @@ export const popperCoreConfigProps = {
     default: 0
   },
   fallbackPlacements: {
-    type: Array as PropType<Placement[]>,
+    type: Array as PropType<PopperPlacement[]>,
     default: undefined
   },
   gpuAcceleration: {
@@ -40,23 +38,22 @@ export const popperCoreConfigProps = {
    * @description position of Tooltip
    */
   placement: {
-    type: String,
-    values: placements,
+    type: String as PropType<PopperPlacement>,
     default: 'bottom'
   },
   /**
    * @description [popper.js](https://popper.js.org/docs/v2/) parameters
    */
   popperOptions: {
-    type: Object as PropType<Partial<Options>>,
+    type: Object as PropType<Partial<PopperOptions>>,
     default: () => ({})
   },
   strategy: {
-    type: String,
-    values: POSITIONING_STRATEGIES,
+    type: String as PropType<PopperPositionStrategy>,
     default: 'absolute'
   }
 } as const
+
 export type PopperCoreConfigProps = ExtractPropTypes<typeof popperCoreConfigProps>
 
 export const popperContentProps = {

@@ -1,2 +1,7 @@
-.fz-affix {
+@use 'config/mixins' as *;
+
+@include b(affix) {
+  @include m(fixed) {
+    position: fixed;
+  }
 }

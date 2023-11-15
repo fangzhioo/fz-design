@@ -4,7 +4,7 @@ import { buildPopperOptions, unwrapMeasurableEl } from '../utils/utils'
 
 import type { PopperContentProps } from '../components/content'
 import { isUndefined } from '../../../../utils'
-import { usePopper } from '../../../../hooks/use-popper'
+import { usePopper } from '../../../../hooks'
 
 type PartialOptions = any
 
@@ -64,9 +64,7 @@ export const usePopperContent = (props: PopperContentProps): any => {
 
   watch(instanceRef, instance => (popperInstanceRef.value = instance))
 
-  onMounted(() => {
-    console.log(instanceRef, 'use-content');
-    
+  onMounted(() => {    
     watch(
       () => unref(computedReference)?.getBoundingClientRect(),
       () => {

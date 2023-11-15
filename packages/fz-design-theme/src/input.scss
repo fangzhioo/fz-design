@@ -1,8 +1,8 @@
 @use 'sass:map';
 
-@use 'config/common-var.scss' as *;
-@use 'config/mixins.scss' as *;
+@use 'config/mixins' as *;
 @use 'config/mixins-var.scss' as *;
+@use 'config/common-var.scss' as *;
 
 // Input
 $input: () !default;
@@ -21,7 +21,7 @@ $input: map.merge(
     'hover-border-color': getCssVar('border-color-hover'),
     'clear-hover-color': getCssVar('text-color-secondary'),
     'focus-border-color': getCssVar('color-primary'),
-    'width': 100%
+    'width': 100%,
   ),
   $input
 );
@@ -32,7 +32,7 @@ $input-disabled: map.merge(
     'fill': getCssVar('disabled-bg-color'),
     'border': getCssVar('disabled-border-color'),
     'text-color': getCssVar('disabled-text-color'),
-    'placeholder-color': getCssVar('text-color-placeholder')
+    'placeholder-color': getCssVar('text-color-placeholder'),
   ),
   $input-disabled
 );
@@ -40,9 +40,9 @@ $input-disabled: map.merge(
 $input-font-size: () !default;
 $input-font-size: map.merge(
   (
-    'large': 16px,
+    'large': 14px,
     'default': 14px,
-    'small': 12px
+    'small': 12px,
   ),
   $input-font-size
 );
@@ -58,212 +58,216 @@ $input-padding-horizontal: map.merge(
   (
     'large': 16px,
     'default': 12px,
-    'small': 8px
+    'small': 8px,
   ),
   $input-padding-horizontal
 );
 
+@mixin inset-prepend-border($color) {
+  box-shadow: 1px 0 0 0 $color inset, 0 1px 0 0 $color inset,
+    0 -1px 0 0 $color inset;
+}
+
+@mixin inset-append-border($color) {
+  box-shadow: 0 1px 0 0 $color inset, 0 -1px 0 0 $color inset,
+    -1px 0 0 0 $color inset;
+}
+
+@mixin inset-prepend-input-border($color) {
+  box-shadow: 1px 0 0 0 $color inset, 1px 0 0 0 $color, 0 1px 0 0 $color inset,
+    0 -1px 0 0 $color inset !important;
+}
+
+@mixin inset-append-input-border($color) {
+  box-shadow: -1px 0 0 0 $color, -1px 0 0 0 $color inset, 0 1px 0 0 $color inset,
+    0 -1px 0 0 $color inset !important;
+}
+
+@mixin mixed-input-border($color) {
+  box-shadow: 0 0 0 1px $color inset;
+}
+
 @include b(input) {
   @include set-component-css-var('input', $input);
+  @include css-var-from-global('input-height', 'component-size');
 
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
   position: relative;
-  vertical-align: middle;
+  font-size: getCssVar('font-size', 'base');
+  display: inline-flex;
+  width: getCssVar('input-width');
+  line-height: getCssVar('input-height');
   box-sizing: border-box;
-  width: getCssVar('input', 'width');
-  font-size: map.get($input-font-size, 'default');
-
-  // 滚动条
+  vertical-align: middle;
   @include scroll-bar;
 
-  // 大小
-  @each $size in (large, small) {
-    @include m($size) {
-      font-size: map.get($input-font-size, $size);
-      line-height: map.get($input-line-height, $size);
+  & .#{$namespace}-input__clear,
+  & .#{$namespace}-input__password {
+    color: getCssVar('input-icon-color');
+    font-size: map.get($input-font-size, 'default');
+    cursor: pointer;
 
-      .#{$namespace}-input__wrapper {
-        padding: 1px map.get($input-padding-horizontal, $size);
+    &:hover {
+      color: getCssVar('input-clear-hover-color');
+    }
+  }
 
-        .#{$namespace}-input__inner {
-          height: calc(map.get($input-height, $size) - 2px);
-          line-height: calc(map.get($input-height, $size) - 2px);
+  & .#{$namespace}-input__count {
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    color: getCssVar('color-info');
+    font-size: 12px;
+
+    .#{$namespace}-input__count-inner {
+      background: getCssVar('fill-color', 'blank');
+      line-height: initial;
+      display: inline-block;
+      padding-left: 8px;
+    }
+  }
+
+  @include e(wrapper) {
+    display: inline-flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    padding: $border-width map.get($input-padding-horizontal, 'default')-$border-width;
+    background-color: var(
+      #{getCssVarName('input-bg-color')},
+      map.get($input, 'bg-color')
+    );
+    background-image: none;
+    border-radius: getCssVarWithDefault(
+      'input-border-radius',
+      map.get($input, 'border-radius')
+    );
+    cursor: text;
+    transition: getCssVar('transition-box-shadow');
+    transform: translate3d(0, 0, 0);
+    @include inset-input-border(
+      var(
+        #{getCssVarName('input-border-color')},
+        map.get($input, 'border-color')
+      )
+    );
+
+    &:hover {
+      @include inset-input-border(#{getCssVar('input', 'hover-border-color')});
+    }
+
+    @include when(focus) {
+      @include inset-input-border(#{getCssVar('input', 'focus-border-color')});
+    }
+  }
+
+  @include e(inner) {
+    // use map.get as default value for date picker range
+    @include set-css-var-value(
+      'input-inner-height',
+      calc(
+        var(
+            #{getCssVarName('input-height')},
+            #{map.get($input-height, 'default')}
+          ) - $border-width * 2
+      )
+    );
+
+    width: 100%;
+    flex-grow: 1;
+    -webkit-appearance: none;
+    color: var(
+      #{getCssVarName('input-text-color')},
+      map.get($input, 'text-color')
+    );
+    font-size: inherit;
+    height: getCssVar('input-inner-height');
+    line-height: getCssVar('input-inner-height');
+    padding: 0;
+    outline: none;
+    border: none;
+    background: none;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: getCssVarWithDefault(
+        'input-placeholder-color',
+        map.get($input, 'placeholder-color')
+      );
+    }
+
+    // override edge default style
+    &[type='password']::-ms-reveal {
+      display: none;
+    }
+  }
+
+  @each $slot in (prefix, suffix) {
+    @include e($slot) {
+      display: inline-flex;
+      white-space: nowrap;
+      flex-shrink: 0;
+      flex-wrap: nowrap;
+      height: 100%;
+      text-align: center;
+      color: var(
+        #{getCssVarName('input-icon-color')},
+        map.get($input, 'icon-color')
+      );
+      transition: all getCssVar('transition-duration');
+      pointer-events: none;
+    }
+
+    @include e(#{$slot}-inner) {
+      pointer-events: all;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      @if $slot == prefix {
+        > :last-child {
+          margin-right: 8px;
+        }
+
+        > :first-child {
+          &,
+          &.#{$namespace}-input__icon {
+            margin-left: 0;
+          }
+        }
+      } @else {
+        > :first-child {
+          margin-left: 8px;
         }
       }
     }
   }
 
-  // wrapper
-  @include e(wrapper) {
-    display: inline-flex;
-    flex: 1;
+  & .#{$namespace}-input__icon {
+    height: inherit;
+    line-height: inherit;
+    display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1px map.get($input-padding-horizontal, 'default');
-    box-sizing: border-box;
-    transition: 0.3s;
-    border: none;
-    background-image: none;
-    color: getCssVar('input', 'text-color');
-    background-color: getCssVar('input', 'bg-color');
-    border-radius: getCssVar('input', 'border-radius');
-    transform: translate3d(0, 0, 0);
-    transition: getCssVar('transition-box-shadow');
-
-    @include inset-input-border(#{getCssVar('input', 'border-color')});
-
-    &:hover,
-    &:focus {
-      @include inset-input-border(#{getCssVar('input', 'hover-border-color')});
-    }
-
-    // inner
-    @include e(inner) {
-      padding: 0;
-      outline: 0;
-      border: none;
-      background: 0 0;
-      box-sizing: border-box;
-      font-size: inherit;
-      width: 100%;
-      flex-grow: 1;
-      height: calc(map.get($input-height, 'default') - 2px);
-      line-height: calc(map.get($input-height, 'default') - 2px);
-      cursor: text;
-
-      // 禁用原生右侧上下选择箭头
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-      }
-
-      &:focus {
-        outline: 0;
-      }
-
-      &::placeholder {
-        color: getCssVarWithDefault(
-          'input-placeholder-color',
-          map.get($input, 'placeholder-color')
-        );
-      }
-
-      &[type='password']::-ms-reveal {
-        display: none;
-      }
-    }
+    transition: all getCssVar('transition-duration');
+    margin-left: 8px;
   }
 
-  // 清除按钮
-  @include e(clear-btn) {
-    cursor: pointer;
-    color: getCssVar('input', 'icon-color');
-
-    &:hover {
-      color: getCssVar('input', 'clear-hover-color');
-    }
+  @include e(validateIcon) {
+    pointer-events: none;
   }
 
-  // 密码展示
-  @include e(show-password) {
-    cursor: pointer;
-    color: getCssVar('input', 'icon-color');
-
-    &:hover {
-      color: getCssVar('input', 'clear-hover-color');
-    }
-  }
-
-  // 前后缀
-  @include e(prefix) {
-    margin-right: 4px;
-  }
-
-  @include e(suffix) {
-    margin-left: 4px;
-  }
-
-  // 前后插槽
-  @include e(before) {
-    position: relative;
-    display: inline-flex;
-    box-sizing: border-box;
-    align-items: center;
-    justify-content: center;
-    min-height: 100%;
-    border-radius: getCssVar('input', 'border-radius');
-    white-space: nowrap;
-
-    border-right: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    box-shadow: 1px 0 0 0 getCssVar('input', 'border-color') inset,
-      0 1px 0 0 getCssVar('input', 'border-color') inset,
-      0 -1px 0 0 getCssVar('input', 'border-color') inset;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  @include e(after) {
-    position: relative;
-    display: inline-flex;
-    box-sizing: border-box;
-    align-items: center;
-    justify-content: center;
-    min-height: 100%;
-    border-radius: getCssVar('input', 'border-radius');
-    white-space: nowrap;
-
-    border-left: 0;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    box-shadow: 0 1px 0 0 getCssVar('input', 'border-color') inset,
-      0 -1px 0 0 getCssVar('input', 'border-color') inset,
-      -1px 0 0 0 getCssVar('input', 'border-color') inset;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  // 搜索框
-  @include when(search) {
-    cursor: pointer;
-  }
-
-  // 插槽
-  @include when(before) {
-    // 移除 input 圆角
+  @include when(active) {
     .#{$namespace}-input__wrapper {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-    .#{$namespace}-input__before {
-      .#{$namespace}-button,
-      .#{$namespace}-input {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-    }
-  }
-
-  @include when(after) {
-    // 移除 input 圆角
-    .#{$namespace}-input__wrapper {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-    .#{$namespace}-input__after {
-      .#{$namespace}-button,
-      .#{$namespace}-input {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
+      @include mixed-input-border(
+        var(
+          #{getCssVarName('input-focus-color')},
+          map.get($input, 'focus-color')
+        )
+      );
     }
   }
 
@@ -272,23 +276,208 @@ $input-padding-horizontal: map.merge(
 
     .#{$namespace}-input__wrapper {
       background-color: map.get($input-disabled, 'fill');
+      @include mixed-input-border(map.get($input-disabled, 'border'));
+    }
 
-      .#{$namespace}-input__inner {
-        color: getCssVar('input', 'disabled-text-color');
+    .#{$namespace}-input__inner {
+      color: map.get($input-disabled, 'text-color');
+      -webkit-text-fill-color: map.get($input-disabled, 'text-color');
+      cursor: not-allowed;
 
-        &::placeholder {
-          color: map.get($input-disabled, 'placeholder-color');
-        }
+      &::placeholder {
+        color: map.get($input-disabled, 'placeholder-color');
       }
-      .#{$namespace}-input__icon {
-        cursor: not-allowed;
+    }
+
+    .#{$namespace}-input__icon {
+      cursor: not-allowed;
+    }
+  }
+
+  @include when(exceed) {
+    .#{$namespace}-input__wrapper {
+      @include mixed-input-border(#{getCssVar('color-danger')});
+    }
+
+    .#{$namespace}-input__suffix {
+      .#{$namespace}-input__count {
+        color: getCssVar('color-danger');
       }
     }
   }
 
-  // hidden
+  @each $size in (large, small) {
+    @include m($size) {
+      @include css-var-from-global('input-height', ('component-size', $size));
 
-  @include when(hidden) {
-    display: none;
+      font-size: map.get($input-font-size, $size);
+
+      @include e(wrapper) {
+        padding: $border-width map.get($input-padding-horizontal, $size)-$border-width;
+      }
+
+      @include e(inner) {
+        @include set-css-var-value(
+          'input-inner-height',
+          calc(
+            var(
+                #{getCssVarName('input-height')},
+                #{map.get($input-height, $size)}
+              ) - $border-width * 2
+          )
+        );
+      }
+    }
+  }
+}
+
+@include b(input-group) {
+  display: inline-flex;
+  width: 100%;
+  align-items: stretch;
+
+  @include e((append, prepend)) {
+    background-color: getCssVar('fill-color', 'light');
+    color: getCssVar('color-info');
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    border-radius: getCssVar('input-border-radius');
+    padding: 0 20px;
+    white-space: nowrap;
+
+    &:focus {
+      outline: none;
+    }
+
+    .#{$namespace}-select,
+    .#{$namespace}-button {
+      display: inline-block;
+      margin: 0 -20px;
+    }
+
+    button.#{$namespace}-button,
+    button.#{$namespace}-button:hover,
+    div.#{$namespace}-select .#{$namespace}-input__wrapper,
+    div.#{$namespace}-select:hover .#{$namespace}-input__wrapper {
+      border-color: transparent;
+      background-color: transparent;
+      color: inherit;
+    }
+
+    .#{$namespace}-button,
+    .#{$namespace}-input {
+      font-size: inherit;
+    }
+  }
+
+  @include e(prepend) {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    @include inset-prepend-border(#{getCssVar('input-border-color')});
+  }
+
+  @include e(append) {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    @include inset-append-border(#{getCssVar('input-border-color')});
+  }
+
+  @include m(prepend) {
+    > .#{$namespace}-input__wrapper {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    @include e(prepend) {
+      .#{$namespace}-select {
+        .#{$namespace}-input {
+          .#{$namespace}-input__inner {
+            box-shadow: none !important;
+          }
+          .#{$namespace}-input__wrapper {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            @include inset-prepend-border(#{getCssVar('input-border-color')});
+          }
+          &.is-focus {
+            .#{$namespace}-input__inner {
+              box-shadow: none !important;
+            }
+            .#{$namespace}-input__wrapper {
+              @include inset-prepend-input-border(
+                getCssVar('input-focus-border-color')
+              );
+              z-index: 2;
+              &:focus {
+                outline: none;
+                z-index: 2;
+                @include inset-prepend-input-border(
+                  getCssVar('input-focus-border-color')
+                );
+              }
+            }
+          }
+        }
+        &:hover {
+          .#{$namespace}-input__inner {
+            box-shadow: none !important;
+          }
+          .#{$namespace}-input__wrapper {
+            z-index: 1;
+            @include inset-prepend-input-border(
+              getCssVar('input-hover-border-color')
+            );
+          }
+        }
+      }
+    }
+  }
+
+  @include m(append) {
+    > .#{$namespace}-input__wrapper {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    @include e(append) {
+      .#{$namespace}-select {
+        .#{$namespace}-input {
+          .#{$namespace}-input__inner {
+            box-shadow: none !important;
+          }
+          .#{$namespace}-input__wrapper {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            @include inset-append-border(#{getCssVar('input-border-color')});
+          }
+          &.is-focus {
+            .#{$namespace}-input__inner {
+              box-shadow: none !important;
+            }
+            .#{$namespace}-input__wrapper {
+              z-index: 2;
+              @include inset-append-input-border(
+                getCssVar('input-focus-border-color')
+              );
+            }
+          }
+        }
+        &:hover {
+          .#{$namespace}-input__inner {
+            box-shadow: none !important;
+          }
+          .#{$namespace}-input__wrapper {
+            z-index: 1;
+            @include inset-append-input-border(
+              getCssVar('input-hover-border-color')
+            );
+          }
+        }
+      }
+    }
   }
 }

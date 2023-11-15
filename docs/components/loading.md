@@ -74,7 +74,9 @@ console.log(loadingInstance1 === loadingInstance2) // true
 
 如果完整引入，那么 `app.config.globalProperties` 上会有一个全局方法`FzLoading`， 它的调用方式为：`this.FzLoading(options)`，同样会返回一个 `Loading` 实例。
 
-## Attributes
+## API
+
+### Attributes
 
 | 参数        | 说明                                                                                                                                            | 类型                    | 默认值        |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | ------------- |

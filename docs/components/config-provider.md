@@ -10,14 +10,16 @@ config-provider/basic
 
 :::
 
-## Attributes
+## API
+
+### Attributes
 
 | 参数   | 说明         | 类型                              | 默认值  |
 | ------ | ------------ | --------------------------------- | ------- |
 | locale | 国际化对象   | Lang                              | zh      |
 | size   | 全局组件大小 | `'large' \| 'default' \| 'small'` | default |
 
-## Slots
+### Slots
 
 | 名称      | 说明     | Scope                              |
 | --------- | -------- | ---------------------------------- |

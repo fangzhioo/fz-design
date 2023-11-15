@@ -183,7 +183,7 @@
   const { useSlot, loop, hidden } = toRefs(config)
 </script>
 <template>
-  <fz-danmaku ref="danmakuRef" v-model:danmus="danmus" is-suspend v-bind="config">
+  <fz-danmaku ref="danmakuRef" v-model="danmus" is-suspend v-bind="config">
     <!-- 容器slot -->
     <div class="content-container">我是内容</div>
     <!-- 弹幕slot -->

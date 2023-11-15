@@ -56,6 +56,13 @@ export const Props = {
     type: [String, Number] as PropType<string | number>,
     default: 0
   },
+   /**
+   * @description whether to trigger form validation
+   */
+   validateEvent: {
+    type: Boolean,
+    default: true
+  },
   /**
    *  native input aria-label
    */

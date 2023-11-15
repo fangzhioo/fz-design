@@ -1,136 +1,185 @@
-import type { ExtractPropTypes, PropType } from 'vue'
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import type { ExtractPropTypes, PropType, StyleValue } from 'vue'
 import type { IconSlotType } from '../../../types'
 import type { InputSize, InputType } from './interface'
-import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, INPUT_EVENT } from '../../../constants'
+import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../../../constants'
 import { isString } from '../../../utils'
 
 export const Props = {
-  /** 绑定值 */
+  /**
+   * @description native input id
+   */
+  id: {
+    type: String,
+    default: undefined
+  },
+  /**
+   * @description input box size
+   */
+  size: {
+    type: String as PropType<InputSize>,
+    default: 'default'
+  },
+  /**
+   * @description whether to disable
+   */
+  disabled: Boolean,
+  /**
+   * @description binding value
+   */
   modelValue: {
-    type: [Number, String] as PropType<string | number>,
+    type: [
+      String,
+      Number,
+      Object
+    ] as PropType<string | number | null | undefined>,
     default: ''
   },
   /**
-   * 类型
-   *
-   * 文字输入框或者密码输入框
-   *
-   * @values text password number
-   * @default text
+   * @description type of input
    */
   type: {
     type: String as PropType<InputType>,
     default: 'text'
   },
   /**
-   * 尺寸
-   *
-   * @values large default small
+   * @description control the resizability
    */
-  size: {
-    type: String as PropType<InputSize>
+  resize: {
+    type: String as PropType<'none'|'both'| 'horizontal'| 'vertical'>
   },
   /**
-   * 是否禁用
-   *
-   * @see disabled https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input#attr-disabled
+   * @description native input autocomplete
    */
-  disabled: {
-    type: Boolean
+  autocomplete: {
+    type: String,
+    default: 'off'
   },
   /**
-   * 是否只读
-   *
-   * @see readonly https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input#attr-readonly
+   * @description format content
    */
-  readonly: {
-    type: Boolean
+  formatter: {
+    type: Function
   },
   /**
-   * 最大输入长度
-   *
-   * @see maxlength https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input#attr-maxlength
+   * @description parse content
    */
-  maxlength: {
-    type: Number
+  parser: {
+    type: Function as PropType<Function>
   },
   /**
-   * 是否自动获取焦点
-   *
-   * @see autofocus https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input#attr-autofocus
-   */
-  autofocus: {
-    type: Boolean
-  },
-  /**
-   * 占位符
-   *
-   * @see placeholder https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input#attr-placeholder
+   * @description placeholder
    */
   placeholder: {
     type: String
   },
-  /** 是否可清除 */
+  /**
+   * @description native input form
+   */
+  form: {
+    type: String
+  },
+  /**
+   * @description native input readonly
+   */
+  readonly: {
+    type: Boolean,
+    default: false
+  },
+  /**
+   * @description native input readonly
+   */
   clearable: {
-    type: Boolean
+    type: Boolean,
+    default: false
   },
-
-  /** 是否可搜索 */
-  search: {
-    type: Boolean
-  },
-
-  /** 是否显示查看密码的按钮 */
+  /**
+   * @description toggleable password input
+   */
   showPassword: {
-    type: Boolean
+    type: Boolean,
+    default: false
   },
-  /** 后缀 icon */
+  /**
+   * @description word count
+   */
+  showWordLimit: {
+    type: Boolean,
+    default: false
+  },
+  /**
+   * @description suffix icon
+   */
   suffixIcon: {
     type: Object as PropType<IconSlotType>
   },
-  /** 前缀 icon */
+  /**
+   * @description prefix icon
+   */
   prefixIcon: {
     type: Object as PropType<IconSlotType>
   },
   /**
-   *  input tabindex
+   * @description container role, internal properties provided for use by the picker component
+   */
+  containerRole: {
+    type: String,
+    default: undefined
+  },
+  /**
+   * @description native input aria-label
+   */
+  label: {
+    type: String,
+    default: undefined
+  },
+  /**
+   * @description input tabindex
    */
   tabindex: {
     type: [String, Number] as PropType<string | number>,
     default: 0
   },
   /**
-   *  native input aria-label
+   * @description whether to trigger form validation
    */
-  label: {
-    type: String,
-    default: undefined
+  validateEvent: {
+    type: Boolean,
+    default: true
   },
-
   /**
-   * 是否开启自动填充特性提示
-   *
-   * 注意这不是一个布尔属性！
-   *
-   * 详情配置可参考
-   *
-   * @see HTML属性autocomplete https://developer.mozilla.org/zh-CN/docs/Web/HTML/Attributes/autocomplete
-   * @see autocomplete https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input#autocomplete
+   * @description input or textarea element style
    */
-  autocomplete: {
-    type: String,
-    default: 'off'
+  inputStyle: {
+    type: [Object, Array, String] as PropType<StyleValue>,
+    default: () => ({} as const)
+  },
+  /**
+   * @description native input autofocus
+   */
+  autofocus: {
+    type: Boolean,
+    default: false
   }
 } as const
 
 export const Emits = {
-  [INPUT_EVENT]: (value: string | number): boolean => isString(value),
-  [CHANGE_EVENT]: (value: string | number): boolean => isString(value),
-  [FOCUS_EVENT]: (evt: FocusEvent): boolean => evt instanceof FocusEvent,
-  [BLUR_EVENT]: (evt: FocusEvent): boolean => evt instanceof FocusEvent,
-  search: (value: string | number, evt: MouseEvent | KeyboardEvent): boolean =>
-    evt instanceof Event,
-  clear: (): boolean => true
+  [UPDATE_MODEL_EVENT]: (value: string) => isString(value),
+  [INPUT_EVENT]: (value: string) => isString(value),
+  [CHANGE_EVENT]: (value: string) => isString(value),
+  [FOCUS_EVENT]: (evt: FocusEvent) => evt instanceof FocusEvent,
+  [BLUR_EVENT]: (evt: FocusEvent) => evt instanceof FocusEvent,
+  clear: () => true,
+  mouseleave: (evt: MouseEvent) => evt instanceof MouseEvent,
+  mouseenter: (evt: MouseEvent) => evt instanceof MouseEvent,
+  // NOTE: when autofill by browser, the keydown event is instanceof Event, not KeyboardEvent
+  // relative bug report https://github.com/element-plus/element-plus/issues/6665
+  keydown: (evt: KeyboardEvent | Event) => evt instanceof Event,
+  compositionstart: (evt: CompositionEvent) => evt instanceof CompositionEvent,
+  compositionupdate: (evt: CompositionEvent) => evt instanceof CompositionEvent,
+  compositionend: (evt: CompositionEvent) => evt instanceof CompositionEvent
 }
+
+export type InputEmits = typeof Emits
 
 export type InputProps = ExtractPropTypes<typeof Props>

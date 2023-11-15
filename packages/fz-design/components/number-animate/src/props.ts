@@ -32,15 +32,28 @@ export const Props = {
     default: 2000
   },
   /** 对数字决定金额格式化 */
-  formatter: Boolean,
+  formatter: {
+    type: Function as PropType<(num: number) => string | number | null | undefined>,
+    default: (num: number) => num.toLocaleString()
+  },
   /** 样式列表 */
   styles: {
     type: Object as PropType<CSSProperties>
   },
   /** 是否初始化自动播放 */
-  automatic: {
+  autoplay: {
     type: Boolean,
     default: true
+  },
+  /** 是否循环播放 */
+  loop: {
+    type: Boolean,
+    default: false
+  },
+  /** 自动播放间隔时间 ms */
+  interval: {
+    type: Number,
+    default: 3000
   }
 } as const
 

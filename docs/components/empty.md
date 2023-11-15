@@ -40,7 +40,9 @@ empty/bottom-content
 
 :::
 
-## Attributes
+## API
+
+### Attributes
 
 | 参数        | 说明             | 类型     | 默认值 |
 | ----------- | ---------------- | -------- | ------ |
@@ -48,7 +50,7 @@ empty/bottom-content
 | image-size  | 图像尺寸（宽度） | `number` | —      |
 | description | 描述信息         | `string` | ''     |
 
-## Slots
+### Slots
 
 | 名称        | 说明         |
 | ----------- | ------------ |

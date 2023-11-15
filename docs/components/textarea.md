@@ -42,7 +42,9 @@ textarea/autosize
 
 :::
 
-## Attributes
+## API
+
+### Attributes
 
 | 参数         | 说明                     | 类型               | 默认值 |
 | ------------ | ------------------------ | ------------------ | ------ |
@@ -54,7 +56,7 @@ textarea/autosize
 | placeholder  | 占位符                   | `string`           | -      |
 | autocomplete | 是否开启自动填充特性提示 | `string`           | off    |
 
-## Events
+### Events
 
 | 事件名称 | 说明       | 类型                              |
 | -------- | ---------- | --------------------------------- |
@@ -63,7 +65,7 @@ textarea/autosize
 | focus    | 获取焦点时 | `(evt: FocusEvent) => void`       |
 | blur     | 失去焦点时 | `(evt: FocusEvent) => void`       |
 
-## Interface
+### Interface
 
 组件导出以下类型定义：
 
@@ -76,7 +78,7 @@ import type {
 } from 'fz-design'
 ```
 
-## Exposes
+### Exposes
 
 组件向外暴露的方法
 

@@ -1,19 +1,28 @@
 import { computed, onBeforeUnmount, ref, shallowRef, unref, watch } from 'vue'
-import { createPopper } from '@fz-design/fz-popperjs'
+import { createPopper, placements } from '@fz-design/fz-popperjs'
 
 import type { Ref } from 'vue'
 import type {
   Instance,
   Modifier,
+  Obj,
   Options,
   State,
-  VirtualElement
+  VirtualElement,
+  Placement
 } from '@fz-design/fz-popperjs'
 import { fromPairs } from '../utils'
 
+export type PopperInstance = Instance;
+export type PopperModifier<N, T extends Obj> = Modifier<N, T>;
+export type PopperOptions = Options;
+export type PopperState = State;
+export type PopperVirtualElement = VirtualElement;
+export type PopperPlacement = Placement;
+
 type ElementType = HTMLElement | undefined
-type ReferenceElement = ElementType | VirtualElement
-export type PartialOptions = Partial<Options>
+type ReferenceElement = ElementType | PopperVirtualElement
+export type PartialOptions = Partial<PopperOptions>
 
 export const usePopper = (
   referenceElementRef: Ref<ReferenceElement>,
@@ -30,9 +39,9 @@ export const usePopper = (
       Object.assign(states.value, derivedState)
     },
     requires: ['computeStyles']
-  } as Modifier<'updateState', any>
+  } as PopperModifier<'updateState', any>
 
-  const options = computed<Options>(() => {
+  const options = computed<PopperOptions>(() => {
     const { onFirstUpdate, placement, strategy, modifiers } = unref(opts)
 
     return {
@@ -47,8 +56,8 @@ export const usePopper = (
     }
   })
 
-  const instanceRef = shallowRef<Instance | undefined>()
-  const states = ref<Pick<State, 'styles' | 'attributes'>>({
+  const instanceRef = shallowRef<PopperInstance | undefined>()
+  const states = ref<Pick<PopperState, 'styles' | 'attributes'>>({
     styles: {
       popper: {
         position: unref(options).strategy,
@@ -104,15 +113,15 @@ export const usePopper = (
   }
 }
 
-function deriveState (state: State): Pick<State, 'styles' | 'attributes'> {
-  const elements = Object.keys(state.elements) as unknown as (keyof State['elements'])[]
+function deriveState (state: PopperState): Pick<PopperState, 'styles' | 'attributes'> {
+  const elements = Object.keys(state.elements) as unknown as (keyof PopperState['elements'])[]
 
   const styles = fromPairs(
     elements.map(
       element =>
         [element, state.styles[element] || {}] as [
           string,
-          State['styles'][keyof State['styles']]
+          PopperState['styles'][keyof PopperState['styles']]
         ]
     )
   )
@@ -122,7 +131,7 @@ function deriveState (state: State): Pick<State, 'styles' | 'attributes'> {
       element =>
         [element, state.attributes[element]] as [
           string,
-          State['attributes'][keyof State['attributes']]
+          PopperState['attributes'][keyof PopperState['attributes']]
         ]
     )
   )
@@ -132,5 +141,7 @@ function deriveState (state: State): Pick<State, 'styles' | 'attributes'> {
     attributes
   }
 }
+
+export const popperPlacements = placements;
 
 export type UsePopperReturn = ReturnType<typeof usePopper>

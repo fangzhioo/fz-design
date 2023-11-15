@@ -42,7 +42,9 @@ watermark/custom
 
 :::
 
-## Attributes
+## API
+
+### Attributes
 
 | 参数    | 说明                                        | 类型                 | 默认值                     |
 | ------- | ------------------------------------------- | -------------------- | -------------------------- |
@@ -56,12 +58,14 @@ watermark/custom
 | gap     | 水印之间的间距                              | `[number, number]`   | \[100, 100\]               |
 | offset  | 水印从容器左上角的偏移 默认值为 `gap/2`     | `[number, number]`   | \[gap\[0\]/2, gap\[1\]/2\] |
 
-## Font
+### Font
 
-| 名称       | 描述        | 类型                                          | 默认            |
-| ---------- | ----------- | --------------------------------------------- | --------------- |
-| color      | 字体颜色  | `string`                                      | rgba(0,0,0,.15) |
-| fontSize   | 字体大小   | `number`                                      | 16              |
-| fontWeight | 字重 | `'normal' \| 'light' \| 'weight' \| number`   | normal          |
-| fontFamily | 字体 | `string`                                      | sans-serif      |
-| fontStyle  | 字体样式  | `'none' \| 'normal' \| 'italic' \| 'oblique'` | normal          |
+| 名称         | 描述         | 类型                                                                          | 默认            |
+| ------------ | ------------ | ----------------------------------------------------------------------------- | --------------- |
+| color        | 字体颜色     | `string`                                                                      | rgba(0,0,0,.15) |
+| fontSize     | 字体大小     | `number`                                                                      | 16              |
+| fontWeight   | 字重         | `'normal' \| 'light' \| 'weight' \| number`                                   | normal          |
+| fontFamily   | 字体         | `string`                                                                      | sans-serif      |
+| fontStyle    | 字体样式     | `'none' \| 'normal' \| 'italic' \| 'oblique'`                                 | normal          |
+| textAlign    | 文字对齐方式 | `'left' \| 'right' \| 'center'\| 'start' \| 'end' `                           | center          |
+| textBaseline | 文字基线     | `'top' \| 'hanging' \| 'middle' \| 'alphabetic' \| 'ideographic' \| 'bottom'` | top             |

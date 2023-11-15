@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-  import { useTheme, locale as lang } from 'fz-design'
+  import { locale as lang, addClass, removeClass } from 'fz-design'
   import { ref } from 'vue'
   import { IconSun, IconMoon } from '@fz-design/fz-design-icon'
 
-  const theme = useTheme() // 'dark' | 'light'
-  const isLight = ref<boolean>(theme.value !== 'dark')
+  const theme = ref(
+    window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  ) // 'dark' | 'light'
   const size = ref('default') // '' | 'small' | 'default' | 'large'
   const { zhCn, enUs } = lang
   const locale = ref(zhCn)
@@ -14,8 +15,12 @@
     { name: 'enUs', lang: enUs }
   ]
 
-  const toggleTheme = (value: boolean): void => {
-    theme.value = value ? 'dark' : 'light'
+  const toggleTheme = (value: string): void => {
+    // mode for fz-design
+    document.documentElement.setAttribute('data-mode', value)
+    // class for vitepress
+    addClass(document.documentElement, value === 'dark' ? 'dark' : 'light')
+    removeClass(document.documentElement, value === 'dark' ? 'light' : 'dark')
   }
 
   const handleChangeSize = (s: string): void => {
@@ -37,8 +42,11 @@
       <div class="my-4">
         <span>当前页面主题：</span>
         <fz-swap
-          v-model="isLight"
+          v-model="theme"
+          active-value="light"
+          inactive-value="dark"
           :size="24"
+          type="sound"
           :icon-on="IconSun"
           :icon-off="IconMoon"
           @change="toggleTheme"

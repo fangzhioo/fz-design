@@ -1,3 +1,3 @@
-export { default as ClickOutside } from './click-outside';
-export { default as TrapFocus } from './trap-focus';
-export { default as RepeatClick } from './repeat-click';
+export * from './click-outside';
+export * from './trap-focus';
+export * from './repeat-click'

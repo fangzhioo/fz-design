@@ -40,7 +40,9 @@ divider/vertical-divider
 
 :::
 
-## Attributes
+## API
+
+### Attributes
 
 | 参数             | 说明                   | 类型                                                                                                                                 | 默认值     |
 | ---------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ---------- |
@@ -48,7 +50,7 @@ divider/vertical-divider
 | border-style     | 分割线样式             | `'none' \| 'solid' \| 'hidden' \| 'dashed' \| ...` [css/border-style](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-style) | solid      |
 | content-position | 自定义分隔线内容的位置 | `'left' \| 'right' \| 'center' `                                                                                                     | center     |
 
-## Slots
+### Slots
 
 | 名称    | 说明               |
 | ------- | ------------------ |

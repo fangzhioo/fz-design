@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import type { StyleValue } from 'vue'
   import { computed, nextTick, onMounted, ref, shallowRef, useAttrs, watch } from 'vue'
-  import { useCursor, useNamespace } from '../../../hooks'
+  import { useCursor, useFocusController, useNamespace } from '../../../hooks'
   import { Props } from './props'
   import { isClient, isNil, isObject, warning } from '../../../utils'
   import {
@@ -12,6 +12,7 @@
     UPDATE_MODEL_EVENT
   } from '../../../constants'
   import { calcTextareaHeight } from './utils'
+  import { useFormItem } from '../../form'
 
   defineOptions({ name: 'FzTextarea' })
   const ns = useNamespace('textarea')
@@ -30,6 +31,7 @@
   const countStyle = ref<StyleValue>()
   const textarea = shallowRef<HTMLTextAreaElement>()
   const textareaCalcStyle = shallowRef<StyleValue>({})
+  const { formItem } = useFormItem()
 
   const nativeInputValue = computed(() =>
     isNil(prop.modelValue) ? '' : String(prop.modelValue)
@@ -58,15 +60,26 @@
     ns.is('exceed', inputExceed.value)
   ])
 
+  const { handleFocus, handleBlur } = useFocusController(
+    textarea,
+    {
+      afterBlur () {
+        if (prop.validateEvent) {
+          formItem?.validate?.('blur').catch((err: any) => warning(ns.b(), err))
+        }
+      }
+    }
+  )
+
   const [recordCursor, setCursor] = useCursor(textarea)
 
   const setNativeInputValue = (): void => {
-    const input = textarea.value
+    const inputTarget = textarea.value
     const formatterValue = prop.formatter
       ? prop.formatter(nativeInputValue.value)
       : nativeInputValue.value
-    if (!input || input.value === formatterValue) return
-    input.value = formatterValue
+    if (!inputTarget || inputTarget.value === formatterValue) return
+    inputTarget.value = formatterValue
   }
 
   const resizeTextarea = (): void => {
@@ -133,14 +146,6 @@
 
   const handleKeydown = (evt: KeyboardEvent): void => {
     emit('keydown', evt)
-  }
-
-  const handleBlur = (evt: FocusEvent): void => {
-    emit(BLUR_EVENT, evt)
-  }
-
-  const handleFocus = (evt: FocusEvent): void => {
-    emit(FOCUS_EVENT, evt)
   }
 
   const select = (): void => {

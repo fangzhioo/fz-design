@@ -15,7 +15,7 @@
   ])
 </script>
 <template>
-  <fz-danmaku ref="danmakuRef" v-model:danmus="danmusMock" loop>
+  <fz-danmaku ref="danmakuRef" v-model="danmusMock" loop>
     <!-- 容器slot -->
     <div class="content-container">我是内容</div>
   </fz-danmaku>

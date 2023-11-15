@@ -22,33 +22,35 @@ danmaku/custom
 
 :::
 
-## Attributes
+## API
 
-| 参数           | 说明                                                 | 类型                   | 默认值 |
-| -------------- | ---------------------------------------------------- | ---------------------- | ------ |
-| danmus         | 弹幕元素列表，支持纯文本或者自定义对象(支持 v-model) | `string[] \| object[]` | []     |
-| channels       | 轨道数量                                             | `number`               | 0      |
-| autoplay       | 是否自动播放                                         | `boolean`              | true   |
-| use-slot       | 是否开启弹幕插槽                                     | `boolean`              | false  |
-| loop           | 是否开启弹幕循环                                     | `boolean`              | false  |
-| hidden         | 是否隐藏                                             | `boolean`              | false  |
-| font-size      | 弹幕字号（slot 模式下不可用）                        | `number`               | 18     |
-| extra-style    | 额外样式（slot 模式下不可用）                        | `string`               | -      |
-| speeds         | 弹幕速度（每秒移动的像素数）                         | `number`               | 200    |
-| debounce       | 弹幕刷新频率(ms)                                     | `number`               | 100    |
-| random-channel | 随机选择轨道插入                                     | `boolean`              | false  |
-| is-suspend     | 是否开启弹幕悬浮暂停（试验型功能）                   | `boolean`              | true   |
-| top            | 弹幕垂直间距(px)                                     | `number`               | 4      |
-| right          | 弹幕水平间距(px)                                     | `number`               | 0      |
+### Attributes
 
-## Slots
+| 参数                  | 说明                                                 | 类型                   | 默认值 |
+| --------------------- | ---------------------------------------------------- | ---------------------- | ------ |
+| model-value / v-model | 弹幕元素列表，支持纯文本或者自定义对象(支持 v-model) | `string[] \| object[]` | []     |
+| channels              | 轨道数量                                             | `number`               | 0      |
+| autoplay              | 是否自动播放                                         | `boolean`              | true   |
+| use-slot              | 是否开启弹幕插槽                                     | `boolean`              | false  |
+| loop                  | 是否开启弹幕循环                                     | `boolean`              | false  |
+| hidden                | 是否隐藏                                             | `boolean`              | false  |
+| font-size             | 弹幕字号（slot 模式下不可用）                        | `number`               | 18     |
+| extra-style           | 额外样式（slot 模式下不可用）                        | `string`               | -      |
+| speeds                | 弹幕速度（每秒移动的像素数）                         | `number`               | 200    |
+| debounce              | 弹幕刷新频率(ms)                                     | `number`               | 100    |
+| random-channel        | 随机选择轨道插入                                     | `boolean`              | false  |
+| is-suspend            | 是否开启弹幕悬浮暂停（试验型功能）                   | `boolean`              | true   |
+| top                   | 弹幕垂直间距(px)                                     | `number`               | 4      |
+| right                 | 弹幕水平间距(px)                                     | `number`               | 0      |
+
+### Slots
 
 | 名称    | 说明       |
 | ------- | ---------- |
 | default | 默认内容   |
 | dm      | 自定义弹幕 |
 
-## Events
+### Events
 
 | 事件名称 | 说明                                           | 类型                           |
 | -------- | ---------------------------------------------- | ------------------------------ |
@@ -57,7 +59,7 @@ danmaku/custom
 | dm-over  | 开启弹幕悬浮暂停时，当进入弹幕，暂停时触发     | `(dm: string\|object) => void` |
 | dm-out   | 开启弹幕悬浮暂停时，当离开弹幕，恢复滚动时触发 | `(dm: string\|object) => void` |
 
-## Exposes
+### Exposes
 
 | 名称           | 说明                                         | 类型                             |
 | -------------- | -------------------------------------------- | -------------------------------- |

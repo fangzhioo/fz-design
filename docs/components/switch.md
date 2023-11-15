@@ -100,7 +100,9 @@ switch/custom-action-icon
 
 :::
 
-## Attributes
+## API
+
+### Attributes
 
 | 参数                 | 说明                                                                         | 类型                                | 默认值 |
 | -------------------- | ---------------------------------------------------------------------------- | ----------------------------------- | ------ |
@@ -122,7 +124,7 @@ switch/custom-action-icon
 | validate-event       | 是否触发 form 的校验事件                                                     | `boolean`                           | true   |
 | before-change        | switch 状态改变前的钩子， 返回 false 或者返回 Promise 且被 reject 则停止切换 | `() => Promise<boolean> \| boolean` | -      |
 
-## Events
+### Events
 
 | 事件名称 | 说明   | 类型                                         |
 | -------- | ------ | -------------------------------------------- |

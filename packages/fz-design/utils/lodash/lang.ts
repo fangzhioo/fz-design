@@ -38,7 +38,7 @@ export const isFunction = (val: unknown): val is Function => typeof val === 'fun
 
 export const isNull = (val: unknown): boolean => val === null
 
-export const isNil = (val: unknown): val is any => isUndefined(val) || isNull(val)
+export const isNil = (val: unknown): val is null | undefined => isUndefined(val) || isNull(val)
 
 export const hasOwn = (val: object, key: string | symbol): boolean =>
   Object.prototype.hasOwnProperty.call(val, key)

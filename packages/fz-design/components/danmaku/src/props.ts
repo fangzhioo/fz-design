@@ -6,14 +6,6 @@ export const Props = {
     type: Array as PropType<Danmu[]>
   },
   /**
-   * 弹幕列表数据
-   */
-  danmus: {
-    type: Array as PropType<Danmu[]>,
-    required: true,
-    default: () => []
-  },
-  /**
    * 轨道数量，0为最大轨道数量（撑满容器）
    */
   channels: {

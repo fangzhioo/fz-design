@@ -12,7 +12,9 @@ link/basic
 
 :::
 
-## Attributes
+## API
+
+### Attributes
 
 | 参数        | 说明       | 类型    | 默认值    |
 | ----------- | ---------- | ------- | --------- |
@@ -22,14 +24,14 @@ link/basic
 | `href`      | 链接地址   | string  | -         |
 | `icon`      | 图标       | SvgIcon | -         |
 
-## Slots
+### Slots
 
 | 名称      | 说明      |
 | --------- | --------- |
 | `default` | 默认 slot |
 | `icon`    | 图标      |
 
-## Events
+### Events
 
 | 事件名称 | 说明     | 回调参数   |
 | -------- | -------- | ---------- |

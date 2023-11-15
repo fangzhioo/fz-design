@@ -1,6 +1,6 @@
 <template>
-  <fz-number-animate :from="0" :to="15000" />
-  <fz-number-animate formatter :from="100" :to="9999" />
+  <fz-number-animate :from="5000" :to="15000" />
+  <fz-number-animate loop :to="9999" />
 </template>
 
 <style scoped>

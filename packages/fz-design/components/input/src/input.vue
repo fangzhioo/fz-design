@@ -1,203 +1,390 @@
 <script lang="ts" setup>
+  import {
+    ref,
+    computed,
+    useSlots,
+    useAttrs as useRawAttrs,
+    shallowRef,
+    nextTick,
+    watch,
+    onMounted
+  } from 'vue'
   import { Props, Emits } from './props'
-  import { FzSvgIcon } from '../../svg-icon'
-  import { FzButton } from '../../button'
-  import { FzSwap } from '../../swap'
-  import { ref, toRefs, computed, watchEffect, useSlots, useAttrs, shallowRef, nextTick } from 'vue'
-  import { IconEyeOff, IconEye, IconX, IconSearch } from '@fz-design/fz-design-icon'
+  import { FzSvgIcon } from '../..'
+  import { CHANGE_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../../../constants'
+  import { isNil, warning } from '../../../utils'
+  import {
+    useFormDisabled,
+    useFormItem,
+    useFormItemInputId,
+    useFormSize
+  } from '../../form/src/hooks'
+  import { useAttrs, useCursor, useFocusController, useNamespace } from '../../../hooks'
+  import { IconEyeOff, IconEye, IconXCircle } from '@fz-design/fz-design-icon'
 
-  import type { InputType } from './interface'
-  import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, INPUT_EVENT } from '../../../constants'
-  import { useFormSize } from '../../form/src/hooks'
-  import { useNamespace } from '../../../hooks'
+  import type { StyleValue } from 'vue'
 
-  defineOptions({ name: 'FzInput' })
+  // TODO 缺少form校验
+  const ValidateIconsMap: Record<any, any> = {}
+
+  defineOptions({
+    name: 'FzInput',
+    inheritAttrs: false
+  })
 
   const ns = useNamespace('input')
   const props = defineProps(Props)
   const emit = defineEmits(Emits)
   const slots = useSlots()
-  const attrs = useAttrs()
-  const modelValue = defineModel<string | number>({
-    default: '',
-    type: [String, Number]
-  })
+  const rawAttrs = useRawAttrs()
   const input = shallowRef<HTMLInputElement>()
 
-  const inputSize = useFormSize(props.size)
+  const hovering = ref(false)
+  const isComposing = ref(false)
+  const passwordVisible = ref(false)
 
-  const handleInput = (): void => {
-    emit(INPUT_EVENT, modelValue.value)
-  }
-
-  const handleClear = (): void => {
-    modelValue.value = ''
-    emit('clear')
-  }
-
-  const handleChange = (): void => {
-    emit(CHANGE_EVENT, modelValue.value)
-  }
-
-  const handleBlur = (evt: FocusEvent): void => {
-    emit(BLUR_EVENT, evt)
-  }
-
-  const handleFocus = (evt: FocusEvent): void => {
-    emit(FOCUS_EVENT, evt)
-  }
-
-  /** 是否展示密码 */
-  const showPass = ref<boolean>(false)
-
-  /** type 类型 */
-  const inputType = ref<InputType>(props.type)
-
-  watchEffect((): void => {
-    inputType.value = props.type
+  const containerAttrs = computed(() => {
+    const comboBoxAttrs: Record<string, unknown> = {}
+    if (props.containerRole === 'combobox') {
+      comboBoxAttrs['aria-haspopup'] = rawAttrs['aria-haspopup']
+      comboBoxAttrs['aria-owns'] = rawAttrs['aria-owns']
+      comboBoxAttrs['aria-expanded'] = rawAttrs['aria-expanded']
+    }
+    return comboBoxAttrs
   })
 
-  /**
-   * 点击搜索
-   *
-   * @see KeyboardEvent https://developer.mozilla.org/zh-CN/docs/Web/API/KeyboardEvent
-   * @param { Object } evt 事件对象
-   */
-  const handleSearch = (evt: MouseEvent | KeyboardEvent): void => {
-    // run(props.onSearch, modelValue.value, evt)
-    emit('search', modelValue.value, evt)
+  const containerKls = computed(() => [
+    ns.b(),
+    ns.m(inputSize.value),
+    ns.is('disabled', inputDisabled.value),
+    ns.is('exceed', inputExceed.value),
+    {
+      [ns.b('group')]: slots.prepend || slots.append,
+      [ns.bm('group', 'append')]: slots.append,
+      [ns.bm('group', 'prepend')]: slots.prepend,
+      [ns.m('prefix')]: slots.prefix || props.prefixIcon,
+      [ns.m('suffix')]:
+        slots.suffix || props.suffixIcon || props.clearable || props.showPassword,
+      [ns.bm('suffix', 'password-clear')]: showClear.value && showPwdVisible.value
+    },
+    rawAttrs.class
+  ])
+
+  const wrapperKls = computed(() => [ns.e('wrapper'), ns.is('focus', isFocused.value)])
+
+  const attrs = useAttrs({
+    excludeKeys: computed<string[]>(() => {
+      return Object.keys(containerAttrs.value)
+    })
+  })
+  const { form, formItem } = useFormItem()
+  const { inputId } = useFormItemInputId(props, {
+    formItemContext: formItem
+  })
+  const inputSize = useFormSize()
+  const inputDisabled = useFormDisabled()
+  const inputType = computed(() => props.showPassword ? (passwordVisible.value ? 'text' : 'password') : props.type);
+
+  const { wrapperRef, isFocused, handleFocus, handleBlur } = useFocusController(input, {
+    afterBlur () {
+      if (props.validateEvent) {
+        formItem?.validate?.('blur').catch((err: any) => warning(ns.b(), err))
+      }
+    }
+  })
+
+  const needStatusIcon = computed(() => form?.statusIcon ?? false)
+  const validateState = computed(() => formItem?.validateState || '')
+  const validateIcon = computed(
+    () => validateState.value && ValidateIconsMap[validateState.value]
+  )
+  const passwordIcon = computed(() => (passwordVisible.value ? IconEye : IconEyeOff))
+  const containerStyle = computed<StyleValue>(() => [
+    rawAttrs.style as StyleValue,
+    props.inputStyle
+  ])
+
+  const nativeInputValue = computed(() =>
+    isNil(props.modelValue) ? '' : String(props.modelValue)
+  )
+  const showClear = computed(
+    () =>
+      props.clearable &&
+      !inputDisabled.value &&
+      !props.readonly &&
+      !!nativeInputValue.value &&
+      (isFocused.value || hovering.value)
+  )
+  const showPwdVisible = computed(
+    () =>
+      props.showPassword &&
+      !inputDisabled.value &&
+      !props.readonly &&
+      !!nativeInputValue.value &&
+      (!!nativeInputValue.value || isFocused.value)
+  )
+  const isWordLimitVisible = computed(
+    () =>
+      props.showWordLimit &&
+      !!attrs.value.maxlength &&
+      props.type === 'text' &&
+      !inputDisabled.value &&
+      !props.readonly &&
+      !props.showPassword
+  )
+  const textLength = computed(() => nativeInputValue.value.length)
+  const inputExceed = computed(
+    () =>
+      // show exceed style if length of initial value greater then maxlength
+      !!isWordLimitVisible.value && textLength.value > Number(attrs.value.maxlength)
+  )
+  const suffixVisible = computed(
+    () =>
+      !!slots.suffix ||
+      !!props.suffixIcon ||
+      showClear.value ||
+      props.showPassword ||
+      isWordLimitVisible.value ||
+      (!!validateState.value && needStatusIcon.value)
+  )
+
+  const [recordCursor, setCursor] = useCursor(input)
+
+  const setNativeInputValue = (): void => {
+    const inputTarget = input.value;
+    const formatterValue = props.formatter
+      ? props.formatter(nativeInputValue.value)
+      : nativeInputValue.value
+    if (!inputTarget || inputTarget.value === formatterValue) return
+    inputTarget.value = formatterValue
   }
 
-  /**
-   * 按下回车
-   *
-   * @param { Object } evt 事件对象
-   */
-  const handleEnter = (evt: KeyboardEvent): void => {
-    const { search } = toRefs(props)
+  const handleInput = async (event: Event): Promise<void> => {
+    recordCursor()
 
-    if (search.value) {
-      handleSearch(evt)
+    let { value } = event.target as HTMLInputElement
+
+    if (props.formatter) {
+      value = props.parser ? props.parser(value) : value
+    }
+
+    // should not emit input during composition
+    if (isComposing.value) return
+
+    // should remove the following line when we don't support IE
+    if (value === nativeInputValue.value) {
+      setNativeInputValue()
+      return
+    }
+
+    emit(UPDATE_MODEL_EVENT, value)
+    emit(INPUT_EVENT, value)
+
+    // ensure native input value is controlled
+    await nextTick()
+    setNativeInputValue()
+    setCursor()
+  }
+
+  const handleChange = (event: Event): void => {
+    emit(CHANGE_EVENT, (event.target as HTMLInputElement).value)
+  }
+
+  const handleCompositionStart = (event: CompositionEvent): void => {
+    emit('compositionstart', event)
+    isComposing.value = true
+  }
+
+  const handleCompositionUpdate = (event: CompositionEvent): void => {
+    emit('compositionupdate', event)
+    // const text = (event.target as HTMLInputElement)?.value
+    // const lastCharacter = text[text.length - 1] || ''
+    // isComposing.value = !isKorean(lastCharacter)
+    isComposing.value = true;
+  }
+
+  const handleCompositionEnd = (event: CompositionEvent): void => {
+    emit('compositionend', event)
+    if (isComposing.value) {
+      isComposing.value = false
+      handleInput(event)
     }
   }
 
-  /** 查看密码 */
-  const handleShowPassword = (): void => {
-    inputType.value = showPass.value ? 'text' : 'password'
+  const handlePasswordVisible = (): void => {
+    passwordVisible.value = !passwordVisible.value
+    focus()
   }
 
-  /** 类名列表 */
-  const classList = computed(() => [
-    ns.b(),
-    ns.m(inputSize.value),
-    ns.is('disabled', props.disabled),
-    ns.is('search', props.search),
-    ns.is('hidden', props.type === 'hidden'),
-    ns.is('before', slots.before),
-    ns.is('after', slots.after || props.search)
-  ])
-
   const focus = async (): Promise<void> => {
-    // see: https://github.com/ElemeFE/element/issues/18573
     await nextTick()
     input.value?.focus()
   }
 
   const blur = (): void => input.value?.blur()
 
+  const handleMouseLeave = (evt: MouseEvent): void => {
+    hovering.value = false
+    emit('mouseleave', evt)
+  }
+
+  const handleMouseEnter = (evt: MouseEvent): void => {
+    hovering.value = true
+    emit('mouseenter', evt)
+  }
+
+  const handleKeydown = (evt: KeyboardEvent): void => {
+    emit('keydown', evt)
+  }
+
+  const select = (): void => {
+    input.value?.select()
+  }
+
+  const clear = (e: MouseEvent): void => {
+    e.preventDefault();
+    emit(UPDATE_MODEL_EVENT, '')
+    emit(CHANGE_EVENT, '')
+    emit(INPUT_EVENT, '')
+    emit('clear')
+  }
+
+  watch(
+    () => props.modelValue,
+    () => {
+      if (props.validateEvent) {
+        formItem?.validate?.('change').catch((err: any) => warning(ns.b(), err))
+      }
+    }
+  )
+
+  // native input value is set explicitly
+  // do not use v-model / :value in template
+  watch(nativeInputValue, () => setNativeInputValue())
+
+  // update DOM dependent value and styles
+  watch(
+    () => props.type,
+    async () => {
+      await nextTick()
+      setNativeInputValue()
+    }
+  )
+
+  onMounted(() => {
+    if (!props.formatter && props.parser) {
+      warning('FzInput', 'If you set the parser, you also need to set the formatter.')
+    }
+    setNativeInputValue()
+  })
+
   defineExpose({
+    /** @description HTML input element */
     input,
-    /**  HTML input element native method */
+
+    /** @description HTML input element native method */
     focus,
-    /**  HTML input element native method */
-    blur
+    /** @description HTML input element native method */
+    blur,
+    /** @description HTML input element native method */
+    select,
+    /** @description clear input value */
+    clear
   })
 </script>
 
 <template>
-  <div role="input" :class="classList">
-    <!-- 前缀插槽 -->
-    <div v-if="$slots.before" :class="ns.e('before')">
-      <slot name="before" />
+  <div
+    v-show="type !== 'hidden'"
+    v-bind="containerAttrs"
+    :class="containerKls"
+    :style="containerStyle"
+    :role="containerRole"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
+  >
+    <!-- prepend slot -->
+    <div v-if="$slots.prepend" :class="ns.be('group', 'prepend')">
+      <slot name="prepend" />
     </div>
 
-    <!-- 容器盒子 -->
-    <div :class="ns.e('wrapper')">
-      <!-- 前缀 -->
-      <div :class="ns.e('prefix')">
-        <!-- icon -->
-        <fz-svg-icon
-          v-if="prefixIcon"
-          :class="ns.e('prefix-icon')"
-          :icon="prefixIcon"
-          :size="14"
-        />
-      </div>
+    <div ref="wrapperRef" :class="wrapperKls">
+      <!-- prefix slot -->
+      <span v-if="$slots.prefix || prefixIcon" :class="ns.e('prefix')">
+        <span :class="ns.e('prefix-inner')">
+          <slot name="prefix" />
+          <fz-svg-icon v-if="prefixIcon" :icon="prefixIcon" :class="ns.e('icon')" />
+        </span>
+      </span>
 
-      <!-- 输入框 -->
       <input
+        :id="inputId"
         ref="input"
-        v-model="modelValue"
-        v-bind="attrs"
         :class="ns.e('inner')"
+        v-bind="attrs"
         :type="inputType"
-        :maxlength="maxlength"
-        :disabled="disabled"
+        :disabled="inputDisabled"
+        :formatter="formatter"
+        :parser="parser"
         :readonly="readonly"
-        :aria-label="label"
-        :tabindex="tabindex"
-        :autofocus="autofocus"
         :autocomplete="autocomplete"
+        :tabindex="tabindex"
+        :aria-label="label"
         :placeholder="placeholder"
+        :style="inputStyle"
+        :form="props.form"
+        :autofocus="autofocus"
+        @compositionstart="handleCompositionStart"
+        @compositionupdate="handleCompositionUpdate"
+        @compositionend="handleCompositionEnd"
         @input="handleInput"
-        @change="handleChange"
-        @keyup.enter="handleEnter"
-        @blur="handleBlur"
         @focus="handleFocus"
+        @blur="handleBlur"
+        @change="handleChange"
+        @keydown="handleKeydown"
       />
 
-      <!-- 后缀 -->
-      <div :class="ns.e('suffix')">
-        <!-- 清除 icon -->
-        <fz-svg-icon
-          v-if="clearable"
-          :class="ns.e('clear-icon')"
-          :icon="IconX"
-          :size="14"
-          @click="handleClear"
-        />
+      <!-- suffix slot -->
+      <span v-if="suffixVisible" :class="ns.e('suffix')">
+        <span :class="ns.e('suffix-inner')">
+          <template v-if="!showClear || !showPwdVisible || !isWordLimitVisible">
+            <slot name="suffix" />
+            <fz-svg-icon v-if="suffixIcon" :icon="suffixIcon" :class="ns.e('icon')" />
+          </template>
+          <fz-svg-icon
+            v-if="showClear"
+            :class="[ns.e('icon'), ns.e('clear')]"
+            :icon="IconXCircle"
+            @click="clear"
+          />
+          <fz-svg-icon
+            v-if="showPwdVisible"
+            :class="[ns.e('icon'), ns.e('password')]"
+            :icon="passwordIcon"
+            @click="handlePasswordVisible"
+          />
 
-        <!-- 自定义 icon -->
-        <fz-svg-icon
-          v-if="suffixIcon"
-          :class="ns.e('suffix-icon')"
-          :icon="suffixIcon"
-          :size="14"
-        />
-
-        <!-- 查看密码 -->
-        <fz-swap
-          v-if="showPassword"
-          v-model="showPass"
-          :class="ns.e('show-password')"
-          type="swap"
-          :icon-on="IconEye"
-          :icon-off="IconEyeOff"
-          :size="14"
-          @change="handleShowPassword"
-        />
-      </div>
+          <span v-if="isWordLimitVisible" :class="ns.e('count')">
+            <span :class="ns.e('count-inner')">
+              {{ textLength }} / {{ attrs.maxlength }}
+            </span>
+          </span>
+          <fz-svg-icon
+            v-if="validateState && validateIcon && needStatusIcon"
+            :class="[
+              ns.e('icon'),
+              ns.e('validateIcon'),
+              ns.is('loading', validateState === 'validating')
+            ]"
+            :icon="validateIcon"
+          />
+        </span>
+      </span>
     </div>
 
-    <!-- 后缀插槽 -->
-    <div v-if="$slots.after || search" :class="ns.e('after')">
-      <!-- 搜索框 -->
-      <div v-if="search" :class="ns.e('search')" @click="handleSearch">
-        <slot name="searchBtn">
-          <fz-button type="primary" :icon="IconSearch" :size="inputSize"></fz-button>
-        </slot>
-      </div>
-      <slot v-else name="after" />
+    <!-- append slot -->
+    <div v-if="$slots.append" :class="ns.be('group', 'append')">
+      <slot name="append" />
     </div>
   </div>
 </template>

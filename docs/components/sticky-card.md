@@ -22,7 +22,9 @@ sticky-card/slot-source
 
 :::
 
-## Attributes
+## API
+
+### Attributes
 
 | 参数           | 说明               | 类型    | 默认值 |
 | -------------- | ------------------ | ------- | ------ | 
@@ -31,21 +33,21 @@ sticky-card/slot-source
 | `close-text`   | 操作栏关闭时的文字 | string  | ——     | 开启  |
 | `border-color` | 自定义边框颜色     | string  | ——     | ——    |
 
-## Events
+### Events
 
 | 事件名  | 说明       | 参数列表 | 参数说明 |
 | ------- | ---------- | -------- | -------- |
 | `open`  | 展开时触发 | $event   | true     |
 | `close` | 关闭时触发 | $event   | false    |
 
-## Slots
+### Slots
 
 | 名称      | 说明         |
 | --------- | ------------ |
 | `default` | 默认折叠内容 |
 | `source`  | 来源内容     |
 
-## Interface
+### Interface
 
 组件导出以下类型定义：
 

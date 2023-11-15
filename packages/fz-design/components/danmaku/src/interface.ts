@@ -13,9 +13,7 @@ export type Danmu = string | CustomDanmu
 /**
  * 弹幕轨道
  */
-export interface DanChannel {
-  [index: number]: [HTMLDivElement]
-}
+export type DanChannel = Record<number, [HTMLDivElement]>;
 
 /**
  * 弹幕元素属性

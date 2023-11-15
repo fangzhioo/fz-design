@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, inject, onBeforeUnmount, onMounted, ref, unref, watch } from 'vue'
+import { computed, inject, onBeforeUnmount, ref, unref, watch } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import FzPopperContent from '../../../popper/src/components/content.vue';
 import { TOOLTIP_INJECTION_KEY } from '../interface'
@@ -132,10 +132,6 @@ watch(
     contentRef.value?.updatePopper?.()
   }
 )
-
-onMounted(() => {
-  console.log('contentRef', contentRef.value);
-})
 
 defineExpose({
   /**

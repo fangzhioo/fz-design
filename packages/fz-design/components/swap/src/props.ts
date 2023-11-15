@@ -4,10 +4,12 @@ import type { IconSlotType } from '../../../types'
 import { IconBell, IconBellOff } from '@fz-design/fz-design-icon'
 
 export const Props = {
-  /** 绑定值 */
+  /**
+   *  绑定值
+   */
   modelValue: {
-    type: Boolean,
-    require: true
+    type: [Boolean, String, Number] as PropType<boolean | string | number>,
+    default: false
   },
   /** 组件尺寸 */
   size: {
@@ -30,6 +32,20 @@ export const Props = {
   iconOff: {
     type: Object as PropType<IconSlotType>,
     default: () => IconBellOff
+  },
+  /**
+   *  开启时的值
+   */
+  activeValue: {
+    type: [Boolean, String, Number] as PropType<boolean | string | number>,
+    default: true
+  },
+  /**
+   *  关闭时的值
+   */
+  inactiveValue: {
+    type: [Boolean, String, Number] as PropType<boolean | string | number>,
+    default: false
   }
 } as const
 

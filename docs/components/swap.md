@@ -22,6 +22,16 @@ swap/size
 
 :::
 
+## 自定义值
+
+`active-value` 和 `inactive-value` 分别定义选中和未选中的值。
+
+::: demo
+
+swap/custom-value
+
+:::
+
 ## 自定义图标
 
 `icon-on` 和 `icon-off` 分别控制切换的不同图标。
@@ -42,7 +52,9 @@ swap/type
 
 :::
 
-## Attributes
+## API
+
+### Attributes
 
 | 参数     | 说明           | 类型                | 默认值 |
 | -------- | -------------- | ------------------- | ------ |
@@ -52,7 +64,7 @@ swap/type
 | icon-on  | 打开展示的图标 | IconSlotType        | -      |
 | icon-off | 关闭展示的图标 | IconSlotType        | -      |
 
-## Interface
+### Interface
 
 组件导出以下类型定义：
 
@@ -60,7 +72,7 @@ swap/type
 import type { SwapInstance, SwapProps, SwapType } from 'fighting-design'
 ```
 
-## Events
+### Events
 
 | 事件名称 | 说明       | 类型                                        |
 | -------- | ---------- | ------------------------------------------- |

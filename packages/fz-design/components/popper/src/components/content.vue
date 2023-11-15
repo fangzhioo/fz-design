@@ -24,7 +24,6 @@
   const {
     focusStartRef,
     trapped,
-
     onFocusAfterReleased,
     onFocusAfterTrapped,
     onFocusInTrap,
@@ -34,7 +33,7 @@
 
   const { attributes, arrowRef, contentRef, styles, instanceRef, role, update } =
     usePopperContent(props)
-    
+
   const {
     ariaModal,
     arrowStyle,
@@ -83,8 +82,6 @@
   }
 
   onMounted(() => {
-    console.log('popper triggerTargetEl', props.triggerTargetEl);
-    
     watch(
       () => props.triggerTargetEl,
       (triggerTargetEl, prevTriggerTargetEl) => {

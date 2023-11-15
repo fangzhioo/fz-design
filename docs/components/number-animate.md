@@ -4,13 +4,24 @@
 
 ## 基本用法
 
-通过 `from` 和 `to` 属性来设置开始值和结束值。
+通过 `from` 和 `to` 属性来设置开始值和结束值。通过 `loop` 属性来设置是否循环播放。
 
-:::demo 可以通过 `formatter` 来格式化一个数字
+:::demo 
 
 number-animate/basic
 
 :::
+
+## 格式化
+
+可以通过 `formatter` 来格式化一个数字，接收一个函数，默认为 `(num: number) => num.toLocaleString()`来格式化。
+
+:::demo 
+
+number-animate/formatter
+
+:::
+
 
 ## 大小
 
@@ -52,20 +63,24 @@ number-animate/play
 
 :::
 
-## Attributes
+## API
 
-| 参数      | 说明                   | 类型            | 默认值 |
-| --------- | ---------------------- | --------------- | ------ |
-| form      | 开始的动画数字         | `number`        | 0      |
-| to        | 结束的动画数字         | `number`        | -      |
-| size      | 尺寸                   | `string`        | ''     |
-| type      | 类型                   | `string`        | ''     |
-| duration  | 执行动画结束的大概时间 | `number`        | 2000   |
-| formatter | 对数字决定金额格式化   | `boolean`       | -      |
-| automatic | 是否初始化自动播放     | `boolean`       | true   |
-| styles    | 样式列表               | `CSSProperties` | -      |
+### Attributes
 
-## Events
+| 参数      | 说明                   | 类型            | 默认值                                |
+| --------- | ---------------------- | --------------- | ------------------------------------- |
+| form      | 开始的动画数字         | `number`        | 0                                     |
+| to        | 结束的动画数字         | `number`        | -                                     |
+| size      | 尺寸                   | `string`        | ''                                    |
+| type      | 类型                   | `string`        | ''                                    |
+| duration  | 执行动画结束的大概时间 | `number`        | 2000                                  |
+| loop      | 是否循环播放           | `boolean`       | false                                  |
+| interval  | 循环间隔时间           | `number`        | 3000                                  |
+| formatter | 对数字决定金额格式化   | `Function`      | (num: number) => num.toLocaleString() |
+| automatic | 是否初始化自动播放     | `boolean`       | true                                  |
+| styles    | 样式列表               | `CSSProperties` | -                                     |
+
+### Events
 
 | 事件名称 | 说明           | 类型                        |
 | -------- | -------------- | --------------------------- |

@@ -59,6 +59,10 @@ export default {
         dec: '十二月'
       }
     },
+    inputNumber: {
+      decrease: 'decrease number',
+      increase: 'increase number'
+    },
     select: {
       loading: '加载中',
       noMatch: '无匹配数据',

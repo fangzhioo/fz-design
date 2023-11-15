@@ -10,7 +10,9 @@ image-preview/basic
 
 :::
 
-## Attributes
+## API
+
+### Attributes
 
 | 参数                  | 说明               | 类型       | 默认值 |
 | --------------------- | ------------------ | ---------- | ------ |
@@ -24,7 +26,7 @@ image-preview/basic
 | min-scale             | 最小缩放比例       | `number`   | 0.2    |
 | max-scale             | 最大缩放比例       | `number`   | 7      |
 
-## Events
+### Events
 
 | 事件名称 | 说明   | 类型                      |
 | -------- | ------ | ------------------------- |

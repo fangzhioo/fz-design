@@ -56,7 +56,9 @@ message/placement
 
 :::
 
-## Attributes
+## API
+
+### Attributes
 
 | 参数       | 说明                                         | 类型                                  | 默认值  |
 | ---------- | -------------------------------------------- | ------------------------------------- | ------- |
@@ -73,7 +75,7 @@ message/placement
 | close-btn  | 关闭按钮                                     | `string \| IconSlotType`              | -       |
 | on-close   | 关闭之后的回调                               | `(evt?: MouseEvent) => void`          | -       |
 
-## Interface
+### Interface
 
 组件导出以下类型定义：
 
